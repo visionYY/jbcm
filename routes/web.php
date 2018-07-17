@@ -12,18 +12,17 @@ use Illuminate\Support\Facades\Cache;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','PageController@root')->name('root');
 
 //Route::get('/admin/login', function () {
 //    return view('Admin/login');,'middleware'=>['auth']
 
 //});
-Route::group(['prefix'=>'admin'],function(){
+/*Route::group(['prefix'=>'admin'],function(){
     Route::get('login','Admin\LoginController@index');
 
     // Route::group(['middleware'=>['Role']],function (){
        Route::get('index','Admin\AdminController@index');
     // });
-});
+});*/
+
