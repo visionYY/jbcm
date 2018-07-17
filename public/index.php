@@ -20,7 +20,7 @@ define('LARAVEL_START', microtime(true));
 | loading any of our classes later on. It feels great to relax.
 |
 */
-
+// var_dump(__DIR__.'/../');die;
 require __DIR__.'/../vendor/autoload.php';
 
 /*

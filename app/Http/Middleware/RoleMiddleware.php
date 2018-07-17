@@ -15,7 +15,7 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        dd($next($request));die;
+        // dd($next($request));die;
         return $next($request);
     }
 }

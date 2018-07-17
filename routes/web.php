@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::group(['prefix'=>'admin'],function(){
     Route::get('login','Admin\LoginController@index');
 
-    Route::group(['middleware'=>['Role']],function (){
+    // Route::group(['middleware'=>['Role']],function (){
        Route::get('index','Admin\AdminController@index');
-    });
+    // });
 });
