@@ -15,11 +15,16 @@
     <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <style type="text/css">
+    	.img-circle{
+    		width: 60px;
+    	}
+    </style>
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
     <div id="wrapper">
-        <!--左侧导航开始-->
+        <!--左侧导航开始 session('a_logo') ? asset("session('a_logo')") : "img/profile_small.jpg"-->
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="nav-close"><i class="fa fa-times-circle"></i>
             </div>
@@ -27,7 +32,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src={{ session('a_logo') ? asset("'upload/'.session('a_logo'") : "img/profile_small.jpg"}} /></span>
+                            <span><img alt="image" class="img-circle" src={{asset(session('a_pic'))}} /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">{{session('a_name')}}</strong></span>

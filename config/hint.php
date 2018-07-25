@@ -15,6 +15,7 @@ return [
     'images_type_error' => '上传图片类型错误',
     'images_size_error' => '上传图片大小超出允许范围',
     'images_null' => '没有文件上传',
+    'upload_failure' => '上传失败',
 
     //增删改提示
     'add_success' => '添加成功！',
@@ -27,6 +28,7 @@ return [
     'password_two' => '密码两次输入不一致！',
     'detail_null' => '暂无详情，请在操作中添加！',
     'detail_exist' => '详情已经存在，无需再添加！',
+    'data_exist' => '数据不存在！',
 
     'del_other' => '暂不提供删除功能！',
 ];

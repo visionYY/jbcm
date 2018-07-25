@@ -26,9 +26,13 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('login','Admin\IndexController@store');			//执行登陆
    	Route::get('loginout','Admin\IndexController@loginOut');	//退出
 
-    Route::get('admin','Admin\AdminController@index');          //管理员列表
+   /* Route::get('admin','Admin\AdminController@index');          //管理员列表
     Route::get('adminAdd','Admin\AdminController@create');      //管理员添加
-    Route::post('adminAdd','Admin\AdminController@store');     //执行添加
+    Route::post('adminAdd','Admin\AdminController@store');      //执行添加
+    Route::get('adminMod/id/{id}','Admin\AdminController@edit');//管理员修改
+    Route::post('adminMod/{id}','Admin\AdminController@update');      //执行修改*/
+
+    Route::resource('admin','Admin\AdminController');
 });
 
 //前端

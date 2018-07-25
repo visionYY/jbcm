@@ -25,7 +25,7 @@ class Admin extends Model
             return 1;
         }
         $admin = $admin -> toArray();
-        if ($admin['password'] != $data['password']) {
+        if ($admin['password'] != md5($data['password'] )) {
             return 2;
         }
         Session::put('a_id', $admin['id']);

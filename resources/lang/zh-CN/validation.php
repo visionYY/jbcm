@@ -171,5 +171,6 @@ return [
         'available'             => '可用的',
         'size'                  => '大小',
         'nickname'              => '昵称',
+        'admin_pic'              => '头像',
     ],
 ];

@@ -12,6 +12,9 @@ class IndexController extends Controller
 {
     //头部及左侧
     public function index(){
+        if (!session('a_id')){
+            return Redirect::to('admin/login');
+        }
         return view('Admin.Index.index');
     }
 

@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html>
-
-
-<!-- Mirrored from www.zi-han.net/theme/hplus/table_foo_table.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:03 GMT -->
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title>用户管理</title>
-    <meta name="keywords" content="用户管理">
-    <meta name="description" content="用户管理">
-    <link rel="shortcut icon" href="favicon.ico"> 
-    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
-    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
-</head>
-
-<body class="gray-bg">
+@extends('layouts.admin')
+@section('title','管理员列表')
+@section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-sm-12">
@@ -47,7 +27,7 @@
                     </div>
                     <div class="ibox-content">
                         <div class="">
-                            <a href="adminAdd" class="btn btn-primary J_menuItem">添加管理员</a>
+                            <a href="admin/create" class="btn btn-primary J_menuItem">添加管理员</a>
                         </div>
                         @include('layouts.admin_error')
                          <table class="table table-hover">
@@ -85,10 +65,10 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="userDetail/id/{{$v->id}}">详情</a></li>
-                                                <li><a href="userMod/id/{{$v->id}}" class="font-bold">修改</a></li>
-                                                <li><a href="forbidden/id/{{$v->id}}">禁用</a></li>
+                                                <li><a href={{url("admin/admin/$v->id/edit")}} class="font-bold">修改</a></li>
+                                                <li><a href="javascript:;" class="demo4">禁用</a></li>
                                                 <li class="divider"></li>
-                                                <li><a href="javascript:;" onclick="if(confirm('删除后不可恢复，确定删除吗？')) location.href='userDel/id/{{$v->id}}'">删除</a>
+                                                <li><a href="javascript:;" id="{{$v->id}}" class="delete" url="{{url('admin/admin/'.$v->id)}}">删除</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -103,15 +83,14 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.6"></script>
-    <script src="js/plugins/footable/footable.all.min.js"></script>
-    <script src="js/content.min.js?v=1.0.0"></script>
+    
+    <!-- onclick="if(confirm('删除后不可恢复，确定删除吗？')) location.href={{'\''.url('admin/admin/$v->id').'\''}}" data-method="delete" -->
+     @include('layouts.admin_js')
+    <script src={{asset("Admin/js/plugins/footable/footable.all.min.js")}}></script>
+    <!-- <script src={{asset("Admin/js/plugins/layer/layer.min.js")}}></script> -->
+    <script src={{asset("Admin/js/plugins/sweetalert/sweetalert.min.js")}}></script>
     <script>
         $(document).ready(function(){$(".footable").footable();$(".footable2").footable()});
     </script>
-    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
-</body>
-
-
-</html>
+    @include('layouts.admin_delete')
+@stop
