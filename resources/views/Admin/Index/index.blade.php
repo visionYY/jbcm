@@ -40,13 +40,13 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
+                                <li><a class="J_menuItem" href="javascript:;">修改头像</a>
                                 </li>
-                                <li><a class="J_menuItem" href="profile.html">个人资料</a>
+                                <li><a class="J_menuItem" href="javascript:;">个人资料</a>
                                 </li>
-                                <li><a class="J_menuItem" href="contacts.html">联系我们</a>
+                                <li><a class="J_menuItem" href="javascript:;">联系我们</a>
                                 </li>
-                                <li><a class="J_menuItem" href="mailbox.html">信箱</a>
+                                <li><a class="J_menuItem" href="javascript:;">信箱</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="{{url('admin/loginout')}}">安全退出</a>
@@ -71,8 +71,8 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li><a class="J_menuItem" href="admin">管理员列表</a></li>
-                            <li><a class="J_menuItem" href="graph_echarts.html">权限列表</a></li>
-                            <li><a class="J_menuItem" href="graph_echarts.html">角色列表</a></li>
+                            <li><a class="J_menuItem" href="javascript:;">权限列表</a></li>
+                            <li><a class="J_menuItem" href="javascript:;">角色列表</a></li>
                         </ul>
                     </li>
                     <li>
@@ -82,9 +82,10 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="graph_echarts.html">用户列表</a></li>
-                            <li><a class="J_menuItem" href="graph_echarts.html">导师列表</a></li>
-                            <li><a class="J_menuItem" href="graph_echarts.html">学员列表</a></li>
+                            <li><a class="J_menuItem" href="user">用户列表</a></li>
+                            <li><a class="J_menuItem" href="tutorStudent">导师学员</a></li>
+                            <!-- <li><a class="J_menuItem" href="javascript:;">导师列表</a></li> -->
+                            <!-- <li><a class="J_menuItem" href="javascript:;">学员列表</a></li> -->
                         </ul>
                     </li>
                  	<li>
@@ -95,7 +96,8 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="graph_echarts.html">分类列表</a>
+                                <a class="J_menuItem" href="category">分类列表</a>
+                                <a class="J_menuItem" href="navigation">导航列表</a>
                             </li>
                         </ul>
                     </li>
@@ -107,9 +109,9 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="graph_echarts.html">视频列表</a>
-                                <a class="J_menuItem" href="graph_echarts.html">文章列表</a>
-                                <a class="J_menuItem" href="graph_echarts.html">广告列表</a>
+                                <a class="J_menuItem" href="article">视频列表</a>
+                                <a class="J_menuItem" href="article">文章列表</a>
+                                <a class="J_menuItem" href="javascript:;">广告列表</a>
                             </li>
                         </ul>
                     </li>

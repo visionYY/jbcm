@@ -86,6 +86,7 @@
                                     <img width="100px;" src="{{old('admin_pic')}}" id="admin_pic">
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <div class="checkbox">
@@ -96,6 +97,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <button class="btn btn-primary" type="submit">提交</button>

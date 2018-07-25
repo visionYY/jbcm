@@ -32,7 +32,12 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('adminMod/id/{id}','Admin\AdminController@edit');//管理员修改
     Route::post('adminMod/{id}','Admin\AdminController@update');      //执行修改*/
 
-    Route::resource('admin','Admin\AdminController');
+    Route::resource('admin','Admin\AdminController');           //管理员
+    Route::resource('category','Admin\CategoryController');     //分类
+    Route::resource('navigation','Admin\NavigationController'); //导航
+    Route::resource('article','Admin\ArticleController');       //文章
+    Route::resource('user','Admin\UserController');             //用户
+    Route::resource('tutorStudent','Admin\TutorStudentController');  //导师学员
 });
 
 //前端

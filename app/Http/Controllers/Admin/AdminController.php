@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     //列表
     public function index(){
-        $list = Admin::pageList(20);
+        $list = Admin::paginate(20);
         return view('Admin.Admin.index',compact('list',$list));
     }
 

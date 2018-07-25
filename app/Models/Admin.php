@@ -12,12 +12,6 @@ class Admin extends Model
 
     protected $fillable = ['username', 'password','mobile','email','nickname','admin_pic'];
 
-    // 列表(带分页)
-    public static function pageList($num){
-        $list = self::paginate($num);
-        return $list;
-    }
-
     // 后台登陆判断
     public static function confirm($data){
         $admin = self::where('username',$data['username'])->first();
