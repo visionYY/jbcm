@@ -24,6 +24,7 @@ return [
     'mod_failure' => '修改失败！',
     'del_success' => '删除成功！',
     'del_failure' => '删除失败！',
+    'del_failure_exist' => '删除失败,该层级下存在子级，请先删除子级后再试！',
     'password_error' => '密码错误！',
     'password_two' => '密码两次输入不一致！',
     'detail_null' => '暂无详情，请在操作中添加！',

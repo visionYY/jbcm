@@ -179,5 +179,8 @@ return [
         'head_pic'              => '头像',
         'intro'                 => '简介',
         'classic_quote'         => '经典语录',
+        'duration'             => '时长',
+        'publish_time'          => '发布时间',
+        'cover'                => '封面图',
     ],
 ];

@@ -59,7 +59,15 @@ class NavigationController extends Controller
     }
 
     //删除
-    public function destroy(){
-
+    public function destroy($id){
+        $nav = Navigation::where('parent_id',$id)->get()->toArray();
+        if($nav){
+            return back() -> with('hint',config('hint.del_failure_exist'));
+        }
+        if (Navigation::destroy($id)){
+            return back() -> with('success',config('hint.del_success'));
+        }else{
+            return back() -> with('hint',config('hint.del_failure'));
+        }
     }
 }

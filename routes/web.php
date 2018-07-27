@@ -35,9 +35,11 @@ Route::group(['prefix'=>'admin'],function(){
     Route::resource('admin','Admin\AdminController');           //管理员
     Route::resource('category','Admin\CategoryController');     //分类
     Route::resource('navigation','Admin\NavigationController'); //导航
-    Route::resource('article','Admin\ArticleController');       //文章
     Route::resource('user','Admin\UserController');             //用户
     Route::resource('tutorStudent','Admin\TutorStudentController');  //导师学员
+    Route::resource('video','Admin\VideoController');           //视频
+    Route::resource('article','Admin\ArticleController');       //文章
+
 });
 
 //前端

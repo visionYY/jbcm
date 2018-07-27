@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-<button style="display: none;" data-toggle="modal" data-target="#myModalMod" id="operation">操作</button>  
+    <button style="display: none;" data-toggle="modal" data-target="#myModalMod" id="operation">操作</button>  
      @include('layouts.admin_js')
     <script src={{asset("Admin/js/plugins/footable/footable.all.min.js")}}></script>
     <!-- <script src={{asset("Admin/js/plugins/layer/layer.min.js")}}></script> -->
@@ -42,7 +42,6 @@
     <script>
         $(document).ready(function(){$(".footable").footable();$(".footable2").footable()});
     </script>
-    @include('layouts.admin_delete')
     <!-- 弹框(添加) -->
     <div class="modal inmodal" id="myModalAdd" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
@@ -134,13 +133,15 @@
                     {{ csrf_field() }}
                     {{ method_field('PUT') }} 
                     <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-danger delete" id="deleteNav">删除</button>
+                    <button type="button" class="btn btn-danger" id="deleteNav">删除</button>
                     <button type="submit" class="btn btn-primary" >修改</button>
                 </div>
             </div>
             </form>
         </div>
     </div>
+    <!-- 删除 -->
+    @include('layouts.admin_delete')
     <textarea id="list" style="display: none;">{{$list['json']}}</textarea>
     <script type="text/javascript">
         $(function() {
@@ -156,24 +157,23 @@
                 onNodeSelected: function(e, o) {
                     var optObj = $('.xuanze');
                     var len = optObj.length;
+                    var href = o.href;
                     for(var i=0;i<len;i++){
                         if (optObj.eq(i).val() == o.parent_id) {
                             optObj.eq(i).attr('selected',true)
                         }
                     }
-                    console.log(o.parent_id);
+                    // console.log(o.parent_id);
                     $("#mod_name").val(o.text);
                     $("#mod_sort").val(o.sort);
                     $("#navMod").attr('action',o.href);
-                    $("#deleteNav").attr('url',o.href);
+                    $("#deleteNav").attr('onclick',"cancel('"+href+"')");
                     $('#operation').trigger('click');
 
                 }
             })
-             
-           function abc(e){
-                alert(e);
-           }
         });
+
+        
     </script>
 @stop

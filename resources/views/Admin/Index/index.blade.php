@@ -109,7 +109,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="article">视频列表</a>
+                                <a class="J_menuItem" href="video">视频列表</a>
                                 <a class="J_menuItem" href="article">文章列表</a>
                                 <a class="J_menuItem" href="javascript:;">广告列表</a>
                             </li>

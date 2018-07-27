@@ -4,7 +4,7 @@
 </form>
 <script type="text/javascript">
 
-    $('.delete').on('click','.delete',function(){
+    $('.delete').on('click',function(){
         var url = $(this).attr('url');
         $('#delete').attr('action',url);
        swal({
@@ -20,7 +20,7 @@
             })
     })
 
-    function shanchu(e){
+    function cancel(e){
         $('#delete').attr('action',e);
         swal({
             title: "您确定要删除这条信息吗",
