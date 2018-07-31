@@ -27,7 +27,7 @@
                     </div>
                     <div class="ibox-content">
                         <div class="">
-                            <a href={{url("admin/article")}} class="btn btn-primary J_menuItem">添加文章</a>
+                            <a href="article/create" class="btn btn-primary J_menuItem">添加文章</a>
                         </div>
                         @include('layouts.admin_error')
                          <table class="table table-hover">

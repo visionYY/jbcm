@@ -98,6 +98,7 @@
                             <li>
                                 <a class="J_menuItem" href="category">分类列表</a>
                                 <a class="J_menuItem" href="navigation">导航列表</a>
+                                <a class="J_menuItem" href="label">标签列表</a>
                             </li>
                         </ul>
                     </li>

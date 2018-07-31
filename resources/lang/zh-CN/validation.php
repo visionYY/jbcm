@@ -182,5 +182,6 @@ return [
         'duration'             => '时长',
         'publish_time'          => '发布时间',
         'cover'                => '封面图',
+        'labels'                => '标签',
     ],
 ];

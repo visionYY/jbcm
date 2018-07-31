@@ -48,7 +48,7 @@
                                 <label class="col-sm-3 control-label">视频时长：</label>
                                 <div class="col-sm-8">
                                     <input name="duration" class="form-control" type="text" value="{{old('duration')}}">
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
+                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 时长格式：时：分：秒，例 00:21:46</span>
                                 </div>
                             </div>
                             <!-- 分类 -->
@@ -75,9 +75,9 @@
                             </div>
                             <!-- 发布时间 -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">普通：</label>
+                                <label class="col-sm-3 control-label">发布时间：</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="publish_time" value="{{old('author')}}">
+                                    <input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="publish_time" value="{{old('publish_time')}}">
                                     <label class="laydate-icon"></label>
                                 </div>
                             </div>
@@ -86,6 +86,17 @@
                                 <label class="col-sm-3 control-label">发布者：</label>
                                 <div class="col-sm-8">
                                     <input name="author" class="form-control" type="text" value="{{old('author')}}">
+                                </div>
+                            </div>
+                            <!-- 标签 -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">标签：</label>
+                                <div class="col-sm-6">
+                                    <select data-placeholder="选择标签" class="chosen-select" multiple style="width:100%;" tabindex="4" name="labels[]">
+                                        @foreach($data['label'] as $label)
+                                        <option value="{{$label['name']}}" hassubinfo="true">{{$label['name']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <!-- 封面 -->
@@ -106,7 +117,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-group" style="width: 100%;height: 150px;resize: none;" name="intro"></textarea>
+                                    <textarea class="form-group" style="width: 100%;height: 150px;resize: none;" name="intro">{{old('intro')}}</textarea>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
@@ -124,7 +135,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <button class="btn btn-primary" type="submit">提交</button>
-                                    <a class="btn btn-outline btn-default" href={{url("admin/admin")}} >返回</a>
+                                    <a class="btn btn-outline btn-default" href={{url("admin/video")}} >返回</a>
                                 </div>
                             </div>
                         </form>
@@ -135,11 +146,15 @@
     </div>
     @include('layouts.admin_js')
     <script src={{asset("Admin/js/plugins/layer/laydate/laydate.js")}}></script>
+
+    <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script>
+    <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
     @include('layouts.admin_picpro')
     <script type="text/javascript">
+        //图片比例 814:513
         var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [260, 260],
-        outputSize: [640, 640],
+        size: [271, 171],
+        outputSize: [407, 256],
         file: "#file",
         view: "#view",
         ok: "#clipBtn",

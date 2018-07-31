@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\Label;
 use App\Models\Navigation;
 use App\Models\Video;
 use App\Services\Helper;
@@ -28,6 +29,7 @@ class VideoController extends Controller
         $nav = Navigation::select('id','parent_id','n_name')->get()->toArray();
         $data['nav'] = Helper::_tree($nav);
         $data['cate'] = Category::select('id','cg_name')->get()->toArray();
+        $data['label'] = Label::select('id','name')->get()->toArray();
         return view('Admin.Video.create',compact('data',$data));
     }
 
@@ -39,9 +41,11 @@ class VideoController extends Controller
             'cg_id'=>'required|numeric',
             'nav_id'=>'required|numeric',
             'publish_time'=>'required',
+            'labels'=>'required',
             'cover'=>'required',
             'intro'=>'required');
         $credentials = $this->validate($request,$verif);
+        $credentials['labels'] = implode(',',$credentials['labels']);
         if ($request->post('author')){
             $credentials['author'] = $request->post('author');
         }
@@ -60,17 +64,62 @@ class VideoController extends Controller
     }
 
     //修改
-    public function edit(){
-
+    public function edit($id){
+        $data['video'] = Video::find($id)->toArray();
+        $nav = Navigation::select('id','parent_id','n_name')->get()->toArray();
+        $data['nav'] = Helper::_tree($nav);
+        $data['cate'] = Category::select('id','cg_name')->get()->toArray();
+        $data['label'] = Label::select('id','name')->get()->toArray();
+//        dd($data);
+        return view('Admin.Video.edit',compact('data',$data));
     }
 
     //执行修改
-    public function update(){
-
+    public function update(Request $request,$id){
+        $verif = array('title'=>'required',
+            'address'=>'required',
+            'duration'=>'required',
+            'cg_id'=>'required|numeric',
+            'nav_id'=>'required|numeric',
+            'publish_time'=>'required',
+            'labels'=>'required',
+            'intro'=>'required');
+        $credentials = $this->validate($request,$verif);
+        $credentials['labels'] = implode(',',$credentials['labels']);
+        if ($request->post('author')){
+            $credentials['author'] = $request->post('author');
+        }
+        //图像上传
+        if ($request->post('cover')){
+            $pic_path = Upload::baseUpload($request->get('cover'),'upload/Video');
+            if ($pic_path){
+                $credentials['cover'] = $pic_path;
+                @unlink(public_path($request->get('old_cover')));
+            }else{
+                return back() -> with('hint',config('hint.upload_failure'));
+            }
+        }else{
+            $credentials['cover'] = $request->get('old_cover');
+        }
+        if(Video::find($id)->update($credentials)){
+            return redirect('admin/video')->with('success', config('hint.mod_success'));
+        }else{
+            return back()->with('hint',config('hint.mod_failure'));
+        }
     }
 
     //删除
-    public function destroy(){
-
+    public function destroy($id){
+        $videoObj = Video::find($id);
+        if (!$videoObj){
+            return back() -> with('hint',config('hint.data_exist'));
+        }
+        $video = $videoObj->toArray();
+        if (Video::destroy($id)){
+            unlink(public_path($video['cover']));
+            return back() -> with('success',config('hint.del_success'));
+        }else{
+            return back() -> with('hint',config('hint.del_failure'));
+        }
     }
 }
