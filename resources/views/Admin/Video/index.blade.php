@@ -48,9 +48,9 @@
                                 <tr class="gradeC">
                                     <td>{{$v->id}}</td>
                                     <td>{{$v->title}}</td>
-                                    <td>{{$v->tv_time}}</td>
-                                    <td class="center">{{$v->cg_id}}</td>
-                                    <td class="center">{{$v->nav_id}}</td>
+                                    <td>{{$v->duration}}</td>
+                                    <td class="center">{{$v->cg_name}}</td>
+                                    <td class="center">{{$v->nav_name}}</td>
                                     <td class="center">
                                         @if($v->status == 1)
                                             <span class="label label-info">正常</span>

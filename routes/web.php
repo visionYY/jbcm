@@ -40,6 +40,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::resource('tutorStudent','Admin\TutorStudentController');  //导师学员
     Route::resource('video','Admin\VideoController');           //视频
     Route::resource('article','Admin\ArticleController');       //文章
+    Route::resource('advertising','Admin\AdvertisingController');//广告
 
 });
 

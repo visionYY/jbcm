@@ -1,13 +1,12 @@
 @extends('layouts.admin')
-@section('title','添加文章')
+@section('title','添加视频')
 @section('content')
- 
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>添加文章</h5>
+                        <h5>添加视频</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -27,7 +26,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form action={{url('admin/article')}} class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
+                        <form action={{url('admin/video')}} class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
                             @include('layouts.admin_error')
                             <!-- 标题： -->
                             <div class="form-group">
@@ -36,17 +35,23 @@
                                     <input  name="title" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" value="{{old('title')}}">
                                 </div>
                             </div>
-                            <!-- 分类 -->
+                            <!-- 视频地址 -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">分类：</label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" name="cg_id">
-                                        @foreach($data['cate'] as $cate)
-                                        <option value={{$cate['id']}}>{{$cate['cg_name']}}</option>
-                                        @endforeach
-                                    </select>
+                                <label class="col-sm-3 control-label">视频地址：</label>
+                                <div class="col-sm-8">
+                                    <input name="address" class="form-control" type="text" value="{{old('address')}}">
+                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
+                            <!-- 视频时长 -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">视频时长：</label>
+                                <div class="col-sm-8">
+                                    <input name="duration" class="form-control" type="text" value="{{old('duration')}}">
+                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 时长格式：时：分：秒，例 00:21:46</span>
+                                </div>
+                            </div>
+                           
                             <!-- 导航 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">导航：</label>
@@ -73,17 +78,7 @@
                                     <input name="author" class="form-control" type="text" value="{{old('author')}}">
                                 </div>
                             </div>
-                            <!-- 标签 -->
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">标签：</label>
-                                <div class="col-sm-6">
-                                    <select data-placeholder="选择标签" class="chosen-select" multiple style="width:100%;" tabindex="4" name="labels[]">
-                                        @foreach($data['label'] as $label)
-                                        <option value="{{$label['name']}}" hassubinfo="true">{{$label['name']}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                            
                             <!-- 封面 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">封面：</label>
@@ -102,16 +97,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
-                                    <textarea style="width: 100%;height: 150px;resize: none;" name="intro">{{old('intro')}}</textarea>
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
-                                </div>
-                            </div>
-                             <!-- 内容 -->
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">内容：</label>
-                                <div class="col-sm-8">
-                                    <!-- 加载编辑器内容 -->
-                                    <script id="editor" type="text/plain" style="height:600px;" name="content">{{old('content')}}</script>
+                                    <textarea class="form-group" style="width: 100%;height: 150px;resize: none;" name="intro">{{old('intro')}}</textarea>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
@@ -125,10 +111,11 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <button class="btn btn-primary" type="submit">提交</button>
-                                    <a class="btn btn-outline btn-default" href={{url("admin/article")}} >返回</a>
+                                    <a class="btn btn-outline btn-default" href={{url("admin/video")}} >返回</a>
                                 </div>
                             </div>
                         </form>
@@ -142,17 +129,7 @@
 
     <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script>
     <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
-
     @include('layouts.admin_picpro')
-
-    {{--百度编辑器--}}
-    <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.config.js")}}></script>
-    <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.all.min.js")}}> </script>
-    <script type="text/javascript" charset="utf-8" src={{asset("UE/lang/zh-cn/zh-cn.js")}}></script>
-    <script type="text/javascript">
-        var ue = UE.getEditor('editor');
-    </script>
-
     <script type="text/javascript">
         //图片比例 814:513
         var clipArea = new bjj.PhotoClip("#clipArea", {

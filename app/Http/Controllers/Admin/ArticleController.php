@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Label;
 use App\Models\Navigation;
 use App\Services\Helper;
+use App\Services\Upload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,6 +16,12 @@ class articleController extends Controller
     //首页
     public function index(){
         $list = Article::paginate(20);
+        foreach ($list as $art){
+            $nav = Navigation::find($art->nav_id);
+            $art->nav_name = $nav->n_name;
+            $cate = Category::find($art->cg_id);
+            $art->cg_name = $cate->cg_name;
+        }
         return view('Admin.Article.index',compact('list',$list));
     }
 
@@ -34,21 +41,90 @@ class articleController extends Controller
 
     //执行添加
     public function store(Request $request){
-
+        $verif = array('title'=>'required',
+            'content'=>'required',
+            'cg_id'=>'required|numeric',
+            'nav_id'=>'required|numeric',
+            'publish_time'=>'required',
+            'labels'=>'required',
+            'cover'=>'required',
+            'intro'=>'required');
+        $credentials = $this->validate($request,$verif);
+        $credentials['labels'] = implode(',',$credentials['labels']);
+        if ($request->post('author')){
+            $credentials['author'] = $request->post('author');
+        }
+//        dd($credentials);die;
+        //上传图片
+        $pic_path = Upload::baseUpload($credentials['cover'],'upload/Article');
+        if ($pic_path){
+            $credentials['cover'] = $pic_path;
+        }else{
+            return back() -> with('hint',config('hint.upload_failure'));
+        }
+        if (Article::create($credentials)){
+            return redirect('admin/article')->with('success', config('hint.add_success'));
+        }else{
+            return back()->with('hint',config('hint.add_failure'));
+        }
     }
 
     //修改
-    public function edit(){
-
+    public function edit($id){
+        $nav = Navigation::select('id','parent_id','n_name')->get()->toArray();
+        $data['nav'] = Helper::_tree($nav);
+        $data['cate'] = Category::select('id','cg_name')->get()->toArray();
+        $data['label'] = Label::select('id','name')->get()->toArray();
+        $data['article'] = Article::find($id);
+        return view('Admin.Article.edit',compact('data',$data));
     }
 
     //执行修改
-    public function update(){
+    public function update(Request $request,$id){
+        $verif = array('title'=>'required',
+            'content'=>'required',
+            'cg_id'=>'required|numeric',
+            'nav_id'=>'required|numeric',
+            'publish_time'=>'required',
+            'labels'=>'required',
+            'intro'=>'required');
+        $credentials = $this->validate($request,$verif);
+        $credentials['labels'] = implode(',',$credentials['labels']);
+        if ($request->post('author')){
+            $credentials['author'] = $request->post('author');
+        }
 
+        //图像上传
+        if ($request->post('cover')){
+            $pic_path = Upload::baseUpload($request->get('cover'),'upload/Article');
+            if ($pic_path){
+                $credentials['cover'] = $pic_path;
+                @unlink(public_path($request->get('old_cover')));
+            }else{
+                return back() -> with('hint',config('hint.upload_failure'));
+            }
+        }else{
+            $credentials['cover'] = $request->get('old_cover');
+        }
+//        dd($credentials);
+        if(Article::find($id)->update($credentials)){
+            return redirect('admin/article')->with('success', config('hint.mod_success'));
+        }else{
+            return back()->with('hint',config('hint.mod_failure'));
+        }
     }
 
     //删除
-    public function destroy(){
-
+    public function destroy($id){
+        $Obj = Article::find($id);
+        if (!$Obj){
+            return back() -> with('hint',config('hint.data_exist'));
+        }
+        if (Article::destroy($id)){
+            @unlink(public_path($Obj->cover));
+            return back() -> with('success',config('hint.del_success'));
+        }else{
+            return back() -> with('hint',config('hint.del_failure'));
+        }
     }
 }

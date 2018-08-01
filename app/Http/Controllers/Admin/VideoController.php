@@ -16,6 +16,12 @@ class VideoController extends Controller
     //首页
     public function index(){
         $list = Video::paginate(20);
+        foreach ($list as $art){
+            $nav = Navigation::find($art->nav_id);
+            $art->nav_name = $nav->n_name;
+            $cate = Category::find($art->cg_id);
+            $art->cg_name = $cate->cg_name;
+        }
         return view('Admin.Video.index',compact('list',$list));
     }
 
@@ -89,6 +95,7 @@ class VideoController extends Controller
         if ($request->post('author')){
             $credentials['author'] = $request->post('author');
         }
+//        dd($credentials);
         //图像上传
         if ($request->post('cover')){
             $pic_path = Upload::baseUpload($request->get('cover'),'upload/Video');

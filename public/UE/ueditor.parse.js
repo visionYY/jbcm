@@ -311,6 +311,7 @@
     uParse = function(selector,opt){
         utils.domReady(function(){
             var contents;
+            console.log(123);
             if(document.querySelectorAll){
                 contents = document.querySelectorAll(selector)
             }else{

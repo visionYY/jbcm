@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title','文章')
+@section('title','广告')
 @section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-8">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>文章列表</h5>
+                        <h5>广告列表</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="ibox-content">
                         <div class="">
-                            <a href="article/create" class="btn btn-primary J_menuItem">添加文章</a>
+                            <a href="advertising/create" class="btn btn-primary J_menuItem">添加广告</a>
                         </div>
                         @include('layouts.admin_error')
                          <table class="table table-hover">
@@ -35,10 +35,8 @@
                                 <tr>
                                     <th >ID</th>
                                     <th>标题</th>
-                                    <th>分类</th>
-                                    <th>导航</th>
-                                    <th>状态</th>
-                                    <th>上传时间</th>
+                                    <th>广告图</th>
+                                    <th>位置</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
@@ -50,23 +48,15 @@
                                     <td class="center">{{$v->cg_name}}</td>
                                     <td class="center">{{$v->nav_name}}</td>
                                     <td class="center">
-                                        @if($v->status == 1)
-                                            <span class="label label-info">正常</span>
-                                        @else
-                                            <span class="label label-danger">禁用</span>
-                                        @endif
-                                    </td>
-                                    <td class="center">{{$v->publish_time}}</td>
-                                    <td class="center">
                                         <div class="btn-group">
                                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="javascript:;">详情</a></li>
-                                                <li><a href={{url("admin/article/$v->id/edit")}} class="font-bold">修改</a></li>
+                                                <li><a href={{url("admin/advertising/$v->id/edit")}} class="font-bold">修改</a></li>
                                                 <li><a href="javascript:;" class="demo4">禁用</a></li>
                                                 <li class="divider"></li>
-                                                <li><a href="javascript:;" id="{{$v->id}}" class="delete" url="{{url('admin/article/'.$v->id)}}">删除</a>
+                                                <li><a href="javascript:;" id="{{$v->id}}" class="delete" url="{{url('admin/advertising/'.$v->id)}}">删除</a>
                                                 </li>
                                             </ul>
                                         </div>

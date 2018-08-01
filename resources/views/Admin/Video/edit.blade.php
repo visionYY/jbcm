@@ -57,7 +57,7 @@
                                 <div class="col-sm-6">
                                     <select class="form-control" name="cg_id">
                                         @foreach($data['cate'] as $cate)
-                                        <option value={{$cate['id']}}>{{$cate['cg_name']}}</option>
+                                        <option value={{$cate['id']}} {{$cate['id']==$data['video']['cg_id']? 'selected' : ''}}>{{$cate['cg_name']}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -68,7 +68,7 @@
                                <div class="col-sm-6">
                                 <select class="form-control" name="nav_id">
                                     @foreach($data['nav'] as $nav)
-                                    <option value={{$nav['id']}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
+                                    <option value={{$nav['id']}} {{$nav['id']==$data['video']['nav_id']? 'selected' : ''}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
                                     @endforeach
                                 </select>
                             </div>

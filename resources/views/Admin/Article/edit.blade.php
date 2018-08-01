@@ -1,13 +1,13 @@
 @extends('layouts.admin')
-@section('title','添加文章')
+@section('title','文章修改')
 @section('content')
- 
+
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>添加文章</h5>
+                        <h5>文章修改</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -27,13 +27,13 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form action={{url('admin/article')}} class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
+                        <form action={{url('admin/article/'.$data['article']->id)}} class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
                             @include('layouts.admin_error')
                             <!-- 标题： -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">标题：</label>
                                 <div class="col-sm-8">
-                                    <input  name="title" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" value="{{old('title')}}">
+                                    <input  name="title" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" value="{{$data['article']->title}}">
                                 </div>
                             </div>
                             <!-- 分类 -->
@@ -42,7 +42,7 @@
                                 <div class="col-sm-6">
                                     <select class="form-control" name="cg_id">
                                         @foreach($data['cate'] as $cate)
-                                        <option value={{$cate['id']}}>{{$cate['cg_name']}}</option>
+                                        <option value={{$cate['id']}} {{$data['article']->cg_id == $cate['id'] ? 'selected' : ''}}>{{$cate['cg_name']}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -53,7 +53,7 @@
                                <div class="col-sm-6">
                                 <select class="form-control" name="nav_id">
                                     @foreach($data['nav'] as $nav)
-                                    <option value={{$nav['id']}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
+                                    <option value={{$nav['id']}} {{$data['article']->nav_id == $nav['id'] ? 'selected' : ''}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
                                     @endforeach
                                 </select>
                             </div>
@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">发布时间：</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="publish_time" value="{{old('publish_time')}}">
+                                    <input class="form-control layer-date" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="publish_time" value="{{$data['article']->publish_time}}">
                                     <label class="laydate-icon"></label>
                                 </div>
                             </div>
@@ -70,18 +70,19 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">发布者：</label>
                                 <div class="col-sm-8">
-                                    <input name="author" class="form-control" type="text" value="{{old('author')}}">
+                                    <input name="author" class="form-control" type="text" value="{{$data['article']->author}}">
                                 </div>
                             </div>
                             <!-- 标签 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">标签：</label>
                                 <div class="col-sm-6">
-                                    <select data-placeholder="选择标签" class="chosen-select" multiple style="width:100%;" tabindex="4" name="labels[]">
+                                    <select data-placeholder="{{$data['article']->labels}}" class="chosen-select" multiple style="width:100%;" tabindex="4" name="labels[]">
                                         @foreach($data['label'] as $label)
                                         <option value="{{$label['name']}}" hassubinfo="true">{{$label['name']}}</option>
                                         @endforeach
                                     </select>
+                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请重新选择</span>
                                 </div>
                             </div>
                             <!-- 封面 -->
@@ -95,14 +96,14 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"></label>
                                 <div class="col-sm-8">
-                                    <img width="100px;" src="{{old('cover')}}" id="cover">
+                                    <img width="100px;" src="{{$data['article']->cover}}" id="cover">
                                 </div>
                             </div>
                              <!-- 简介 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
-                                    <textarea style="width: 100%;height: 150px;resize: none;" name="intro">{{old('intro')}}</textarea>
+                                    <textarea style="width: 100%;height: 150px;resize: none;" name="intro">{{$data['article']->intro}}</textarea>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
@@ -110,8 +111,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">内容：</label>
                                 <div class="col-sm-8">
-                                    <!-- 加载编辑器内容 -->
-                                    <script id="editor" type="text/plain" style="height:600px;" name="content">{{old('content')}}</script>
+                                    <textarea id="editor" style="height:600px;" name="content" >{{$data['article']->content}}</textarea>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
@@ -120,7 +120,9 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                            <input type="hidden" name="cover" value="{{old('cover')}}">
+                                            <input type="hidden" name="old_cover" value="{{$data['article']->cover}}">
+                                            <input type="hidden" name="_method" value="put"/>
+                                            <input type="hidden" name="cover">
                                         </label>
                                     </div>
                                 </div>
@@ -143,16 +145,17 @@
     <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script>
     <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
 
-    @include('layouts.admin_picpro')
 
-    {{--百度编辑器--}}
+    
+    @include('layouts.admin_picpro')
+     {{--百度编辑器--}}
     <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.config.js")}}></script>
+    <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.parse.js")}}></script>
     <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.all.min.js")}}> </script>
     <script type="text/javascript" charset="utf-8" src={{asset("UE/lang/zh-cn/zh-cn.js")}}></script>
     <script type="text/javascript">
         var ue = UE.getEditor('editor');
     </script>
-
     <script type="text/javascript">
         //图片比例 814:513
         var clipArea = new bjj.PhotoClip("#clipArea", {
