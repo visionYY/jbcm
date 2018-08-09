@@ -64,7 +64,13 @@
                                             <ul class="dropdown-menu">
                                                 <li><a href="javascript:;">详情</a></li>
                                                 <li><a href={{url("admin/article/$v->id/edit")}} class="font-bold">修改</a></li>
-                                                <li><a href="javascript:;" class="demo4">禁用</a></li>
+                                                <li>
+                                                    @if($v->cho != 0)
+                                                    <a href="{{url('admin/choiceness/cancel/id/'.$v->cho)}}" >取消精选</a>
+                                                    @else
+                                                    <a href={{url('admin/choiceness/setting/type/1/id/'.$v->id)}} >设置精选</a>
+                                                    @endif
+                                                </li>
                                                 <li class="divider"></li>
                                                 <li><a href="javascript:;" id="{{$v->id}}" class="delete" url="{{url('admin/article/'.$v->id)}}">删除</a>
                                                 </li>

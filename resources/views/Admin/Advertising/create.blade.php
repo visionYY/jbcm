@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title','添加视频')
+@section('title','添加广告')
 @section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-sm-6">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>添加视频</h5>
+                        <h5>添加广告</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form action={{url('admin/video')}} class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
+                        <form action={{url('admin/advertising')}} class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
                             @include('layouts.admin_error')
                             <!-- 标题： -->
                             <div class="form-group">
@@ -39,43 +39,31 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">视频地址：</label>
                                 <div class="col-sm-8">
-                                    <input name="address" class="form-control" type="text" value="{{old('address')}}">
+                                    <input name="video" class="form-control" type="text" value="{{old('video')}}">
+                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 非1号位可不填</span>
+                                </div>
+                            </div>
+                          
+                             <!-- 链接地址： -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">链接地址：</label>
+                                <div class="col-sm-8">
+                                    <input name="href" class="form-control" type="text" value="{{old('href')}}">
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
-                            <!-- 视频时长 -->
+                            <!-- 位置 -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">视频时长：</label>
-                                <div class="col-sm-8">
-                                    <input name="duration" class="form-control" type="text" value="{{old('duration')}}">
-                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 时长格式：时：分：秒，例 00:21:46</span>
-                                </div>
-                            </div>
-                           
-                            <!-- 导航 -->
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">导航：</label>
-                               <div class="col-sm-6">
-                                <select class="form-control" name="nav_id">
-                                    @foreach($data['nav'] as $nav)
-                                    <option value={{$nav['id']}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            </div>
-                            <!-- 发布时间 -->
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">发布时间：</label>
-                                <div class="col-sm-6">
-                                    <input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="publish_time" value="{{old('publish_time')}}">
-                                    <label class="laydate-icon"></label>
-                                </div>
-                            </div>
-                            <!-- 发布者 -->
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">发布者：</label>
-                                <div class="col-sm-8">
-                                    <input name="author" class="form-control" type="text" value="{{old('author')}}">
+                                <label class="col-sm-3 control-label">位置：</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="location">
+                                        @foreach(config('hint.location') as $v)
+                                        <option value="{{$v}}">{{$v}} 号广告位</option>
+                                        @endforeach
+                                        <!-- <option value="2">2号广告位</option> -->
+                                        <!-- <option value="3">3号广告位</option> -->
+                                    </select>
+                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
                             
@@ -93,14 +81,7 @@
                                     <img width="100px;" src="{{old('cover')}}" id="cover">
                                 </div>
                             </div>
-                             <!-- 简介 -->
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">简介：</label>
-                                <div class="col-sm-8">
-                                    <textarea class="form-group" style="width: 100%;height: 150px;resize: none;" name="intro">{{old('intro')}}</textarea>
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
-                                </div>
-                            </div>
+                           
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <div class="checkbox">
@@ -115,7 +96,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <button class="btn btn-primary" type="submit">提交</button>
-                                    <a class="btn btn-outline btn-default" href={{url("admin/video")}} >返回</a>
+                                    <a class="btn btn-outline btn-default" href={{url("admin/advertising")}} >返回</a>
                                 </div>
                             </div>
                         </form>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\Choiceness;
 use App\Models\Label;
 use App\Models\Navigation;
 use App\Models\Video;
@@ -21,6 +22,12 @@ class VideoController extends Controller
             $art->nav_name = $nav->n_name;
             $cate = Category::find($art->cg_id);
             $art->cg_name = $cate->cg_name;
+            $cho = Choiceness::where('type',2)->where('cho_id',$art->id)->get()->toArray();
+            if ($cho){
+                $art->cho = $cho[0]['id'];
+            }else{
+                $art->cho = 0;
+            }
         }
         return view('Admin.Video.index',compact('list',$list));
     }

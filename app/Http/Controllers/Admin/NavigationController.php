@@ -11,7 +11,7 @@ class NavigationController extends Controller
 {
     //首页
     public function index(){
-        $all = Navigation::all()->toArray();
+        $all = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
         $list['arr'] = Helper::_tree($all);
         $list['json'] = json_encode(Helper::_tree_json($all));
         return view('Admin.Navigation.index',compact('list',$list));
@@ -29,7 +29,7 @@ class NavigationController extends Controller
 
     //执行添加
     public function store(Request $request){
-        $verif = array('n_name'=>'required|unique:navigation',
+        $verif = array('n_name'=>'required',
             'sort'=>'required|numeric',
             'parent_id'=>'required|numeric');
         $credentials = $this->validate($request,$verif);
@@ -47,7 +47,7 @@ class NavigationController extends Controller
 
     //执行修改
     public function update(Request $request,$id){
-        $verif = array('n_name'=>'required|unique:navigation,n_name,'.$id,
+        $verif = array('n_name'=>'required',
             'sort'=>'required|numeric',
             'parent_id'=>'required|numeric');
         $credentials = $this->validate($request,$verif);

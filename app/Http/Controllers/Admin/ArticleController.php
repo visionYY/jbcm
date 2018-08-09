@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Choiceness;
 use App\Models\Label;
 use App\Models\Navigation;
 use App\Services\Helper;
@@ -21,6 +22,12 @@ class articleController extends Controller
             $art->nav_name = $nav->n_name;
             $cate = Category::find($art->cg_id);
             $art->cg_name = $cate->cg_name;
+            $cho = Choiceness::where('type',1)->where('cho_id',$art->id)->get()->toArray();
+            if ($cho){
+                $art->cho = $cho[0]['id'];
+            }else{
+                $art->cho = 0;
+            }
         }
         return view('Admin.Article.index',compact('list',$list));
     }
@@ -106,7 +113,6 @@ class articleController extends Controller
         }else{
             $credentials['cover'] = $request->get('old_cover');
         }
-//        dd($credentials);
         if(Article::find($id)->update($credentials)){
             return redirect('admin/article')->with('success', config('hint.mod_success'));
         }else{

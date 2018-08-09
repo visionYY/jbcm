@@ -11,10 +11,10 @@
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
     <link rel="shortcut icon" href={{asset("Admin/favicon.ico")}}>
-    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href={{asset("Admin/css/bootstrap.min14ed.css?v=3.3.6")}} rel="stylesheet">
+    <link href={{asset("Admin/css/font-awesome.min93e3.css?v=4.4.0")}} rel="stylesheet">
+    <link href={{asset("Admin/css/animate.min.css")}} rel="stylesheet">
+    <link href={{asset("Admin/css/style.min862f.css?v=4.1.0")}} rel="stylesheet">
     <style type="text/css">
     	.img-circle{
     		width: 60px;
@@ -32,7 +32,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src={{asset(session('a_pic'))}} /></span>
+                            <span><img alt="image" class="img-circle" src={{session('a_pic')}} /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">{{session('a_name')}}</strong></span>
@@ -346,13 +346,13 @@
             </a>
         </div>
     </div>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.6"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="js/plugins/layer/layer.min.js"></script>
-    <script src="js/hplus.min.js?v=4.1.0"></script>
-    <script type="text/javascript" src="js/contabs.min.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src={{asset("Admin/js/jquery.min.js?v=2.1.4")}}></script>
+    <script src={{asset("Admin/js/bootstrap.min.js?v=3.3.6")}}></script>
+    <script src={{asset("Admin/js/plugins/metisMenu/jquery.metisMenu.js")}}></script>
+    <script src={{asset("Admin/js/plugins/slimscroll/jquery.slimscroll.min.js")}}></script>
+    <script src={{asset("Admin/js/plugins/layer/layer.min.js")}}></script>
+    <script src={{asset("Admin/js/hplus.min.js?v=4.1.0")}}></script>
+    <script type="text/javascript" src={{asset("Admin/js/contabs.min.js")}}></script>
+    <script src={{asset("Admin/js/plugins/pace/pace.min.js")}}></script>
 </body>
 </html>

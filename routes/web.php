@@ -16,6 +16,7 @@ Route::get('/','Home\IndexController@index');
 
 Route::get('/test', function () {
    $abc = \App\Models\Admin::where('email','>','?')->toSql();
+   dd(asset('123'));
    dd($abc);
 });
 //后台
@@ -41,6 +42,10 @@ Route::group(['prefix'=>'admin'],function(){
     Route::resource('video','Admin\VideoController');           //视频
     Route::resource('article','Admin\ArticleController');       //文章
     Route::resource('advertising','Admin\AdvertisingController');//广告
+
+    //功能路由
+    Route::get('choiceness/setting/type/{type}/id/{id}','Admin\ChoicenessController@setting');    //设置精选
+    Route::get('choiceness/cancel/id/{id}','Admin\ChoicenessController@cancel');      //取消精选
 
 });
 
