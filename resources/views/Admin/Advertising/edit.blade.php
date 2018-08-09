@@ -57,8 +57,8 @@
                                 <label class="col-sm-3 control-label">位置：</label>
                                 <div class="col-sm-3">
                                     <select class="form-control" name="location">
-                                        @foreach(config('hint.location') as $v)
-                                        <option value="{{$v}}" {{$data->location == $v ? 'selected' : ''}}>{{$v}} 号广告位</option>
+                                        @foreach(config('hint.location') as $k => $v)
+                                        <option value="{{$k}}" {{$data->location == $k ? 'selected' : ''}}>{{$v}}</option>
                                         @endforeach
                                     </select>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->

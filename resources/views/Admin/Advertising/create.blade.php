@@ -57,8 +57,8 @@
                                 <label class="col-sm-3 control-label">位置：</label>
                                 <div class="col-sm-3">
                                     <select class="form-control" name="location">
-                                        @foreach(config('hint.location') as $v)
-                                        <option value="{{$v}}">{{$v}} 号广告位</option>
+                                        @foreach(config('hint.location') as $k=>$v)
+                                        <option value="{{$k}}">{{$v}}</option>
                                         @endforeach
                                         <!-- <option value="2">2号广告位</option> -->
                                         <!-- <option value="3">3号广告位</option> -->

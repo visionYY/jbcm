@@ -95,10 +95,13 @@ class VideoController extends Controller
             'cg_id'=>'required|numeric',
             'nav_id'=>'required|numeric',
             'publish_time'=>'required',
-            'labels'=>'required',
             'intro'=>'required');
         $credentials = $this->validate($request,$verif);
-        $credentials['labels'] = implode(',',$credentials['labels']);
+        if ($request->post('labels')){
+            $credentials['labels'] = implode(',',$request->post('labels'));
+        }else{
+            $credentials['labels'] = $request->post('old_labels');
+        }
         if ($request->post('author')){
             $credentials['author'] = $request->post('author');
         }

@@ -46,7 +46,7 @@
                                     <td>{{$v->id}}</td>
                                     <td>{{$v->title}}</td>
                                     <td class="center"><img src="{{asset($v->cover)}}" width="60px"></td>
-                                    <td class="center">{{$v->location}} 号广告位</td>
+                                    <td class="center">{{config('hint.location')[$v->location]}}</td>
                                     <td class="center">
                                         <div class="btn-group">
                                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span>

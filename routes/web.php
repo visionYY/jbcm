@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Cache;
 */
 
 Route::get('/','Home\IndexController@index');
+Route::get('transmit/oneId/{oneId}/secId/{secId}','Home\IndexController@transmit');
+Route::get('brand/oneId/{oneId}/secId/{secId}','Home\IndexController@brand');
+Route::get('university/oneId/{oneId}/secId/{secId}','Home\IndexController@university');
+Route::get('summit/oneId/{oneId}/secId/{secId}','Home\IndexController@summit');
+Route::get('tutorStudent/oneId/{oneId}/secId/{secId}','Home\IndexController@tutorStudent');
+Route::get('aboutUs/oneId/{oneId}/secId/{secId}','Home\IndexController@aboutUs');
 
 Route::get('/test', function () {
    $abc = \App\Models\Admin::where('email','>','?')->toSql();

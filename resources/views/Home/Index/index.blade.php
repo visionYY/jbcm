@@ -1,10 +1,8 @@
 @extends('layouts.home')
 @section('title',$data['title'])
-<!-- @include('layouts.admin_header') -->
 @section('content')
     <div class="wrapper">
         <div class="main1 clearfix">
-           
             @include('layouts._header')
             <div class="main">
                 <div class="main-left">
@@ -259,4 +257,9 @@
     </div>
 
     @include('layouts._footer')
+    <script type="text/javascript">
+        $(function(){
+                $('#myCarousel').carousel({interval:2000});
+            })
+    </script>
 @stop

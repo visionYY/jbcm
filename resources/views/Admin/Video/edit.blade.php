@@ -127,6 +127,7 @@
                                         <label>
                                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                             <input type="hidden" name="old_cover" value="{{$data['video']['cover']}}">
+                                            <input type="hidden" name="old_labels" value="{{$data['video']['labels']}}">
                                             <input type="hidden" name="_method" value="put"/>
                                             <input type="hidden" name="cover">
                                         </label>

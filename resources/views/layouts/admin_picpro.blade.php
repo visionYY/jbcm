@@ -10,7 +10,7 @@
                     <!-- <small class="font-bold">这里可以显示副标题。 -->
                 </div>
                 <div class="modal-body">
-                    <div id="clipArea" style="margin-top: 20px;height: 300px;"></div>
+                    <div id="clipArea" style="margin-top: 20px;height: 500px;"></div>
                     <!-- <div id="view"></div> -->
                 </div>
                 <div class="modal-footer">
