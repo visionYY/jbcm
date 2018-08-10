@@ -1,6 +1,8 @@
 @extends('layouts.home')
 @section('title',$data['title'])
 @section('content')
+<link rel="stylesheet" href="{{asset('Home/css/program.css')}}">
+<link rel="stylesheet" href="{{asset('Home/css/program_1.css')}}">
 <div class="wrapper">
     <div class="main1 clearfix">
          @include('layouts._header')
@@ -26,28 +28,19 @@
                         <div class="main-left">
                             <div id="videoListID" class="videoList">
                                 <table class="tableView">
+                                    @foreach($towNav->video as $video)
                                     <ol>
                                         <h5 class="titletxt">
                                             <img src={{asset("Home/images/icon_shipin@2x.png")}} alt="">
-                                            映客企业纪录片（20分钟）
-                                            <a class="timeLabel">2018-8-10</a>
+                                            {{$video->title}}（{{$video->duration}}<!-- 分钟 -->）
+                                            <a class="timeLabel">{{substr($video->publish_time,0,10)}}</a>
                                         </h5>
                                         <video class="videoFrame" controls>
-                                            <source src="http://1256356427.vod2.myqcloud.com/12b315c8vodgzp1256356427/3a41bf907447398156921405349/W42LpYmyxX0A.mp4?nsukey=mYSh%2FpaubhjtG1T1N7Z1dcVsOMp4O6nD78YAqcNmlon9%2B9MxTpNQmXu2jmPjPUtav2tT4JY3B6YGn7FnJlmQLQqDDFUU7nMorWbTHtAY2p8DEuWfV6a54kINIU%2FSnr16EB49D5kfXbVzN31pU%2BuMTd%2BQby9QP1a7WEJ33pjJDfggbq5rY4oV19wduJ6ogSzTHa9CB4ObhKvV9ANilf8TUg%3D%3D" type="video/mp4">
+                                            <source src="{{$video->address}}" type="video/mp4">
                                             <source src="movie.ogg" type="video/ogg">
                                         </video>
                                     </ol>
-                                    <ol>
-                                        <h5 class="titletxt">
-                                            <img src={{asset("Home/images/icon_shipin@2x.png")}} alt="">
-                                            映客企业纪录片（20分钟）
-                                            <a class="timeLabel">2018-8-10</a>
-                                        </h5>
-                                        <video class="videoFrame" controls>
-                                            <source src="http://1256356427.vod2.myqcloud.com/12b315c8vodgzp1256356427/3a41bf907447398156921405349/W42LpYmyxX0A.mp4?nsukey=mYSh%2FpaubhjtG1T1N7Z1dcVsOMp4O6nD78YAqcNmlon9%2B9MxTpNQmXu2jmPjPUtav2tT4JY3B6YGn7FnJlmQLQqDDFUU7nMorWbTHtAY2p8DEuWfV6a54kINIU%2FSnr16EB49D5kfXbVzN31pU%2BuMTd%2BQby9QP1a7WEJ33pjJDfggbq5rY4oV19wduJ6ogSzTHa9CB4ObhKvV9ANilf8TUg%3D%3D" type="video/mp4">
-                                            <source src="movie.ogg" type="video/ogg">
-                                        </video>
-                                    </ol>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
@@ -79,17 +72,17 @@
                         @foreach($towNav->threeNav as $thrNav)
                         <div class="lists">
                             <div class="tit">
-                                <p class="tit-txt"><span>{{$thrNav->n_name}} | <em>2018-06-22</em></span></p>
+                                <p class="tit-txt"><span>{{$thrNav->n_name}} | <em>{{substr($thrNav->created_at,0,10)}}</em></span></p>
                                 <a href="#">查看更多</a>
                             </div>
                             <div class="cont">
                                 @foreach($thrNav->article as $art)
                                 <dl class="cont-dls">
-                                    <a href="#">
+                                    <a href="{{url('article/id/'.$art->id)}}">
                                         <dt><img src="{{asset($art->cover)}}" alt=""></dt>
                                         <dd>
-                                            <p class="dls-tit">{{$art->intro}}</p>
-                                            <p class="dls-text">{{$art->title}}</p>
+                                            <p class="dls-tit">{{$art->title}}</p>
+                                            <p class="dls-text">{{$art->cg_name}}</p>
                                             <p class="dls-time">{{$art->created_at}}</p>
                                         </dd>
                                     </a>

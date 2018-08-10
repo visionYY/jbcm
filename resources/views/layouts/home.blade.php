@@ -12,12 +12,10 @@
     <link href="http://cdn.bootcss.com/normalize/4.2.0/normalize.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('Home/css/bootstrap.min.css')}}" >
     <link rel="stylesheet" href={{asset("Home/css/all.css")}}>
-    <link rel="stylesheet" href={{asset("Home/css/index.css")}}>
     <link rel="stylesheet" href={{asset("Home/css/header.css")}}>
     <link rel="stylesheet" href={{asset("Home/css/footer.css")}}>
     <link rel="stylesheet" href={{asset("Home/fonts/iconfont.css")}}>
-    <link rel="stylesheet" href="{{asset('Home/css/program.css')}}">
-    <link rel="stylesheet" href="{{asset('Home/css/program_1.css')}}">
+    
 </head>
 <body>
 

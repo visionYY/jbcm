@@ -111,7 +111,7 @@
                                 <label class="col-sm-3 control-label">内容：</label>
                                 <div class="col-sm-8">
                                     <!-- 加载编辑器内容 -->
-                                    <script id="editor" type="text/plain" style="height:600px;" name="content">{{old('content')}}</script>
+                                    <script id="editor" type="text/plain" style="height:600px;" name="content">{!!old('content')!!}</script>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>

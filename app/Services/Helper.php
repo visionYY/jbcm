@@ -9,6 +9,8 @@
 namespace App\Services;
 
 
+use App\Models\Article;
+
 class Helper
 {
     //
@@ -41,4 +43,35 @@ class Helper
         }
         return $tree;
     }
+
+    public static function _article_prev($id){
+        if ($id-1 > 0){
+            $article = Article::select('id','title')->find($id-1);
+            if ($article){
+                return $article;
+            }else{
+                self::_article_prev($id-1);
+            }
+        }else{
+            return 0;
+        }
+
+    }
+
+
+    public static function _article_next($id){
+        static $num = 0;
+        if ($num > 10){
+            $article = Article::select('id','title')->find($id+1);
+            if ($article){
+                return $article;
+            }else{
+                $num+1;
+                self::_article_next($id+1);
+            }
+        }else{
+            return 0;
+        }
+    }
+
 }

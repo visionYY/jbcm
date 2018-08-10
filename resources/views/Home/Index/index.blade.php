@@ -1,6 +1,7 @@
 @extends('layouts.home')
 @section('title',$data['title'])
 @section('content')
+    <link rel="stylesheet" href={{asset("Home/css/index.css")}}>
     <div class="wrapper">
         <div class="main1 clearfix">
             @include('layouts._header')

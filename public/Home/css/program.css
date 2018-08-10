@@ -109,7 +109,7 @@
   width: 100%;
   height: auto;
   display: flex;
-  justify-content:space-between;
+  justify-content:flex-start;
 }
 .cont-dls{
   width:32%;
@@ -117,6 +117,8 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background:#fff;
   padding-bottom: 15px;
+  padding-bottom: 15px;
+  margin-right: 1%;
 }
 .cont-dls>a>dt{
   width: 100%;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Resources\view;
 use App\Models\Advertising;
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Navigation;
 use App\Models\Video;
 use App\Services\Helper;
@@ -76,9 +77,13 @@ class IndexController extends Controller
                 $twoNav->video = Video::orderBy('created_at')->where('nav_id', $twoNav->id)->limit(3)->get();
             } else {
                 //其他文章部分
-                $threeNav = Navigation::select('id', 'parent_id', 'n_name')->orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
+                $threeNav = Navigation::orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
                 foreach ($threeNav as $art) {
                     $art->article = Article::orderBy('created_at')->where('nav_id', $art->id)->limit(3)->get();
+                    foreach ($art->article as $v){
+                        $cate = Category::find($v->cg_id);
+                        $v->cg_name = $cate->cg_name;
+                    }
                 }
                 $twoNav->threeNav = $threeNav;
             }
@@ -103,5 +108,17 @@ class IndexController extends Controller
 
     public function aboutUs($oneId,$secId){
         echo '关于我们';
+    }
+
+    public function article($id){
+        $data['title'] = '文章详情';
+        //导航
+        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $data['navig'] = Helper::_tree_json($navig);
+        $data['article'] = Article::find($id);
+        $data['prev'] = Article::prev($id,$data['article']->nav_id);
+        $data['next'] = Article::next($id,$data['article']->nav_id);
+
+        return view('Home.Index.article',compact('data',$data));
     }
 }

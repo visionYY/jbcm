@@ -14,18 +14,18 @@
         <ul class="nav navbar-nav">
             @foreach($data['navig'] as $nav)
             <li class="dropdown">
-                <a href="{{$nav['id']==1 ? url('transmit/oneId/'.$nav['id'].'/secId/0') : 'javascript:;'}}" class="dropdown-toggle" data-toggle="dropdown">{{$nav['text']}}
-                    @if($nav['nodes'])
-                    <b class="caret"></b>
-                    @endif
-                </a>
+                @if($nav['nodes'])
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">{{$nav['text']}}<b class="caret"></b></a>
+                @else
+                <a href="{{url('/')}}">{{$nav['text']}}</a>
+                @endif
                 @if($nav['nodes'])
                 <ul class="dropdown-menu">
                     @foreach($nav['nodes'] as $nodes)
                     <li><a href="{{url('transmit/oneId/'.$nav['id'].'/secId/'.$nodes['id'])}}">{{$nodes['text']}}</a></li>
                     @endforeach
                    <!--  <li>
-                        <a href="../program/program.html">企业纪录片</a>
+                        <a href="../program/program.html">企业纪录片</a>{{$nav['id']==1 ? url('/') : 'javascript:;'}}
                     </li> -->
                 </ul>
                 @endif
