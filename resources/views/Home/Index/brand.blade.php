@@ -73,7 +73,7 @@
                         <div class="lists">
                             <div class="tit">
                                 <p class="tit-txt"><span>{{$thrNav->n_name}} | <em>{{substr($thrNav->created_at,0,10)}}</em></span></p>
-                                <a href="#">查看更多</a>
+                                <a href="{{url('threeList/pid/'.$thrNav->parent_id.'/id/'.$thrNav->id)}}">查看更多</a>
                             </div>
                             <div class="cont">
                                 @foreach($thrNav->article as $art)

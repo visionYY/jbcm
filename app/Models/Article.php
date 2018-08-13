@@ -22,4 +22,18 @@ class Article extends Model
         $article = DB::select("SELECT id, title FROM hg_article WHERE id = (SELECT min(id) FROM hg_article WHERE id > $id AND nav_id=$nav_id)");
         return $article;
     }
+
+    //猜你喜欢
+    public static function guessLike($labels){
+//        DB::connection()->enableQueryLog(); // 开启查询日志
+        $labelArr = explode(',',$labels);
+        foreach ($labelArr as &$v){
+            $v = '%'.$v.'%';
+        }
+        $art = self::select('id','title','cover')->where('labels','like',$labelArr)->limit(3)->get();
+//        $queries = DB::getQueryLog();
+//        dd($queries);
+//        dd($art);
+        return $art;
+    }
 }

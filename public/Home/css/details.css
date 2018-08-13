@@ -12,16 +12,17 @@
   height:auto;
   padding-bottom:15px;
 }
-.article>h3{
+.art_title{
   color: #333333;
+  font-weight: bold;
 }
-.article>h5{
+h5{
   font-size:17px;
   margin-top: 23px;
   color: #333333;
   font-weight:normal;
 }
-.article>p{
+p{
   line-height:23px;
 }
 .art-time{

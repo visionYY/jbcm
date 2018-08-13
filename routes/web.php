@@ -19,6 +19,7 @@ Route::get('university/oneId/{oneId}/secId/{secId}','Home\IndexController@univer
 Route::get('summit/oneId/{oneId}/secId/{secId}','Home\IndexController@summit');
 Route::get('tutorStudent/oneId/{oneId}/secId/{secId}','Home\IndexController@tutorStudent');
 Route::get('aboutUs/oneId/{oneId}/secId/{secId}','Home\IndexController@aboutUs');
+Route::get('threeList/pid/{pid}/id/{id}','Home\IndexController@threeList');
 Route::get('article/id/{id}','Home\IndexController@article');
 
 Route::get('/test', function () {

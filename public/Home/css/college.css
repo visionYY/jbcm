@@ -1,0 +1,147 @@
+#myTabContent{
+  background: none;
+  width: 100%;
+  height: auto;
+}
+.tab-pane {
+  width: 100%;
+  margin:0;
+  background: #fff;
+}
+.hint{
+  font-size: 14px;
+}
+.coll-main{
+  width: 100%;
+  height:auto;
+  display: flex;
+}
+.coll-left{
+  width:69.6%;
+}
+
+.tab_list{
+  width: 100%;
+  padding-bottom: 10px;
+  position: relative;
+  margin-bottom:10px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.tab_list:last-child{
+  border:none;
+}
+.tab_list>a{
+  display:block;
+}
+.tab_list>a:hover{
+  color:#333333;
+  text-decoration:none;
+}
+.tab_list>a>dt{
+  width: 32.4%
+}
+.tab_list>a>dt>img{
+  display: block;
+  width: 100%
+}
+.tab_list>a>dd{
+  position: absolute;
+  left:33.5%;
+  width: 66.5%;
+  height:100%;
+  top: 0;
+}
+.tab_list>a>dd>.tab_tit{
+  width: 100%;
+  margin-top: 0px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.tab_list>a>dd>.tab_tit:hover{
+  color: #4d63a7;
+}
+.tab_list>a>dd>.tab_con{
+  font-size:12px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: #999999;
+}
+.tab_list>a>dd>.tab_time{
+  font-size: 12px;
+  position: absolute;
+  bottom:0;
+}
+
+
+.coll-right{
+  width: 29.4%;
+  margin-left: 30px;
+  background:#efefef;
+  margin-bottom: 20px;
+  padding: 15px 0;
+}
+.rig_tit{
+  width: 100%;
+  margin-top:0;
+  height: 30px;
+  text-align: left;
+  font-size: 16px;
+  font-weight:normal;
+  position: relative;
+  padding-left: 25px;
+}
+.icons{
+  position: absolute;
+  display: inline-block;
+  width:4px;
+  height:19px;
+  background: #e24d59;
+  left:0;
+  top:0;
+}
+.rig_dls{
+  width: 84%;
+  margin: 0 8%;
+  margin-bottom: 15px;
+  position: relative;
+}
+.rig_dls>a:hover{
+  color: #4d63a7;
+}
+.dls_img{
+  width: 100%;
+}
+.dls_img>img{
+  display: block;
+  width: 100%;
+}
+.dls_tit{
+  background:rgba(0,0,0, 0.5);
+  font-size:14px;
+  color:#fff;
+  text-align: left;
+  padding: 5px 10px;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+}
+.dls_imgs{
+  width:46.3%;
+}
+.dls_imgs>img{
+  display: block;
+  width:100%;
+}
