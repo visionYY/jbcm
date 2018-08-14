@@ -12,7 +12,7 @@ class Choiceness extends Model
 
     //获取当前精选前三条信息
     public static function getThere(){
-        $choi = self::select('type','cho_id')->orderBy('id','desc')->limit(3)->get();
+        $choi = self::select('type','cho_id')->orderBy('id','desc')->limit(8)->get();
         foreach ($choi as $v){
             if ($v->type == 1){
                 $res = Article::select('title','cover')->find($v->cho_id);

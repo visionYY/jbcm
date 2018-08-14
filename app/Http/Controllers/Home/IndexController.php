@@ -82,11 +82,22 @@ class IndexController extends Controller
             if ($twoNav->id == 9) {
                 //企业纪录片
                 $twoNav->video = Video::orderBy('created_at')->where('nav_id', $twoNav->id)->limit(3)->get();
+                //相关推荐
+                $lables = '';
+                foreach ($twoNav->video as $v){
+                    $lables .= $v->labels.',';
+                }
+                $labArr = explode(',',$lables);
+                array_pop($labArr);
+                $labArr1 = array_flip($labArr);
+                $labArr2 = array_flip($labArr1);
+                $labStr = implode(',',$labArr2);
+                $twoNav->like = Video::guessLike($labStr);
             } else {
                 //其他文章部分
                 $threeNav = Navigation::orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
                 foreach ($threeNav as $art) {
-                    $art->article = Article::orderBy('publish_time','desc')->where('nav_id', $art->id)->limit(3)->get();
+                    $art->article = Article::where('nav_id', $art->id)->orderBy('publish_time','desc')->limit(3)->get();
                     foreach ($art->article as $v){
                         $cate = Category::find($v->cg_id);
                         $v->cg_name = $cate->cg_name;
@@ -96,6 +107,7 @@ class IndexController extends Controller
             }
         }
         //我有嘉宾顶部广告位 9
+        $data['adver'] = Advertising::find(4);
 
 //        dd($data);
         return view('Home.Index.brand',compact('data',$data));
@@ -130,9 +142,19 @@ class IndexController extends Controller
         $data['navig'] = Helper::_tree_json($navig);
         //三级导航
         $data['thrNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$pid)->get();
+        $lables = '';
         foreach ($data['thrNav'] as $thrNav){
             $thrNav->art = Article::where('nav_id',$thrNav->id)->orderBy('publish_time','desc')->get();
+            foreach ($thrNav->art as $v){
+                $lables .= $v->labels.',';
+            }
         }
+        $labArr = explode(',',$lables);
+        array_pop($labArr);
+        $labArr1 = array_flip($labArr);
+        $labArr2 = array_flip($labArr1);
+        $labStr = implode(',',$labArr2);
+        $data['like'] = Article::guessLike($labStr);
 //        dd($data);
         return view('Home.Index.threeList',compact('data',$data));
     }
@@ -143,6 +165,7 @@ class IndexController extends Controller
         //导航
         $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
         $data['navig'] = Helper::_tree_json($navig);
+
         $data['article'] = Article::find($id);
         //当前导航
         $nav = Navigation::select('n_name')->find($data['article']->nav_id)->toArray();
@@ -172,5 +195,38 @@ class IndexController extends Controller
         $data['like'] = Article::guessLike($data['article']->labels);
 //        dd($data);
         return view('Home.Index.article',compact('data',$data));
+    }
+
+    //视频详情
+    public function video($id){
+        $data['title'] = '视频详情';
+        //导航
+        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $data['navig'] = Helper::_tree_json($navig);
+
+        $data['video'] = Video::find($id);
+        //当前导航
+        $nav = Navigation::select('n_name')->find($data['video']->nav_id)->toArray();
+        $data['video'] -> nav_name = $nav['n_name'];
+        //当前分类
+        $cate = Category::select('cg_name')->find($data['video']->cg_id)->toArray();
+        $data['video'] -> cg_name = $cate['cg_name'];
+        //时间
+        $time = strtotime($data['video']->publish_time);
+        $difference = time() - $time;
+        if ($difference < 60*60){
+            $diff = floor($difference/60);
+            $data['video'] -> push = $diff.'分钟前';
+        }elseif($difference > 60*60 && $difference < 60*60*60){
+            $diff = floor($difference/3600);
+            $data['video'] -> push = $diff.'小时前';
+        }else{
+            $data['video'] -> push = substr($data['video']->publish_time,0,10);
+        }
+
+        //猜你喜欢
+        $data['like'] = Video::guessLike($data['video']->labels);
+//        dd($data);
+        return view('Home.Index.video',compact('data',$data));
     }
 }

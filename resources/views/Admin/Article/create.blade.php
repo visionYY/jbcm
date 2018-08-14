@@ -102,10 +102,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
-                                    <textarea style="width: 100%;height: 150px;resize: none;" name="intro">{{old('intro')}}</textarea>
+                                    <textarea id="intro" style="width: 100%;height: 150px;resize: none;" name="intro">{{old('intro')}}</textarea>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
+                                    <p><span id="text-count">255</span>/255</p>
                                 </div>
                             </div>
+
                              <!-- 内容 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">内容：</label>
@@ -173,5 +175,16 @@
             $('[name=cover]').attr('value',dataURL);
         }
     });
+
+        $('#intro').on('input propertychange',function(){
+                     var $this = $(this),
+                         _val = $this.val(),
+                         count = "";
+            if (_val.length > 255) {
+                $this.val(_val.substring(0, 255));
+            }
+            count = 255 - $this.val().length;
+            $("#text-count").text(count);   
+        });
     </script>
 @stop

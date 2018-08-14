@@ -3,9 +3,8 @@
 @section('content')
     <link rel="stylesheet" href="{{asset('Home/css/details.css')}}">
     <div class="wrapper">
-        <div class="main1 clearfix">
             @include('layouts._header')
-            
+        <div class="main1 clearfix">
             <div class="main">
                 <!-- 左侧内容 -->
                 <div class="main-left">
@@ -62,8 +61,10 @@
                         @foreach($data['choiceness'] as $cho)
                         <dl class="rig_dls">
                             @if($cho->type ==1)
+                            <!-- 文章 -->
                             <a href="{{url('article/id/'.$cho->cho_id)}}">
                             @else
+                            <!-- 视频待定 -->
                             <a href="">
                             @endif
                                 <dt class="dls_img">

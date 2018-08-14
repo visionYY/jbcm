@@ -21,6 +21,7 @@ Route::get('tutorStudent/oneId/{oneId}/secId/{secId}','Home\IndexController@tuto
 Route::get('aboutUs/oneId/{oneId}/secId/{secId}','Home\IndexController@aboutUs');
 Route::get('threeList/pid/{pid}/id/{id}','Home\IndexController@threeList');
 Route::get('article/id/{id}','Home\IndexController@article');
+Route::get('video/id/{id}','Home\IndexController@video');
 
 Route::get('/test', function () {
    $abc = \App\Models\Admin::where('email','>','?')->toSql();

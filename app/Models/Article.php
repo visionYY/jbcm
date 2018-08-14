@@ -27,10 +27,21 @@ class Article extends Model
     public static function guessLike($labels){
 //        DB::connection()->enableQueryLog(); // 开启查询日志
         $labelArr = explode(',',$labels);
+        $labwhere = '';
         foreach ($labelArr as &$v){
-            $v = '%'.$v.'%';
+            if ($labwhere){
+                $labwhere .= 'or instr(labels, "'.$v.'") > 0 ';
+            }else{
+                $labwhere .= 'instr(labels,"'.$v.'") > 0 ';
+            }
         }
-        $art = self::select('id','title','cover')->where('labels','like',$labelArr)->limit(3)->get();
+        $art = DB::select('SELECT id,title,cover FROM hg_article WHERE '.$labwhere);
+//        $art = DB::select("SELECT id,title,cover FROM hg_article WHERE labels like '%流浪汉%'");
+//        dd($art);
+//        $art = self::select('id','title','cover')->where('labels','like',$labelArr)->limit(8);
+//        $bindings = $art->getBindings();
+//        $sql = str_replace('?', '%s', $art->toSql());
+//        $sql = sprintf($sql, ...$bindings);
 //        $queries = DB::getQueryLog();
 //        dd($queries);
 //        dd($art);

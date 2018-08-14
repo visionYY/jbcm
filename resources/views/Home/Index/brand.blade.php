@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="{{asset('Home/css/program.css')}}">
 <link rel="stylesheet" href="{{asset('Home/css/program_1.css')}}">
 <div class="wrapper">
-    <div class="main1 clearfix">
          @include('layouts._header')
+    <div class="main1 clearfix">
         <div class="main_tab">
             <ul id="myTab" class="nav_bot nav-tabs">
                 @foreach($data['towNav'] as $towNav)
@@ -15,15 +15,11 @@
                     </a>
                 </li>
                 @endforeach
-                <!-- <li>
-                    <a href="#documentary" data-toggle="tab">企业记录片</a>
-                </li> -->
             </ul>
             <div id="myTabContent" class="tab-content">
                 @foreach($data['towNav'] as $towNav)
-
-                <div class="tab-pane fade {{$towNav->id == $data['secId'] ? 'in active' : ''}}" id="guest_{{$towNav->id}}">
                     @if($towNav->id == 9)
+                <div class="tab-pane fade {{$towNav->id == $data['secId'] ? 'in active' : ''}}" id="guest_{{$towNav->id}}">
                     <div class="main">
                         <div class="main-left">
                             <div id="videoListID" class="videoList">
@@ -47,33 +43,29 @@
                         <div class="main-right">
                                 <div class="rig-top">
                                     <h3 class="rig_tit"><i class="icons"></i>相关推荐</h3>
+                                    @foreach($towNav->like as $like)
                                     <dl class="rig_dls">
-                                        <a href="">
+                                        <a href="{{url('video/id/'.$like->id)}}">
                                             <dt class="dls_img">
-                                                <img src={{asset("Home/images/list3.png")}} alt="">
+                                                <img src={{asset($like->cover)}} alt="">
                                             </dt>
-                                            <dd class="dls_titL">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格</dd>
+                                            <dd class="dls_titL">{{$like->title}}</dd>
                                         </a>
                                     </dl>
-                                    <dl class="rig_dls">
-                                        <a href="">
-                                            <dt class="dls_img">
-                                                <img src={{asset("Home/images/list3.png")}} alt="">
-                                            </dt>
-                                            <dd class="dls_titL">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格</dd>
-                                        </a>
-                                    </dl>
+                                    @endforeach
                                 </div>
                         </div>
                     </div>
+                </div>
                     @else
+                <div class="_guest tab-pane fade {{$towNav->id == $data['secId'] ? 'in active' : ''}}" id="guest_{{$towNav->id}}">
                     <div class="box">
-                        <div class="two-ban"><img src={{asset("Home/images/ban2.png")}} alt=""></div>   
+                        <a class="two-ban" href="{{$data['adver']->href}}"><img src={{asset("Home/images/ban2.png")}} alt=""></a>   
                         @foreach($towNav->threeNav as $thrNav)
                         <div class="lists">
                             <div class="tit">
-                                <p class="tit-txt"><span>{{$thrNav->n_name}} | <em>{{substr($thrNav->created_at,0,10)}}</em></span></p>
-                                <a href="{{url('threeList/pid/'.$thrNav->parent_id.'/id/'.$thrNav->id)}}">查看更多</a>
+                                <p class="tit-txt"><img src="{{asset('Home/images/icon_jiemu@2x.png')}}" alt=""><img>{{$thrNav->n_name}}</p>
+                                <a href="{{url('threeList/pid/'.$thrNav->parent_id.'/id/'.$thrNav->id)}}"><p class="list-more">更多<img src="{{asset('Home/images/icon_gengduo@2x.png')}}" alt=""></p></a>
                             </div>
                             <div class="cont">
                                 @foreach($thrNav->article as $art)
@@ -83,38 +75,20 @@
                                         <dd>
                                             <p class="dls-tit">{{$art->title}}</p>
                                             <p class="dls-text">{{$art->cg_name}}</p>
-                                            <p class="dls-time">{{$art->created_at}}</p>
+                                            <p class="dls-time">{{substr($art->publish_time,0,10)}}</p>
                                         </dd>
                                     </a>
                                 </dl>
                                 @endforeach
-                                <!-- <dl class="cont-dls">
-                                    <a href="#">
-                                        <dt><img src={{asset("Home/images/img1.png")}} alt=""></dt>
-                                        <dd>
-                                            <p class="dls-tit">地方似懂非懂发生的似懂非懂是否多福多寿发生的发生的的爽肤水地方时代发生的是东方时尚大方</p>
-                                            <p class="dls-text">地方都舒服的沙发</p>
-                                            <p class="dls-time">2018-7-30</p>
-                                        </dd>
-                                    </a>
-                                </dl> -->
-                                <!-- <dl class="cont-dls">
-                                    <a href="#">
-                                        <dt><img src={{asset("Home/images/img1.png")}} alt=""></dt>
-                                        <dd>
-                                            <p class="dls-tit">地方似懂非懂发生的似懂非懂是否多福多寿发生的发生的的爽肤水地方时代发生的是东方时尚大方</p>
-                                            <p class="dls-text">地方都舒服的沙发</p>
-                                            <p class="dls-time">2018-7-30</p>
-                                        </dd>
-                                    </a>
-                                </dl> -->
+                                
                             </div>
                         </div>
                         @endforeach
                     </div>
+                 </div>
                     @endif
 
-                </div>
+               
 
                 @endforeach
                 

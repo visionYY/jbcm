@@ -3,8 +3,8 @@
 @section('content')
     <link rel="stylesheet" href={{asset("Home/css/index.css")}}>
     <div class="wrapper">
+    	 @include('layouts._header')
         <div class="main1 clearfix">
-            @include('layouts._header')
             <div class="main">
                 <div class="main-left">
                     <div class="video swiper">
