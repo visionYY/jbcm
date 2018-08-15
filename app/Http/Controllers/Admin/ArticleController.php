@@ -39,7 +39,7 @@ class articleController extends Controller
 
     //添加
     public function create(){
-        $nav = Navigation::select('id','parent_id','n_name')->get()->toArray();
+        $nav = Navigation::select('id','parent_id','n_name')->orderBy('sort','desc')->get()->toArray();
         $data['nav'] = Helper::_tree($nav);
         $data['cate'] = Category::select('id','cg_name')->get()->toArray();
         $data['label'] = Label::select('id','name')->get()->toArray();

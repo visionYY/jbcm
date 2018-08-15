@@ -17,6 +17,6 @@
         </li>
          @endforeach
     </ul>
-    <p class="font" onClick="location.href='../search/search.html'"><i class="icon iconfont icon-fangdajing"></i>搜索</p>
+    <p class="font" onClick="location.href='{{url('search')}}'"><i class="icon iconfont icon-fangdajing"></i>搜索</p>
 </nav>
 

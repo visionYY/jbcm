@@ -24,7 +24,7 @@ class Article extends Model
     }
 
     //猜你喜欢
-    public static function guessLike($labels){
+    public static function guessLike($labels,$limit=8){
 //        DB::connection()->enableQueryLog(); // 开启查询日志
         $labelArr = explode(',',$labels);
         $labwhere = '';
@@ -35,7 +35,7 @@ class Article extends Model
                 $labwhere .= 'instr(labels,"'.$v.'") > 0 ';
             }
         }
-        $art = DB::select('SELECT id,title,cover FROM hg_article WHERE '.$labwhere);
+        $art = DB::select('SELECT id,title,cover FROM hg_article WHERE '.$labwhere.'LIMIT '.$limit);
 //        $art = DB::select("SELECT id,title,cover FROM hg_article WHERE labels like '%流浪汉%'");
 //        dd($art);
 //        $art = self::select('id','title','cover')->where('labels','like',$labelArr)->limit(8);
@@ -45,6 +45,12 @@ class Article extends Model
 //        $queries = DB::getQueryLog();
 //        dd($queries);
 //        dd($art);
+        return $art;
+    }
+
+    //相关内容
+    public static function search($keybord){
+        $art = DB::select('SELECT id,title,cover,intro,publish_time FROM hg_article WHERE concat(title,content) LIKE "%'.$keybord.'%"');
         return $art;
     }
 }

@@ -19,8 +19,10 @@ class Choiceness extends Model
             }else{
                 $res = Video::select('title','cover')->find($v->cho_id);
             }
-            $v->title = $res->title;
-            $v->cover = $res->cover;
+            if ($res){
+                $v->title = $res->title;
+                $v->cover = $res->cover;
+            }
         }
         return $choi;
     }

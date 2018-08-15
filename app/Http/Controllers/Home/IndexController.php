@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Choiceness;
 use App\Models\Navigation;
+use App\Models\TutorStudent;
 use App\Models\Video;
 use App\Services\Helper;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class IndexController extends Controller
                 break;
             case 6:
                 //嘉宾峰会
-                return redirect('summit/oneId/'.$oneId.'/secId/'.$secId);
+                return redirect('university/oneId/'.$oneId.'/secId/'.$secId);
                 break;
             case 3:
                 //导师与学员
@@ -92,7 +93,7 @@ class IndexController extends Controller
                 $labArr1 = array_flip($labArr);
                 $labArr2 = array_flip($labArr1);
                 $labStr = implode(',',$labArr2);
-                $twoNav->like = Video::guessLike($labStr);
+                $twoNav->like = Video::guessLike($labStr,8);
             } else {
                 //其他文章部分
                 $threeNav = Navigation::orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
@@ -115,7 +116,26 @@ class IndexController extends Controller
 
     //嘉宾大学
     public function university($oneId,$secId){
-        echo '嘉宾大学';
+        $data['title'] = '嘉宾大学';
+        $data['secId'] = $secId;
+        //导航
+        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $data['navig'] = Helper::_tree_json($navig);
+        //二级导航
+        $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
+        foreach ($data['towNav'] as $twoNav) {
+            $threeNav = Navigation::orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
+            foreach ($threeNav as $art) {
+                $art->article = Article::where('nav_id', $art->id)->orderBy('publish_time','desc')->limit(3)->get();
+                foreach ($art->article as $v){
+                    $cate = Category::find($v->cg_id);
+                    $v->cg_name = $cate->cg_name;
+                }
+            }
+            $twoNav->threeNav = $threeNav;
+        }
+//        dd($data);
+        return view('Home.Index.university',compact('data',$data));
     }
 
     //嘉宾峰会
@@ -125,12 +145,38 @@ class IndexController extends Controller
 
     //导师与学员
     public function tutorStudent($oneId,$secId){
-        echo '导师与学员';
+        $data['title'] = '导师与学员';
+        $data['secId'] = $secId;
+        //导航
+        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $data['navig'] = Helper::_tree_json($navig);
+        //二级导航
+        $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
+        foreach ($data['towNav'] as $twoNav){
+            if ($twoNav->id ==11){
+                $twoNav->user = TutorStudent::where('type',1)->get();
+            }else{
+                $twoNav->user = TutorStudent::where('type',2)->get();
+            }
+        }
+//        dd($data);
+        return view('Home.Index.tutorStudent',compact('data',$data));
     }
 
     //关于我们
     public function aboutUs($oneId,$secId){
-        echo '关于我们';
+        $data['title'] = '关于我们';
+        $data['secId'] = $secId;
+        //导航
+        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $data['navig'] = Helper::_tree_json($navig);
+        //二级导航
+        $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
+        foreach ($data['towNav'] as $towNav){
+            $towNav->art = Article::where('nav_id',$towNav->id)->get()->toArray();
+        }
+//        dd($data);
+        return view('Home.Index.aboutUs',compact('data',$data));
     }
 
     //三级列表
@@ -154,7 +200,7 @@ class IndexController extends Controller
         $labArr1 = array_flip($labArr);
         $labArr2 = array_flip($labArr1);
         $labStr = implode(',',$labArr2);
-        $data['like'] = Article::guessLike($labStr);
+        $data['like'] = Article::guessLike($labStr,8);
 //        dd($data);
         return view('Home.Index.threeList',compact('data',$data));
     }
@@ -192,7 +238,7 @@ class IndexController extends Controller
         //编辑精选
         $data['choiceness'] = Choiceness::getThere();
         //猜你喜欢
-        $data['like'] = Article::guessLike($data['article']->labels);
+        $data['like'] = Article::guessLike($data['article']->labels,3);
 //        dd($data);
         return view('Home.Index.article',compact('data',$data));
     }
@@ -225,8 +271,37 @@ class IndexController extends Controller
         }
 
         //猜你喜欢
-        $data['like'] = Video::guessLike($data['video']->labels);
+        $data['like'] = Video::guessLike($data['video']->labels,8);
 //        dd($data);
         return view('Home.Index.video',compact('data',$data));
+    }
+
+    //导师学员详情
+    public function tsDetail($id){
+        //导航
+        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $data['navig'] = Helper::_tree_json($navig);
+
+        $data['tutorStudent'] = TutorStudent::find($id);
+        $data['title'] = $data['tutorStudent']->name;
+        $classic_quote = explode('；',$data['tutorStudent']->classic_quote);
+        $data['classic_quote']= array_filter($classic_quote);
+
+        //相关内容
+        $data['article'] = Article::search($data['tutorStudent']->name);
+        //相关推荐(视频)
+        $data['video'] = Video::search($data['tutorStudent']->name);
+        return view('Home.Index.tsDetail',compact('data',$data));
+    }
+
+    //搜索
+    public function search(){
+
+        return view('Home.Index.search');
+    }
+
+    //搜索执行
+    public function doSearch(Request $request){
+        dd($request->all());
     }
 }
