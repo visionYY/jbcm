@@ -31,7 +31,7 @@ class AdvertisingController extends Controller
     public function store(Request $request){
         $verif = array('title'=>'required',
             'href'=>'required',
-            'location'=>'required|numeric|unique:advertising',
+            'location'=>'required|numeric',
             'cover'=>'required');
         $credentials = $this->validate($request,$verif);
         //1号位视频不为空
@@ -65,7 +65,7 @@ class AdvertisingController extends Controller
     public function update(Request $request,$id){
         $verif = array('title'=>'required',
             'href'=>'required',
-            'location'=>'required|numeric|unique:advertising,location,'.$id);
+            'location'=>'required|numeric');
         $credentials = $this->validate($request,$verif);
         //1号位视频不为空
         if ($credentials['location'] ==1){

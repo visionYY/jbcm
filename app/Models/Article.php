@@ -50,7 +50,20 @@ class Article extends Model
 
     //相关内容
     public static function search($keybord){
-        $art = DB::select('SELECT id,title,cover,intro,publish_time FROM hg_article WHERE concat(title,content) LIKE "%'.$keybord.'%"');
+        $art = DB::select('SELECT id,nav_id,title,cover,intro,publish_time FROM hg_article WHERE concat(title,content) LIKE "%'.$keybord.'%"');
         return $art;
+    }
+
+    //分类获取文章
+    public static function getCategory($cgid,$num,$start=0){
+        $art = self::where('cg_id',$cgid)->orderBy('publish_time','desc')->limit($start,$num)->get();
+        return $art;
+    }
+
+    public static function getArticleVideo($cgid,$num,$start=0){
+        $res = DB::select('SELECT * FROM (SELECT id,cg_id,title,cover,intro,publish_time,type FROM hg_article UNION ALL 
+                                                SELECT id,cg_id,title,cover,intro,publish_time,type FROM hg_video ) t 
+                                                WHERE t.cg_id='.$cgid.' ORDER BY t.publish_time DESC LIMIT '.$start.','.$num);
+        return $res;
     }
 }

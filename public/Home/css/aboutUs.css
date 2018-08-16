@@ -14,7 +14,7 @@ body{
 .main-left {
     margin-top: 30px;
     width: 16%;
-    height: 1350px;
+    /*height: 1350px;*/
     background-color: #fafafa;
 }
 
@@ -83,6 +83,6 @@ body{
 .Company-profile {
     margin-top: 5px;
     margin: 10px;
-    height: 1248px;
+    /*height: 1248px;*/
 }
 

@@ -29,12 +29,21 @@ class IndexController extends Controller
         $data['navig'] = Helper::_tree_json($navig);
 
         //广告
-        $data['adver'] = Advertising::get();
+        $data['ind_vid_adv'] = Advertising::where('location',1)->orderBy('created_at','desc')->limit(1)->get()->toArray();
+        $data['ind_sil_adv'] = Advertising::where('location',2)->orderBy('created_at','desc')->limit(3)->get()->toArray();
+        $data['ind_rig_adv'] = Advertising::where('location',3)->orderBy('created_at','desc')->limit(3)->get()->toArray();
 
         //分类
+        $cate = Category::all();
+        foreach ($cate as $c){
+            $c->content = Article::getArticleVideo(5,3);
+        }
+        
+        //精选
+        $data['choi'] = Choiceness::getChoi(8);
 
-        //推荐
-
+        //导师与学员
+        $data['tutor'] = TutorStudent::limit(8)->get();
 //        dd($data);
         return view('Home.Index.index',compact('data',$data));
     }
@@ -225,7 +234,7 @@ class IndexController extends Controller
         if ($difference < 60*60){
             $diff = floor($difference/60);
             $data['article'] -> push = $diff.'分钟前';
-        }elseif($difference > 60*60 && $difference < 60*60*60){
+        }elseif($difference > 60*60 && $difference < 60*60*24){
             $diff = floor($difference/3600);
             $data['article'] -> push = $diff.'小时前';
         }else{
@@ -236,7 +245,7 @@ class IndexController extends Controller
         $data['next'] = Article::next($id,$data['article']->nav_id);
 
         //编辑精选
-        $data['choiceness'] = Choiceness::getThere();
+        $data['choiceness'] = Choiceness::getChoi(8);
         //猜你喜欢
         $data['like'] = Article::guessLike($data['article']->labels,3);
 //        dd($data);
@@ -263,7 +272,7 @@ class IndexController extends Controller
         if ($difference < 60*60){
             $diff = floor($difference/60);
             $data['video'] -> push = $diff.'分钟前';
-        }elseif($difference > 60*60 && $difference < 60*60*60){
+        }elseif($difference > 60*60 && $difference < 60*60*24){
             $diff = floor($difference/3600);
             $data['video'] -> push = $diff.'小时前';
         }else{
@@ -302,6 +311,33 @@ class IndexController extends Controller
 
     //搜索执行
     public function doSearch(Request $request){
-        dd($request->all());
+        //导航
+        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $data['navig'] = Helper::_tree_json($navig);
+
+        $keybord = $request->get('keybord');
+        $article =  Article::search($keybord);
+        if ($article){
+            foreach ($article as $v){
+                $nav = Navigation::find($v->nav_id);
+                $v->n_name = $nav->n_name;
+                $v->type = 1;
+            }
+        }
+        $video = Video::search($keybord);
+        if ($video){
+            foreach ($video as $v){
+                $nav = Navigation::find($v->nav_id);
+                $v->n_name = $nav->n_name;
+                $v->type = 2;
+            }
+        }
+        $data['res'] = array_merge($article,$video);
+        $data['keybord'] = $keybord;
+
+        //编辑精选
+        $data['choi'] = Choiceness::getChoi(8);
+//        dd($data);
+        return view('Home.Index.doSearch',compact('data',$data));
     }
 }

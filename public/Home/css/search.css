@@ -87,7 +87,7 @@ i.iconfont{
   font-size:22px;
   padding-left:5px;
 }
-.fond>input[type=button]{
+.fond>input[type=submit]{
   width:10%;
   height:55px;
   line-height:55px;

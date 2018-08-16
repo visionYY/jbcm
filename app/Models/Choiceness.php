@@ -11,17 +11,18 @@ class Choiceness extends Model
     protected $fillable = ['type', 'cho_id'];
 
     //获取当前精选前三条信息
-    public static function getThere(){
-        $choi = self::select('type','cho_id')->orderBy('id','desc')->limit(8)->get();
+    public static function getChoi($num){
+        $choi = self::select('type','cho_id')->orderBy('id','desc')->limit($num)->get();
         foreach ($choi as $v){
             if ($v->type == 1){
-                $res = Article::select('title','cover')->find($v->cho_id);
+                $res = Article::select('title','cover','publish_time')->find($v->cho_id);
             }else{
-                $res = Video::select('title','cover')->find($v->cho_id);
+                $res = Video::select('title','cover','publish_time')->find($v->cho_id);
             }
             if ($res){
                 $v->title = $res->title;
                 $v->cover = $res->cover;
+                $v->publish_time = $res->publish_time;
             }
         }
         return $choi;

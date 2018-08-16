@@ -28,7 +28,13 @@ class Video extends Model
 
     //相关内容
     public static function search($keybord){
-        $vid = DB::select('SELECT id,title,cover FROM hg_video WHERE concat(title,intro) LIKE "%'.$keybord.'%"');
+        $vid = DB::select('SELECT id,nav_id,title,cover,intro,publish_time FROM hg_video WHERE concat(title,intro) LIKE "%'.$keybord.'%"');
+        return $vid;
+    }
+
+    //分类获取视频
+    public static function getCategory($cgid,$num,$start=0){
+        $vid = self::where('cg_id',$cgid)->orderBy('publish_time','desc')->limit($start,$num)->get();
         return $vid;
     }
 }

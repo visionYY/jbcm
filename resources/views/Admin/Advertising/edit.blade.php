@@ -40,7 +40,7 @@
                                 <label class="col-sm-3 control-label">视频地址：</label>
                                 <div class="col-sm-8">
                                     <input name="video" class="form-control" type="text" value="{{$data->video}}">
-                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 非1号位可不填</span>
+                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 非视频广告位可不填</span>
                                 </div>
                             </div>
                           
