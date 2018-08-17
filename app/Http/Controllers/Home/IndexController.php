@@ -34,11 +34,17 @@ class IndexController extends Controller
         $data['ind_rig_adv'] = Advertising::where('location',3)->orderBy('created_at','desc')->limit(3)->get()->toArray();
 
         //分类
-        $cate = Category::all();
-        foreach ($cate as $c){
-            $c->content = Article::getArticleVideo(5,3);
+        $cate = Category::all()->toArray();
+        $zuixin = array('id'=>0,'cg_name'=>'最新推荐',"sort"=>100,'status'=>1,'created_at'=>'2018-08-02 08:09:54','updated_at'=>'2018-08-02 08:09:54');
+        array_unshift($cate,$zuixin);
+        foreach ($cate as &$c){
+            $c['content'] = Article::getArticleVideo($c['id'],config('hint.show_num'));
+            foreach ($c['content'] as $cont){
+                $nav = Navigation::find($cont->nav_id);
+                $cont->n_name = $nav->n_name;
+            }
         }
-        
+        $data['cate'] = $cate;
         //精选
         $data['choi'] = Choiceness::getChoi(8);
 
@@ -339,5 +345,25 @@ class IndexController extends Controller
         $data['choi'] = Choiceness::getChoi(8);
 //        dd($data);
         return view('Home.Index.doSearch',compact('data',$data));
+    }
+
+    /*
+     * ajax返回数据
+     * */
+    public function getCategoryPage(Request $request){
+        $cgid = $request->get('cgid');
+        $page = $request->get('page');
+        $res = Article::getArticleVideo($cgid,config('hint.show_num'),$page);
+        foreach ($res as $art){
+            $nav = Navigation::find($art->nav_id);
+            $art->n_name = $nav->n_name;
+            if ($art->type==1){
+                $art->url = url('article/id/'.$art->id);
+            }else{
+                $art->url = url('video/id/'.$art->id);
+            }
+            $art->cover = asset($art->cover);
+        }
+        return response($res);
     }
 }

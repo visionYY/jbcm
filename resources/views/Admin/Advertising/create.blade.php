@@ -3,7 +3,7 @@
 @section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>添加广告</h5>
@@ -71,23 +71,23 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">封面：</label>
                                 <div class="col-sm-8">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 选择图片</button>
+                                    <button type="button" class="btn btn-primary choi"> 选择图片</button>
                                 </div>
                             </div>
                              <!-- 封面 -->
-                            <div class="form-group">
+                           <!--  <div class="form-group">
                                 <label class="col-sm-3 control-label"></label>
                                 <div class="col-sm-8">
                                     <img width="100px;" src="{{old('cover')}}" id="cover">
                                 </div>
-                            </div>
+                            </div> -->
                            
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <div class="checkbox">
                                         <label>
                                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                            <input type="hidden" name="cover" value="{{old('cover')}}">
+                                            <input type="file" name="cover" style="display: none;" value="{{old('cover')}}">
                                         </label>
                                     </div>
                                 </div>
@@ -106,30 +106,50 @@
         </div>
     </div>
     @include('layouts.admin_js')
-    <script src={{asset("Admin/js/plugins/layer/laydate/laydate.js")}}></script>
+    <!-- <script src={{asset("Admin/js/plugins/layer/laydate/laydate.js")}}></script> -->
 
-    <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script>
-    <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
-    @include('layouts.admin_picpro')
+    <!-- <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script> -->
+    <!-- <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script> -->
+    <!-- @include('layouts.admin_picpro') -->
     <script type="text/javascript">
         //图片比例 814:513
-        var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [271, 171],
-        outputSize: [407, 256],
-        file: "#file",
-        view: "#view",
-        ok: "#clipBtn",
-        loadStart: function() {
-            console.log("照片读取中");
-        },
-        loadComplete: function() {
-            console.log("照片读取完成");
-        },
-        clipFinish: function(dataURL) {
-            // console.log(dataURL);
-            $('#cover').attr('src',dataURL);
-            $('[name=cover]').attr('value',dataURL);
-        }
+    //     var clipArea = new bjj.PhotoClip("#clipArea", {
+    //     size: [271, 171],
+    //     outputSize: [407, 256],
+    //     file: "#file",
+    //     view: "#view",
+    //     ok: "#clipBtn",
+    //     loadStart: function() {
+    //         console.log("照片读取中");
+    //     },
+    //     loadComplete: function() {
+    //         console.log("照片读取完成");
+    //     },
+    //     clipFinish: function(dataURL) {
+    //         // console.log(dataURL);
+    //         $('#cover').attr('src',dataURL);
+    //         $('[name=cover]').attr('value',dataURL);
+    //     }
+    // });
+    $('.choi').click(function(){
+        $('[name=cover]').trigger('click');
+    })
+    $('[name=cover]').change(function(){
+        $imgurl = getObjectURL(this.file);
+        console.log($imgurl);
+        // $('#cover').attr('src',$(this).val());
     });
+
+    function getObjectURL(file){
+        var url = null;
+        if (window.createObjectURL!=undefined) {  
+          url = window.createObjectURL(file) ;  
+         } else if (window.URL!=undefined) { // mozilla(firefox)  
+          url = window.URL.createObjectURL(file) ;  
+         } else if (window.webkitURL!=undefined) { // webkit or chrome  
+          url = window.webkitURL.createObjectURL(file) ;  
+         }  
+         return url ;
+    }
     </script>
 @stop

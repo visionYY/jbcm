@@ -61,9 +61,14 @@ class Article extends Model
     }
 
     public static function getArticleVideo($cgid,$num,$start=0){
-        $res = DB::select('SELECT * FROM (SELECT id,cg_id,title,cover,intro,publish_time,type FROM hg_article UNION ALL 
-                                                SELECT id,cg_id,title,cover,intro,publish_time,type FROM hg_video ) t 
-                                                WHERE t.cg_id='.$cgid.' ORDER BY t.publish_time DESC LIMIT '.$start.','.$num);
+        if($cgid != 0){
+            $where = 'WHERE t.cg_id='.$cgid;
+        }else{
+            $where = '';
+        }
+        $res = DB::select('SELECT * FROM (SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type FROM hg_article UNION ALL 
+                                                SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type FROM hg_video ) t 
+                                               '.$where.' ORDER BY t.publish_time DESC LIMIT '.$start.','.$num);
         return $res;
     }
 }

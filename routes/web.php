@@ -26,6 +26,9 @@ Route::get('tutorStudent/detail/id/{id}','Home\IndexController@tsDetail');
 Route::get('search','Home\IndexController@search');
 Route::get('doSearch','Home\IndexController@doSearch');
 
+
+Route::get('getCategoryPage','Home\IndexController@getCategoryPage');
+
 Route::get('/test', function () {
    $abc = \App\Models\Admin::where('email','>','?')->toSql();
    dd(asset('123'));

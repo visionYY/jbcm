@@ -1,7 +1,7 @@
 $(function(){
   $(".dls_tit").each(function(i){
     var divH = $(this).height();
-    console.log(divH);
+    // console.log(divH);
     var $p = $("p", $(this)).eq(0);
     while ($p.outerHeight() > divH) {
         $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
@@ -39,7 +39,20 @@ $(function(){
       console.log(1)
     } 
   }); 
+  var artWid = $('.article').width();
+  var imgObj = $('.article img');
+  var imgObjLen = imgObj.length;
+  for (var i = 0; i < imgObjLen; i++) {
+    var imgWid = imgObj.eq(i).width();
+    console.log(imgWid);
+    if (imgWid > artWid) {
+      imgObj.eq(i).width(artWid);
+      // $('img').width(artWid);
+    }
+  }
 
+  // console.log(artWid);
+  // console.log(imgObjLen);
 })
 
 

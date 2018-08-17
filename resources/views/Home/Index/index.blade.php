@@ -13,7 +13,7 @@
 	                    <div class="video swiper">
 	                    	@if(config('hint.index_show_adv') ==1)
 	                    	<video width="100%"  controls>
-	                            <source src="http://1256356427.vod2.myqcloud.com/12b315c8vodgzp1256356427/3a41bf907447398156921405349/W42LpYmyxX0A.mp4?nsukey=mYSh%2FpaubhjtG1T1N7Z1dcVsOMp4O6nD78YAqcNmlon9%2B9MxTpNQmXu2jmPjPUtav2tT4JY3B6YGn7FnJlmQLQqDDFUU7nMorWbTHtAY2p8DEuWfV6a54kINIU%2FSnr16EB49D5kfXbVzN31pU%2BuMTd%2BQby9QP1a7WEJ33pjJDfggbq5rY4oV19wduJ6ogSzTHa9CB4ObhKvV9ANilf8TUg%3D%3D" type="video/mp4">
+	                            <source src="{{$data['ind_vid_adv'][0]['video']}}">
 	                            <source src="movie.ogg" type="video/ogg">
 	                        </video>
 	                        @else
@@ -24,12 +24,6 @@
 	                                  <img src="{{asset($isa['cover'])}}" alt="">
 	                              </div>
 	                              @endforeach
-	                              <!-- <div class="swiper-slide">
-	                                    <img src={{asset("Home/images/banner.jpeg")}} alt="">
-	                              </div>
-	                              <div class="swiper-slide">
-	                                    <img src={{asset("Home/images/banner.jpeg")}} alt="">
-	                              </div> -->
 	                            </div>
 	                            <div class="swiper-pagination"></div>
 	                            <div class="swiper-button-prev swiper-button-white"></div> <!-- 白色 -->
@@ -52,30 +46,38 @@
                     <!-- 分类及下面的文章 -->
                     <div class="main_tab">
                         <ul id="myTab" class="nav_bot nav-tabs">
-                            <li class="active">
-                                <a href="#home" data-toggle="tab">
-                                    最新动态
-                                </a>
+                        	@foreach($data['cate'] as $k=>$cate)
+                            <li class="{{$k==0 ? 'active' : ''}}">
+                                <a href="#ios_{{$k}}" data-toggle="tab">{{$cate['cg_name']}}</a>
                             </li>
-                            <li>
-                                <a href="#ios" data-toggle="tab">人物</a>
-                            </li>
-                            <li>
-                                <a href="#ios" data-toggle="tab">观点</a>
-                            </li>
-                            <li>
-                                <a href="#ios" data-toggle="tab">案例</a>
-                            </li>
-                            <li>
-                                <a href="#ios" data-toggle="tab">视频</a>
-                            </li>
-                            <li>
-                                <a href="#ios" data-toggle="tab">荐读</a>
-                            </li>
+                            @endforeach
                         </ul>
                         <div id="myTabContent" class="tab-content">
-                            <div class="tab-pane fade in active" id="home">
-                                <dl class="tab_list">
+                        	@foreach($data['cate'] as $k=>$cate)
+                            <div class="tab-pane fade {{$k==0 ? 'in active' : ''}}" id="ios_{{$k}}">
+                            	<div class="cont_list">
+	                            	@foreach($cate['content'] as $cont)
+	                                <dl class="tab_list">
+	                                    @if($cont->type ==1)
+			                            <a href="{{url('article/id/'.$cont->id)}}">
+			                            @else
+			                            <a href="{{url('video/id/'.$cont->id)}}">
+			                            @endif
+	                                        <dt>
+	                                            <img src={{asset($cont->cover)}} alt="">
+	                                        </dt>
+	                                        <dd>
+	                                            <h4 class="tab_tit">{{$cont->title}}</h4>
+	                                            <p class="tab_con">{{$cont->intro}}</p>
+	                                            <p class="tab_time">{{substr($cont->publish_time,0,10)}}</p>
+	                                            <span>{{$cont->n_name}}</span>
+	                                        </dd>
+	                                    </a>
+	                                </dl>
+	                                @endforeach
+
+                                </div>
+                                <!-- <dl class="tab_list">
                                     <a href="">
                                         <dt>
                                             <img src={{asset("Home/images/list1.png")}} alt="">
@@ -87,81 +89,10 @@
                                             <span>我有嘉宾</span>
                                         </dd>
                                     </a>
-                                </dl>
-                                <dl class="tab_list">
-                                    <a href="">
-                                        <dt>
-                                            <img src={{asset("Home/images/list1.png")}} alt="">
-                                        </dt>
-                                        <dd>
-                                            <h4 class="tab_tit">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格护发素地方官方代购的风格</h4>
-                                            <p class="tab_con">哈佛受到核辐射东方哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山东红富士豆腐红烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧豆腐合适的合法身份粉红色的护发素东方红送的风好舒服</p>
-                                            <p class="tab_time">2018-8-10</p>
-                                            <span>我有嘉宾</span>
-                                        </dd>
-                                    </a>
-                                </dl>
+                                </dl> -->
+                                <button cgid="{{$cate['id']}}" page="{{config('hint.show_num')}}" class="ckgd" style="width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #00f;">查看更多</button>
                             </div>
-                            <div class="tab-pane fade" id="ios">
-                                <dl class="tab_list">
-                                    <a href="">
-                                        <dt>
-                                            <img src={{asset("Home/images/list1.png")}} alt="">
-                                        </dt>
-                                        <dd>
-                                            <h4 class="tab_tit">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格护发素地方官方代购的风格</h4>
-                                            <p class="tab_con">哈佛受到核辐射东方哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山东红富士豆腐红烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧豆腐合适的合法身份粉红色的护发素东方红送的风好舒服</p>
-                                            <p class="tab_time">2018-8-10</p>
-                                            <span>我有嘉宾</span>
-                                        </dd>
-                                    </a>
-                                </dl>
-                            </div>
-                            <div class="tab-pane fade" id="ios">
-                                <dl class="tab_list">
-                                    <a href="">
-                                        <dt>
-                                            <img src={{asset("Home/images/list1.png")}} alt="">
-                                        </dt>
-                                        <dd>
-                                            <h4 class="tab_tit">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格护发素地方官方代购的风格</h4>
-                                            <p class="tab_con">哈佛受到核辐射东方哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山东红富士豆腐红烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧豆腐合适的合法身份粉红色的护发素东方红送的风好舒服</p>
-                                            <p class="tab_time">2018-8-10</p>
-                                            <span>我有嘉宾</span>
-                                        </dd>
-                                    </a>
-                                </dl>
-                            </div>
-                            <div class="tab-pane fade" id="ios">
-                                <dl class="tab_list">
-                                    <a href="">
-                                        <dt>
-                                            <img src={{asset("Home/images/list1.png")}} alt="">
-                                        </dt>
-                                        <dd>
-                                            <h4 class="tab_tit">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格护发素地方官方代购的风格</h4>
-                                            <p class="tab_con">哈佛受到核辐射东方哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山东红富士豆腐红烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧豆腐合适的合法身份粉红色的护发素东方红送的风好舒服</p>
-                                            <p class="tab_time">2018-8-10</p>
-                                            <span>我有嘉宾</span>
-                                        </dd>
-                                    </a>
-                                </dl>
-                            </div>
-                            <div class="tab-pane fade" id="ios">
-                                <dl class="tab_list">
-                                    <a href="">
-                                        <dt>
-                                            <img src={{asset("Home/images/list1.png")}} alt="">
-                                        </dt>
-                                        <dd>
-                                            <h4 class="tab_tit">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格护发素地方官方代购的风格</h4>
-                                            <p class="tab_con">哈佛受到核辐射东方哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山东红富士豆腐红烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧豆腐合适的合法身份粉红色的护发素东方红送的风好舒服</p>
-                                            <p class="tab_time">2018-8-10</p>
-                                            <span>我有嘉宾</span>
-                                        </dd>
-                                    </a>
-                                </dl>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -219,6 +150,7 @@
             </div>
     	</div>
     </div>
+    <input type="hidden" name="url" value="{{url('getCategoryPage')}}">
     @include('layouts._footer')
     <script src="{{asset('Home/js/swiper.min.js')}}"></script>
     <script type="text/javascript">
@@ -231,6 +163,37 @@
                 prevButton: '.swiper-button-prev',
                 autoplayDisableOnInteraction : false,    //注意此参数，默认为true
             });
-        }    
+        }   
+    </script>
+    <script type="text/javascript">
+    	var url = $('[name=url]').val();
+    	$('.ckgd').click(function(){
+    		var thisObj = $(this);
+    		var cgid = thisObj.attr('cgid'),
+    			page = thisObj.attr('page');
+    		$.ajax({url:url,
+    				type:'GET',
+    				data:{cgid:cgid,page:page},
+    				dataType:'json',
+    				success:function(d){
+    					thisObj.attr('page',parseInt(page)+{{config('hint.show_num')}});
+    					var html = '';
+    					console.log(d);
+    					if (d != 0) {
+    						$.each(d,function(index,item){
+    							html += '<dl class="tab_list"><a href="'+item.url+'">';
+    							html += '<dt><img src="'+item.cover+'" alt=""></dt>';
+    							html += '<dd><h4 class="tab_tit">'+item.title+'</h4>';
+    							html += '<p class="tab_con">'+item.intro+'</p>';
+    							html += '<p class="tab_time">'+item.publish_time.substr(0,10)+'</p><span>'+item.n_name+'</span></dd></a></dl>';
+    						});
+    					}else{
+    						 html += '<p style="width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #f00;">已经到最底部了</p>';
+    						 thisObj.hide();
+    					}
+    					thisObj.prev().append(html);
+    				}})
+    		
+    	})
     </script>
 @stop
