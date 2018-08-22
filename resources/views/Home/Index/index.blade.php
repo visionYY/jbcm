@@ -12,16 +12,20 @@
 	                	<!-- 广告 -->
 	                    <div class="video swiper">
 	                    	@if(config('hint.index_show_adv') ==1)
+                            <!-- 视频 -->
 	                    	<video width="100%"  controls>
 	                            <source src="{{$data['ind_vid_adv'][0]['video']}}">
 	                            <source src="movie.ogg" type="video/ogg">
 	                        </video>
 	                        @else
+                            <!-- 轮播 -->
 	                        <div class="swiper-container">
 	                            <div class="swiper-wrapper">
 	                            @foreach($data['ind_sil_adv'] as $k=>$isa)
 	                              <div class="swiper-slide">
+                                    <a href="{{$isa['href']}}" target="_blank">
 	                                  <img src="{{asset($isa['cover'])}}" alt="">
+                                    </a>
 	                              </div>
 	                              @endforeach
 	                            </div>
@@ -31,10 +35,11 @@
 	                        </div>
 	                        @endif
 	                    </div>
+                        <!-- 右侧小广告哦 -->
 	                    <div class="pic_list">
 	                    	@foreach($data['ind_rig_adv'] as $k=>$ira)
 	                        <p class="pic_lists">
-	                            <a href="#">
+	                            <a href="{{$ira['href']}}" target="_blank">
 	                                <img src="{{asset($ira['cover'])}}" alt="">
 	                                <i class="pic_tit">{{$ira['title']}}
 	                                    <span>top</span>{{$k+1}}</i>

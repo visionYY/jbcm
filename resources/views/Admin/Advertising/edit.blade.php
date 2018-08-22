@@ -3,7 +3,7 @@
 @section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>广告修改</h5>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form action={{url('admin/advertising/'.$data->id)}} class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
+                        <form action="{{url('admin/advertising/'.$data->id)}}" class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
                             @include('layouts.admin_error')
                             <!-- 标题： -->
                             <div class="form-group">
@@ -49,7 +49,7 @@
                                 <label class="col-sm-3 control-label">链接地址：</label>
                                 <div class="col-sm-8">
                                     <input name="href" class="form-control" type="text" value="{{$data->href}}">
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
+                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 视频位置链接地址可不填</span>
                                 </div>
                             </div>
                             <!-- 位置 -->
@@ -61,7 +61,7 @@
                                         <option value="{{$k}}" {{$data->location == $k ? 'selected' : ''}}>{{$v}}</option>
                                         @endforeach
                                     </select>
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
+                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 首页显示视频1个，轮播图最多5个，纵向小广告3个，按添加时间倒序</span>
                                 </div>
                             </div>
                             
@@ -69,14 +69,14 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">封面：</label>
                                 <div class="col-sm-8">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 选择图片</button>
+                                    <button type="button" class="btn btn-primary choi"> 选择图片</button>
                                 </div>
                             </div>
                              <!-- 封面 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"></label>
                                 <div class="col-sm-8">
-                                    <img width="100px;" src="{{$data->cover}}" id="cover">
+                                    <img width="100px;" src="{{asset($data->cover)}}" id="cover">
                                 </div>
                             </div>
                            
@@ -85,9 +85,9 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                             <input type="hidden" name="old_cover" value="{{$data->cover}}">
+                                            <input type="file" name="cover" style="display: none;" value="{{old('cover')}}">
+                                            <input type="hidden" name="old_cover" value="{{$data->cover}}">
                                             <input type="hidden" name="_method" value="put"/>
-                                            <input type="hidden" name="cover">
                                         </label>
                                     </div>
                                 </div>
@@ -106,14 +106,10 @@
         </div>
     </div>
     @include('layouts.admin_js')
-    <script src={{asset("Admin/js/plugins/layer/laydate/laydate.js")}}></script>
-
-    <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script>
-    <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
-    @include('layouts.admin_picpro')
+    <!-- @include('layouts.admin_picpro') -->
     <script type="text/javascript">
         //图片比例 814:513
-        var clipArea = new bjj.PhotoClip("#clipArea", {
+       /* var clipArea = new bjj.PhotoClip("#clipArea", {
         size: [271, 171],
         outputSize: [407, 256],
         file: "#file",
@@ -130,6 +126,27 @@
             $('#cover').attr('src',dataURL);
             $('[name=cover]').attr('value',dataURL);
         }
+    });*/
+    $('.choi').click(function(){
+        $('[name=cover]').trigger('click');
+    })
+    $('[name=cover]').change(function(){
+        var imgurl = getObjectURL(this.files[0]);
+        console.log(imgurl);
+        $('#cover').attr('src',imgurl);
     });
+
+    //图片预览
+    function getObjectURL(file){
+        var url = null;
+        if (window.createObjectURL!=undefined) {  
+          url = window.createObjectURL(file) ;  
+         } else if (window.URL!=undefined) { // mozilla(firefox)  
+          url = window.URL.createObjectURL(file) ;  
+         } else if (window.webkitURL!=undefined) { // webkit or chrome  
+          url = window.webkitURL.createObjectURL(file) ;  
+         }  
+         return url ;
+    }
     </script>
 @stop

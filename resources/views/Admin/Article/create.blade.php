@@ -53,7 +53,9 @@
                                <div class="col-sm-6">
                                 <select class="form-control" name="nav_id">
                                     @foreach($data['nav'] as $nav)
-                                    <option value={{$nav['id']}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
+                                        @if($nav['parent_id'] != 0)
+                                        <option value={{$nav['id']}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -102,9 +104,9 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
-                                    <textarea id="intro" style="width: 100%;height: 150px;resize: none;" name="intro">{{old('intro')}}</textarea>
+                                    <textarea id="intro" style="width: 100%;height: 100px;resize: none;" name="intro">{{old('intro')}}</textarea>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
-                                    <p><span id="text-count">255</span>/255</p>
+                                    <p><span id="text-count">80</span>/80</p>
                                 </div>
                             </div>
 
@@ -113,8 +115,13 @@
                                 <label class="col-sm-3 control-label">内容：</label>
                                 <div class="col-sm-8">
                                     <!-- 加载编辑器内容 -->
-                                    <script id="editor" type="text/plain" style="height:600px;" name="content">{!!old('content')!!}</script>
+                                    <!-- <script id="editor" type="text/pslain" style="height:600px;" name="content">{!!old('content')!!}</script> -->
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
+                                    <div id="div1" style="border: 1px solid #ccc;"></div>
+                                    <div id="editor" style="width: 100%;border: 1px solid #ccc;height: 800px;">
+                                        {!!old('content')!!}
+                                    </div>
+                                    <textarea name="content" id="text1" style="display: none;">{!!old('content')!!}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -148,18 +155,39 @@
     @include('layouts.admin_picpro')
 
     {{--百度编辑器--}}
-    <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.config.js")}}></script>
+    <!-- <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.config.js")}}></script>
     <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.all.min.js")}}> </script>
     <script type="text/javascript" charset="utf-8" src={{asset("UE/lang/zh-cn/zh-cn.js")}}></script>
     <script type="text/javascript">
         var ue = UE.getEditor('editor');
-    </script>
-
+    </script> -->
+    <!-- 编辑器 -->
+    <script type="text/javascript" src="{{asset('release/wangEditor.js')}}"></script>
     <script type="text/javascript">
-        //图片比例 814:513
+        var E = window.wangEditor
+        var editor = new E('#div1','#editor')
+        editor.customConfig.uploadImgServer = '/api/upload'  // 上传图片到服务器
+        // editor.customConfig.debug=true;                // 开启调试
+
+        var $text1 = $('#text1')
+        editor.customConfig.onchange = function (html) {
+            // 监控变化，同步更新到 textarea
+            $text1.val(html)
+        }
+        editor.create()
+        // 初始化 textarea 的值
+        $text1.val(editor.txt.html())
+
+    </script>
+    <script type="text/javascript">
+        var sgw = $('[name=scre_gm_width]').val(),
+            sgh = $('[name=scre_gm_height]').val(),
+            ogw = $('[name=opt_gm_width]').val(),
+            ogh = $('[name=opt_gm_height]').val();
+        //图片比例 268:161
         var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [271, 171],
-        outputSize: [407, 256],
+        size: [sgw, sgh],
+        outputSize: [ogw, ogh],
         file: "#file",
         view: "#view",
         ok: "#clipBtn",
@@ -180,10 +208,10 @@
                      var $this = $(this),
                          _val = $this.val(),
                          count = "";
-            if (_val.length > 255) {
-                $this.val(_val.substring(0, 255));
+            if (_val.length > 80) {
+                $this.val(_val.substring(0, 80));
             }
-            count = 255 - $this.val().length;
+            count = 80 - $this.val().length;
             $("#text-count").text(count);   
         });
     </script>

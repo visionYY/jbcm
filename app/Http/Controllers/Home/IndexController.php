@@ -7,6 +7,7 @@ use App\Models\Advertising;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Choiceness;
+use App\Models\Hotbot;
 use App\Models\Navigation;
 use App\Models\TutorStudent;
 use App\Models\Video;
@@ -16,9 +17,7 @@ use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
-    public function __construct(){
-        date_default_timezone_set("Asia/Shanghai");
-    }
+
 
     //首页
     public function index(){
@@ -29,9 +28,9 @@ class IndexController extends Controller
         $data['navig'] = Helper::_tree_json($navig);
 
         //广告
-        $data['ind_vid_adv'] = Advertising::where('location',1)->orderBy('created_at','desc')->limit(1)->get()->toArray();
-        $data['ind_sil_adv'] = Advertising::where('location',2)->orderBy('created_at','desc')->limit(3)->get()->toArray();
-        $data['ind_rig_adv'] = Advertising::where('location',3)->orderBy('created_at','desc')->limit(3)->get()->toArray();
+        $data['ind_vid_adv'] = Advertising::getAdver(1,1);
+        $data['ind_sil_adv'] = Advertising::getAdver(2,5);
+        $data['ind_rig_adv'] = Advertising::getAdver(3,3);
 
         //分类
         $cate = Category::all()->toArray();
@@ -122,8 +121,8 @@ class IndexController extends Controller
                 $twoNav->threeNav = $threeNav;
             }
         }
-        //我有嘉宾顶部广告位 9
-        $data['adver'] = Advertising::find(4);
+        //我有嘉宾顶部广告位 4
+        $data['adver'] = Advertising::getAdver(4,1);
 
 //        dd($data);
         return view('Home.Index.brand',compact('data',$data));
@@ -149,6 +148,14 @@ class IndexController extends Controller
             }
             $twoNav->threeNav = $threeNav;
         }
+        if($oneId==5){
+            //嘉宾大学顶部广告位 5
+            $data['adver'] = Advertising::getAdver(5,1);
+        }else{
+            //嘉宾峰会顶部广告位 6
+            $data['adver'] = Advertising::getAdver(6,1);
+        }
+
 //        dd($data);
         return view('Home.Index.university',compact('data',$data));
     }
@@ -311,8 +318,9 @@ class IndexController extends Controller
 
     //搜索
     public function search(){
-
-        return view('Home.Index.search');
+        $data['title'] = '搜索';
+        $data['hotbot'] = Hotbot::all();
+        return view('Home.Index.search',compact('data',$data));
     }
 
     //搜索执行
@@ -341,6 +349,11 @@ class IndexController extends Controller
         $data['res'] = array_merge($article,$video);
         $data['keybord'] = $keybord;
 
+        $hotbot = Hotbot::where('name',$keybord)->first();
+        if ($hotbot){
+            $update['value'] = $hotbot->value + 1;
+            Hotbot::find($hotbot->id)->update($update);
+        }
         //编辑精选
         $data['choi'] = Choiceness::getChoi(8);
 //        dd($data);

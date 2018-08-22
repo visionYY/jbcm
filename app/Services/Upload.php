@@ -15,7 +15,7 @@ class Upload
 
     //单个文件上传
     public static function uploadOne($table,$image){
-        $file = isset($image) ?$image : NULL;
+        $file = isset($image) ? $image : NULL;
         //没有图片上传
         if (is_null($file)) {
             return 1;

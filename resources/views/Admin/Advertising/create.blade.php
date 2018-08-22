@@ -49,13 +49,13 @@
                                 <label class="col-sm-3 control-label">链接地址：</label>
                                 <div class="col-sm-8">
                                     <input name="href" class="form-control" type="text" value="{{old('href')}}">
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
+                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 视频位置链接地址可不填</span>
                                 </div>
                             </div>
                             <!-- 位置 -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">位置：</label>
-                                <div class="col-sm-3">
+                                <div class="col-sm-6">
                                     <select class="form-control" name="location">
                                         @foreach(config('hint.location') as $k=>$v)
                                         <option value="{{$k}}">{{$v}}</option>
@@ -63,7 +63,7 @@
                                         <!-- <option value="2">2号广告位</option> -->
                                         <!-- <option value="3">3号广告位</option> -->
                                     </select>
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
+                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 首页显示视频1个，轮播图最多5个，纵向小广告3个，按添加时间倒序</span>
                                 </div>
                             </div>
                             
@@ -75,12 +75,12 @@
                                 </div>
                             </div>
                              <!-- 封面 -->
-                           <!--  <div class="form-group">
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label"></label>
                                 <div class="col-sm-8">
                                     <img width="100px;" src="{{old('cover')}}" id="cover">
                                 </div>
-                            </div> -->
+                            </div>
                            
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
@@ -106,40 +106,37 @@
         </div>
     </div>
     @include('layouts.admin_js')
-    <!-- <script src={{asset("Admin/js/plugins/layer/laydate/laydate.js")}}></script> -->
-
-    <!-- <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script> -->
     <!-- @include('layouts.admin_picpro') -->
     <script type="text/javascript">
         //图片比例 814:513
-    //     var clipArea = new bjj.PhotoClip("#clipArea", {
-    //     size: [271, 171],
-    //     outputSize: [407, 256],
-    //     file: "#file",
-    //     view: "#view",
-    //     ok: "#clipBtn",
-    //     loadStart: function() {
-    //         console.log("照片读取中");
-    //     },
-    //     loadComplete: function() {
-    //         console.log("照片读取完成");
-    //     },
-    //     clipFinish: function(dataURL) {
-    //         // console.log(dataURL);
-    //         $('#cover').attr('src',dataURL);
-    //         $('[name=cover]').attr('value',dataURL);
-    //     }
-    // });
+   /*     var clipArea = new bjj.PhotoClip("#clipArea", {
+        size: [271, 171],
+        outputSize: [407, 256],
+        file: "#file",
+        view: "#view",
+        ok: "#clipBtn",
+        loadStart: function() {
+            console.log("照片读取中");
+        },
+        loadComplete: function() {
+            console.log("照片读取完成");
+        },
+        clipFinish: function(dataURL) {
+            // console.log(dataURL);
+            $('#cover').attr('src',dataURL);
+            $('[name=cover]').attr('value',dataURL);
+        }
+    });*/
     $('.choi').click(function(){
         $('[name=cover]').trigger('click');
     })
     $('[name=cover]').change(function(){
-        $imgurl = getObjectURL(this.file);
-        console.log($imgurl);
-        // $('#cover').attr('src',$(this).val());
+        var imgurl = getObjectURL(this.files[0]);
+        // console.log(imgurl);
+        $('#cover').attr('src',imgurl);
     });
 
+    //图片预览
     function getObjectURL(file){
         var url = null;
         if (window.createObjectURL!=undefined) {  

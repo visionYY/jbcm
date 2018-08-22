@@ -16,7 +16,7 @@ class articleController extends Controller
 {
     //首页
     public function index(){
-        $list = Article::paginate(20);
+        $list = Article::orderBy('publish_time','desc')->paginate(20);
         foreach ($list as $art){
             $nav = Navigation::find($art->nav_id);
             $art->nav_name = $nav->n_name;
@@ -41,6 +41,7 @@ class articleController extends Controller
     public function create(){
         $nav = Navigation::select('id','parent_id','n_name')->orderBy('sort','desc')->get()->toArray();
         $data['nav'] = Helper::_tree($nav);
+//        dd($data);
         $data['cate'] = Category::select('id','cg_name')->get()->toArray();
         $data['label'] = Label::select('id','name')->get()->toArray();
         return view('Admin.Article.create',compact('data',$data));
@@ -48,6 +49,7 @@ class articleController extends Controller
 
     //执行添加
     public function store(Request $request){
+//        dd($request->all());
         $verif = array('title'=>'required',
             'content'=>'required',
             'cg_id'=>'required|numeric',

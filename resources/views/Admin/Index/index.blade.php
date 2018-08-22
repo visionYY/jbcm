@@ -88,20 +88,6 @@
                             <!-- <li><a class="J_menuItem" href="javascript:;">学员列表</a></li> -->
                         </ul>
                     </li>
-                 	<li>
-                        <a href="#">
-                            <i class="fa fa-list"></i>
-                            <span class="nav-label">分类管理</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a class="J_menuItem" href="category">分类列表</a>
-                                <a class="J_menuItem" href="navigation">导航列表</a>
-                                <a class="J_menuItem" href="label">标签列表</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li>
                         <a href="#">
                             <i class="fa fa-book"></i>
@@ -113,6 +99,21 @@
                                 <a class="J_menuItem" href="video">视频列表</a>
                                 <a class="J_menuItem" href="article">文章列表</a>
                                 <a class="J_menuItem" href="advertising">广告列表</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-gear"></i>
+                            <span class="nav-label">设置管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="category">分类列表</a>
+                                <a class="J_menuItem" href="navigation">导航列表</a>
+                                <a class="J_menuItem" href="label">标签列表</a>
+                                <a class="J_menuItem" href="hotbot">热搜列表</a>
                             </li>
                         </ul>
                     </li>

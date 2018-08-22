@@ -9,5 +9,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
+    public function __construct(){
+        date_default_timezone_set("Asia/Shanghai");
+    }
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

@@ -1,4 +1,5 @@
 @extends('layouts.home')
+@section('title',$data['title'])
 @section('content')
 <link rel="stylesheet" href="{{asset('Home/css/search.css')}}">
   <div class="search-wrapper">
@@ -9,9 +10,11 @@
       <div class="sea-con">
         <p class="sea-tit">热搜</p>
         <ul class="sea-label">
-          <li class="st-hot">小米</li>
-          <li class="st-hot">大米</li>
-          <li class="st-hot">老米</li>
+          @foreach($data['hotbot'] as $hot)
+          <li class="st-hot">{{$hot->name}}</li>
+          @endforeach
+          <!-- <li class="st-hot">大米</li> -->
+          <!-- <li class="st-hot">老米</li> -->
         </ul>
       </div>
     </div>

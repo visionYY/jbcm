@@ -151,26 +151,18 @@
     <script src={{asset("Admin/js/plugins/layer/laydate/laydate.js")}}></script>
     
     <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script>
-    <!-- <script src={{asset("Admin/js/plugins/jsKnob/jquery.knob.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/jasny/jasny-bootstrap.min.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/datapicker/bootstrap-datepicker.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/prettyfile/bootstrap-prettyfile.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/nouslider/jquery.nouislider.min.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/switchery/switchery.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/ionRangeSlider/ion.rangeSlider.min.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/iCheck/icheck.min.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/metisMenu/jquery.metisMenu.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/colorpicker/bootstrap-colorpicker.min.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/clockpicker/clockpicker.js")}}></script> -->
-    <!-- <script src={{asset("Admin/js/plugins/cropper/cropper.min.js")}}></script> -->
     <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
 
     @include('layouts.admin_picpro')
     <script type="text/javascript">
+        var sgw = $('[name=scre_gm_width]').val(),
+            sgh = $('[name=scre_gm_height]').val(),
+            ogw = $('[name=opt_gm_width]').val(),
+            ogh = $('[name=opt_gm_height]').val();
         //图片比例 814:513
         var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [271, 171],
-        outputSize: [407, 256],
+        size: [sgw, sgh],
+        outputSize: [ogw, ogh],
         file: "#file",
         view: "#view",
         ok: "#clipBtn",

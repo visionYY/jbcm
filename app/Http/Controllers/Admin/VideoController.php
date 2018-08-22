@@ -16,7 +16,7 @@ class VideoController extends Controller
 {
     //首页
     public function index(){
-        $list = Video::paginate(20);
+        $list = Video::orderBy('publish_time','desc')->paginate(20);
         foreach ($list as $art){
             $nav = Navigation::find($art->nav_id);
             $art->nav_name = $nav->n_name;

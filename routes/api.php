@@ -17,3 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     echo 'api';die;
     return $request->user();
 });
+
+Route::post('upload','Api\commonController@upload');
+Route::post('imgDelete','Api\commonController@imgDelete');

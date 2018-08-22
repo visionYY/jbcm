@@ -103,7 +103,8 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
-                                    <textarea style="width: 100%;height: 150px;resize: none;" name="intro">{{$data['article']->intro}}</textarea>
+                                    <textarea id="intro" style="width: 100%;height: 100px;resize: none;" name="intro">{{$data['article']->intro}}</textarea>
+                                    <p><span id="text-count">80</span>/80</p>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
@@ -111,7 +112,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">内容：</label>
                                 <div class="col-sm-8">
-                                    <textarea id="editor" style="height:600px;" name="content" >{{$data['article']->content}}</textarea>
+                                    <div id="div1" style="border: 1px solid #ccc;"></div>
+                                    <div id="editor" style="width: 100%;border: 1px solid #ccc;">
+                                        {!!$data['article']->content!!}
+                                    </div>
+                                    <textarea name="content" id="text1" style="display: none;">{!!$data['article']->content!!}}</textarea>
+                                    <!-- <textarea id="editor" style="height:600px;" name="content" >{{$data['article']->content}}</textarea> -->
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
@@ -149,33 +155,67 @@
 
     
     @include('layouts.admin_picpro')
-     {{--百度编辑器--}}
+   <!--   {{--百度编辑器--}}
     <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.config.js")}}></script>
     <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.parse.js")}}></script>
     <script type="text/javascript" charset="utf-8" src={{asset("UE/ueditor.all.min.js")}}> </script>
     <script type="text/javascript" charset="utf-8" src={{asset("UE/lang/zh-cn/zh-cn.js")}}></script>
     <script type="text/javascript">
         var ue = UE.getEditor('editor');
-    </script>
+    </script> -->
+     <!-- 编辑器 -->
+    <script type="text/javascript" src="{{asset('release/wangEditor.js')}}"></script>
     <script type="text/javascript">
-        //图片比例 814:513
-        var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [271, 171],
-        outputSize: [407, 256],
-        file: "#file",
-        view: "#view",
-        ok: "#clipBtn",
-        loadStart: function() {
-            console.log("照片读取中");
-        },
-        loadComplete: function() {
-            console.log("照片读取完成");
-        },
-        clipFinish: function(dataURL) {
-            // console.log(dataURL);
-            $('#cover').attr('src',dataURL);
-            $('[name=cover]').attr('value',dataURL);
+        var E = window.wangEditor
+        var editor = new E('#div1','#editor')
+        editor.customConfig.uploadImgServer = '/api/upload'  // 上传图片到服务器
+        // editor.customConfig.debug=true;                // 开启调试
+
+        var $text1 = $('#text1')
+        editor.customConfig.onchange = function (html) {
+            // 监控变化，同步更新到 textarea
+            $text1.val(html)
         }
-    });
+        editor.create()
+        // 初始化 textarea 的值
+        $text1.val(editor.txt.html())
+
+    </script>
+
+    <script type="text/javascript">
+        var sgw = $('[name=scre_gm_width]').val(),
+            sgh = $('[name=scre_gm_height]').val(),
+            ogw = $('[name=opt_gm_width]').val(),
+            ogh = $('[name=opt_gm_height]').val();
+        //图片比例 268:151
+        var clipArea = new bjj.PhotoClip("#clipArea", {
+            size: [sgw,sgh],
+            outputSize: [ogw, ogh],
+            file: "#file",
+            view: "#view",
+            ok: "#clipBtn",
+            loadStart: function() {
+                console.log("照片读取中");
+            },
+            loadComplete: function() {
+                console.log("照片读取完成");
+            },
+            clipFinish: function(dataURL) {
+                // console.log(dataURL);
+                $('#cover').attr('src',dataURL);
+                $('[name=cover]').attr('value',dataURL);
+            }
+        });
+        // 限制
+        $('#intro').on('input propertychange',function(){
+                     var $this = $(this),
+                         _val = $this.val(),
+                         count = "";
+            if (_val.length > 80) {
+                $this.val(_val.substring(0, 80));
+            }
+            count = 80 - $this.val().length;
+            $("#text-count").text(count);   
+        });
     </script>
 @stop

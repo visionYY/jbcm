@@ -151,10 +151,14 @@
     <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
     @include('layouts.admin_picpro')
     <script type="text/javascript">
+        var sgw = $('[name=scre_gm_width]').val(),
+            sgh = $('[name=scre_gm_height]').val(),
+            ogw = $('[name=opt_gm_width]').val(),
+            ogh = $('[name=opt_gm_height]').val();
         //图片比例 814:513
         var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [271, 171],
-        outputSize: [407, 256],
+        size: [sgw, sgh],
+        outputSize: [ogw, ogh],
         file: "#file",
         view: "#view",
         ok: "#clipBtn",

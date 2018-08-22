@@ -22,6 +22,11 @@
             </div>
         </div>
     </div>
+    <input type="hidden" name="scre_gm_width" value="{{config('hint.scre_gm_width')}}">
+    <input type="hidden" name="scre_gm_height" value="{{config('hint.scre_gm_height')}}">
+    <input type="hidden" name="opt_gm_width" value="{{config('hint.opt_gm_width')}}">
+    <input type="hidden" name="opt_gm_height" value="{{config('hint.opt_gm_height')}}">
+    
     <!-- <script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script> -->
     <script src={{asset("Admin/js/iscroll-zoom.js")}}></script>
     <script src={{asset("Admin/js/hammer.js")}}></script>
