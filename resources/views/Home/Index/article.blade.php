@@ -2,6 +2,11 @@
 @section('title',$data['title'])
 @section('content')
     <link rel="stylesheet" href="{{asset('Home/css/details.css')}}">
+    <style type="text/css">
+      iframe{
+        text-align: center;
+      }
+    </style>
     <div class="wrapper">
             @include('layouts._header')
         <div class="main1 clearfix">

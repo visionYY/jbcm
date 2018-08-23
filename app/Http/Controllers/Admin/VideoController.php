@@ -39,8 +39,9 @@ class VideoController extends Controller
 
     //添加
     public function create(){
-        $nav = Navigation::select('id','parent_id','n_name')->get()->toArray();
-        $data['nav'] = Helper::_tree($nav);
+        $nav = Navigation::getAll();
+        $nav_tree = Helper::_tree_json($nav);
+        $data['nav'] = Helper::getBottomLayer($nav_tree);
         $data['cate'] = Category::select('id','cg_name')->get()->toArray();
         $data['label'] = Label::select('id','name')->get()->toArray();
         return view('Admin.Video.create',compact('data',$data));
@@ -79,8 +80,9 @@ class VideoController extends Controller
     //修改
     public function edit($id){
         $data['video'] = Video::find($id)->toArray();
-        $nav = Navigation::select('id','parent_id','n_name')->get()->toArray();
-        $data['nav'] = Helper::_tree($nav);
+        $nav = Navigation::getAll();
+        $nav_tree = Helper::_tree_json($nav);
+        $data['nav'] = Helper::getBottomLayer($nav_tree);
         $data['cate'] = Category::select('id','cg_name')->get()->toArray();
         $data['label'] = Label::select('id','name')->get()->toArray();
 //        dd($data);

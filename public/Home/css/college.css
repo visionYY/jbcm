@@ -22,10 +22,21 @@
 
 .tab_list{
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   position: relative;
-  margin-bottom:10px;
+  margin-bottom:12px;
   border-bottom: 1px solid #f2f2f2;
+  position: relative;
+}
+.bofang{
+  position: absolute;
+  width: 50px;
+  top: 50%;
+  height: 50px;
+  left: 16.2%;
+  margin-left: -25px;
+  margin-top: -25px;
+  z-index: 99999;
 }
 .tab_list:last-child{
   border:none;

@@ -60,6 +60,7 @@ class Article extends Model
         return $art;
     }
 
+    //视频文章获取（根据分类）
     public static function getArticleVideo($cgid,$num,$start=0){
         if($cgid != 0){
             $where = 'WHERE t.cg_id='.$cgid;

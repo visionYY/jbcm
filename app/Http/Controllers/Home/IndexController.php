@@ -40,7 +40,11 @@ class IndexController extends Controller
             $c['content'] = Article::getArticleVideo($c['id'],config('hint.show_num'));
             foreach ($c['content'] as $cont){
                 $nav = Navigation::find($cont->nav_id);
-                $cont->n_name = $nav->n_name;
+                if($nav['id'] == 1){
+                    $cont->n_name = '';
+                }else{
+                    $cont->n_name = $nav->n_name;
+                }
             }
         }
         $data['cate'] = $cate;
@@ -112,13 +116,14 @@ class IndexController extends Controller
                 //其他文章部分
                 $threeNav = Navigation::orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
                 foreach ($threeNav as $art) {
-                    $art->article = Article::where('nav_id', $art->id)->orderBy('publish_time','desc')->limit(3)->get();
+                    $art->article = Navigation::getArticleVideo($art->id,3);
                     foreach ($art->article as $v){
                         $cate = Category::find($v->cg_id);
                         $v->cg_name = $cate->cg_name;
                     }
                 }
                 $twoNav->threeNav = $threeNav;
+
             }
         }
         //我有嘉宾顶部广告位 4
@@ -140,7 +145,7 @@ class IndexController extends Controller
         foreach ($data['towNav'] as $twoNav) {
             $threeNav = Navigation::orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
             foreach ($threeNav as $art) {
-                $art->article = Article::where('nav_id', $art->id)->orderBy('publish_time','desc')->limit(3)->get();
+                $art->article = Navigation::getArticleVideo($art->id,3);
                 foreach ($art->article as $v){
                     $cate = Category::find($v->cg_id);
                     $v->cg_name = $cate->cg_name;
@@ -212,7 +217,7 @@ class IndexController extends Controller
         $data['thrNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$pid)->get();
         $lables = '';
         foreach ($data['thrNav'] as $thrNav){
-            $thrNav->art = Article::where('nav_id',$thrNav->id)->orderBy('publish_time','desc')->get();
+            $thrNav->art = Navigation::getArticleVideo($thrNav->id,10);
             foreach ($thrNav->art as $v){
                 $lables .= $v->labels.',';
             }
@@ -369,7 +374,12 @@ class IndexController extends Controller
         $res = Article::getArticleVideo($cgid,config('hint.show_num'),$page);
         foreach ($res as $art){
             $nav = Navigation::find($art->nav_id);
-            $art->n_name = $nav->n_name;
+            if ($nav->id == 1){
+                $art->n_name = '';
+            }else{
+                $art->n_name = $nav->n_name;
+            }
+
             if ($art->type==1){
                 $art->url = url('article/id/'.$art->id);
             }else{

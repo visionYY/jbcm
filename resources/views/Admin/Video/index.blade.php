@@ -37,7 +37,7 @@
                                     <th>标题</th>
                                     <th>时长</th>
                                     <th>分类</th>
-                                    <th>导航</th>
+                                    <th>来源</th>
                                     <th>状态</th>
                                     <th>上传时间</th>
                                     <th>操作</th>
@@ -64,7 +64,7 @@
                                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="javascript:;">详情</a></li>
+                                                <li><a href="{{url('video/id/'.$v->id)}}" target="_blank">详情</a></li>
                                                 <li><a href={{url("admin/video/$v->id/edit")}} class="font-bold">修改</a></li>
                                                 <li>
                                                     @if($v->cho != 0)

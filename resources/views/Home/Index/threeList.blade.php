@@ -42,7 +42,11 @@
                   <div class="tcl-list {{$thrNav->id == $data['id'] ? 'tlc-show' : 'tlc-hide'}}">
                     @foreach($thrNav->art as $art)
                     <dl class="tab_list">
+                      @if($art->type == 1)
                       <a href="{{url('article/id/'.$art->id)}}">
+                      @else
+                      <a href="{{url('video/id/'.$art->id)}}">
+                      @endif    
                           <dt>
                               <img src="{{asset($art->cover)}}" alt="">
                           </dt>

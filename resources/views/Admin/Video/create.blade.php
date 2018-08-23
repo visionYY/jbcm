@@ -3,7 +3,7 @@
 @section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>添加视频</h5>
@@ -64,11 +64,11 @@
                             </div>
                             <!-- 导航 -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">导航：</label>
+                                <label class="col-sm-3 control-label">来源：</label>
                                <div class="col-sm-6">
                                 <select class="form-control" name="nav_id">
                                     @foreach($data['nav'] as $nav)
-                                    <option value={{$nav['id']}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
+                                    <option value={{$nav['id']}}>{{$nav['text']}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -118,6 +118,7 @@
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
                                     <textarea class="form-group" style="width: 100%;height: 150px;resize: none;" name="intro">{{old('intro')}}</textarea>
+                                    <p><span id="text-count">255</span>/255</p>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
@@ -173,6 +174,17 @@
             $('#cover').attr('src',dataURL);
             $('[name=cover]').attr('value',dataURL);
         }
+    });
+
+    $('[name=intro]').on('input propertychange',function(){
+                 var $this = $(this),
+                     _val = $this.val(),
+                     count = "";
+        if (_val.length > 255) {
+            $this.val(_val.substring(0, 255));
+        }
+        count = 255 - $this.val().length;
+        $("#text-count").text(count);   
     });
     </script>
 @stop

@@ -70,7 +70,11 @@
                             <div class="cont">
                                 @foreach($thrNav->article as $art)
                                 <dl class="cont-dls">
+                                    @if($art->type==1)
                                     <a href="{{url('article/id/'.$art->id)}}">
+                                    @else
+                                    <a href="{{url('video/id/'.$art->id)}}">
+                                    @endif
                                         <dt><img src="{{asset($art->cover)}}" alt=""></dt>
                                         <dd>
                                             <p class="dls-tit">{{$art->title}}</p>

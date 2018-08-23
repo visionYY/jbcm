@@ -39,9 +39,9 @@ class articleController extends Controller
 
     //添加
     public function create(){
-        $nav = Navigation::select('id','parent_id','n_name')->orderBy('sort','desc')->get()->toArray();
-        $data['nav'] = Helper::_tree($nav);
-//        dd($data);
+        $nav = Navigation::getAll();
+        $nav_tree = Helper::_tree_json($nav);
+        $data['nav'] = Helper::getBottomLayer($nav_tree);
         $data['cate'] = Category::select('id','cg_name')->get()->toArray();
         $data['label'] = Label::select('id','name')->get()->toArray();
         return view('Admin.Article.create',compact('data',$data));
@@ -80,8 +80,9 @@ class articleController extends Controller
 
     //修改
     public function edit($id){
-        $nav = Navigation::select('id','parent_id','n_name')->get()->toArray();
-        $data['nav'] = Helper::_tree($nav);
+        $nav = Navigation::getAll();
+        $nav_tree = Helper::_tree_json($nav);
+        $data['nav'] = Helper::getBottomLayer($nav_tree);
         $data['cate'] = Category::select('id','cg_name')->get()->toArray();
         $data['label'] = Label::select('id','name')->get()->toArray();
         $data['article'] = Article::find($id);

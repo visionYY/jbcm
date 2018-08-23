@@ -3,6 +3,7 @@
 @section('content')
     <link rel="stylesheet" href={{asset("Home/css/index.css")}}>
     <link rel="stylesheet" href="{{asset('Home/css/swiper.min.css')}}">
+    <div class="box_cover"></div>
     <div class="wrapper">
             @include('layouts._header')
         <div class="main1 clearfix">
@@ -41,8 +42,7 @@
 	                        <p class="pic_lists">
 	                            <a href="{{$ira['href']}}" target="_blank">
 	                                <img src="{{asset($ira['cover'])}}" alt="">
-	                                <i class="pic_tit">{{$ira['title']}}
-	                                    <span>top</span>{{$k+1}}</i>
+	                                <!-- <i class="pic_tit">{{$ira['title']}}<span>top</span>{{$k+1}}</i> -->
 	                            </a>
 	                        </p>
 	                        @endforeach
@@ -65,8 +65,10 @@
 	                                <dl class="tab_list">
 	                                    @if($cont->type ==1)
 			                            <a href="{{url('article/id/'.$cont->id)}}">
+
 			                            @else
 			                            <a href="{{url('video/id/'.$cont->id)}}">
+                                            <img class="bofang" src="{{asset('Home/images/3x.png')}}" alt="">
 			                            @endif
 	                                        <dt>
 	                                            <img src={{asset($cont->cover)}} alt="">
@@ -168,7 +170,11 @@
                 prevButton: '.swiper-button-prev',
                 autoplayDisableOnInteraction : false,    //注意此参数，默认为true
             });
-        }   
+        } 
+
+        setTimeout(function () {
+            $(".box_cover").hide();
+        }, 1500);  
     </script>
     <script type="text/javascript">
     	var url = $('[name=url]').val();
@@ -187,6 +193,9 @@
     					if (d != 0) {
     						$.each(d,function(index,item){
     							html += '<dl class="tab_list"><a href="'+item.url+'">';
+                                if (item.type==2) {
+                                    html += '<img class="bofang" src={{asset("Home/images/3x.png")}} alt="">';
+                                }
     							html += '<dt><img src="'+item.cover+'" alt=""></dt>';
     							html += '<dd><h4 class="tab_tit">'+item.title+'</h4>';
     							html += '<p class="tab_con">'+item.intro+'</p>';
@@ -200,5 +209,6 @@
     				}})
     		
     	})
+
     </script>
 @stop

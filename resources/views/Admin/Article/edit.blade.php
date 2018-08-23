@@ -49,11 +49,11 @@
                             </div>
                             <!-- 导航 -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">导航：</label>
+                                <label class="col-sm-3 control-label">来源：</label>
                                <div class="col-sm-6">
                                 <select class="form-control" name="nav_id">
                                     @foreach($data['nav'] as $nav)
-                                    <option value={{$nav['id']}} {{$data['article']->nav_id == $nav['id'] ? 'selected' : ''}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
+                                    <option value={{$nav['id']}} {{$data['article']->nav_id == $nav['id'] ? 'selected' : ''}}>{{$nav['text']}}</option>
                                     @endforeach
                                 </select>
                             </div>

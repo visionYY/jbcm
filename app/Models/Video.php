@@ -9,7 +9,7 @@ class Video extends Model
 {
     protected $table = 'video';
 
-    protected $fillable = ['title','duration','cover','cg_id','nav_id','labels','status','author','publish_time','intro'];
+    protected $fillable = ['title','address','duration','cover','cg_id','nav_id','labels','status','author','publish_time','intro'];
 
     //猜你喜欢
     public static function guessLike($labels,$limit=8){

@@ -36,7 +36,7 @@
                                     <th >ID</th>
                                     <th>标题</th>
                                     <th>分类</th>
-                                    <th>导航</th>
+                                    <th>来源</th>
                                     <th>状态</th>
                                     <th>上传时间</th>
                                     <th>操作</th>

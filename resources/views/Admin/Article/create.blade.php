@@ -49,13 +49,11 @@
                             </div>
                             <!-- 导航 -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">导航：</label>
+                                <label class="col-sm-3 control-label">来源：</label>
                                <div class="col-sm-6">
                                 <select class="form-control" name="nav_id">
                                     @foreach($data['nav'] as $nav)
-                                        @if($nav['parent_id'] != 0)
-                                        <option value={{$nav['id']}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
-                                        @endif
+                                        <option value="{{$nav['id']}}">{{$nav['text']}}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -13,7 +13,7 @@ use App\Models\Article;
 
 class Helper
 {
-    //
+    //横向树形
     public static function _tree($arr,$pid=0,$level=0){
         static $tree = array();
         foreach ($arr as $v){
@@ -26,6 +26,7 @@ class Helper
         return $tree;
     }
 
+    //树形
     public static function _tree_json($arr,$pid=0){
         $tree = array();
         foreach ($arr as $v){
@@ -44,34 +45,24 @@ class Helper
         return $tree;
     }
 
-    public static function _article_prev($id){
-        if ($id-1 > 0){
-            $article = Article::select('id','title')->find($id-1);
-            if ($article){
-                return $article;
+    //获取最底层节点
+    public static function getBottomLayer($arr){
+        static $newArr = array();
+        foreach ($arr as $v){
+            if(!$v['nodes']){
+                //剔除首页跟导师学员
+                if ($v['parent_id'] != 3){
+                    $newArr[] = $v;
+                }
             }else{
-                self::_article_prev($id-1);
+               self::getBottomLayer($v['nodes']);
             }
-        }else{
-            return 0;
         }
-
+        return $newArr;
     }
 
-
-    public static function _article_next($id){
-        static $num = 0;
-        if ($num > 10){
-            $article = Article::select('id','title')->find($id+1);
-            if ($article){
-                return $article;
-            }else{
-                $num+1;
-                self::_article_next($id+1);
-            }
-        }else{
-            return 0;
-        }
-    }
 
 }
+
+?>
+

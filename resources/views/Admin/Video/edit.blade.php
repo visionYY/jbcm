@@ -3,7 +3,7 @@
 @section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>视频修改</h5>
@@ -68,7 +68,7 @@
                                <div class="col-sm-6">
                                 <select class="form-control" name="nav_id">
                                     @foreach($data['nav'] as $nav)
-                                    <option value={{$nav['id']}} {{$nav['id']==$data['video']['nav_id']? 'selected' : ''}}><?php echo str_repeat('|--', $nav['level']).$nav['n_name']; ?></option>
+                                    <option value={{$nav['id']}} {{$nav['id']==$data['video']['nav_id']? 'selected' : ''}}>{{$nav['text']}}</option>
                                     @endforeach
                                 </select>
                             </div>
