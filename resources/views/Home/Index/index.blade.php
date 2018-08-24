@@ -3,7 +3,7 @@
 @section('content')
     <link rel="stylesheet" href={{asset("Home/css/index.css")}}>
     <link rel="stylesheet" href="{{asset('Home/css/swiper.min.css')}}">
-    <div class="box_cover"></div>
+    <!-- <div class="box_cover"></div> -->
     <div class="wrapper">
             @include('layouts._header')
         <div class="main1 clearfix">
@@ -172,9 +172,9 @@
             });
         } 
 
-        setTimeout(function () {
-            $(".box_cover").hide();
-        }, 1500);  
+        // setTimeout(function () {
+        //     $(".box_cover").hide();
+        // }, 1500);  
     </script>
     <script type="text/javascript">
     	var url = $('[name=url]').val();
