@@ -27,6 +27,9 @@ Route::get('tutorStudent/detail/id/{id}','Home\IndexController@tsDetail');
 Route::get('search','Home\IndexController@search');
 Route::get('doSearch','Home\IndexController@doSearch');
 
+//公共链接
+Route::get('getHref/id/{id}','Home\IndexController@getHref');
+
 //API
 Route::get('getCategoryPage','Home\IndexController@getCategoryPage');
 Route::get('upload','Home\IndexController@getCategoryPage');

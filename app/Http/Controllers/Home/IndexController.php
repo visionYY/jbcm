@@ -365,6 +365,11 @@ class IndexController extends Controller
         return view('Home.Index.doSearch',compact('data',$data));
     }
 
+    //广告链接
+    public function getHref($id){
+
+        return view('Home.Index.href');
+    }
     /*
      * ajax返回数据
      * */
