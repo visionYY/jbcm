@@ -80,7 +80,7 @@
 .rig_dls{
     width: 84%;
     margin: 0 8%;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     position: relative;
 }
 .rig_dls>a:hover{
@@ -103,8 +103,9 @@
   -o-transform: scale(1.1); /*Opera*/
 }
 .dls_titL{
+    width:100%;
     background:rgba(0,0,0, 0.5);
-    font-size:16px;
+    font-size:14px;
     color:#fff;
     text-align: left;
     padding: 3px 10px;

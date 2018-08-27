@@ -22,21 +22,10 @@
 
 .tab_list{
   width: 100%;
-  padding-bottom: 12px;
+  padding-bottom: 18px;
   position: relative;
-  margin-bottom:12px;
+  margin-bottom:18px;
   border-bottom: 1px solid #f2f2f2;
-  position: relative;
-}
-.bofang{
-  position: absolute;
-  width: 50px;
-  top: 50%;
-  height: 50px;
-  left: 16.2%;
-  margin-left: -25px;
-  margin-top: -25px;
-  z-index: 99999;
 }
 .tab_list:last-child{
   border:none;
@@ -49,11 +38,20 @@
   text-decoration:none;
 }
 .tab_list>a>dt{
-  width: 32.4%
+  width: 32.4%;
+  overflow:hidden;
 }
 .tab_list>a>dt>img{
   display: block;
-  width: 100%
+  width: 100%;
+  transition: all 1s;
+}
+.tab_list>a>dt>img:hover{
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1); /*Safari 和 Chrome*/
+  -moz-transform: scale(1.1); /*Firefox*/
+  -ms-transform: scale(1.1); /*IE9*/
+  -o-transform: scale(1.1); /*Opera*/
 }
 .tab_list>a>dd{
   position: absolute;
@@ -82,12 +80,12 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  color: #999999;
+  color: #828a92;
 }
 .tab_list>a>dd>.tab_time{
   font-size: 12px;
   position: absolute;
-  bottom:0;
+  bottom:8px;
 }
 
 
@@ -100,13 +98,14 @@
 }
 .rig_tit{
   width: 100%;
-  margin-top:0;
+  margin-top: 0;
   height: 30px;
   text-align: left;
-  font-size: 16px;
-  font-weight:normal;
+  font-size: 18px;
+  font-weight: normal;
   position: relative;
   padding-left: 25px;
+  color: #313a5e;
 }
 .icons{
   position: absolute;
@@ -120,7 +119,7 @@
 .rig_dls{
   width: 84%;
   margin: 0 8%;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   position: relative;
 }
 .rig_dls>a:hover{
@@ -128,17 +127,27 @@
 }
 .dls_img{
   width: 100%;
+  overflow: hidden;
 }
 .dls_img>img{
   display: block;
   width: 100%;
+  transition:all 1s;
+}
+.dls_img>img:hover{
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1); /*Safari 和 Chrome*/
+  -moz-transform: scale(1.1); /*Firefox*/
+  -ms-transform: scale(1.1); /*IE9*/
+  -o-transform: scale(1.1); /*Opera*/
 }
 .dls_tit{
+  width:100%;
   background:rgba(0,0,0, 0.5);
   font-size:14px;
   color:#fff;
   text-align: left;
-  padding: 5px 10px;
+  padding: 3px 10px;
   overflow : hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
