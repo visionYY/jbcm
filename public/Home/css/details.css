@@ -73,6 +73,7 @@ p{
   text-overflow:ellipsis;
   white-space:nowrap;
   font-size:12px;
+  line-height:65px;
 }
 .else>p>a{
   font-size:12px;
@@ -89,11 +90,11 @@ p{
 .bot-box{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
 }
 .bot_dls{
   width: 32%;
   position: relative;
+  margin-right: 1.333333%;
 }
 .bot_dls>a:hover{
   color: #4d63a7;
