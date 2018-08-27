@@ -62,7 +62,7 @@
                 <!-- 右侧 -->
                 <div class="main-right">
                     <div class="rig-top">
-                        <h3 class="rig_tit"><i class="icons"></i>编辑精选</h3>
+                        <h3 class="rig_tit"><i class="icons"></i>相关推荐</h3>
                         @foreach($data['choiceness'] as $cho)
                         <dl class="rig_dls">
                             @if($cho->type ==1)
@@ -107,4 +107,7 @@
     </div>
     </div>
 @include('layouts._footer')
+<script>
+    $('iframe').parent().css("text-align","center")
+</script>
 @stop
