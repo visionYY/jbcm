@@ -112,7 +112,7 @@
     <script type="text/javascript">
         var clipArea = new bjj.PhotoClip("#clipArea", {
         size: [285, 410],
-        outputSize: [855, 1230],
+        outputSize: [570, 820],
         file: "#file",
         view: "#view",
         ok: "#clipBtn",
