@@ -14,10 +14,13 @@
 	                    <div class="video swiper">
 	                    	@if(config('hint.index_show_adv') ==1)
                             <!-- 视频 -->
-	                    	<video width="100%"  controls>
-	                            <source src="{{$data['ind_vid_adv'][0]['video']}}">
-	                            <source src="movie.ogg" type="video/ogg">
-	                        </video>
+	                    	<div class="vvideo">
+								<video width="100%"  controls>
+									<source src="{{$data['ind_vid_adv'][0]['video']}}">
+									<source src="movie.ogg" type="video/ogg">
+								</video>
+								<h3 class="gallerytitle_v">孙俪芈月造型亮相 清纯似少女</h3>
+							</div>
 	                        @else
                             <!-- 轮播 -->
 	                        <div class="swiper-container">
@@ -26,7 +29,7 @@
 	                              <div class="swiper-slide">
                                     <a href="{{$isa['href']}}" target="_blank">
 	                                  <img src="{{asset($isa['cover'])}}" alt="">
-									  <h3 class="gallerytitle">孙俪芈月造型亮相 清纯似少女</h3>
+									  <h3 class="gallerytitle"><span>孙俪芈月造型亮相 清纯似少女</span></h3>
                                     </a>
 	                              </div>
 	                              @endforeach
@@ -164,7 +167,7 @@
     <script type="text/javascript">
         window.onload = function() {
             var mySwiper = new Swiper ('.swiper-container', {
-                autoplay : 3000,    //可选选项，自动滑动
+                //autoplay : 3000,    //可选选项，自动滑动
                 pagination : '.swiper-pagination',
                 paginationClickable :true,
                 nextButton: '.swiper-button-next',
