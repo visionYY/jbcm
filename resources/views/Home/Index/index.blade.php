@@ -26,6 +26,7 @@
 	                              <div class="swiper-slide">
                                     <a href="{{$isa['href']}}" target="_blank">
 	                                  <img src="{{asset($isa['cover'])}}" alt="">
+									  <h3 class="gallerytitle">孙俪芈月造型亮相 清纯似少女</h3>
                                     </a>
 	                              </div>
 	                              @endforeach
