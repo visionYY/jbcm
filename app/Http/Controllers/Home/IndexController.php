@@ -52,7 +52,7 @@ class IndexController extends Controller
         $data['choi'] = Choiceness::getChoi(8);
 
         //导师与学员
-        $data['tutor'] = TutorStudent::limit(8)->get();
+        $data['tutor'] = TutorStudent::getIndexShow();
 //        dd($data);
         return view('Home.Index.index',compact('data',$data));
     }

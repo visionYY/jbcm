@@ -62,11 +62,16 @@ Route::group(['prefix'=>'admin'],function(){
     Route::resource('hotbot','Admin\HotbotController');         //热搜
 
     //功能路由
-    Route::get('choiceness/setting/type/{type}/id/{id}','Admin\ChoicenessController@setting');    //设置精选
-    Route::get('choiceness/cancel/id/{id}','Admin\ChoicenessController@cancel');      //取消精选
+    Route::get('choiceness/setting/type/{type}/id/{id}','Admin\ChoicenessController@setting');  //设置精选
+    Route::get('choiceness/cancel/id/{id}','Admin\ChoicenessController@cancel');                //取消精选
+    Route::get('tutorStudent/showIndex/id/{id}','Admin\TutorStudentController@showIndex');      //首页展示
+
 
 });
 
-//前端
+//后台辅助功能
+Route::get('/assist',function (){
+    return view('layouts.assist');
+});
 
 

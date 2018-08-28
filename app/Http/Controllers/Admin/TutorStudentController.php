@@ -95,4 +95,24 @@ class TutorStudentController extends Controller
             return back() -> with('hint',config('hint.del_failure'));
         }
     }
+
+    //首页展示
+    public function showIndex($id){
+        $tutor = TutorStudent::find($id);
+        if ($tutor->show_index == 1){
+            $update['show_index'] = 0;
+            $hint_succ = config('hint.cancel_suss');
+            $hint_fail = config('hint.cancel_fail');
+        }else{
+            $update['show_index'] = 1;
+            $hint_succ = config('hint.set_suss');
+            $hint_fail = config('hint.set_fail');
+        }
+        if($tutor->update($update)){
+            return back()->with('success',$hint_succ);
+        }else{
+            return back()->with('hint',$hint_fail);
+        }
+        dd($tutor->update($update));
+    }
 }

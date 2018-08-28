@@ -19,7 +19,7 @@
 									<source src="{{$data['ind_vid_adv'][0]['video']}}">
 									<source src="movie.ogg" type="video/ogg">
 								</video>
-								<h3 class="gallerytitle_v">孙俪芈月造型亮相 清纯似少女</h3>
+								<h3 class="gallerytitle_v">{{$data['ind_vid_adv'][0]['title']}}</h3>
 							</div>
 	                        @else
                             <!-- 轮播 -->
@@ -29,7 +29,7 @@
 	                              <div class="swiper-slide">
                                     <a href="{{$isa['href']}}" target="_blank">
 	                                  <img src="{{asset($isa['cover'])}}" alt="">
-									  <h3 class="gallerytitle"><span>孙俪芈月造型亮相 清纯似少女</span></h3>
+									  <h3 class="gallerytitle"><span>{{$isa['title']}}</span></h3>
                                     </a>
 	                              </div>
 	                              @endforeach
@@ -46,6 +46,7 @@
 	                        <p class="pic_lists">
 	                            <a href="{{$ira['href']}}" target="_blank">
 	                                <img src="{{asset($ira['cover'])}}" alt="">
+                                    <i class="pic_tit">{{$ira['title']}}</i>
 	                                <!-- <i class="pic_tit">{{$ira['title']}}<span>top</span>{{$k+1}}</i> -->
 	                            </a>
 	                        </p>
@@ -68,11 +69,10 @@
 	                            	@foreach($cate['content'] as $cont)
 	                                <dl class="tab_list">
 	                                    @if($cont->type ==1)
-			                            <a href="{{url('article/id/'.$cont->id)}}">
-
+			                            <a href="{{url('article/id/'.$cont->id)}}" target="_blank">
 			                            @else
-			                            <a href="{{url('video/id/'.$cont->id)}}">
-                                            <img class="bofang" src="{{asset('Home/images/3x.png')}}" alt="">
+			                            <a href="{{url('video/id/'.$cont->id)}}" target="_blank">
+                                            <!-- <img class="bofang" src="{{asset('Home/images/3x.png')}}" alt=""> -->
 			                            @endif
 	                                        <dt>
 	                                            <img src={{asset($cont->cover)}} alt="">
@@ -88,20 +88,11 @@
 	                                @endforeach
 
                                 </div>
-                                <!-- <dl class="tab_list">
-                                    <a href="">
-                                        <dt>
-                                            <img src={{asset("Home/images/list1.png")}} alt="">
-                                        </dt>
-                                        <dd>
-                                            <h4 class="tab_tit">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格护发素地方官方代购的风格</h4>
-                                            <p class="tab_con">哈佛受到核辐射东方哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东哈佛受到核辐射东红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山哈佛受到核辐射东方红山东红富士豆腐红烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧烧豆腐上的粉红色粉红色豆腐红烧豆腐红烧豆腐红烧豆腐合适的合法身份粉红色的护发素东方红送的风好舒服</p>
-                                            <p class="tab_time">2018-8-10</p>
-                                            <span>我有嘉宾</span>
-                                        </dd>
-                                    </a>
-                                </dl> -->
+                                @if($cate['content'])
                                 <button cgid="{{$cate['id']}}" page="{{config('hint.show_num')}}" class="ckgd" style="width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #00f;">查看更多</button>
+                                @else
+                                <p style="width: 100%;text-align: center;">没有相关内容</p>
+                                @endif
                             </div>
                             @endforeach
                         </div>
@@ -116,9 +107,9 @@
                         	
 	                        <dl class="rig_dls">
 	                        	@if($choi->type ==1)
-	                            <a href="{{url('article/id/'.$choi->cho_id)}}">
+	                            <a href="{{url('article/id/'.$choi->cho_id)}}" target="_blank">
 	                            @else
-	                            <a href="{{url('video/id/'.$choi->cho_id)}}">
+	                            <a href="{{url('video/id/'.$choi->cho_id)}}" target="_blank">
 	                            @endif
 	                            	@if($k < 2)
 	                                <dt class="dls_img">
@@ -143,13 +134,13 @@
                         <h3 class="rig_tit"><i class="icons"></i>导师与学员</h3>
                         @foreach($data['tutor'] as $totur)
                         <dl class="tutor">
-                            <a href="">
+                            <a href="{{url('tutorStudent/detail/id/'.$totur->id)}}" target="_blank">
                                 <dt class="tutor-img">
                                     <img src="{{asset($totur->head_pic)}}" alt="">
                                 </dt>
                                 <dd>
                                     <p class="tutor-name">{{$totur->name}}</p>
-                                    <p class="tutor-txt">{{$totur->intro}}</p>
+                                    <p class="tutor-txt">{{$totur->position}}</p>
                                     <p class="classify">{{$totur->type == 1 ? '导师' : '学员 '}}</p>
                                 </dd>
                             </a>
@@ -196,10 +187,10 @@
     					console.log(d);
     					if (d != 0) {
     						$.each(d,function(index,item){
-    							html += '<dl class="tab_list"><a href="'+item.url+'">';
-                                if (item.type==2) {
-                                    html += '<img class="bofang" src={{asset("Home/images/3x.png")}} alt="">';
-                                }
+    							html += '<dl class="tab_list"><a href="'+item.url+'" target="_blank">';
+                                // if (item.type==2) {
+                                //     html += '<img class="bofang" src={{asset("Home/images/3x.png")}} alt="">';
+                                // }
     							html += '<dt><img src="'+item.cover+'" alt=""></dt>';
     							html += '<dd><h4 class="tab_tit">'+item.title+'</h4>';
     							html += '<p class="tab_con">'+item.intro+'</p>';

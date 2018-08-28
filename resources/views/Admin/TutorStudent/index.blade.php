@@ -38,7 +38,7 @@
                                     <th>头像</th>
                                     <th>职位</th>
                                     <th>身份</th>
-                                    <!-- <th>简介</th> -->
+                                    <th>首页展示</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
@@ -58,13 +58,22 @@
                                         @endif
                                     </td>
                                     <td class="center">
+                                        @if($v->show_index == 1)
+                                            <span class="label label-info">是</span>
+                                        @else
+                                            <span class="label label-danger">否</span>
+                                        @endif
+                                    </td>
+                                    <td class="center">
                                         <div class="btn-group">
                                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="javascript:;">详情</a></li>
                                                 <li><a href={{url("admin/tutorStudent/$v->id/edit")}} class="font-bold">修改</a></li>
-                                                <li><a href="javascript:;" class="demo4">禁用</a></li>
+                                                <li>
+                                                    <a href="{{url('admin/tutorStudent/showIndex/id/'.$v->id)}}">{{$v->show_index == 1 ? '取消首页展示' : '设置首页展示'}}</a>
+                                                </li>
                                                 <li class="divider"></li>
                                                 <li><a href="javascript:;" id="{{$v->id}}" class="delete" url="{{url('admin/tutorStudent/'.$v->id)}}">删除</a>
                                                 </li>

@@ -29,11 +29,12 @@ class AdvertisingController extends Controller
 
     //执行添加
     public function store(Request $request){
-        $verif = array('title'=>'required',
+        $verif = array('title'=>'',
 //            'href'=>'required',
             'location'=>'required|numeric',
             'cover'=>'required');
         $credentials = $this->validate($request,$verif);
+        dd($credentials);
         if ($credentials['location'] ==1){
             //1号位视频不为空
             if (!$request->post('video')){
@@ -69,7 +70,7 @@ class AdvertisingController extends Controller
 
     //执行修改
     public function update(Request $request,$id){
-        $verif = array('title'=>'required',
+        $verif = array('title'=>'',
 //            'href'=>'required',
             'location'=>'required|numeric');
         $credentials = $this->validate($request,$verif);
