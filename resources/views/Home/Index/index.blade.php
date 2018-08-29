@@ -89,7 +89,9 @@
 
                                 </div>
                                 @if($cate['content'])
-                                <button cgid="{{$cate['id']}}" page="{{config('hint.show_num')}}" class="ckgd" style="width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #00f;">查看更多</button>
+                                <div class="btn_more">
+									<button cgid="{{$cate['id']}}" page="{{config('hint.show_num')}}" class="ckgd" style="width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #00f;">查看更多</button>
+								</div>
                                 @else
                                 <p style="width: 100%;text-align: center;">没有相关内容</p>
                                 @endif
