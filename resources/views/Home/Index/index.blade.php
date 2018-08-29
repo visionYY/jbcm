@@ -72,7 +72,7 @@
 			                            <a href="{{url('article/id/'.$cont->id)}}" target="_blank">
 			                            @else
 			                            <a href="{{url('video/id/'.$cont->id)}}" target="_blank">
-                                            <!-- <img class="bofang" src="{{asset('Home/images/3x.png')}}" alt=""> -->
+                                            <img class="bofang" src="{{asset('Home/images/bfang.png')}}" alt="">
 			                            @endif
 	                                        <dt>
 	                                            <img src={{asset($cont->cover)}} alt="">
@@ -190,9 +190,9 @@
     					if (d != 0) {
     						$.each(d,function(index,item){
     							html += '<dl class="tab_list"><a href="'+item.url+'" target="_blank">';
-                                // if (item.type==2) {
-                                //     html += '<img class="bofang" src={{asset("Home/images/3x.png")}} alt="">';
-                                // }
+                                if (item.type==2) {
+                                    html += '<img class="bofang" src={{asset("Home/images/bfang.png")}} alt="">';
+                                }
     							html += '<dt><img src="'+item.cover+'" alt=""></dt>';
     							html += '<dd><h4 class="tab_tit">'+item.title+'</h4>';
     							html += '<p class="tab_con">'+item.intro+'</p>';
