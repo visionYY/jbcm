@@ -105,9 +105,13 @@
     @include('layouts.admin_js')
     @include('layouts.admin_picpro')
     <script type="text/javascript">
+        var stw = $('[name=scre_ts_width]').val(),
+            sth = $('[name=scre_ts_height]').val(),
+            otw = $('[name=opt_ts_width]').val(),
+            oth = $('[name=opt_ts_height]').val();
         var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [285, 410],
-        outputSize: [570, 820],
+        size: [stw, sth],
+        outputSize: [otw, oth],
         file: "#file",
         view: "#view",
         ok: "#clipBtn",

@@ -10,7 +10,7 @@
                     <div class="article">
                       <h3>{{$data['video']->title}}</h3>
                       <p class="art-time"><span>{{$data['video']->nav_name}}</span>·{{$data['video']->cg_name}}·{{$data['video']->push}}</p>
-                      <video class="videoFrame" controls>
+                      <video class="videoFrame" controls poster="{{$data['video']->cover}}">
                           <source src="{{$data['video']->address}}" type="video/mp4">
                           <source src="movie.ogg" type="video/ogg">
                       </video>

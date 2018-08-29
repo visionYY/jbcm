@@ -22,10 +22,16 @@
             </div>
         </div>
     </div>
+    <!-- 文章，视频封面图尺寸 -->
     <input type="hidden" name="scre_gm_width" value="{{config('hint.scre_gm_width')}}">
     <input type="hidden" name="scre_gm_height" value="{{config('hint.scre_gm_height')}}">
     <input type="hidden" name="opt_gm_width" value="{{config('hint.opt_gm_width')}}">
     <input type="hidden" name="opt_gm_height" value="{{config('hint.opt_gm_height')}}">
+    <!-- 导师学员照片尺寸 -->
+    <input type="hidden" name="scre_ts_width" value="{{config('hint.scre_ts_width')}}">
+    <input type="hidden" name="scre_ts_height" value="{{config('hint.scre_ts_height')}}">
+    <input type="hidden" name="opt_ts_width" value="{{config('hint.opt_ts_width')}}">
+    <input type="hidden" name="opt_ts_height" value="{{config('hint.opt_ts_height')}}">
     
     <!-- <script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script> -->
     <script src={{asset("Admin/js/iscroll-zoom.js")}}></script>

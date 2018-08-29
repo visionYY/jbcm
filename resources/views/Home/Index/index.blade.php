@@ -15,7 +15,7 @@
 	                    	@if(config('hint.index_show_adv') ==1)
                             <!-- 视频 -->
 	                    	<div class="vvideo">
-								<video width="100%"  controls>
+								<video width="100%"  controls poster="{{$data['ind_vid_adv'][0]['cover']}}">
 									<source src="{{$data['ind_vid_adv'][0]['video']}}">
 									<source src="movie.ogg" type="video/ogg">
 								</video>
