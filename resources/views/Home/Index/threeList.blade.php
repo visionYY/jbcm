@@ -8,12 +8,12 @@
     width: 100%;
   }
   .tlc-left{
-    width: 70%;
+    width: 65.9%;
     float: left;
     padding: 5px;
   }
   .tlc-right{
-    width: 30%;
+    width: 29.4%;
     float: right;
   }
   .tlc-hide{

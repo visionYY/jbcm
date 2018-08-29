@@ -54,8 +54,8 @@
   background: linear-gradient(160deg, #293049  , #e5c9a7); /* 标准的语法（必须放在最后） */
 }
 .two-ban{
-  width: 96%;
-  margin:0 2%;
+  display: inline-block;
+  width: 100%;
   height: auto;
 }
 .two-ban>img{
