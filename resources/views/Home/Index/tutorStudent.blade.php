@@ -19,7 +19,7 @@
             <div id="myTabContent" class="tab-content">
                 @foreach($data['towNav'] as $towNav)
                 <div class="tab-pane fade {{$towNav->id == $data['secId'] ? 'in active' : ''}}" id="tutor_{{$towNav->id}}">
-                    <p class="hint">*排名不分前后</p>
+                    <p class="hint">*排名不分先后</p>
                     <div class="stu-list">
                         @foreach($towNav->user as $user)
                         <div class="stu-box">
@@ -75,7 +75,7 @@
                 </div>
                 @endforeach
                 <!-- <div class="tab-pane fade" id="student">
-                    <p class="hint">*排名不分前后</p>
+                    <p class="hint">*排名不分先后</p>
                     <div class="stu-list">
                         <div class="stu-box">
                             <a href="">
