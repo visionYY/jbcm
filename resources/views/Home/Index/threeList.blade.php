@@ -6,6 +6,7 @@
 <style type="text/css">
   .thr-list-content{
     width: 100%;
+    margin-top:18px;
   }
   .tlc-left{
     width: 65.9%;
@@ -15,6 +16,8 @@
   .tlc-right{
     width: 29.4%;
     float: right;
+    padding: 15px 0;
+    background:#fafafa;
   }
   .tlc-hide{
     display: none;

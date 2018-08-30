@@ -98,13 +98,14 @@
 .pic_list{
   width: 25%;
   height: auto;
-  padding: 0 0 0 9px;;
+  padding: 0 0 0 9px;
 }
 .pic_lists{
   width: 100%;
   position: relative;
   overflow:hidden;
   cursor: pointer;
+  box-shadow: 1px 1px 6px #666;
 }
 .pic_lists>a>img{
   display: block;
@@ -450,6 +451,18 @@
   overflow: hidden;
   font-size: 12px;
 }
+.tutor-con{
+  width:100%;
+  height:auto;
+  font-size:12px;
+  color:#B4B9BE;
+  margin-top:10px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
 .bot-box>.name{
   position: absolute;
   width:100%;
@@ -477,10 +490,12 @@
   border: 1px solid #dedede;
   height: 40px;
   font-size: 14px;
+  border-radius:3px;
 }
-.rig-bot>#more>a:hover{
-  color:#2f3a61;
-  text-decoration:none;
+.rig-bot>#more:hover{
+  color:#313b5f !important;
+  border:1px solid #313b5f;
+  border-radius:3px;
 }
 .classify{
   width:41px;

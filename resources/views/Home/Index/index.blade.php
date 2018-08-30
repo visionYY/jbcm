@@ -144,6 +144,7 @@
                                     <p class="tutor-name">{{$totur->name}}</p>
                                     <p class="tutor-txt">{{$totur->position}}</p>
                                     <p class="classify">{{$totur->type == 1 ? '导师' : '学员 '}}</p>
+									<p class="tutor-con">的范德萨范德萨范德萨范德萨风格的复古的风格的复古大方风格的复古的风格的的发光的郭德纲的发光的发光地方</p>
                                 </dd>
                             </a>
                         </dl>

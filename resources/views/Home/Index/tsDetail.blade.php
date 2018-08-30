@@ -51,7 +51,7 @@
                         </dl>
                         @endforeach
                     @else
-                    <p>暂无相关信息</p>    
+                    <p class="con_none">暂无相关信息</p>    
                     @endif
                 </div>
                 <div class="coll-right">
@@ -68,7 +68,7 @@
                     </dl>
                     @endforeach
                     @else
-                    <p>暂无相关信息</p>
+                    <p class="con_none">暂无相关信息</p>
                     @endif
                 </div>
             </div>
@@ -82,16 +82,19 @@
   <script type="text/javascript">  
     window.onload = function() {
         var mySwiper = new Swiper ('.swiper-container', {
-            loop:true,//循环
             nextButton: '.swiper-button-next',
             prevButton: '.swiper-button-prev',
-            autoplayDisableOnInteraction : false,    //注意此参数，默认为true
             observer:true,//修改swiper自己或子元素时，自动初始化swiper
             observeParents:true,//修改swiper的父元素时，自动初始化swiper
         });
+    } 
 
-        
-    }
+
+        if($(".swiper-slide").length==1){
+            $(".swiper-button-prev").hide();
+            $(".swiper-button-next").hide();
+            $(".swiper-container").addClass("swiper-no-swiping")
+        } 
   </script>
 
 @stop
