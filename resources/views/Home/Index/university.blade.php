@@ -20,9 +20,22 @@
                  @foreach($data['towNav'] as $towNav)
                 <div class="_guest tab-pane fade {{$towNav->id == $data['secId'] ? 'in active' : ''}}" id="guest_{{$towNav->id}}">
                     <div class="box">
-                        <a class="two-ban" href="{{url('getHref/id/'.$data['adver'][0]['id'])}}" target="_blank">
-                            <img src="{{asset($data['adver'][0]['cover'])}}" alt="">
-                        </a>   
+                        <!-- 广告 -->
+                        @if($towNav->id ==7)
+                        <a class="two-ban" href="{{$data['adver_jbp'][0]['href']}}" target="_blank">
+                            <img src="{{asset($data['adver_jbp'][0]['cover'])}}" alt="">
+                        </a>
+                        @elseif($towNav->id == 10)
+                        <a class="two-ban" href="{{$data['adver_gjkc'][0]['href']}}" target="_blank">
+                            <img src="{{asset($data['adver_gjkc'][0]['cover'])}}" alt="">
+                        </a>
+                        @else
+                            @if($data['adver'])
+                            <a class="two-ban" href="{{$data['adver'][0]['href']}}" target="_blank">
+                                <img src="{{asset($data['adver'][0]['cover'])}}" alt="">
+                            </a>
+                            @endif
+                        @endif   
                         <div class="lists">
                             @foreach($towNav->threeNav as $thrNav)
                             <div class="tit">

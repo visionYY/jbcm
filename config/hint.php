@@ -53,7 +53,7 @@ return [
                                 6 => '国际课程顶部广告位',
                                 7 => '嘉宾峰会顶部广告位'],
     //首页广告位设置
-    'index_show_adv'        => 2,       //1:视频；2：轮播；
+    'index_show_adv'        => 1,       //1:视频；2：轮播；
     //首页导师学员展示设置
     'index_show_tust'       => 8,
     //首页文章推荐 展示几条
@@ -65,5 +65,12 @@ return [
     //输出比例(通用) 宽*高
     'opt_gm_width'   => 536,
     'opt_gm_height'  => 302,
+
+    //截图比例(导师/学员) 宽*高
+    'scre_ts_width'   => 285,
+    'scre_ts_height'  => 395,
+    //输出比例(导师/学员) 宽*高
+    'opt_ts_width'   => 570,
+    'opt_ts_height'  => 790,
 
 ];

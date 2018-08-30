@@ -154,14 +154,16 @@ class IndexController extends Controller
             $twoNav->threeNav = $threeNav;
         }
         if($oneId==5){
-            //嘉宾大学顶部广告位 5
-            $data['adver'] = Advertising::getAdver(5,1);
+            //嘉宾派顶部广告位 5
+            $data['adver_jbp'] = Advertising::getAdver(5,1);
+            //国际课程顶部广告位 6
+            $data['adver_gjkc'] = Advertising::getAdver(6,1);
+            $data['adver'] = [];
         }else{
-            //嘉宾峰会顶部广告位 6
-            $data['adver'] = Advertising::getAdver(6,1);
+            //嘉宾峰会顶部广告位 7
+            $data['adver'] = Advertising::getAdver(7,1);
         }
 
-//        dd($data);
         return view('Home.Index.university',compact('data',$data));
     }
 

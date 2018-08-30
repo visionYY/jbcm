@@ -111,8 +111,8 @@
     @include('layouts.admin_picpro')
     <script type="text/javascript">
         var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [285, 410],
-        outputSize: [570, 820],
+        size: [285, 395],
+        outputSize: [570, 790],
         file: "#file",
         view: "#view",
         ok: "#clipBtn",

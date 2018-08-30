@@ -40,22 +40,6 @@
                                 </a>
                             </dl>
                             @endforeach
-                            <!-- <dl class="bot_dls">
-                                <a href="">
-                                    <dt class="dls_img">
-                                        <img src="{{asset('Home/images/list3.png')}}" alt="">
-                                    </dt>
-                                    <dd class="dls_tit">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格</dd>
-                                </a>
-                            </dl> -->
-                            <!-- <dl class="bot_dls">
-                              <a href="">
-                                  <dt class="dls_img">
-                                      <img src="{{asset('Home/images/list3.png')}}" alt="">
-                                  </dt>
-                                  <dd class="dls_tit">放到沙发上豆腐红烧豆腐红烧豆腐还是大放送的护发素地方官方代购的风格</dd>
-                              </a>
-                            </dl> -->
                         </div>
                     </div>
                 </div>

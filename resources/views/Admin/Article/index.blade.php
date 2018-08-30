@@ -28,6 +28,7 @@
                     <div class="ibox-content">
                         <div class="">
                             <a href="article/create" class="btn btn-primary J_menuItem">添加文章</a>
+                            <a href="{{url('assist')}}" class="btn btn-primary J_menuItem" target="_blank">清除工具</a>
                         </div>
                         @include('layouts.admin_error')
                          <table class="table table-hover">

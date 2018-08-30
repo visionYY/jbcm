@@ -15,7 +15,7 @@
 	                    	@if(config('hint.index_show_adv') ==1)
                             <!-- 视频 -->
 	                    	<div class="vvideo">
-								<video width="100%"  controls>
+								<video width="100%"  controls poster="{{$data['ind_vid_adv'][0]['cover']}}">
 									<source src="{{$data['ind_vid_adv'][0]['video']}}">
 									<source src="movie.ogg" type="video/ogg">
 								</video>
@@ -175,16 +175,16 @@
     </script>
     <script type="text/javascript">
     	var url = $('[name=url]').val();
-    	$('.ckgd').click(function(){
+    	$('.btn_more').click(function(){
     		var thisObj = $(this);
-    		var cgid = thisObj.attr('cgid'),
-    			page = thisObj.attr('page');
+    		var cgid = thisObj.find('button').attr('cgid'),
+    			page = thisObj.find('button').attr('page');
     		$.ajax({url:url,
     				type:'GET',
     				data:{cgid:cgid,page:page},
     				dataType:'json',
     				success:function(d){
-    					thisObj.attr('page',parseInt(page)+{{config('hint.show_num')}});
+    					thisObj.find('button').attr('page',parseInt(page)+{{config('hint.show_num')}});
     					var html = '';
     					console.log(d);
     					if (d != 0) {
