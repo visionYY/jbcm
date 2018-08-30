@@ -1,10 +1,10 @@
 <div class="footer">
         <div class="footer-left">
             <ul class="foo-nav">
-                <li><a href="">关于我们</a></li>
-                <li><a href="">加入我们</a></li>
-                <li><a href="">合作伙伴</a></li>
-                <li><a href="">寻求报道</a></li>
+                <li><a href="{{url('aboutUs/oneId/4/secId/24')}}">关于我们</a></li>
+                <li><a href="{{url('aboutUs/oneId/4/secId/28')}}">加入我们</a></li>
+                <li><a href="{{url('aboutUs/oneId/4/secId/26')}}">合作伙伴</a></li>
+                <li><a href="{{url('aboutUs/oneId/4/secId/27')}}">寻求报道</a></li>
             </ul>
             <div class="foo-bot">©2018 深圳嘉宾传媒有限公司 | 粤ICP 备16086053号-1号</div>
         </div>

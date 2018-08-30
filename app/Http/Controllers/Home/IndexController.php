@@ -21,7 +21,7 @@ class IndexController extends Controller
 
     //首页
     public function index(){
-        $data['title'] = '首页';
+        $data['title'] = '嘉宾传媒-遍访天下公司、纪录时代商业';
 
         //导航
         $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
@@ -204,13 +204,17 @@ class IndexController extends Controller
         foreach ($data['towNav'] as $towNav){
             $towNav->art = Article::where('nav_id',$towNav->id)->get()->toArray();
         }
-//        dd($data);
+        $data['hzjg'] = json_encode(config('hint.hzjg'));
+        $data['hzmt'] = json_encode(config('hint.hzmt'));
+//                dd($data);
+
         return view('Home.Index.aboutUs',compact('data',$data));
     }
 
     //三级列表
     public function threeList($pid,$id){
-        $data['title'] = '列表';
+        $navObj = Navigation::find($pid);
+        $data['title'] = $navObj->n_name;
         $data['id'] = $id;
         //导航
         $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();

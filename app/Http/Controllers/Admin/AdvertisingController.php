@@ -34,7 +34,7 @@ class AdvertisingController extends Controller
             'location'=>'required|numeric',
             'cover'=>'required');
         $credentials = $this->validate($request,$verif);
-        dd($credentials);
+//        dd($credentials);
         if ($credentials['location'] ==1){
             //1号位视频不为空
             if (!$request->post('video')){
