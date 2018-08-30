@@ -58,7 +58,9 @@
   margin-top: -5px;
   font-size: 16px;
   color:#666666;
-  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
 }
 .stu-text{
   width:100%;
