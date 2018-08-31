@@ -304,7 +304,7 @@
                                         <li>作品如人品。</li>
                                         <li>誓死捍卫每一部作品。</li>
                                         <li>使命必达。</li>
-                                        <li>快速迭代。</li>
+                                        <li>拥抱变化。</li>
                                     </ul>
                                     <ul class="poetry">
                                         <li class="li_first">我们的美好愿景：</li>
