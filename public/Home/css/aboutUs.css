@@ -21,10 +21,10 @@ body{
 }
 
 .left-list li {
-    height: 45px;
+    height: 60px;
     width: 100%;
     text-align: center;
-    line-height: 45px;
+    line-height: 60px;
 }
 .seled{
     background:#fff;
@@ -70,7 +70,7 @@ body{
 }
 
 .main-right {
-    margin-top: -235px;
+    margin-top: -310px;
     margin-left: 100%;
     width: 950px;
     background-color:#ffffff;

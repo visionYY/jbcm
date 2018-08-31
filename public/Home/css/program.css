@@ -25,17 +25,18 @@
   padding: 0 15px 0 0;
 }
 .nav-tabs>li>a{
-  font-size: 18px;
+  font-size: 16px;
   display:inline-block;
   height:55px;
   line-height:55px;
+  color:#313a5e;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
   display:inline-block;
   height:55px;
   line-height:55px;
-  font-size: 18px;
-  color: #4d63a7;
+  font-size: 16px;
+  color: #db9651;
   border: none;
   background: none;
   text-decoration:none;

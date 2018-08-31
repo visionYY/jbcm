@@ -29,6 +29,7 @@
   -o-transform: scale(1.03); /*Opera*/
 }
 .stu-con{
+  min-height: 320.73px;
   width: 100%;
   height: auto;
   text-align:center;
