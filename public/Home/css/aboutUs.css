@@ -1,19 +1,22 @@
 body{
-    background:#f1f4fc;
+    background:#f2f2f2;
+}
+.main1{
+    width:1120px !important;  
 }
 .main {
     width: 100%;
     height: auto;
     display: flex;
     margin-top: 30px;
-    background-color: #f1f4fc;
+    background-color: #f2f2f2;
     margin-top: 60px;
     margin-bottom: 30px;
 }
 
 .main-left {
     margin-top: 30px;
-    width: 16%;
+    width: 170px;
     background-color: #fafafa;
 }
 
@@ -69,7 +72,7 @@ body{
 .main-right {
     margin-top: -235px;
     margin-left: 100%;
-    width: 1009px;
+    width: 950px;
     background-color:#ffffff;
 }
 .main-right li {
@@ -89,25 +92,25 @@ body{
 
 .con{
     color:#333333;
-    font-size:18px;
+    font-size:14px;
     line-height:40px;
     margin-bottom:30px;
 }
 .second_con{
     color:#333333;
-    font-size:18px;
+    font-size:14px;
     line-height:35px;
     margin-top:25px;
 }
 .list{
     width:100%;
     height:auto;
-    margin-top: 18px;
+    margin-top: 14px;
     margin-bottom: 0;
 }
 .list>li{
     width:100%;
-    font-size: 18px;
+    font-size: 14px;
     color:#333333;
     text-align:left;
     line-height:37px;
@@ -121,7 +124,7 @@ body{
 .jj_tit{
     width:100%;
     text-align:center;
-    font-size:22px;
+    font-size:18px;
     color:#333333;
     font-style: italic;
     margin-top: 40px;
@@ -129,7 +132,7 @@ body{
 }
 .second_tit{
     width:100%;
-    font-size:24px;
+    font-size:20px;
     color:#333333;
     text-align:center;
     font-weight:800;
@@ -138,7 +141,7 @@ body{
 
 }
 .second_tit>span{
-    font-size:24px;
+    font-size:20px;
     color:#333333;
     font-weight:800;
     display:inline-block;
@@ -146,7 +149,7 @@ body{
 }
 .third_tit{
     width:100%;
-    font-size:22px;
+    font-size:18px;
     color:#333333;
     text-align:center;
     font-weight:800;
@@ -155,7 +158,7 @@ body{
 }
 .fouth_tit_cen{
     width:100%;
-    font-size:20px;
+    font-size:16px;
     color:#333333;
     text-align:center;
     margin-top:20px;
@@ -163,14 +166,14 @@ body{
 }
 .fouth_tit{
     width:100%;
-    font-size:20px;
+    font-size:16px;
     color:#333333;
     margin-top:30px;
     font-weight:500;
 }
 .lit_tit{
     width:100%;
-    font-size:22px;
+    font-size:18px;
     font-weight:500;
     margin-top: 40px;
 }
@@ -188,7 +191,7 @@ body{
 .s_class{
     width:100%;
     color: #333333;
-    font-size:18px;
+    font-size:14px;
     position: relative;
     padding-left:20px;
     margin-top:10px;
@@ -208,7 +211,7 @@ body{
 .t_class{
     width:100%;
     color: #333333;
-    font-size:18px;
+    font-size:14px;
     position: relative;
     padding-left:97px;
     margin-top:10px;
@@ -217,7 +220,7 @@ body{
     position:absolute;
     left:20px;
     color: #333333;
-    font-size:18px;
+    font-size:14px;
 }
 .class_bot{
     margin-top: 55px;
@@ -226,14 +229,14 @@ body{
     margin-bottom: 45px;
 }
 .honor_list>.s_class{
-    font-size:20px;
+    font-size:16px;
 }
 .b_list{
     width:100%;
     height:auto;
     font-weight:500;
     padding-left: 20px;
-    font-size: 20px;
+    font-size: 16px;
     color:#333333
 }
 /* 创始人 */
@@ -258,16 +261,16 @@ body{
     padding-left:2%;
 }
 .wu_name>h5{
-    font-size:24px;
+    font-size:20px;
 }
 .con_list{
-    font-size:18px;
+    font-size:14px;
     color:#333333;
 }
 .csr_tit{
     width:100%;
     color: #313A5E;
-    font-size:16px;
+    font-size:12px;
     position: relative;
     padding-left:24px;
     margin-top:10px;
@@ -285,7 +288,7 @@ body{
 }
 .csr_titi_con{
     padding-left:24px;
-    font-size:16px;
+    font-size:12px;
     color:#333333;
 }
 .csr_list{
@@ -295,7 +298,7 @@ body{
 .csr_list>li{
     width:100%;
     text-align:left;
-    font-size:16px;
+    font-size:12px;
     color:#333333;
     font-weight:500;
 }
@@ -309,18 +312,18 @@ body{
 .coop_top_list{
     width:100%;
     line-height:30px;
-    font-size: 18px;
+    font-size: 14px;
     color:#333333;
 }
 .coop_top_list>span{
-    font-size: 18px;
+    font-size: 14px;
     color:#313A5E;
 }
 .cooperation_bot{
     margin-top: 30px;
 }
 .media_list{
-    font-size: 18px;
+    font-size: 14px;
     color:#333333;
     line-height:30px;
 }
@@ -331,7 +334,7 @@ body{
 }
 .media_list_img>img{
     position: absolute;
-    left: 110px;
+    left: 80px;
     top: 0;
 }
 
@@ -352,12 +355,12 @@ body{
     text-align:center;
     height: 28px;
     line-height: 28px;
-    font-size:18px;
+    font-size:14px;
     color:#333333;
 }
 .poetry_bot{
     margin-top:4px;
-    font-size:18px;
+    font-size:14px;
     color: #333333;
 }
 #shrink{
@@ -371,7 +374,7 @@ body{
     line-height:50px;
     background:#F7F9FC;
     margin-left:10%;
-    font-size:22px;
+    font-size:18px;
     font-weight:500;
     margin:0;
     padding:0 15px;
@@ -387,7 +390,7 @@ body{
 #shrink dt span{
     cursor: pointer;
     color:#000;
-    font-size:26px;
+    font-size:22px;
     font-weight:bold;
     float:right;
     padding-right:10px;
@@ -397,11 +400,11 @@ dd>li{
     text-align:left !important;
     height:40px !important;
     color:#333333;
-    font-size:18px;
+    font-size:14px;
 }
 .job_tit{
     font-weight:500;
-    font-size:18px;
+    font-size:14px;
 }
 
 /* 合作伙伴 */
@@ -422,7 +425,7 @@ dd>li{
 .hb_tit{
     width:100%;
     color: #333333;
-    font-size:16px;
+    font-size:12px;
     position: relative;
     padding-left:24px;
     margin-bottom:26px;
@@ -449,7 +452,7 @@ dd>li{
     text-align: left;
 }
 #media>li>a{
-    font-size:18px;
+    font-size:14px;
     color:#333333;
 }
 #media>li>a:hover{
