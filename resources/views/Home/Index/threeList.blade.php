@@ -9,15 +9,16 @@
     margin-top:18px;
   }
   .tlc-left{
-    width: 65.9%;
+    width: 69.6%;
     float: left;
     padding: 5px;
   }
   .tlc-right{
-    width: 29.4%;
+    width: 29%;
     float: right;
-    padding: 15px 0;
-    background:#fafafa;
+    padding: 15px 0px;
+    margin-left: 1.4%;
+    background: #fafafa;
   }
   .tlc-hide{
     display: none;

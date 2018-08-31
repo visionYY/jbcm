@@ -53,8 +53,7 @@
                                         <dt><img src="{{asset($art->cover)}}" alt=""></dt>
                                         <dd>
                                             <p class="dls-tit">{{$art->title}}</p>
-                                            <p class="dls-text">{{$art->cg_name}}</p>
-                                            <p class="dls-time">{{substr($art->publish_time,0,10)}}</p>
+                                            <p class="dls-text">{{$art->cg_name}}<span>{{substr($art->publish_time,0,10)}}</span></p>
                                         </dd>
                                     </a>
                                 </dl>
