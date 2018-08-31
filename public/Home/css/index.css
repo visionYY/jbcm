@@ -21,6 +21,7 @@
 .swiper-container{
   width:100%;
   height:auto;
+  box-shadow: 1px 1px 6px #666;
 }
 .swiper-wrapper{
   width:100%;
@@ -47,6 +48,9 @@
 }
 .vvideo{
   position: relative;
+}
+video{
+  box-shadow: 1px 1px 6px #666;
 }
 .gallerytitle_v{
   margin: 0;
@@ -280,7 +284,7 @@
 .rig-top{
   background: #fafafa;
   margin-bottom: 20px;
-  padding: 15px 0;
+  padding: 20px 0;
 }
 .rig_tit{
   width: 100%;
@@ -382,7 +386,7 @@
   height: 55px;
   left: 16.2%;
   margin-left: -27.5px;
-  margin-top: -27.5px;
+  margin-top: -36.5px;
   z-index: 999;
 }
 .dls_time{
@@ -399,7 +403,7 @@
 }
 .tutor{
   width: 90%;
-  margin: 0 4%;
+  margin: 0 5%;
   padding:9px 10px;
   margin-bottom: 15px;
   position: relative;
@@ -541,4 +545,22 @@
   color:#313b5f !important;
   border:1px solid #313b5f;
   border-radius:3px;
+}
+
+
+
+
+
+
+.tab_list{
+  min-height:140px;
+}
+.left-top{
+  min-height: 280.08px;
+}
+.dls_img{
+  min-height: 146.58px;
+}
+.tutor{
+  min-height: 122.69px;
 }

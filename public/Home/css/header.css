@@ -81,7 +81,7 @@ nav>ul>li:hover>a {
   text-decoration:none;
 }
 nav ul ul {
-  width:12%;
+  width:135px;
   background:#fff;
   position:absolute;
   top:99%;
