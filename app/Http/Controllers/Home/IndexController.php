@@ -168,8 +168,24 @@ class IndexController extends Controller
     }
 
     //嘉宾峰会
-    public function summit($oneId,$secId){
-        echo '嘉宾峰会';
+    public function summit($oneId){
+        $data['title'] = '嘉宾峰会';
+        //导航
+        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $data['navig'] = Helper::_tree_json($navig);
+        //二级导航
+        $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
+        foreach ($data['towNav'] as $twoNav) {
+            $twoNav->article = Navigation::getArticleVideo($twoNav->id,3);
+            foreach ($twoNav->article as $v){
+                $cate = Category::find($v->cg_id);
+                $v->cg_name = $cate->cg_name;
+            }
+        }
+        //嘉宾峰会顶部广告位 7
+        $data['adver'] = Advertising::getAdver(7,1);
+//        dd($data);
+        return view('Home.Index.summit',compact('data',$data));
     }
 
     //导师与学员

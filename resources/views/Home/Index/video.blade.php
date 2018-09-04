@@ -17,7 +17,7 @@
                       <p class="art-assist"><b>“</b>{{$data['video']->intro}}</p>
                     </div>
                     <p class="share">
-                      分享至：<i class="icon iconfont icon-weixin-copy"></i><i class="icon iconfont icon-weibo-copy"></i>
+                      <!-- 分享至：<i class="icon iconfont icon-weixin-copy"></i><i class="icon iconfont icon-weibo-copy"></i> -->
                     </p>
                 </div>
                 <div class="main-right">

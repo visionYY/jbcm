@@ -26,7 +26,7 @@ class Article extends Model
                $arr['nav_id'] = $where['nav_id'];
            }
            $res = self::where($arr)->orderBy('publish_time','desc')->paginate(20);
-       }else{
+       }elseif($where['cg_id'] != 0 || $where['nav_id'] != 0 && $like != null){
            if ($where['cg_id'] != 0){
                $arr['cg_id'] = $where['cg_id'];
            }
@@ -34,6 +34,8 @@ class Article extends Model
                $arr['nav_id'] = $where['nav_id'];
            }
            $res = self::where($arr)->where('title','LIKE','%'.$like.’%‘)->orderBy('publish_time','desc')->paginate(20);
+       }else{
+           $res = self::orderBy('publish_time','desc')->paginate(20);
        }
         return $res;
     }

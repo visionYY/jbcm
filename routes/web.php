@@ -17,7 +17,7 @@ Route::get('/','Home\IndexController@index');
 Route::get('transmit/oneId/{oneId}/secId/{secId}','Home\IndexController@transmit');
 Route::get('brand/oneId/{oneId}/secId/{secId}','Home\IndexController@brand');
 Route::get('university/oneId/{oneId}/secId/{secId}','Home\IndexController@university');
-Route::get('summit/oneId/{oneId}/secId/{secId}','Home\IndexController@summit');
+Route::get('summit/oneId/{oneId}','Home\IndexController@summit');
 Route::get('tutorStudent/oneId/{oneId}/secId/{secId}','Home\IndexController@tutorStudent');
 Route::get('aboutUs/oneId/{oneId}/secId/{secId}','Home\IndexController@aboutUs');
 Route::get('threeList/pid/{pid}/id/{id}','Home\IndexController@threeList');
@@ -29,6 +29,7 @@ Route::get('doSearch','Home\IndexController@doSearch');
 
 //公共链接
 Route::get('getHref/id/{id}','Home\IndexController@getHref');
+Route::get('page/pageTop40','Home\PageController@pageTop40');
 
 //API
 Route::get('getCategoryPage','Home\IndexController@getCategoryPage');
