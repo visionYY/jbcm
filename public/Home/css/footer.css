@@ -5,7 +5,14 @@
   height: 130px;
   clear: both;
   background: #1f2848;
-  padding: 35px 8%;
+  padding: 35px 0%;
+}
+.footer_box{
+  width:84%;
+  max-width: 1180px;
+  margin: 0 auto;
+  display:flex;
+  justify-content: space-between;
 }
 .footer-left{
   float: left;
@@ -50,16 +57,15 @@
   height: 20px;
   margin-bottom: 0;
 }
-.footer-rig{
-  position: absolute;
-  right:121px;
-  top:21px; 
-  margin-right:16px;
+.footer-rig{ 
+  margin-top:-16px;
   width:160px;
+  display:flex;
+  justify-content:space-between;
 }
 .jbcm1{
   width:65px;
-  float: left;
+  /* float: left; */
   margin-right:20px;
   position: relative;
 }
@@ -80,7 +86,7 @@
 }
 .jbcm2{
   width:65px;
-  float: left;
+  /* float: left; */
   position: relative;
 }
 .code2{

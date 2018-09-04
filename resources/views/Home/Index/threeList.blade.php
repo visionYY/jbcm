@@ -5,7 +5,9 @@
 <link rel="stylesheet" href="{{asset('Home/css/college.css')}}">
 <style type="text/css">
   .thr-list-content{
-    width: 100%;
+    width:84%;
+    max-width: 1180px;
+    margin: 0 auto;
     margin-top:18px;
   }
   .tlc-left{
@@ -31,15 +33,18 @@
         @include('layouts._header')
     <div class="main1 clearfix">
         <div class="main_tab">
-            <ul id="myTab" class="nav_bot nav-tabs">
-              @foreach($data['thrNav'] as $thrNav)
-                <li class="thr-click {{$thrNav->id == $data['id'] ? 'active' : ''}}">
-                    <a href="#" data-toggle="tab">
-                        {{$thrNav->n_name}}
-                    </a>
-                </li>
-              @endforeach
-            </ul>
+            <div class="nav_mytab">
+                <ul id="myTab" class="nav_bot nav-tabs">
+                @foreach($data['thrNav'] as $thrNav)
+                    <li class="thr-click {{$thrNav->id == $data['id'] ? 'active' : ''}}">
+                        <a href="#" data-toggle="tab">
+                            {{$thrNav->n_name}}
+                        </a>
+                    </li>
+                @endforeach
+                </ul>
+            </div>
+            
             <div class="thr-list-content">
                 <div class="tlc-left">
                   @foreach($data['thrNav'] as $thrNav)

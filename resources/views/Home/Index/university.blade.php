@@ -7,15 +7,18 @@
         @include('layouts._header')
     <div class="main1 clearfix">
         <div class="main_tab">
-            <ul id="myTab" class="nav_bot nav-tabs">
-                 @foreach($data['towNav'] as $towNav)
-                <li class="{{$towNav->id == $data['secId'] ? 'active' : ''}}">
-                    <a href="#guest_{{$towNav->id}}" data-toggle="tab">
-                        {{$towNav->n_name}}
-                    </a>
-                </li>
-                @endforeach
-            </ul>
+            <div class="nav_mytab">
+                <ul id="myTab" class="nav_bot nav-tabs">
+                    @foreach($data['towNav'] as $towNav)
+                    <li class="{{$towNav->id == $data['secId'] ? 'active' : ''}}">
+                        <a href="#guest_{{$towNav->id}}" data-toggle="tab">
+                            {{$towNav->n_name}}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>    
+            </div>
+            
             <div id="myTabContent" class="tab-content">
                  @foreach($data['towNav'] as $towNav)
                 <div class="_guest tab-pane fade {{$towNav->id == $data['secId'] ? 'in active' : ''}}" id="guest_{{$towNav->id}}">

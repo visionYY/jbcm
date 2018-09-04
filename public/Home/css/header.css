@@ -16,6 +16,7 @@ nav {
 }
 nav ul {
   width:84%;
+  max-width: 1180px;
   height: 60px;
   line-height:60px;
   margin:0 auto;
@@ -132,8 +133,7 @@ nav ul li:hover .triangle{
 .font{
   width: 64px;
   position: absolute;
-  right:9%;
-  top: 18px;
+  right:0%;
   color:#313a5e;
   font-size: 16px;
   cursor: pointer;
