@@ -85,7 +85,7 @@ body{
 .Company-profile {
     margin-top: 5px;
     height: auto;
-    padding:15px;
+    padding:30px;
     padding-bottom:20px;
 }
 
@@ -93,7 +93,7 @@ body{
 .con{
     color:#333333;
     font-size:14px;
-    line-height:40px;
+    line-height:30px;
     margin-bottom:30px;
 }
 .second_con{
@@ -262,6 +262,7 @@ body{
 }
 .wu_name>h5{
     font-size:20px;
+    color:#313A5E;
 }
 .con_list{
     font-size:14px;
@@ -270,7 +271,7 @@ body{
 .csr_tit{
     width:100%;
     color: #313A5E;
-    font-size:12px;
+    font-size:14px;
     position: relative;
     padding-left:24px;
     margin-top:10px;
@@ -307,7 +308,7 @@ body{
     width:100%;
     height:auto;
     border-bottom:1px solid #DEDEDE; 
-    padding-bottom:18px;
+    padding-bottom:10px;
 }
 .coop_top_list{
     width:100%;
@@ -320,7 +321,7 @@ body{
     color:#313A5E;
 }
 .cooperation_bot{
-    margin-top: 30px;
+    margin-top: 15px;
 }
 .media_list{
     font-size: 14px;
@@ -425,7 +426,7 @@ dd>li{
 .hb_tit{
     width:100%;
     color: #333333;
-    font-size:12px;
+    font-size:16px;
     position: relative;
     padding-left:24px;
     margin-bottom:26px;

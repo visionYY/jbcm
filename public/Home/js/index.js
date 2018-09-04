@@ -51,8 +51,6 @@ $(function(){
     }
   }
 
-  // console.log(artWid);
-  // console.log(imgObjLen);
 })
 
 

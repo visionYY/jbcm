@@ -18,9 +18,9 @@
                     <div class="article">
                       {!! $data['article']->content !!}
                     </div>
-                    <p class="share">
+                    <!-- <p class="share">
                       分享至：<i class="icon iconfont icon-weixin-copy"></i><i class="icon iconfont icon-weibo-copy"></i>
-                    </p>
+                    </p> -->
                     <div class="else">
                       <p>上一篇：{!! $data['prev'] ? '<a href="'.url('article/id/'.$data['prev'][0]->id).'" >'.$data['prev'][0]->title.'</a>' : '无' !!}</p>
                       <p>下一篇：{!! $data['next'] ? '<a href="'.url('article/id/'.$data['next'][0]->id).'" >'.$data['next'][0]->title.'</a>' : '无' !!}</p> 
@@ -80,11 +80,11 @@
                           </a>
                         </dl> -->
                     </div> 
-                    <div class="share share2">
+                    <!-- <div class="share share2">
                       分享至：<i class="icon iconfont icon-weixin wx"></i><i class="icon iconfont icon-weibo wb"></i>
                       <p class="big-wx"><img src="{{asset('Home/images/wx.jpeg')}}" alt=""></p>
                       <p class="big-wb"><img src="{{asset('Home/images/wx.jpeg')}}" alt=""></p>
-                    </div>   
+                    </div>    -->
                                    
                 </div>
             </div>

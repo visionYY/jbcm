@@ -42,6 +42,7 @@ nav>ul>li:nth-child(2)>a{
 }
 nav>ul>li:nth-child(2):hover{
   background: none;
+  color:#337ab7 !important;
 }
 nav ul li {
   height: 60px;
@@ -77,7 +78,7 @@ nav ul li:hover {
   background:#fff;
 }
 nav>ul>li:hover>a {
-  color:#313a5e;
+  color:#337ab7;
   text-decoration:none;
 }
 nav ul ul {
@@ -107,7 +108,7 @@ nav ul ul li a {
   padding:0;
 }   
 nav ul ul li a:hover {
-  color:#4d63a7;;
+  color:#337ab7;;
 }
 .triangle{
   position: absolute;
@@ -116,10 +117,10 @@ nav ul ul li a:hover {
   height:0;
   right:23px;
   top:28px;
-  border-top:6px solid #777;     /*设置并显示上边框*/  
+  border-top:5px solid #ddd;     /*设置并显示上边框*/  
   border-bottom:none;             /*不设置下边框*/  
-  border-left:6px solid transparent;     /*设置但隐藏左边框*/  
-  border-right:6px solid transparent;    /*设置但隐藏右边框*/ 
+  border-left:5px solid transparent;     /*设置但隐藏左边框*/  
+  border-right:5px solid transparent;    /*设置但隐藏右边框*/ 
 }
 nav ul li:hover .triangle{
   -moz-transform:rotate(180deg);
@@ -137,3 +138,6 @@ nav ul li:hover .triangle{
   font-size: 16px;
   cursor: pointer;
 } 
+col{
+  color: #337ab7;
+}
