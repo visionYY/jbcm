@@ -15,8 +15,24 @@ use App\Http\Controllers\Controller;
 class articleController extends Controller
 {
     //首页
-    public function index(){
-        $list = Article::orderBy('publish_time','desc')->paginate(20);
+    public function index(Request $request){
+        if ($request->all()){
+            $where['cg_id'] = $request->get('cg_id');
+            $where['nav_id'] = $request->get('nav_id');
+            $like = $request->get('title');
+            $list = Article::getIndex($where,$like);
+            $data['cg_id'] = $where['cg_id'];
+            $data['nav_id'] = $where['nav_id'];
+            $data['title'] = $like;
+
+        }else{
+            $list = Article::paginate(20);
+            $data['cg_id'] = 0;
+            $data['nav_id'] = 0;
+            $data['title'] = null;
+        }
+
+//        dd($list);
         foreach ($list as $art){
             $nav = Navigation::find($art->nav_id);
             $art->nav_name = $nav->n_name;
@@ -29,7 +45,10 @@ class articleController extends Controller
                 $art->cho = 0;
             }
         }
-        return view('Admin.Article.index',compact('list',$list));
+        $data['cate'] = Category::all();
+        $all = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $data['nav'] = Helper::_tree($all);
+        return view('Admin.Article.index',compact('list',$list),compact('data',$data));
     }
 
     //展示(单条)

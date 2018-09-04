@@ -200,7 +200,7 @@
     							html += '<p class="tab_time">'+item.publish_time.substr(0,10)+'</p><span>'+item.n_name+'</span></dd></a></dl>';
     						});
     					}else{
-    						 html += '<p style="width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #f00;">已经到最底部了</p>';
+    						 html += '<p style="width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #db9651;">已经到最底部了</p>';
     						 thisObj.hide();
     					}
     					thisObj.prev().append(html);

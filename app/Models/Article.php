@@ -11,6 +11,36 @@ class Article extends Model
 
     protected $fillable = ['nav_id','cg_id','labels','cover','title','intro','author','publish_time','status','content'];
 
+
+    /*
+     * 后台查询
+     * */
+    public static function getIndex($where,$like){
+       if($where['cg_id'] == 0 && $where['nav_id'] == 0 && $like != null){
+           $res = self::where('title','like','%'.$like.'%')->orderBy('publish_time','desc')->paginate(20);
+       }elseif ($where['cg_id'] != 0 || $where['nav_id'] != 0 && $like == null){
+           if ($where['cg_id'] != 0){
+               $arr['cg_id'] = $where['cg_id'];
+           }
+           if ($where['nav_id'] != 0){
+               $arr['nav_id'] = $where['nav_id'];
+           }
+           $res = self::where($arr)->orderBy('publish_time','desc')->paginate(20);
+       }else{
+           if ($where['cg_id'] != 0){
+               $arr['cg_id'] = $where['cg_id'];
+           }
+           if ($where['nav_id'] != 0){
+               $arr['nav_id'] = $where['nav_id'];
+           }
+           $res = self::where($arr)->where('title','LIKE','%'.$like.’%‘)->orderBy('publish_time','desc')->paginate(20);
+       }
+        return $res;
+    }
+
+    /*
+     * 前端查询
+     * */
     //上一篇
     public static function prev($id,$nav_id){
         $article = DB::select("SELECT id, title FROM hg_article WHERE id = (SELECT max(id) FROM hg_article WHERE id < $id AND nav_id=$nav_id)");
