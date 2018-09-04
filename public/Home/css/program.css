@@ -70,8 +70,8 @@
 }
 .lists{
   display:block;
-  width: 92%;
-  margin: 0 4%;
+  width: 96.5%;
+  margin: 1% 2.5%;
 }
 .tit{
   height:48px;
@@ -88,13 +88,15 @@
   color:#313a5e;
 }
 .tit-txt>img{
+  width:24px;
+  height:24px;
   margin-right:5px;
   position: absolute;
   top:11px;
   left:0
 }
 .list-more{
-  padding-right:26px;
+  padding-right:28px;
   position: relative;
   font-size:16px;
 }
@@ -103,7 +105,7 @@
   width:20px;
   height:20px;
   top:13px;
-  right:5px;
+  right:6px;
 }
 .tit>a{
   display:block;
@@ -154,7 +156,7 @@
   font-size:16px;
   padding:16px 14px 0px 14px;
   width: 100%;
-  height:70px;
+  height:60px;
   overflow: hidden;
   text-overflow:ellipsis;
   display: -webkit-box;

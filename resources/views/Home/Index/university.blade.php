@@ -39,7 +39,7 @@
                         <div class="lists">
                             @foreach($towNav->threeNav as $thrNav)
                             <div class="tit">
-                                <p class="tit-txt"><img src="{{asset('Home/images/icon_jiemu@2x.png')}}" alt=""><img>{{$thrNav->n_name}}</p>
+                                <p class="tit-txt"><img src="{{asset('Home/images/icon_jiemu@2x.png')}}" alt="">{{$thrNav->n_name}}</p>
                                 <a href="{{url('threeList/pid/'.$thrNav->parent_id.'/id/'.$thrNav->id)}}"><p class="list-more">更多<img src="{{asset('Home/images/icon_gengduo@2x.png')}}" alt=""></p></a>
                             </div>
                             <div class="cont">
