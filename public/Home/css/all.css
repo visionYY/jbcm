@@ -34,9 +34,7 @@ a:hover,a:active{text-decoration:underline;color:#f60;}
   min-height: 100%;
 }
 .main1{
-  width:84%;
-  margin: 0 auto;
-  padding-bottom: 150px;
+  min-height: 400px;
 }
 * html .clearfix{height: 1%}
 .clearfix{display: block;}

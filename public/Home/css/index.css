@@ -1,3 +1,9 @@
+.main1{
+  width:84%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-bottom: 150px;
+}
 .main{
   width: 100%;
   margin:0 auto;
@@ -21,7 +27,7 @@
 .swiper-container{
   width:100%;
   height:auto;
-  box-shadow: 1px 1px 6px #666;
+  box-shadow: 1px 1px 6px #d8d8d8;
 }
 .swiper-wrapper{
   width:100%;
@@ -54,7 +60,7 @@
   position: relative;
 }
 video{
-  box-shadow: 1px 1px 6px #666;
+  box-shadow: 1px 1px 6px #d8d8d8;
 }
 .gallerytitle_v{
   margin: 0;
@@ -113,7 +119,7 @@ video{
   position: relative;
   overflow:hidden;
   cursor: pointer;
-  box-shadow: 1px 1px 6px #666;
+  box-shadow: 1px 1px 6px #d8d8d8;
 }
 .pic_lists>a>img{
   display: block;
