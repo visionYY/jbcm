@@ -13,7 +13,7 @@
   .tlc-left{
     width: 69.6%;
     float: left;
-    padding: 5px;
+    padding: 0px;
   }
   .tlc-right{
     width: 29%;
