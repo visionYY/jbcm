@@ -4,6 +4,7 @@
   list-style:none;
 }
 nav {
+  min-width:1220px;;
   margin:0 auto;
   text-align:center;
   width:100%;
@@ -12,7 +13,6 @@ nav {
   z-index:99999;
   background:#fff;
   border-bottom:1px solid #e7e7e7;
-  min-width:1280px;
 }
 nav ul {
   width:84%;
@@ -41,9 +41,16 @@ nav>ul>li:nth-child(2)>a{
   text-decoration:none;
   padding:0 25px 0 25px;
 }
+nav>ul>li:nth-child(5)>a{
+  text-decoration:none;
+  padding:0 25px 0 25px;
+}
 nav>ul>li:nth-child(2):hover{
   background: none;
   color:#337ab7 !important;
+}
+nav>ul>li:nth-child(5):hover{
+  background: none;
 }
 nav ul li {
   height: 60px;
@@ -137,6 +144,7 @@ nav ul li:hover .triangle{
   color:#313a5e;
   font-size: 16px;
   cursor: pointer;
+  line-height:60px;
 } 
 col{
   color: #337ab7;

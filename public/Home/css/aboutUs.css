@@ -1,6 +1,9 @@
 body{
     background:#f2f2f2;
 }
+#myTabContent{
+    padding-bottom:0 !important;
+}
 .main1{
     width:1180px !important; 
     margin: 0 auto;
@@ -424,7 +427,7 @@ dd>li{
 #oranization>li{
     width: 20%;
     margin-bottom:28px;
-    text-align: left;
+    text-align: center;
     height:55px;
     line-height: 55px;
 }

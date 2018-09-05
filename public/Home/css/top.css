@@ -4,7 +4,7 @@
   list-style:none;
 }
 .top_box{
-  width:1220px;
+  width:1180px;
   height:auto;
   margin:0 auto;
   border:17px solid #bb2f25;
@@ -71,7 +71,7 @@
 }
 .top40_con{
   padding:0 118px;
-  height:3000px;
+  height:auto;
   margin-top:20px;
   display:flex;
   flex-wrap:wrap;
@@ -83,7 +83,7 @@
   margin-top:54px;
 }
 .one,.two,.three,.four,.five{
-  width:190px;
+  width:20%;
 }
 .one img,.two img,.three img,.four img,.five img{
   width:100%;

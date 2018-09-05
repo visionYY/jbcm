@@ -161,7 +161,7 @@
     <script type="text/javascript">
         window.onload = function() {
             var mySwiper = new Swiper ('.swiper-container', {
-                //autoplay : 3000,    //可选选项，自动滑动
+                autoplay : 3000,    //可选选项，自动滑动
                 pagination : '.swiper-pagination',
                 paginationClickable :true,
                 nextButton: '.swiper-button-next',

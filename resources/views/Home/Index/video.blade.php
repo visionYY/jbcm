@@ -8,7 +8,7 @@
             <div class="main">
                 <div class="main-left">
                     <div class="article">
-                      <h3>{{$data['video']->title}}</h3>
+                      <h3  class="art_title">{{$data['video']->title}}</h3>
                       <p class="art-time"><span>{{$data['video']->nav_name}}</span>·{{$data['video']->cg_name}}·{{$data['video']->push}}</p>
                       <video class="videoFrame" controls poster="{{$data['video']->cover}}">
                           <source src="{{$data['video']->address}}" type="video/mp4">
