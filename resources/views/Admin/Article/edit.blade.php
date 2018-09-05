@@ -77,12 +77,9 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">标签：</label>
                                 <div class="col-sm-6">
-                                    <select data-placeholder="{{$data['article']->labels}}" class="chosen-select" multiple style="width:100%;" tabindex="4" name="labels[]">
-                                        @foreach($data['label'] as $label)
-                                        <option value="{{$label['name']}}" hassubinfo="true">{{$label['name']}}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请重新选择</span>
+                                     @foreach($data['label'] as $label)
+                                        <input type="checkbox" name="labels[]" value="{{$label['name']}}" {{in_array($label['name'],$lables) ? 'checked' : ''}}> {{$label['name']}}
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- 封面 -->
@@ -149,8 +146,8 @@
     @include('layouts.admin_js')
     <script src={{asset("Admin/js/plugins/layer/laydate/laydate.js")}}></script>
 
-    <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script>
-    <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
+    <!-- <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script> -->
+    <!-- <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script> -->
 
 
     

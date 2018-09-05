@@ -18,10 +18,20 @@ class VideoController extends Controller
     public function index(){
         $list = Video::orderBy('publish_time','desc')->paginate(20);
         foreach ($list as $art){
+            //导航
             $nav = Navigation::find($art->nav_id);
-            $art->nav_name = $nav->n_name;
+            if ($nav){
+                $art->nav_name = $nav->n_name;
+            }else{
+                $art->nav_name = '未知';
+            }
             $cate = Category::find($art->cg_id);
-            $art->cg_name = $cate->cg_name;
+            if ($cate){
+                $art->cg_name = $cate->cg_name;
+            }else{
+                $art->cg_name = '未知';
+            }
+
             $cho = Choiceness::where('type',2)->where('cho_id',$art->id)->get()->toArray();
             if ($cho){
                 $art->cho = $cho[0]['id'];

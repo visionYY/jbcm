@@ -28,7 +28,7 @@
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
-    
+     <link href="{{asset('Admin/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
 </head>
 <body class="gray-bg">
      @yield('content')

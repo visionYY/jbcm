@@ -50,8 +50,8 @@ class Helper
         static $newArr = array();
         foreach ($arr as $v){
             if(!$v['nodes']){
-                //剔除首页跟导师学员
-                if ($v['parent_id'] != 3){
+                //剔除首页跟导师学员,关于我们
+                if ($v['parent_id'] != 3 && $v['parent_id'] != 4){
                     $newArr[] = $v;
                 }
             }else{

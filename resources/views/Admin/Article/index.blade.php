@@ -10,7 +10,7 @@
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>文章列表</h5>
+                        <h5>文章列表  {{$list->total()}}</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -51,7 +51,7 @@
                                         <select class="form-control" name="nav_id">
                                             <option value="0">请选择来源</option>
                                             @foreach($data['nav'] as $nav)
-                                            <option value="{{$nav['id']}}" {{$data['nav_id'] == $nav['id'] ? 'selected' : ''}}>{{$nav['n_name']}}</option>
+                                            <option value="{{$nav['id']}}" {{$data['nav_id'] == $nav['id'] ? 'selected' : ''}}>{{$nav['text']}}</option>
                                             @endforeach
                                         </select>
                                     </div>

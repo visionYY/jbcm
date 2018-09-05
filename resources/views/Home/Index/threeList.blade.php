@@ -52,9 +52,9 @@
                     @foreach($thrNav->art as $art)
                     <dl class="tab_list">
                       @if($art->type == 1)
-                      <a href="{{url('article/id/'.$art->id)}}">
+                      <a href="{{url('article/id/'.$art->id)}}" target="_blank">
                       @else
-                      <a href="{{url('video/id/'.$art->id)}}">
+                      <a href="{{url('video/id/'.$art->id)}}" target="_blank">
                       @endif    
                           <dt>
                               <img src="{{asset($art->cover)}}" alt="">
@@ -74,7 +74,7 @@
                   <h3 class="rig_tit"><i class="icons"></i>相关推荐</h3>
                   @foreach($data['like'] as $like)
                   <dl class="rig_dls">
-                      <a href="{{url('article/id/'.$like->id)}}">
+                      <a href="{{url('article/id/'.$like->id)}}" target="_blank">
                           <dt class="dls_img">
                               <img src="{{asset($like->cover)}}" alt="">
                           </dt>

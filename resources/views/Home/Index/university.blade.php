@@ -49,9 +49,9 @@
                                 @foreach($thrNav->article as $art)
                                 <dl class="cont-dls">
                                     @if($art->type==1)
-                                    <a href="{{url('article/id/'.$art->id)}}">
+                                    <a href="{{url('article/id/'.$art->id)}}" target="_blank">
                                     @else
-                                    <a href="{{url('video/id/'.$art->id)}}">
+                                    <a href="{{url('video/id/'.$art->id)}}" target="_blank">
                                     @endif
                                         <dt><img src="{{asset($art->cover)}}" alt=""></dt>
                                         <dd>

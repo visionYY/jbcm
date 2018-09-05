@@ -256,7 +256,6 @@ class IndexController extends Controller
 
     //文章详情
     public function article($id){
-        $data['title'] = '文章详情';
         //导航
         $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
         $data['navig'] = Helper::_tree_json($navig);
@@ -288,6 +287,8 @@ class IndexController extends Controller
         $data['choiceness'] = Choiceness::getChoi(8);
         //猜你喜欢
         $data['like'] = Article::guessLike($data['article']->labels,3);
+        $data['title'] = $data['article']->title.'_嘉宾传媒';
+
 //        dd($data);
         return view('Home.Index.article',compact('data',$data));
     }
@@ -321,6 +322,8 @@ class IndexController extends Controller
 
         //猜你喜欢
         $data['like'] = Video::guessLike($data['video']->labels,8);
+
+        $data['title'] = $data['video']->title.'_嘉宾传媒';
 //        dd($data);
         return view('Home.Index.video',compact('data',$data));
     }

@@ -11,6 +11,7 @@ use App\Services\Helper;
 use App\Services\Upload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class articleController extends Controller
 {
@@ -26,18 +27,28 @@ class articleController extends Controller
             $data['title'] = $like;
 
         }else{
-            $list = Article::paginate(20);
+            $list = Article::orderBy('publish_time','desc')->paginate(config('hint.a_num'));
             $data['cg_id'] = 0;
             $data['nav_id'] = 0;
             $data['title'] = null;
         }
-
-//        dd($list);
+        $list->setPath(config('hint.domain').'admin/article?cg_id='.$data['cg_id'].'&nav_id='.$data['nav_id'].'&title='.$data['title']);
         foreach ($list as $art){
+            //导航
             $nav = Navigation::find($art->nav_id);
-            $art->nav_name = $nav->n_name;
+            if ($nav){
+                $art->nav_name = $nav->n_name;
+            }else{
+                $art->nav_name = '未知';
+            }
+            //分类
             $cate = Category::find($art->cg_id);
-            $art->cg_name = $cate->cg_name;
+            if ($cate){
+                $art->cg_name = $cate->cg_name;
+            }else{
+                $art->cg_name = '未知';
+            }
+            //精选
             $cho = Choiceness::where('type',1)->where('cho_id',$art->id)->get()->toArray();
             if ($cho){
                 $art->cho = $cho[0]['id'];
@@ -46,8 +57,11 @@ class articleController extends Controller
             }
         }
         $data['cate'] = Category::all();
-        $all = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
-        $data['nav'] = Helper::_tree($all);
+//        $all = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        $all = Navigation::getAll();
+        $nav_tree = Helper::_tree_json($all);
+        $data['nav'] = Helper::getBottomLayer($nav_tree);
+//        dd($data);
         return view('Admin.Article.index',compact('list',$list),compact('data',$data));
     }
 
@@ -105,7 +119,8 @@ class articleController extends Controller
         $data['cate'] = Category::select('id','cg_name')->get()->toArray();
         $data['label'] = Label::select('id','name')->get()->toArray();
         $data['article'] = Article::find($id);
-        return view('Admin.Article.edit',compact('data',$data));
+        $lables = explode(',',$data['article']->labels);
+        return view('Admin.Article.edit',compact('data',$data),compact('lables'));
     }
 
     //执行修改

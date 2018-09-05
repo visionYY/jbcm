@@ -25,7 +25,7 @@
                         <h3 class="rig_tit"><i class="icons"></i>相关视频</h3>
                         @foreach($data['like'] as $like)
                         <dl class="rig_dls">
-                            <a href="">
+                            <a href="{{url('video/id/'.$like->id)}}">
                                 <dt class="dls_img">
                                     <img src="{{asset($like->cover)}}" alt="">
                                 </dt>

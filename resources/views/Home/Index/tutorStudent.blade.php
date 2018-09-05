@@ -26,7 +26,7 @@
                     <div class="stu-list">
                         @foreach($towNav->user as $user)
                         <div class="stu-box">
-                            <a href="{{url('tutorStudent/detail/id/'.$user->id)}}">
+                            <a href="{{url('tutorStudent/detail/id/'.$user->id)}}" target="_blank">
                                 <div class="stu-con"><img src="{{asset($user->head_pic)}}" alt=""></div>
                                 <div class="superstratum">
                                     <p class="stu-name">{{$user->name}}</p>
@@ -38,62 +38,10 @@
                             </a>
                         </div> 
                         @endforeach 
-                       <!--  <div class="stu-box">
-                            <a href="">
-                                <div class="stu-con"><img src="../images/tutor.jpeg" alt=""></div>
-                                <div class="superstratum">
-                                    <p class="stu-name">魏东</p>
-                                    <p class="stu-tit">首汽约车ceo</p>
-                                    <div class="stu-text">
-                                        <p>年哈佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画放送的护发素都会发生后都是废话</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="stu-box">
-                            <a href="">
-                                <div class="stu-con"><img src="../images/tutor.jpeg" alt=""></div>
-                                <div class="superstratum">
-                                    <p class="stu-name">魏东</p>
-                                    <p class="stu-tit">首汽约车ceo</p>
-                                    <div class="stu-text">
-                                        <p>年哈佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画放送的护发素都会发生后都是废话</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="stu-box">
-                            <a href="">
-                                <div class="stu-con"><img src="../images/tutor.jpeg" alt=""></div>
-                                <div class="superstratum">
-                                    <p class="stu-name">魏东</p>
-                                    <p class="stu-tit">首汽约车ceo</p>
-                                    <div class="stu-text">
-                                        <p>年哈佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画放送的护发素都会发生后都是废话</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>   -->
+                     
                     </div>
                 </div>
                 @endforeach
-                <!-- <div class="tab-pane fade" id="student">
-                    <p class="hint">*排名不分先后</p>
-                    <div class="stu-list">
-                        <div class="stu-box">
-                            <a href="">
-                                <div class="stu-con"><img src="../images/tutor.jpeg" alt=""></div>
-                                <div class="superstratum">
-                                    <p class="stu-name">魏东</p>
-                                    <p class="stu-tit">首汽约车ceo</p>
-                                    <div class="stu-text">
-                                        <p>年哈佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画佛 i 后 fish 方式符合东方 i 红烧豆腐红烧豆腐哈动画放送的护发素都会发生后都是废话</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>   
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

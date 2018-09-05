@@ -7,6 +7,10 @@
  */
 
 return [
+    //当前域名
+    'domain'                => 'http://jbcm.wcs/',
+    //后台列表展示条数
+    'a_num'                 => 20,
     //设置提示信息
     'account_null'          => '账号不存在！',
     'password_error'        => '密码错误！',
