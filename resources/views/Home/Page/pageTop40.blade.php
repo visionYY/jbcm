@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>嘉宾大学</title>
+    <link rel="icon" type="image/x-icon" href={{asset("Home/images/wetalkTV.ico")}} />
     <link rel="stylesheet" href="{{asset('Home/css/top.css')}}" charset="utf-8">
     <link rel="stylesheet" media="screen and (max-width:750px)" href="{{asset('Home/css/reset.css')}}" charset="utf-8">
     <link rel="stylesheet" media="screen and (max-width:750px)" href="{{asset('Home/css/toph5.css')}}" charset="utf-8">
@@ -75,38 +76,38 @@
 
       if(screen.width>750){
         $.each(pc.one, function (key, obj) {
-          var lists = '<a src="'+obj.url+'"><img src="'+obj.img+'" alt=""></a>';
+          var lists = '<a href="'+obj.url+'" target="_blank"><img src="'+obj.img+'" alt=""></a>';
           $('.one').append(lists);
         });
         $.each(pc.two, function (key, obj) {
-            var lists = '<a src="'+obj.url+'"><img src="'+obj.img+'" alt=""></a>';
+            var lists = '<a href="'+obj.url+'" target="_blank"><img src="'+obj.img+'" alt=""></a>';
             $('.two').append(lists);
         });
         $.each(pc.three, function (key, obj) {
-            var lists = '<a src="'+obj.url+'"><img src="'+obj.img+'" alt=""></a>';
+            var lists = '<a href="'+obj.url+'" target="_blank"><img src="'+obj.img+'" alt=""></a>';
             $('.three').append(lists);
         });
         $.each(pc.four, function (key, obj) {
-            var lists = '<a src="'+obj.url+'"><img src="'+obj.img+'" alt=""></a>';
+            var lists = '<a href="'+obj.url+'" target="_blank"><img src="'+obj.img+'" alt=""></a>';
             $('.four').append(lists);
         });
         $.each(pc.five, function (key, obj) {
-            var lists = '<a src="'+obj.url+'"><img src="'+obj.img+'" alt=""></a>';
+            var lists = '<a href="'+obj.url+'" target="_blank"><img src="'+obj.img+'" alt=""></a>';
             $('.five').append(lists);
         });
       }
 
       if(screen.width < 750){
         $.each(yd.one, function (key, obj) {
-            var lists = '<a src="'+obj.url+'"><img src="'+obj.img+'" alt=""></a>';
+            var lists = '<a href="'+obj.url+'" target="_blank"><img src="'+obj.img+'" alt=""></a>';
             $('.one').append(lists);
         });
         $.each(yd.two, function (key, obj) {
-            var lists = '<a src="'+obj.url+'"><img src="'+obj.img+'" alt=""></a>';
+            var lists = '<a href="'+obj.url+'" target="_blank"><img src="'+obj.img+'" alt=""></a>';
             $('.two').append(lists);
         });
         $.each(yd.three, function (key, obj) {
-            var lists = '<a src="'+obj.url+'"><img src="'+obj.img+'" alt=""></a>';
+            var lists = '<a href="'+obj.url+'" target="_blank"><img src="'+obj.img+'" alt=""></a>';
             $('.three').append(lists);
         });
         $('.four').hide();
