@@ -3,6 +3,14 @@
 @section('content')
     <link rel="stylesheet" href={{asset("Home/css/index.css")}}>
     <link rel="stylesheet" href="{{asset('Home/css/swiper.min.css')}}">
+	<style>
+	.swiper-button-prev.swiper-button-white, .swiper-container-rtl .swiper-button-next.swiper-button-white{
+		background-image:url("{{asset('Home/images/left.png')}}")
+	}
+	.swiper-button-next.swiper-button-white, .swiper-container-rtl .swiper-button-prev.swiper-button-white{
+		background-image:url("{{asset('Home/images/right.png')}}")
+	}
+	</style>
     <!-- <div class="box_cover"></div> -->
     <div class="wrapper">
             @include('layouts._header')
@@ -161,7 +169,10 @@
     <script type="text/javascript">
         window.onload = function() {
             var mySwiper = new Swiper ('.swiper-container', {
-                autoplay : 3000,    //可选选项，自动滑动
+				autoplay:3000,//自动滚动
+				//loop:true,//循环
+				//speed:1000,//滚动速度
+				resistanceRatio : 0,
                 pagination : '.swiper-pagination',
                 paginationClickable :true,
                 nextButton: '.swiper-button-next',
