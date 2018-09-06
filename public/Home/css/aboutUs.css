@@ -129,13 +129,16 @@ body{
     text-align:center;
     height:auto;
 }
+.logo_img{
+    width:300px;
+}
 .jj_tit{
     width:100%;
     text-align:center;
     font-size:18px;
     color:#333333;
     font-style: italic;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 30px;
 }
 .second_tit{
