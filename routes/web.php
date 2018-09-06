@@ -31,6 +31,16 @@ Route::get('doSearch','Home\IndexController@doSearch');
 Route::get('getHref/id/{id}','Home\IndexController@getHref');
 Route::get('page/pageTop40','Home\PageController@pageTop40');
 
+//移动端
+Route::group(['prefix'=>'mobile'],function (){
+    Route::get('index','Mobile\IndexController@index');
+    Route::get('transmit/oneId/{oneId}/secId/{secId}','Mobile\IndexController@transmit');
+    Route::get('brand/oneId/{oneId}/secId/{secId}','Mobile\IndexController@brand');
+    Route::get('university/oneId/{oneId}/secId/{secId}','Mobile\IndexController@university');
+    Route::get('summit/oneId/{oneId}','Mobile\IndexController@summit');
+    Route::get('tutorStudent/oneId/{oneId}/secId/{secId}','Mobile\IndexController@tutorStudent');
+    Route::get('aboutUs/oneId/{oneId}/secId/{secId}','Mobile\IndexController@aboutUs');
+});
 //API
 Route::get('getCategoryPage','Home\IndexController@getCategoryPage');
 Route::get('upload','Home\IndexController@getCategoryPage');

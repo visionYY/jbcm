@@ -91,15 +91,11 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                            <input type="hidden" name="_method" value="put"/>
-                                            <input type="hidden" name="admin_old_pic" value={{$admin['admin_pic']}}> 
-                                            <input type="hidden" name="admin_old_pic_url" value={{asset($admin['admin_pic'])}}> 
-                                            <input type="hidden" name="admin_pic" > 
-                                        </label>
-                                    </div>
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <input type="hidden" name="_method" value="put"/>
+                                    <input type="hidden" name="admin_old_pic" value={{$admin['admin_pic']}}> 
+                                    <input type="hidden" name="admin_old_pic_url" value={{asset($admin['admin_pic'])}}> 
+                                    <input type="hidden" name="admin_pic" > 
                                 </div>
                             </div>
                             <div class="form-group">

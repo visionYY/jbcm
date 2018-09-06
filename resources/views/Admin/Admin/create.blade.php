@@ -89,12 +89,8 @@
 
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                            <input type="hidden" name="admin_pic" value="{{old('admin_pic')}}">
-                                        </label>
-                                    </div>
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <input type="hidden" name="admin_pic" value="{{old('admin_pic')}}">
                                 </div>
                             </div>
                             

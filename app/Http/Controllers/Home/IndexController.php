@@ -53,7 +53,9 @@ class IndexController extends Controller
 
         //导师与学员
         $data['tutor'] = TutorStudent::getIndexShow();
-//        dd($data);
+        foreach ($data['tutor'] as $tutor){
+            $tutor->classic_quote= explode('；',$tutor->classic_quote);
+        }
         return view('Home.Index.index',compact('data',$data));
     }
 
@@ -70,7 +72,7 @@ class IndexController extends Controller
                 break;
             case 6:
                 //嘉宾峰会
-                return redirect('university/oneId/'.$oneId.'/secId/'.$secId);
+                return redirect('summit/oneId/'.$oneId.'/secId/'.$secId);
                 break;
             case 3:
                 //导师与学员
@@ -85,7 +87,6 @@ class IndexController extends Controller
                 return redirect('/');
                 break;
         }
-
     }
 
     //品牌节目

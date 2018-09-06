@@ -56,8 +56,9 @@ class articleController extends Controller
                 $art->cho = 0;
             }
         }
+        //分类
         $data['cate'] = Category::all();
-//        $all = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
+        //导航
         $all = Navigation::getAll();
         $nav_tree = Helper::_tree_json($all);
         $data['nav'] = Helper::getBottomLayer($nav_tree);

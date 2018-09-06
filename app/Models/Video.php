@@ -11,6 +11,39 @@ class Video extends Model
 
     protected $fillable = ['title','address','duration','cover','cg_id','nav_id','labels','status','author','publish_time','intro'];
 
+    /*
+     * 后台查询
+     * */
+    public static function getIndex($where,$like){
+        if($where['cg_id'] == 0 && $where['nav_id'] == 0 && $like != null){
+            $res = self::where('title','like','%'.$like.'%')->orderBy('publish_time','desc')->paginate(config('hint.a_num'));
+        }elseif ($where['cg_id'] != 0 || $where['nav_id'] != 0 && $like == null){
+            if ($where['cg_id'] != 0){
+                $arr['cg_id'] = $where['cg_id'];
+            }
+            if ($where['nav_id'] != 0){
+                $arr['nav_id'] = $where['nav_id'];
+            }
+            $res = self::where($arr)->orderBy('publish_time','desc')->paginate(config('hint.a_num'));
+        }elseif($where['cg_id'] != 0 || $where['nav_id'] != 0 && $like != null){
+            if ($where['cg_id'] != 0){
+                $arr['cg_id'] = $where['cg_id'];
+            }
+            if ($where['nav_id'] != 0){
+                $arr['nav_id'] = $where['nav_id'];
+            }
+            $res = self::where($arr)->where('title','LIKE','%'.$like.’%‘)->orderBy('publish_time','desc')->paginate(config('hint.a_num'));
+        }else{
+            $res = self::orderBy('publish_time','desc')->paginate(config('hint.a_num'));
+        }
+        return $res;
+    }
+
+
+
+    /*
+     * 前端查询
+     * */
     //猜你喜欢
     public static function guessLike($labels,$limit=8){
         $labelArr = explode(',',$labels);

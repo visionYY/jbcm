@@ -15,8 +15,24 @@ use App\Http\Controllers\Controller;
 class VideoController extends Controller
 {
     //首页
-    public function index(){
-        $list = Video::orderBy('publish_time','desc')->paginate(20);
+    public function index(Request $request){
+        if ($request->all()){
+            $where['cg_id'] = $request->get('cg_id');
+            $where['nav_id'] = $request->get('nav_id');
+            $like = $request->get('title');
+            $list = Video::getIndex($where,$like);
+            $data['cg_id'] = $where['cg_id'];
+            $data['nav_id'] = $where['nav_id'];
+            $data['title'] = $like;
+
+        }else{
+            $list = Video::orderBy('publish_time','desc')->paginate(config('hint.a_num'));
+            $data['cg_id'] = 0;
+            $data['nav_id'] = 0;
+            $data['title'] = null;
+        }
+        $list->setPath(config('hint.domain').'admin/video?cg_id='.$data['cg_id'].'&nav_id='.$data['nav_id'].'&title='.$data['title']);
+
         foreach ($list as $art){
             //导航
             $nav = Navigation::find($art->nav_id);
@@ -39,7 +55,13 @@ class VideoController extends Controller
                 $art->cho = 0;
             }
         }
-        return view('Admin.Video.index',compact('list',$list));
+        //分类
+        $data['cate'] = Category::all();
+        //导航
+        $all = Navigation::getAll();
+        $nav_tree = Helper::_tree_json($all);
+        $data['nav'] = Helper::getBottomLayer($nav_tree);
+        return view('Admin.Video.index',compact('list',$list),compact('data',$data));
     }
 
     //展示(单条)
@@ -95,8 +117,9 @@ class VideoController extends Controller
         $data['nav'] = Helper::getBottomLayer($nav_tree);
         $data['cate'] = Category::select('id','cg_name')->get()->toArray();
         $data['label'] = Label::select('id','name')->get()->toArray();
+        $lables = explode(',',$data['video']['labels']);
 //        dd($data);
-        return view('Admin.Video.edit',compact('data',$data));
+        return view('Admin.Video.edit',compact('data',$data),compact('lables',$lables));
     }
 
     //执行修改

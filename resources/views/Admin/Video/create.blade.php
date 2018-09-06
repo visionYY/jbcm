@@ -92,11 +92,9 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">标签：</label>
                                 <div class="col-sm-6">
-                                    <select data-placeholder="选择标签" class="chosen-select" multiple style="width:100%;" tabindex="4" name="labels[]">
-                                        @foreach($data['label'] as $label)
-                                        <option value="{{$label['name']}}" hassubinfo="true">{{$label['name']}}</option>
-                                        @endforeach
-                                    </select>
+                                    @foreach($data['label'] as $label)
+                                        <input type="checkbox" name="labels[]" value="{{$label['name']}}" > {{$label['name']}}
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- 封面 -->
@@ -125,10 +123,8 @@
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <div class="checkbox">
-                                        <label>
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                            <input type="hidden" name="cover" value="{{old('cover')}}">
-                                        </label>
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                        <input type="hidden" name="cover" value="{{old('cover')}}">
                                     </div>
                                 </div>
                             </div>
@@ -148,8 +144,8 @@
     @include('layouts.admin_js')
     <script src={{asset("Admin/js/plugins/layer/laydate/laydate.js")}}></script>
 
-    <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script>
-    <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
+    <!-- <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script> -->
+    <!-- <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script> -->
     @include('layouts.admin_picpro')
     <script type="text/javascript">
         var sgw = $('[name=scre_gm_width]').val(),

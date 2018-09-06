@@ -92,11 +92,9 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">标签：</label>
                                 <div class="col-sm-6">
-                                    <select data-placeholder="{{$data['video']['labels'] ? $data['video']['labels'] : '选择标签'}}" class="chosen-select" multiple style="width:100%;" tabindex="4" name="labels[]">
-                                        @foreach($data['label'] as $label)
-                                        <option value="{{$label['name']}}" hassubinfo="true">{{$label['name']}}</option>
-                                        @endforeach
-                                    </select>
+                                    @foreach($data['label'] as $label)
+                                        <input type="checkbox" name="labels[]" value="{{$label['name']}}" {{in_array($label['name'],$lables) ? 'checked' : ''}}> {{$label['name']}}
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- 封面 -->
@@ -123,15 +121,13 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <label>
+                                    
                                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                                             <input type="hidden" name="old_cover" value="{{$data['video']['cover']}}">
                                             <input type="hidden" name="old_labels" value="{{$data['video']['labels']}}">
                                             <input type="hidden" name="_method" value="put"/>
                                             <input type="hidden" name="cover">
-                                        </label>
-                                    </div>
+                                       
                                 </div>
                             </div>
                             
@@ -150,8 +146,8 @@
     @include('layouts.admin_js')
     <script src={{asset("Admin/js/plugins/layer/laydate/laydate.js")}}></script>
     
-    <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script>
-    <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script>
+    <!-- <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script> -->
+    <!-- <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script> -->
 
     @include('layouts.admin_picpro')
     <script type="text/javascript">

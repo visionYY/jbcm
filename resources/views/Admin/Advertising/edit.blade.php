@@ -82,14 +82,10 @@
                            
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                            <input type="file" name="cover" style="display: none;" value="{{old('cover')}}">
-                                            <input type="hidden" name="old_cover" value="{{$data->cover}}">
-                                            <input type="hidden" name="_method" value="put"/>
-                                        </label>
-                                    </div>
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <input type="file" name="cover" style="display: none;" value="{{old('cover')}}">
+                                    <input type="hidden" name="old_cover" value="{{$data->cover}}">
+                                    <input type="hidden" name="_method" value="put"/>
                                 </div>
                             </div>
                             

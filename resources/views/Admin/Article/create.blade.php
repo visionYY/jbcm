@@ -123,8 +123,8 @@
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <div class="checkbox">
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                            <input type="hidden" name="cover" value="{{old('cover')}}">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                        <input type="hidden" name="cover" value="{{old('cover')}}">
                                     </div>
                                 </div>
                             </div>

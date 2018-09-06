@@ -1,0 +1,44 @@
+.centera{
+  width:100%;
+  padding:.1rem .12rem;
+  height:auto;
+}
+.adver{
+  width:100%;
+  height:auto;
+}
+.adver img{
+  width:100%;
+  display:block;
+}
+.aboutCont{
+  width:100%;
+  height:auto;
+}
+.one-tit{
+  width: 100%;
+  text-align:center;
+  line-height: .3rem;
+  margin-top:.09rem;
+}
+.one-tit span{
+  font-size:.16rem;
+  font-weight: 700;
+  border-bottom: 3px solid #4D63A7;
+}
+.two-tit{
+  width: 100%;
+  text-align:center;
+  line-height: .3rem;
+  margin-top:.04rem;
+}
+.two-tit i{
+  font-size:.15rem;
+  font-style: italic;
+}
+.conts{
+  width: 100%;
+  line-height: .2rem;
+  color:#666666;
+  font-size: .14rem;
+}

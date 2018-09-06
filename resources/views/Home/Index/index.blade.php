@@ -24,8 +24,8 @@
                             <!-- 视频 -->
 	                    	<div class="vvideo">
 								<video width="100%"  controls poster="{{$data['ind_vid_adv'][0]['cover']}}">
-									<source src="{{$data['ind_vid_adv'][0]['video']}}">
-									<source src="movie.ogg" type="video/ogg">
+									<source src="{{$data['ind_vid_adv'][0]['video']}}" type="video/mp4">
+									<source src="{{$data['ind_vid_adv'][0]['video']}}" type="video/ogg">
 								</video>
 								<h3 class="gallerytitle_v">{{$data['ind_vid_adv'][0]['title']}}</h3>
 							</div>
@@ -152,7 +152,7 @@
                                     <p class="tutor-name">{{$totur->name}}</p>
                                     <p class="tutor-txt">{{$totur->position}}</p>
                                     <p class="classify">{{$totur->type == 1 ? '导师' : '学员 '}}</p>
-									<p class="tutor-con">{{$totur->intro}}</p>
+									<p class="tutor-con">{{$totur->classic_quote[0]}}</p>
                                 </dd>
                             </a>
                         </dl>

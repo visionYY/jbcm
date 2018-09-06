@@ -1,12 +1,16 @@
 @extends('layouts.admin')
 @section('title','视频')
 @section('content')
+<style type="text/css">
+    .juzhong{text-align: right;}
+    .dinwei{margin-top: 10px;}
+</style>
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>视频列表</h5>
+                        <h5>视频列表 {{$list->total()}}</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -29,6 +33,35 @@
                         <div class="">
                             <a href="video/create" class="btn btn-primary J_menuItem">添加视频</a>
                         </div>
+                        <form action="">
+                            <div class="form-group">
+                                    <div class="col-sm-1 juzhong"><label class="dinwei">分类：</label></div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="cg_id">
+                                            <option value="0">请选择分类</option>
+                                            @foreach($data['cate'] as $cate)
+                                            <option value="{{$cate->id}}" {{$data['cg_id'] == $cate->id ? 'selected' : ''}} >{{$cate->cg_name}}</option>
+                                            @endforeach
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1 juzhong"><label class="dinwei">来源：</label></div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="nav_id">
+                                            <option value="0">请选择来源</option>
+                                            @foreach($data['nav'] as $nav)
+                                            <option value="{{$nav['id']}}" {{$data['nav_id'] == $nav['id'] ? 'selected' : ''}}>{{$nav['text']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1 juzhong"><label class="dinwei">标题：</label></div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="title" value="{{$data['title']}}">
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">搜索</button>
+                            </div>
+                        </form>
+
                         @include('layouts.admin_error')
                          <table class="table table-hover">
                             <thead>
