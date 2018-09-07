@@ -6,7 +6,7 @@
             <div class="col-sm-9">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>导师学员列表</h5>
+                        <h5>导师学员列表 {{$list->total()}}</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -38,6 +38,7 @@
                                     <th>头像</th>
                                     <th>职位</th>
                                     <th>身份</th>
+                                    <th>排序</th>
                                     <th>首页展示</th>
                                     <th>操作</th>
                                 </tr>
@@ -47,15 +48,17 @@
                                 <tr class="gradeC">
                                     <td>{{$v->id}}</td>
                                     <td>{{$v->name}}</td>
-                                    <td><img src={{asset($v->head_pic)}} width="40px"></td>
+                                    <td><img src="{{asset($v->head_pic)}}" width="40px"></td>
                                     <td class="center">{{$v->position}}</td>
-                                    <!-- <td class="center">{{$v->intro}}</td> -->
                                     <td class="center">
                                         @if($v->type == 1)
                                             <span class="label label-info">导师</span>
                                         @else
                                             <span class="label label-danger">学员</span>
                                         @endif
+                                    </td>
+                                    <td class="center">
+                                        <input type="text" name="sort" value="{{$v->sort}}" style="width: 50px;border: none;">
                                     </td>
                                     <td class="center">
                                         @if($v->show_index == 1)
@@ -90,13 +93,26 @@
             </div>
         </div>
     </div>
-    
+     <input type="hidden" name="url" value="{{url('admin/tutorStudent/changeSort')}}">   
      @include('layouts.admin_js')
     <script src={{asset("Admin/js/plugins/footable/footable.all.min.js")}}></script>
     <!-- <script src={{asset("Admin/js/plugins/layer/layer.min.js")}}></script> -->
     <script src={{asset("Admin/js/plugins/sweetalert/sweetalert.min.js")}}></script>
     <script>
         $(document).ready(function(){$(".footable").footable();$(".footable2").footable()});
+        $('[name=sort]').blur(function(){
+            var id = $(this).parent().prev().prev().prev().prev().prev().text();
+            var sort = $(this).val();
+            var url = $('[name=url]').val();
+            var changeUrl = url+'/id/'+id+'/sort/'+sort;
+            $.ajax({
+                url:changeUrl,
+                type:'GET',
+                success:function(d){
+                    console.log(d);
+                }
+            });   
+        });
     </script>
     @include('layouts.admin_delete')
-@stop
+@stop 

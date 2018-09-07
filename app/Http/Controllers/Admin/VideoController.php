@@ -91,6 +91,7 @@ class VideoController extends Controller
             'cover'=>'required',
             'intro'=>'required');
         $credentials = $this->validate($request,$verif);
+
         $credentials['labels'] = implode(',',$credentials['labels']);
         if ($request->post('author')){
             $credentials['author'] = $request->post('author');

@@ -61,7 +61,10 @@ class Helper
         return $newArr;
     }
 
+    //检查视频地址
+    public static function checkVideoLocal(){
 
+    }
 }
 
 ?>

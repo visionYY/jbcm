@@ -53,9 +53,9 @@ class IndexController extends Controller
 
         //导师与学员
         $data['tutor'] = TutorStudent::getIndexShow();
-        foreach ($data['tutor'] as $tutor){
+        /*foreach ($data['tutor'] as $tutor){
             $tutor->classic_quote= explode('；',$tutor->classic_quote);
-        }
+        }*/
         return view('Home.Index.index',compact('data',$data));
     }
 
@@ -200,9 +200,9 @@ class IndexController extends Controller
         $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
         foreach ($data['towNav'] as $twoNav){
             if ($twoNav->id ==11){
-                $twoNav->user = TutorStudent::where('type',1)->get();
+                $twoNav->user = TutorStudent::where('type',1)->orderBy('sort','desc')->get();
             }else{
-                $twoNav->user = TutorStudent::where('type',2)->get();
+                $twoNav->user = TutorStudent::where('type',2)->orderBy('sort','desc')->get();
             }
         }
 //        dd($data);
@@ -322,7 +322,7 @@ class IndexController extends Controller
         }
 
         //猜你喜欢
-        $data['like'] = Video::guessLike($data['video']->labels,8);
+        $data['like'] = Video::guessLike($data['video']->labels,3);
 
         $data['title'] = $data['video']->title.'_嘉宾传媒';
 //        dd($data);

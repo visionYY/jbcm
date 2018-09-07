@@ -9,7 +9,7 @@
     <title>@yield('title', '嘉宾大学')</title>
     <link rel="icon" type="image/x-icon" href={{asset("Home/images/wetalkTV.ico")}} />
     <!-- Bootstrap -->
-    <link href="http://cdn.bootcss.com/normalize/4.2.0/normalize.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/normalize/4.2.0/normalize.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('Home/css/bootstrap.min.css')}}" >
     <link rel="stylesheet" href={{asset("Home/css/all.css")}}>
     <link rel="stylesheet" href={{asset("Home/css/header.css")}}>

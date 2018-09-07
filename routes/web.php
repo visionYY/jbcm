@@ -41,9 +41,10 @@ Route::group(['prefix'=>'mobile'],function (){
     Route::get('tutorStudent/oneId/{oneId}/secId/{secId}','Mobile\IndexController@tutorStudent');
     Route::get('aboutUs/oneId/{oneId}/secId/{secId}','Mobile\IndexController@aboutUs');
 });
+
 //API
-Route::get('getCategoryPage','Home\IndexController@getCategoryPage');
-Route::get('upload','Home\IndexController@getCategoryPage');
+Route::get('getCategoryPage','Home\IndexController@getCategoryPage');       //首页数据获取
+//Route::get('upload','Home\IndexController@getCategoryPage');
 
 //测试
 Route::get('/test', function () {
@@ -73,10 +74,10 @@ Route::group(['prefix'=>'admin'],function(){
     Route::resource('hotbot','Admin\HotbotController');         //热搜
 
     //功能路由
-    Route::get('choiceness/setting/type/{type}/id/{id}','Admin\ChoicenessController@setting');  //设置精选
-    Route::get('choiceness/cancel/id/{id}','Admin\ChoicenessController@cancel');                //取消精选
-    Route::get('tutorStudent/showIndex/id/{id}','Admin\TutorStudentController@showIndex');      //首页展示
-
+    Route::get('choiceness/setting/type/{type}/id/{id}','Admin\ChoicenessController@setting');                  //设置精选
+    Route::get('choiceness/cancel/id/{id}','Admin\ChoicenessController@cancel');                                //取消精选
+    Route::get('tutorStudent/showIndex/id/{id}','Admin\TutorStudentController@showIndex');                      //首页展示（导师学员）
+    Route::get('tutorStudent/changeSort/id/{id}/sort/{sort}','Admin\TutorStudentController@changeSort');        //修改排序（导师学员）
 
 });
 

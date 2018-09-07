@@ -152,7 +152,7 @@
                                     <p class="tutor-name">{{$totur->name}}</p>
                                     <p class="tutor-txt">{{$totur->position}}</p>
                                     <p class="classify">{{$totur->type == 1 ? '导师' : '学员 '}}</p>
-									<p class="tutor-con">{{$totur->classic_quote[0]}}</p>
+									<p class="tutor-con">{{$totur->intro}}</p>
                                 </dd>
                             </a>
                         </dl>

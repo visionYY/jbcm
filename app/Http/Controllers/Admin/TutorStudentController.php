@@ -113,6 +113,13 @@ class TutorStudentController extends Controller
         }else{
             return back()->with('hint',$hint_fail);
         }
-        dd($tutor->update($update));
     }
+
+    //排序修改
+    public function changeSort($id,$sort){
+        $tutorStudent = TutorStudent::find($id);
+        $tutorStudent->sort = $sort;
+        $tutorStudent->save();
+    }
+
 }
