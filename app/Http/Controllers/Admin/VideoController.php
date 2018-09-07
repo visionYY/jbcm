@@ -91,7 +91,7 @@ class VideoController extends Controller
             'cover'=>'required',
             'intro'=>'required');
         $credentials = $this->validate($request,$verif);
-
+        $credentials['address'] = Helper::checkVideoLocal($credentials['address']);
         $credentials['labels'] = implode(',',$credentials['labels']);
         if ($request->post('author')){
             $credentials['author'] = $request->post('author');
@@ -133,6 +133,7 @@ class VideoController extends Controller
             'publish_time'=>'required',
             'intro'=>'required');
         $credentials = $this->validate($request,$verif);
+        $credentials['address'] = Helper::checkVideoLocal($credentials['address']);
         if ($request->post('labels')){
             $credentials['labels'] = implode(',',$request->post('labels'));
         }else{

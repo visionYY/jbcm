@@ -62,8 +62,13 @@ class Helper
     }
 
     //检查视频地址
-    public static function checkVideoLocal(){
-
+    public static function checkVideoLocal($url){
+        $arr = explode(':',$url);
+        if ($arr[0] != 'https'){
+            $arr[0] = 'https';
+        }
+        $str = implode(':',$arr);
+        return $str;
     }
 }
 

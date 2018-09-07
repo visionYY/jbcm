@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Advertising;
+use App\Services\Helper;
 use App\Services\Upload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,7 +41,7 @@ class AdvertisingController extends Controller
             if (!$request->post('video')){
                 return back() -> with('hint',config('hint.video_exist'));
             }
-            $credentials['video'] = $request->post('video');
+            $credentials['video'] = Helper::checkVideoLocal($request->post('video'));
         }else{
             //其他位置链接不能为空
             if (!$request->post('href')){
@@ -79,7 +80,7 @@ class AdvertisingController extends Controller
             if (!$request->post('video')){
                 return back() -> with('hint',config('hint.video_exist'));
             }
-            $credentials['video'] = $request->post('video');
+            $credentials['video'] = Helper::checkVideoLocal($request->post('video'));
         }else{
             //其他位置链接不能为空
             if (!$request->post('href')){
