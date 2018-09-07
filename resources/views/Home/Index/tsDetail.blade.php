@@ -16,7 +16,7 @@
                     <img src="{{asset('Home/images/zuoshang.png')}}" class="frame" alt="">
                     <p class="top-tit"><strong>{{$data['tutorStudent']->name}}</strong>{{$data['tutorStudent']->position}}</p>
                     <p class="top-con">{{$data['tutorStudent']->intro}}</p>
-                    <div class="ana">
+                    <!-- <div class="ana">
                         <p class="ana-tit">经典语录:</p>
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
@@ -24,11 +24,10 @@
                                 <div class="swiper-slide">{{$cq}}</div>
                                 @endforeach
                             </div>
-                            <!-- 如果需要导航按钮 -->
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div> 
             <div class="botton">
