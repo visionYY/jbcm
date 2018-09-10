@@ -36,7 +36,7 @@
                                 <p class="text-company-profile"><b>公司简介</b></p>
                                 <div class="Company-profile">
                                     <p class="logo">
-                                        <img class="logo_img" src="{{asset('Home/images/jiabindaxue_logo.png')}}" alt="">
+                                        <img class="logo_img" src="{{asset('Home/images/logo.jpg')}}" alt="">
                                     </p>
                                     <h4 class="jj_tit">
                                         遍访天下公司、纪录时代商业。

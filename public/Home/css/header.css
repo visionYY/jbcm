@@ -23,7 +23,10 @@ nav ul {
   display:inline-table;
   position:relative;  
 }
-nav ul img{
+nav ul .cm_logo{
+  height: 58px;
+}
+nav ul .fh_logo{
   width:125px;
   height:auto;
 }

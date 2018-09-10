@@ -13,6 +13,4 @@
     </div>
   </div> 
 
-  <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script>
-  <script src="{{asset('Mobile/js/swiper.min.js')}}"></script>
-  <script src="{{asset('Mobile/js/iscroll.js')}}"></script>
+  

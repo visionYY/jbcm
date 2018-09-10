@@ -15,11 +15,10 @@ class IndexController extends Controller
 {
     //首页
     public function index(){
-        $data['title'] = '嘉宾传媒-遍访天下公司、纪录时代商业';
+        $data['title'] = '我有嘉宾-遍访天下公司、纪录时代商业';
 
         //导航
-        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
-        $data['navig'] = Helper::_tree_json($navig);
+        $data['navig'] = Navigation::getNav();
 
         //广告
         $data['ind_vid_adv'] = Advertising::getAdver(1,1);
@@ -82,7 +81,26 @@ class IndexController extends Controller
 
     //品牌节目
     public function brand($oneId,$secId){
-        echo '品牌节目';
+        $data['title'] = '品牌节目';
+        $data['secId'] = $secId;
+        //导航
+        $data['navig'] = Navigation::getNav();
+        //二级导航
+        $data['towNav'] = Navigation::getNavTwo($oneId);
+
+        //内容
+        foreach ($data['towNav'] as $towNav){
+            if ($towNav->id == 9){
+                //企业纪录片
+
+            }else{
+                //其他内容
+
+            }
+        }
+
+        dd($data);
+        return view('Mobile.Index.brand',compact('data',$data));
     }
 
     //嘉宾大学

@@ -115,8 +115,16 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-group" style="width: 100%;height: 150px;resize: none;" name="intro">{{$data['video']['intro']}}</textarea>
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
+                                    <textarea class="form-group" style="width: 100%;height: 80px;resize: none;" name="intro">{{$data['video']['intro']}}</textarea>
+                                    <p><span id="text-intro">80</span>/80</p>
+                                </div>
+                            </div>
+                             <!-- 内容 -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">内容：</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-group" style="width: 100%;height: 150px;resize: none;" name="content">{{$data['video']['content']}}</textarea>
+                                    <p><span id="text-content">80</span>/80</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -173,6 +181,27 @@
             $('#cover').attr('src',dataURL);
             $('[name=cover]').attr('value',dataURL);
         }
+    });
+
+    $('[name=intro]').on('input propertychange',function(){
+                 var $this = $(this),
+                     _val = $this.val(),
+                     count = "";
+        if (_val.length > 255) {
+            $this.val(_val.substring(0, 255));
+        }
+        count = 255 - $this.val().length;
+        $("#text-intro").text(count);   
+    });
+    $('[name=content]').on('input propertychange',function(){
+                 var $this = $(this),
+                     _val = $this.val(),
+                     count = "";
+        if (_val.length > 80) {
+            $this.val(_val.substring(0, 80));
+        }
+        count = 80 - $this.val().length;
+        $("#text-brief").text(count);   
     });
     </script>
 @stop

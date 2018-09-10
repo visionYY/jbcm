@@ -89,6 +89,7 @@ class VideoController extends Controller
             'publish_time'=>'required',
             'labels'=>'required',
             'cover'=>'required',
+            'content'=>'required',
             'intro'=>'required');
         $credentials = $this->validate($request,$verif);
         $credentials['address'] = Helper::checkVideoLocal($credentials['address']);
@@ -131,6 +132,7 @@ class VideoController extends Controller
             'cg_id'=>'required|numeric',
             'nav_id'=>'required|numeric',
             'publish_time'=>'required',
+            'content'=>'required',
             'intro'=>'required');
         $credentials = $this->validate($request,$verif);
         $credentials['address'] = Helper::checkVideoLocal($credentials['address']);

@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="{{asset('Mobile/css/animate.min.css')}}">
   <link rel="stylesheet" href="{{asset('Mobile/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('Mobile/css/all.css')}}">
-  <link rel="stylesheet" href="{{asset('Mobile/css/index.css')}}">
 </head>
 <body>
    @yield('content')

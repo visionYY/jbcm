@@ -29,7 +29,11 @@ Route::get('doSearch','Home\IndexController@doSearch');
 
 //公共链接
 Route::get('getHref/id/{id}','Home\IndexController@getHref');
-Route::get('page/pageTop40','Home\PageController@pageTop40');
+Route::group(['prefix'=>'page'],function (){
+    Route::get('pageTop40','Home\PageController@pageTop40');
+    Route::get('meeting_2018','Home\PageController@meeting_2018');
+    Route::get('meeting_2018_map','Home\PageController@meeting_2018_map');
+});
 
 //移动端
 Route::group(['prefix'=>'mobile'],function (){

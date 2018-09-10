@@ -21,11 +21,10 @@ class IndexController extends Controller
 
     //首页
     public function index(){
-        $data['title'] = '嘉宾传媒-遍访天下公司、纪录时代商业';
+        $data['title'] = '我有嘉宾-遍访天下公司、纪录时代商业';
 
         //导航
-        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
-        $data['navig'] = Helper::_tree_json($navig);
+        $data['navig'] = Navigation::getNav();
 
         //广告
         $data['ind_vid_adv'] = Advertising::getAdver(1,1);
@@ -59,7 +58,7 @@ class IndexController extends Controller
         return view('Home.Index.index',compact('data',$data));
     }
 
-    //转发
+    //重定向
     public function transmit($oneId,$secId){
         switch ($oneId){
             case 2:
@@ -94,14 +93,14 @@ class IndexController extends Controller
         $data['title'] = '品牌节目';
         $data['secId'] = $secId;
         //导航
-        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
-        $data['navig'] = Helper::_tree_json($navig);
+        $data['navig'] = Navigation::getNav();
         //二级导航
         $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
         foreach ($data['towNav'] as $twoNav) {
             if ($twoNav->id == 9) {
                 //企业纪录片
-                $twoNav->video = Video::orderBy('created_at')->where('nav_id', $twoNav->id)->limit(3)->get();
+//                $twoNav->video = Video::orderBy('created_at','desc')->where('nav_id', $twoNav->id)->limit(3)->get();
+                $twoNav->video = Video::getNavigation($twoNav->id,3);
                 //相关推荐
                 $lables = '';
                 foreach ($twoNav->video as $v){

@@ -1,6 +1,7 @@
 @extends('layouts.mobile')
 @section('title',$data['title'])
 @section('content')
+  <link rel="stylesheet" href="{{asset('Mobile/css/index.css')}}">
   <div data-role="page" id="pageone">
      @include('layouts.m_header')
   
@@ -89,6 +90,9 @@
       
     </div>
   @include('layouts.m_footer')
+  <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script>
+  <script src="{{asset('Mobile/js/swiper.min.js')}}"></script>
+  <script src="{{asset('Mobile/js/iscroll.js')}}"></script>
   <script src="{{asset('Mobile/js/index.js')}}"></script>
   <script>
     $(document).ready(function(){

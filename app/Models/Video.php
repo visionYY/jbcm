@@ -9,7 +9,7 @@ class Video extends Model
 {
     protected $table = 'video';
 
-    protected $fillable = ['title','address','duration','cover','cg_id','nav_id','labels','status','author','publish_time','intro'];
+    protected $fillable = ['title','address','duration','cover','cg_id','nav_id','labels','status','author','publish_time','brief','intro'];
 
     /*
      * 后台查询
@@ -69,5 +69,10 @@ class Video extends Model
     public static function getCategory($cgid,$num,$start=0){
         $vid = self::where('cg_id',$cgid)->orderBy('publish_time','desc')->limit($start,$num)->get();
         return $vid;
+    }
+
+    //根据导航获取(参数：导航id，获取条数，第几条开始)
+    public static function getNavigation($nav_id,$num,$start=0){
+        return self::orderBy('created_at','desc')->where('nav_id', $nav_id)->skip($start)->take($num)->get();
     }
 }
