@@ -62,6 +62,8 @@ return [
     'index_show_tust'       => 8,
     //首页文章推荐 展示几条
     'show_num'              => 20,
+    //手机端默认展示条数
+    'm_show_num'            => 5,
 
     //截图比例(通用) 宽*高
     'scre_gm_width'   => 268,
@@ -268,7 +270,7 @@ return [
             ['url' => "https://www.baidu.com",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ],
             ['url' => "https://www.baidu.com",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ],
             ['url' => "https://www.baidu.com",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ],
-            ['url' => "https://www.baidu.com",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ],
+            ['url' => "https://www.baidu.com    ",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ],
             ['url' => "https://www.baidu.com",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ],
             ['url' => "https://www.baidu.com",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ],
             ['url' => "https://www.baidu.com",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ]

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>嘉宾大学</title>
+    <title>POWER100·中国商业案例</title>
     <link rel="icon" type="image/x-icon" href={{asset("Home/images/wetalkTV.ico")}} />
     <link rel="stylesheet" href="{{asset('Home/css/top.css')}}" charset="utf-8">
     <link rel="stylesheet" media="screen and (max-width:750px)" href="{{asset('Home/css/reset.css')}}" charset="utf-8">

@@ -95,7 +95,7 @@ class IndexController extends Controller
         //导航
         $data['navig'] = Navigation::getNav();
         //二级导航
-        $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
+        $data['towNav'] = Navigation::getNavTwo($oneId);
         foreach ($data['towNav'] as $twoNav) {
             if ($twoNav->id == 9) {
                 //企业纪录片
@@ -113,8 +113,9 @@ class IndexController extends Controller
                 $labStr = implode(',',$labArr2);
                 $twoNav->like = Video::guessLike($labStr,8);
             } else {
-                //其他文章部分
-                $threeNav = Navigation::orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
+                //其他文章部分getNavTwo
+//                $threeNav = Navigation::orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
+                $threeNav = Navigation::getNavTwo($twoNav->id);
                 foreach ($threeNav as $art) {
                     $art->article = Navigation::getArticleVideo($art->id,3);
                     foreach ($art->article as $v){
@@ -268,17 +269,7 @@ class IndexController extends Controller
         $cate = Category::select('cg_name')->find($data['article']->cg_id)->toArray();
         $data['article'] -> cg_name = $cate['cg_name'];
         //时间
-        $time = strtotime($data['article']->publish_time);
-        $difference = time() - $time;
-        if ($difference < 60*60){
-            $diff = floor($difference/60);
-            $data['article'] -> push = $diff.'分钟前';
-        }elseif($difference > 60*60 && $difference < 60*60*24){
-            $diff = floor($difference/3600);
-            $data['article'] -> push = $diff.'小时前';
-        }else{
-            $data['article'] -> push = substr($data['article']->publish_time,0,10);
-        }
+        $data['article'] -> push = Helper::getDifferenceTime($data['article']->publish_time);
         //上一篇，下一篇
         $data['prev'] = Article::prev($id,$data['article']->nav_id);
         $data['next'] = Article::next($id,$data['article']->nav_id);
@@ -308,18 +299,7 @@ class IndexController extends Controller
         $cate = Category::select('cg_name')->find($data['video']->cg_id)->toArray();
         $data['video'] -> cg_name = $cate['cg_name'];
         //时间
-        $time = strtotime($data['video']->publish_time);
-        $difference = time() - $time;
-        if ($difference < 60*60){
-            $diff = floor($difference/60);
-            $data['video'] -> push = $diff.'分钟前';
-        }elseif($difference > 60*60 && $difference < 60*60*24){
-            $diff = floor($difference/3600);
-            $data['video'] -> push = $diff.'小时前';
-        }else{
-            $data['video'] -> push = substr($data['video']->publish_time,0,10);
-        }
-
+        $data['video'] -> push = Helper::getDifferenceTime($data['video']->publish_time);
         //猜你喜欢
         $data['like'] = Video::guessLike($data['video']->labels,3);
 

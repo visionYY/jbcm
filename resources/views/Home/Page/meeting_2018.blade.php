@@ -77,7 +77,7 @@
                 每一个敢于用创新的力量去引领时代、改变世界的人都值得荣耀。嘉宾传媒联合FT中文网，挖掘七大行业的100家中国企业，发布「中国力量」POWER100商业案例榜单，致敬具有创造精神、冒险精神的时代先锋。
             </p>    
             <div class="top">
-              <a href=""><img src="{{asset('Mobile/images/imgMeeting/top40.png')}}" alt=""></a>
+              <a href="{{url('page/pageTop40')}}"><img src="{{asset('Mobile/images/imgMeeting/top40.png')}}" alt=""></a>
             </div>
           </div>  
           <div class="interact">

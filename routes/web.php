@@ -27,6 +27,9 @@ Route::get('tutorStudent/detail/id/{id}','Home\IndexController@tsDetail');
 Route::get('search','Home\IndexController@search');
 Route::get('doSearch','Home\IndexController@doSearch');
 
+//API
+Route::get('getCategoryPage','Home\IndexController@getCategoryPage');       //首页数据获取
+
 //公共链接
 Route::get('getHref/id/{id}','Home\IndexController@getHref');
 Route::group(['prefix'=>'page'],function (){
@@ -44,10 +47,12 @@ Route::group(['prefix'=>'mobile'],function (){
     Route::get('summit/oneId/{oneId}','Mobile\IndexController@summit');
     Route::get('tutorStudent/oneId/{oneId}/secId/{secId}','Mobile\IndexController@tutorStudent');
     Route::get('aboutUs/oneId/{oneId}/secId/{secId}','Mobile\IndexController@aboutUs');
+
+    //API
+    Route::get('getBrandMessge','Mobile\ApiController@getBrandMessge');     //品牌页数据获取
 });
 
-//API
-Route::get('getCategoryPage','Home\IndexController@getCategoryPage');       //首页数据获取
+
 //Route::get('upload','Home\IndexController@getCategoryPage');
 
 //测试

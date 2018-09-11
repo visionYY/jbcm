@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Navigation;
 use App\Models\TutorStudent;
+use App\Models\Video;
 use App\Services\Helper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -92,14 +93,25 @@ class IndexController extends Controller
         foreach ($data['towNav'] as $towNav){
             if ($towNav->id == 9){
                 //企业纪录片
-
+                $towNav->content = Video::getNavigation($towNav->id,config('hint.m_show_num'));
             }else{
                 //其他内容
-
+                $threeNav = Navigation::getNavTwo($towNav->id);
+                foreach ($threeNav as $v){
+                    $arrIds[] = $v->id;
+                }
+                $strIds = implode(',',$arrIds);
+                $towNav->content = Navigation::getArticleVideo($strIds,config('hint.m_show_num'));
+                foreach ($towNav->content as $con){
+                    $con->publish_time = Helper::getDifferenceTime($con->publish_time);
+                    $thisNav = Navigation::find($con->nav_id);
+                    $con->nav_name = $thisNav->n_name;
+                }
             }
         }
-
-        dd($data);
+        //我有嘉宾顶部广告位 4
+        $data['adver'] = Advertising::getAdver(4,1);
+//        dd($data);
         return view('Mobile.Index.brand',compact('data',$data));
     }
 

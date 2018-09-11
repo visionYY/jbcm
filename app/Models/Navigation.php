@@ -31,7 +31,7 @@ class Navigation extends Model
     //同时获取文章跟视频
     public static function getArticleVideo($nid,$num,$start=0){
         if($nid != 0){
-            $where = 'WHERE t.nav_id='.$nid;
+            $where = 'WHERE t.nav_id IN ('.$nid.')';
         }else{
             $where = '';
         }

@@ -70,6 +70,30 @@ class Helper
         $str = implode(':',$arr);
         return $str;
     }
+
+    //判断时间
+    public static function getDifferenceTime($date){
+        $time = strtotime($date);
+        $difference = time() - $time;
+        if ($difference < 60*60){
+            $diff = floor($difference/60);
+            $diffTime = $diff.'分钟前';
+        }elseif($difference > 60*60 && $difference < 60*60*24){
+            $diff = floor($difference/3600);
+            $diffTime = $diff.'小时前';
+        }else{
+            $diffTime = substr($date,0,10);
+        }
+        return $diffTime;
+    }
+
+
+
+
+
+
+
+
 }
 
 ?>
