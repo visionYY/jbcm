@@ -139,10 +139,9 @@ class IndexController extends Controller
         $data['title'] = '嘉宾大学';
         $data['secId'] = $secId;
         //导航
-        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
-        $data['navig'] = Helper::_tree_json($navig);
+        $data['navig'] = Navigation::getNav();
         //二级导航
-        $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
+        $data['towNav'] = Navigation::getNavTwo($oneId);
         foreach ($data['towNav'] as $twoNav) {
             $threeNav = Navigation::orderBy('sort', 'desc')->orderBy('created_at')->where('parent_id', $twoNav->id)->get();
             foreach ($threeNav as $art) {
@@ -172,10 +171,9 @@ class IndexController extends Controller
     public function summit($oneId){
         $data['title'] = '嘉宾峰会';
         //导航
-        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
-        $data['navig'] = Helper::_tree_json($navig);
+        $data['navig'] = Navigation::getNav();
         //二级导航
-        $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
+        $data['towNav'] = Navigation::getNavTwo($oneId);
         foreach ($data['towNav'] as $twoNav) {
             $twoNav->article = Navigation::getArticleVideo($twoNav->id,3);
             foreach ($twoNav->article as $v){
@@ -194,10 +192,9 @@ class IndexController extends Controller
         $data['title'] = '导师与学员';
         $data['secId'] = $secId;
         //导航
-        $navig = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
-        $data['navig'] = Helper::_tree_json($navig);
+        $data['navig'] = Navigation::getNav();
         //二级导航
-        $data['towNav'] = Navigation::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$oneId)->get();
+        $data['towNav'] = Navigation::getNavTwo($oneId);
         foreach ($data['towNav'] as $twoNav){
             if ($twoNav->id ==11){
                 $twoNav->user = TutorStudent::where('type',1)->orderBy('sort','desc')->get();

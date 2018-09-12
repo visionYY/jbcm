@@ -44,12 +44,17 @@ Route::group(['prefix'=>'mobile'],function (){
     Route::get('transmit/oneId/{oneId}/secId/{secId}','Mobile\IndexController@transmit');
     Route::get('brand/oneId/{oneId}/secId/{secId}','Mobile\IndexController@brand');
     Route::get('university/oneId/{oneId}/secId/{secId}','Mobile\IndexController@university');
-    Route::get('summit/oneId/{oneId}','Mobile\IndexController@summit');
+    Route::get('summit/oneId/{oneId}/secId/{secId}','Mobile\IndexController@summit');
     Route::get('tutorStudent/oneId/{oneId}/secId/{secId}','Mobile\IndexController@tutorStudent');
     Route::get('aboutUs/oneId/{oneId}/secId/{secId}','Mobile\IndexController@aboutUs');
 
+    Route::get('tsDetail/id/{id}','Mobile\IndexController@tsDetail');
+    Route::get('article/id/{id}','Mobile\IndexController@article');
+    Route::get('video/id/{id}','Mobile\IndexController@video');
     //API
+    Route::get('getIndexMessge','Mobile\ApiController@getIndexMessge');     //首页页数据获取
     Route::get('getBrandMessge','Mobile\ApiController@getBrandMessge');     //品牌页数据获取
+    Route::get('getPeopleMessge','Mobile\ApiController@getPeopleMessge');     //导师学员分页数据获取
 });
 
 
@@ -94,5 +99,3 @@ Route::group(['prefix'=>'admin'],function(){
 Route::get('/assist',function (){
     return view('layouts.assist');
 });
-
-

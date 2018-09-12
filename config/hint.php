@@ -63,7 +63,7 @@ return [
     //首页文章推荐 展示几条
     'show_num'              => 20,
     //手机端默认展示条数
-    'm_show_num'            => 5,
+    'm_show_num'            => 1,
 
     //截图比例(通用) 宽*高
     'scre_gm_width'   => 268,

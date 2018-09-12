@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mobile;
 
 use App\Models\Navigation;
+use App\Models\TutorStudent;
 use App\Models\Video;
 use App\Services\Helper;
 use Illuminate\Http\Request;
@@ -11,6 +12,24 @@ use App\Http\Controllers\Controller;
 class ApiController extends Controller
 {
 
+    //首页数据获取
+    public function getIndexMessge(Request $request){
+        $cid = $request->get('cid');
+        $page = $request->get('page');
+        $res = Navigation::getCateAV($cid,config('hint.m_show_num'),$page);
+        foreach ($res as $art){
+            $nav = Navigation::find($art->nav_id);
+            $art->n_name = $nav->n_name;
+            if ($art->type==1){
+                $art->url = url('mobile/article/id/'.$art->id);
+            }else{
+                $art->url = url('mobile/video/id/'.$art->id);
+            }
+            $art->cover = asset($art->cover);
+            $art->publish_time = Helper::getDifferenceTime($art->publish_time);
+        }
+        return response($res);
+    }
 
     //品牌节目数据获取
     public function getBrandMessge(Request $request){
@@ -22,10 +41,16 @@ class ApiController extends Controller
         }else{
             //其他内容
             $threeNav = Navigation::getNavTwo($nav);
-            foreach ($threeNav as $v){
-                $arrIds[] = $v->id;
+            if ($threeNav->toArray()){
+                foreach ($threeNav as $v){
+                    $arrIds[] = $v->id;
+                }
+                $strIds = implode(',',$arrIds);
+            }else{
+                $strIds = $nav;
             }
-            $strIds = implode(',',$arrIds);
+
+
             $content = Navigation::getArticleVideo($strIds,config('hint.m_show_num'),$page);
             foreach ($content as $con){
                 $con->publish_time = Helper::getDifferenceTime($con->publish_time);
@@ -36,8 +61,25 @@ class ApiController extends Controller
                 }else{
                     $con->url = url('mobile/video/id/'.$con->id);
                 }
+                $con->cover = asset($con->cover);
             }
         }
         return response($content);
+    }
+
+    //导师学员数据获取
+    public function getPeopleMessge(Request $request){
+        $nav = $request->get('nav');
+        $page = $request->get('page');
+        if($nav==11){
+            $type = 1;
+        }else{
+            $type = 2;
+        }
+        $res = TutorStudent::getPeople($type,config('hint.m_show_num'),$page);
+        foreach ($res as $v){
+            $v->url = url('mobile/tsDetail/id/'.$v->id);
+        }
+        return response($res);
     }
 }

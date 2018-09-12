@@ -13,42 +13,34 @@
       <div id="tablea" class="tablea">
         @foreach($data['towNav'] as $towNav)
         <div class="towNav {{$towNav->id == $data['secId'] ? '' : 'box'}}">
-          @if($towNav->id ==9)
-            @foreach($towNav->content as $video)
-            <div class="video">
-              <video width="100%"  controls>
-                <source src="{{$video->address}}" type="video/mp4">
-                <source src="{{$video->address}}" type="video/ogg">
-              </video>
-              <p class="video-tit">{{$video->title}}（{{$video->duration}}）</p>
-            </div>
-            @endforeach
-            <p class="load" nav="{{$towNav->id}}" page="{{config('hint.m_show_num')}}">加载更多</p>
-          @else
           <div class="banner">
-            <a href="{{$data['adver'][0]['href']}}">
-              <img src="{{asset($data['adver'][0]['cover'])}}" alt="" style="width: 100%">
+            <a href="{{$towNav->adver['href']}}">
+              <img src="{{asset($towNav->adver['cover'])}}" alt="" style="width: 100%">
             </a>
           </div>
           <div class="con">
-            @foreach($towNav->content as $article)
-            <dl class="list">
-              @if($article->type==1)
-                <a href="{{url('mobile/artile/id/'.$article->id)}}">
-              @else
-                <a href="{{url('mobile/video/id/'.$article->id)}}">
-              @endif
-                <dt class="list-img"><img src="{{asset($article->cover)}}" alt=""></dt>
-                <dd>
-                  <p class="list-tit">{{$article->title}}</p>
-                  <p class="list-but"><span class="sp-time">{{$article->publish_time}}</span><span class="sp-kind">{{$article->nav_name}}</span></p>
-                </dd>
-              </a>
-            </dl>
-            @endforeach
-            <p class="load" nav="{{$towNav->id}}" page="{{config('hint.m_show_num')}}">加载更多</p>
+            @if($towNav->content)
+              @foreach($towNav->content as $article)
+              <dl class="list">
+                @if($article->type==1)
+                  <a href="{{url('mobile/artile/id/'.$article->id)}}">
+                @else
+                  <a href="{{url('mobile/video/id/'.$article->id)}}">
+                @endif
+                  <dt class="list-img"><img src="{{asset($article->cover)}}" alt=""></dt>
+                  <dd>
+                    <p class="list-tit">{{$article->title}}</p>
+                    <p class="list-but"><span class="sp-time">{{$article->publish_time}}</span><span class="sp-kind">{{$article->nav_name}}</span></p>
+                  </dd>
+                </a>
+              </dl>
+              @endforeach
+              <p class="load" nav="{{$towNav->id}}" page="{{config('hint.m_show_num')}}">加载更多</p>
+            @else
+              <p>暂无内容</p>
+            @endif
           </div>
-          @endif
+         
         </div>
         @endforeach
       </div>

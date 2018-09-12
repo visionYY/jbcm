@@ -28,15 +28,24 @@ class Navigation extends Model
         return self::orderBy('sort','desc')->orderBy('created_at')->where('parent_id',$parent_id)->get();
     }
 
-    //同时获取文章跟视频
-    public static function getArticleVideo($nid,$num,$start=0){
-        if($nid != 0){
-            $where = 'WHERE t.nav_id IN ('.$nid.')';
+    //同时获取文章跟视频(按导航)
+    public static function getArticleVideo($nids,$num,$start=0){
+        $where = 'WHERE t.nav_id IN ('.$nids.')';
+        $res = DB::select('SELECT * FROM (SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,labels FROM hg_article UNION ALL 
+                                                SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,labels FROM hg_video ) t 
+                                               '.$where.' ORDER BY t.publish_time DESC LIMIT '.$start.','.$num);
+        return $res;
+    }
+
+    //视频文章获取（根据分类）
+    public static function getCateAV($cgid,$num,$start=0){
+        if($cgid != 0){
+            $where = 'WHERE t.cg_id='.$cgid;
         }else{
             $where = '';
         }
-        $res = DB::select('SELECT * FROM (SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,labels FROM hg_article UNION ALL 
-                                                SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,labels FROM hg_video ) t 
+        $res = DB::select('SELECT * FROM (SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type FROM hg_article UNION ALL 
+                                                SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type FROM hg_video ) t 
                                                '.$where.' ORDER BY t.publish_time DESC LIMIT '.$start.','.$num);
         return $res;
     }
