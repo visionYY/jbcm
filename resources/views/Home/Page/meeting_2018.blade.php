@@ -14,6 +14,7 @@
 <style>
 .centera{
   background:url("{{asset('Mobile/images/imgMeeting/bg.png')}}") no-repeat;
+  background-size:cover;
 }
 </style>
 <body>
