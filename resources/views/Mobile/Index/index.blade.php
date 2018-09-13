@@ -54,7 +54,7 @@
             @foreach($cate['content'] as $key => $content)
               <dl class="list">
                 @if($content->type==1)
-                  <a href="{{url('mobile/artile/id/'.$content->id)}}">
+                  <a href="{{url('mobile/article/id/'.$content->id)}}">
                 @else
                   <a href="{{url('mobile/video/id/'.$content->id)}}">
                 @endif
@@ -72,7 +72,7 @@
                 <div class="tutor-con">
                   <ul class="tutor-list"> 
                     @foreach($data['tutor'] as $tutor)
-                    <li onclick="window.location.href='{{url('mobile/tutorStudent/detail/id/'.$tutor->id)}}'">
+                    <li onclick="window.location.href='{{url('mobile/tsDetail/id/'.$tutor->id)}}'">
                       <span class="kind">{{$tutor->type == 1 ? '导师' : '学员'}}</span>
                       <img src="{{asset($tutor->head_pic)}}" alt="">
                       <p class="name">{{$tutor->name}}</p>

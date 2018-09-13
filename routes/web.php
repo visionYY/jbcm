@@ -48,6 +48,9 @@ Route::group(['prefix'=>'mobile'],function (){
     Route::get('tutorStudent/oneId/{oneId}/secId/{secId}','Mobile\IndexController@tutorStudent');
     Route::get('aboutUs/oneId/{oneId}/secId/{secId}','Mobile\IndexController@aboutUs');
 
+    Route::get('search','Mobile\IndexController@search');
+    Route::get('doSearch','Mobile\IndexController@doSearch');
+
     Route::get('tsDetail/id/{id}','Mobile\IndexController@tsDetail');
     Route::get('article/id/{id}','Mobile\IndexController@article');
     Route::get('video/id/{id}','Mobile\IndexController@video');

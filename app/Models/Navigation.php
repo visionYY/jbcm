@@ -49,4 +49,11 @@ class Navigation extends Model
                                                '.$where.' ORDER BY t.publish_time DESC LIMIT '.$start.','.$num);
         return $res;
     }
+
+    //按标题获取相关的信息
+    public static function getSearchTitle($title){
+        $res = DB::select('SELECT * FROM (SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,content FROM hg_article UNION ALL 
+SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,content FROM hg_video ) t WHERE t.title LIKE "%'.$title.'%" ORDER BY t.publish_time;');
+        return $res;
+    }
 }

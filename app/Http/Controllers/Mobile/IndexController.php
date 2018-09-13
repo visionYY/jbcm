@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mobile;
 use App\Models\Advertising;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Hotbot;
 use App\Models\Navigation;
 use App\Models\TutorStudent;
 use App\Models\Video;
@@ -207,21 +208,119 @@ class IndexController extends Controller
 
     //关于我们
     public function aboutUs($oneId,$secId){
-        echo '关于我们';
+        $data['title'] = '关于我们';
+        $data['secId'] = $secId;
+        //导航
+        $data['navig'] = Navigation::getNav();
+        //二级导航
+        $data['towNav'] = Navigation::getNavTwo($oneId);
+
+        return view('Mobile.Index.aboutUs',compact('data',$data));
     }
 
     //导师详情
     public function tsDetail($id){
-        echo '导师学员详情';
+        $data['prople'] = TutorStudent::find($id);
+        $data['title'] = $data['prople'] -> name;
+        $classic_quote = explode('；',$data['prople']->classic_quote);
+        $data['classic_quote']= array_filter($classic_quote);
+
+        //相关内容
+        $data['about'] = Navigation::getSearchTitle($data['prople']->name);
+        foreach ($data['about'] as $about){
+            $about->publish_time = Helper::getDifferenceTime($about->publish_time);
+            $thisNav = Navigation::find($about->nav_id);
+            $about->nav_name = $thisNav->n_name;
+        }
+//        dd($data);
+        return view('Mobile.Index.tsDetail',compact('data',$data));
     }
 
     //文章详情
     public function article($id){
-        echo '文章详情';
+        $data['article'] = Article::find($id);
+        $data['title'] = $data['article']->title;
+        //当前导航
+        $nav = Navigation::select('n_name')->find($data['article']->nav_id)->toArray();
+        $data['article'] -> nav_name = $nav['n_name'];
+        //当前分类
+        $cate = Category::select('cg_name')->find($data['article']->cg_id)->toArray();
+        $data['article'] -> cg_name = $cate['cg_name'];
+        //时间
+        $data['article'] -> push = Helper::getDifferenceTime($data['article']->publish_time);
+
+        //相关内容
+        $data['like'] = Article::guessLike($data['article']->labels);
+        foreach ($data['like'] as $like){
+            $like->publish_time = Helper::getDifferenceTime($like->publish_time);
+            $thisNav = Navigation::find($like->nav_id);
+            $like->nav_name = $thisNav->n_name;
+        }
+//        dd($data);
+        return view('Mobile.Index.article',compact('data',$data));
     }
 
     //视频详情
     public function video($id){
-        echo '视频详情';
+        $data['video'] = Video::find($id);
+        $data['title'] = $data['video']->title;
+
+        //当前导航
+        $nav = Navigation::select('n_name')->find($data['video']->nav_id)->toArray();
+        $data['video'] -> nav_name = $nav['n_name'];
+        //当前分类
+        $cate = Category::select('cg_name')->find($data['video']->cg_id)->toArray();
+        $data['video'] -> cg_name = $cate['cg_name'];
+        //时间
+        $data['video'] -> push = Helper::getDifferenceTime($data['video']->publish_time);
+
+        //相关内容
+        $data['like'] = Video::guessLike($data['video']->labels);
+        foreach ($data['like'] as $like){
+            $like->publish_time = Helper::getDifferenceTime($like->publish_time);
+            $thisNav = Navigation::find($like->nav_id);
+            $like->nav_name = $thisNav->n_name;
+        }
+//        dd($data);
+        return view('Mobile.Index.video',compact('data',$data));
+    }
+
+    //搜索
+    public function search(){
+        $data['title'] = '搜索';
+        $data['hotbot'] = Hotbot::all();
+        return view('Mobile.Index.search',compact('data',$data));
+    }
+
+    //搜索执行
+    public function doSearch(Request $request){
+        $data['title'] = '搜索';
+        $keybord = $request->get('keybord');
+        $article =  Article::search($keybord);
+        if ($article){
+            foreach ($article as $v){
+                $nav = Navigation::find($v->nav_id);
+                $v->n_name = $nav->n_name;
+                $v->type = 1;
+            }
+        }
+        $video = Video::search($keybord);
+        if ($video){
+            foreach ($video as $v){
+                $nav = Navigation::find($v->nav_id);
+                $v->n_name = $nav->n_name;
+                $v->type = 2;
+            }
+        }
+        $data['res'] = array_merge($article,$video);
+        $data['keybord'] = $keybord;
+
+        $hotbot = Hotbot::where('name',$keybord)->first();
+        if ($hotbot){
+            $update['value'] = $hotbot->value + 1;
+            Hotbot::find($hotbot->id)->update($update);
+        }
+//        dd($data);
+        return view('Mobile.Index.doSearch',compact('data',$data));
     }
 }

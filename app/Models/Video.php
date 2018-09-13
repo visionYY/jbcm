@@ -55,7 +55,7 @@ class Video extends Model
                 $labwhere .= 'instr(labels,"'.$v.'") > 0 ';
             }
         }
-        $vid = DB::select('SELECT id,title,cover FROM hg_video WHERE '.$labwhere.' LIMIT '.$limit);
+        $vid = DB::select('SELECT id,nav_id,title,cover,publish_time FROM hg_video WHERE '.$labwhere.' ORDER BY publish_time DESC LIMIT '.$limit);
         return $vid;
     }
 
