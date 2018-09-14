@@ -122,6 +122,11 @@
           $(".orangerb").removeClass('oranger-hei');
         }
       })
+
+      var wid = $(window).width();
+			if(wid>750){
+				window.location.href="{{url('/')}}"
+			}
     });
     
     $("#oranger li a").on("mouseover",function(){ //给li标签添加事件  
