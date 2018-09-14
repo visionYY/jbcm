@@ -9,6 +9,7 @@
 }
 .footer_box{
   width:84%;
+  height:90px;
   max-width: 1180px;
   margin: 0 auto;
   display:flex;
@@ -19,11 +20,14 @@
   width: 336px;
   height:60px;
   border-right: 1px solid #dedede;
+  position: relative;
 }
 .foo-nav{
+  position: absolute;
+  top:50%;
+  margin-top:-15px;
   width: 97%;
   height: 30px;
-  border-bottom: 1px solid #dedede;
   padding: 5px 0;
   padding-left: 0px;
 }
@@ -42,8 +46,12 @@
   color: #ecebeb;
 }
 .foo-bot{
+  background: #111830;
+  text-align:center;
   color:#999999;
   font-size:12px;
+  height:30px;
+  line-height:30px;
   padding-left: 5px;
 }
 .footer-cen{

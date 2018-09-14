@@ -8,7 +8,6 @@
                         <li><a href="{{url('aboutUs/oneId/4/secId/26')}}">合作伙伴</a></li>
                         <li><a href="{{url('aboutUs/oneId/4/secId/27')}}">寻求报道</a></li>
                     </ul>
-                    <div class="foo-bot">©2018 深圳嘉宾传媒有限公司 | 粤ICP 备16086053号-1号</div>
                 </div>
                 <div class="footer-cen">
                     <p>电话：400-992-0420（工作时间：周一至周五 9:30-18:30）</p>
@@ -31,6 +30,7 @@
                 </div>
             </div>
         </div>
+        <div class="foo-bot">© 2018 深圳嘉宾传媒有限公司 | 粤ICP备：16086053号 | 广播电视节目制作经营许可证：（粤）字第02345号 </div>
     </div>
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src={{asset("Home/js/jquery.min.js")}}></script>
