@@ -30,7 +30,7 @@ Route::get('doSearch','Home\IndexController@doSearch');
 //API
 Route::get('getCategoryPage','Home\IndexController@getCategoryPage');       //首页数据获取
 
-//公共链接
+//公共链接PC
 Route::get('getHref/id/{id}','Home\IndexController@getHref');
 Route::group(['prefix'=>'page'],function (){
     Route::get('pageTop40','Home\PageController@pageTop40');
@@ -58,6 +58,12 @@ Route::group(['prefix'=>'mobile'],function (){
     Route::get('getIndexMessge','Mobile\ApiController@getIndexMessge');     //首页页数据获取
     Route::get('getBrandMessge','Mobile\ApiController@getBrandMessge');     //品牌页数据获取
     Route::get('getPeopleMessge','Mobile\ApiController@getPeopleMessge');     //导师学员分页数据获取
+
+    //公共链接M
+    Route::group(['prefix'=>'page'],function (){
+        Route::get('meeting_2018','Mobile\PageController@meeting_2018');
+        Route::get('meeting_2018_map','Mobile\PageController@meeting_2018_map');
+    });
 });
 
 
