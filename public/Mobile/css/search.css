@@ -64,7 +64,7 @@
   height:auto;
   padding:.1rem .12rem;
 }
-.load{
+/* .load{
   width: 30%;
   background:#fff;
   margin: .1rem auto;
@@ -75,7 +75,7 @@
   color: #4D63A7;
   font-size:.13rem;
   border-radius: .04rem;
-}
+} */
 .con-none{
   width:100%;
   text-align:center;

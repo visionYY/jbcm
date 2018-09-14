@@ -302,6 +302,7 @@ class IndexController extends Controller
                 $nav = Navigation::find($v->nav_id);
                 $v->n_name = $nav->n_name;
                 $v->type = 1;
+                $v->publish_time = Helper::getDifferenceTime($v->publish_time);
             }
         }
         $video = Video::search($keybord);
@@ -310,6 +311,7 @@ class IndexController extends Controller
                 $nav = Navigation::find($v->nav_id);
                 $v->n_name = $nav->n_name;
                 $v->type = 2;
+                $v->publish_time = Helper::getDifferenceTime($v->publish_time);
             }
         }
         $data['res'] = array_merge($article,$video);
@@ -320,7 +322,7 @@ class IndexController extends Controller
             $update['value'] = $hotbot->value + 1;
             Hotbot::find($hotbot->id)->update($update);
         }
-//        dd($data);
+    //    dd($data);
         return view('Mobile.Index.doSearch',compact('data',$data));
     }
 }

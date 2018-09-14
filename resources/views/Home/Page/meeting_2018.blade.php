@@ -13,7 +13,7 @@
   .meeting_box{
     background:#000;
     background:url({{asset('Home/images/imgPc/bg.png')}}) no-repeat !important;
-    background-size:cover !important;;
+    background-size:cover !important;
   }
 </style>
 <body>
@@ -255,7 +255,7 @@
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/ly.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/donews.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zqsb.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/cyj.png')}}" alt=""></a>                
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/cyj.png')}}" alt=""></a>             
             </div>
           </div>
           <div class="tw_list">

@@ -131,7 +131,9 @@
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/ly.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/donews.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/zqsb.png')}}" alt=""></a>
-                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/cyj.png')}}" alt=""></a>                
+                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/cyj.png')}}" alt=""></a>
+                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/hxws.png')}}" alt=""></a>
+                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/tysp.png')}}" alt=""></a>                
               </div>
             </div>
             <div class="tw_list">
