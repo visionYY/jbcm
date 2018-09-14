@@ -93,10 +93,10 @@
               });
             }
           }else{
-            html += '<p>已经到底部了</p>';
+            html += '<p class="bottom">已经到底部了</p>';
             thisObj.hide();
           }
-          thisObj.prev().append(html);
+          thisObj.parent().append(html);
         },
         error : function(e){
           console.log(e);

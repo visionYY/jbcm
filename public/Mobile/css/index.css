@@ -206,7 +206,7 @@ video{
 
   padding:0 .1rem;
 }
-#load{
+/* #load{
   width:30%;
   margin:.1rem auto;
   text-align:center;
@@ -215,7 +215,7 @@ video{
   line-height: .36rem;
   color:#4D63A7;
   border-radius:.04rem;
-}
+} */
 .footer{
   width:100%;
   height: 2.24rem;

@@ -46,7 +46,7 @@
 .con{
   width:100%;
 }
-.load{
+/* .load{
   width: 30%;
   background:#fff;
   margin: .1rem auto;
@@ -57,7 +57,7 @@
   color: #4D63A7;
   font-size:.13rem;
   border-radius: .04rem;
-}
+} */
 .video{
   width:100%;
   height:auto;
