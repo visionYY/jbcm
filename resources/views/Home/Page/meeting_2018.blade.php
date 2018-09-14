@@ -14,6 +14,7 @@
 <style>
 .centera{
   background:url("{{asset('Mobile/images/imgMeeting/bg.png')}}") no-repeat;
+  background-size:cover;
 }
 </style>
 <body>
@@ -134,7 +135,7 @@
               </div>
             </div>
             <div class="tw_list">
-              <p class="tw_list_tit"><span>品牌合作伙伴</span></p>
+              <p class="tw_list_tit"><span>官方视频直播平台</span></p>
               <div class="tw_list_con tw_lists">
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/yxzb.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/szb.png')}}" alt=""></a>
@@ -206,7 +207,7 @@
               <div class="rcon">
                 <div class="left">
                   <p class="rel_img"><img src="{{asset('Mobile/images/imgMeeting/mt.png')}}" alt=""></p>
-                  <p class="who">屈先生</p>
+                  <p class="who">梁女士</p>
                   <p class="contact">T: 15726635980</p>
                   <p class="contact">W: island1126</p>
                   <p class="contact">E: lh@wetalktv.cn</p>
