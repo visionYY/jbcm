@@ -10,7 +10,7 @@
       <div class="banner">
         @if(config('hint.index_show_adv') ==1)
         <!-- 视频 -->
-        <video controls poster="{{$data['ind_vid_adv'][0]['cover']}}">
+        <video controls poster="{{asset($data['ind_vid_adv'][0]['cover'])}}">
           <source src="{{$data['ind_vid_adv'][0]['video']}}" type="video/webm">
           <source src="{{$data['ind_vid_adv'][0]['video']}}" type="video/mp4">
         </video> 
@@ -67,7 +67,7 @@
               </dl>
               <!-- 导师学员 -->
               @if($cate['id'] == 0 && $key == 2)
-               <div class="tutor"> 
+                <div class="tutor"> 
                 <h4 class="tutor-tit">导师与学员<a href="{{url('mobile/tutorStudent/oneId/3/secId/11')}}">更多<i class="icon iconfont icon-gengduo"></i></a></h4>
                 <div class="tutor-con">
                   <ul class="tutor-list"> 
@@ -122,11 +122,6 @@
           $(".orangerb").removeClass('oranger-hei');
         }
       })
-
-      var wid = $(window).width();
-			if(wid>750){
-				window.location.href="{{url('/')}}"
-			}
     });
     
     $("#oranger li a").on("mouseover",function(){ //给li标签添加事件  

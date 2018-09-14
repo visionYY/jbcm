@@ -18,5 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//上传
 Route::post('upload','Api\commonController@upload');
 Route::post('imgDelete','Api\commonController@imgDelete');
+
+//微信接口
+Route::group(['prefix'=>'weixin'],function (){
+    Route::get('getShare','Api\WxController@getShare');
+});

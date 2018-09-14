@@ -275,5 +275,9 @@ return [
             ['url' => "https://www.baidu.com",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ],
             ['url' => "https://www.baidu.com",'img' => PHP_SAPI === 'cli' ? false : asset('Home/images/imgTop/1@2x.png') ]
         ]
-    ]
+    ],
+
+    //公众号
+    'appId' => 'wx87a51989fd90054d',
+    'appSecret' => 'f07cd74efc91a6d8e4ddb7dede68647e',
 ];
