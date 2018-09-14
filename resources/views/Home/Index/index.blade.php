@@ -179,6 +179,11 @@
                 prevButton: '.swiper-button-prev',
                 autoplayDisableOnInteraction : false,    //注意此参数，默认为true
             });
+
+			var wid = $(window).width();
+			if(wid<750){
+				window.location.href="{{url('mobile/index')}}"
+			}
         } 
 
         // setTimeout(function () {
