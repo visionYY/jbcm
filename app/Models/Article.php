@@ -67,7 +67,7 @@ class Article extends Model
                 $labwhere .= 'instr(labels,"'.$v.'") > 0 ';
             }
         }
-        $art = DB::select('SELECT id,title,cover FROM hg_article WHERE '.$labwhere.'LIMIT '.$limit);
+        $art = DB::select('SELECT id,nav_id,title,cover,publish_time FROM hg_article WHERE '.$labwhere.'  ORDER BY publish_time DESC LIMIT '.$limit);
 //        $art = DB::select("SELECT id,title,cover FROM hg_article WHERE labels like '%流浪汉%'");
 //        dd($art);
 //        $art = self::select('id','title','cover')->where('labels','like',$labelArr)->limit(8);

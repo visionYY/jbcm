@@ -19,5 +19,5 @@
 <div data-role="header" class="ui-header">
   <a href="javascript:;" id="pagehide"><i class="icon iconfont icon-mulu"></i></a>
   <b><img src="{{asset('Mobile/images//jiabindaxue_logo.png')}}" alt=""></b>
-  <a href="search.html"><i class="icon iconfont icon-sousuo search"></i></a>
+  <a href="{{url('mobile/search')}}"><i class="icon iconfont icon-sousuo search"></i></a>
 </div>

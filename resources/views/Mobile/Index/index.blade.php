@@ -53,22 +53,26 @@
           <div class="box">
             @foreach($cate['content'] as $key => $content)
               <dl class="list">
-                  <a href="article-detail.html">
+                @if($content->type==1)
+                  <a href="{{url('mobile/article/id/'.$content->id)}}">
+                @else
+                  <a href="{{url('mobile/video/id/'.$content->id)}}">
+                @endif
                     <dt class="list-img"><img src="{{asset($content->cover)}}" alt=""></dt>
                     <dd>
                       <p class="list-tit">{{$content->title}}</p>
-                      <p class="list-but"><span class="sp-time">三小时前</span><span class="sp-kind">{{$content->n_name}}</span></p>
+                      <p class="list-but"><span class="sp-time">{{$content->publish_time}}</span><span class="sp-kind">{{$content->n_name}}</span></p>
                     </dd>
                   </a>
               </dl>
               <!-- 导师学员 -->
               @if($cate['id'] == 0 && $key == 2)
                <div class="tutor"> 
-                <h4 class="tutor-tit">导师与学员<a href="tutor.html">更多<i class="icon iconfont icon-gengduo"></i></a></h4>
+                <h4 class="tutor-tit">导师与学员<a href="{{url('mobile/tutorStudent/oneId/3/secId/11')}}">更多<i class="icon iconfont icon-gengduo"></i></a></h4>
                 <div class="tutor-con">
                   <ul class="tutor-list"> 
                     @foreach($data['tutor'] as $tutor)
-                    <li>
+                    <li onclick="window.location.href='{{url('mobile/tsDetail/id/'.$tutor->id)}}'">
                       <span class="kind">{{$tutor->type == 1 ? '导师' : '学员'}}</span>
                       <img src="{{asset($tutor->head_pic)}}" alt="">
                       <p class="name">{{$tutor->name}}</p>
@@ -80,9 +84,7 @@
               </div>
               @endif
             @endforeach
-              <div id="load">
-                加载更多
-              </div>
+              <div class="load" cid="{{$cate['id']}}" page="{{config('hint.m_show_num')}}">加载更多</div>
           </div>
           @endforeach
         </div>
@@ -90,6 +92,7 @@
       
     </div>
   @include('layouts.m_footer')
+  <input type="hidden" name="url" value="{{url('mobile/getIndexMessge')}}">
   <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script>
   <script src="{{asset('Mobile/js/swiper.min.js')}}"></script>
   <script src="{{asset('Mobile/js/iscroll.js')}}"></script>
@@ -104,21 +107,21 @@
                     observer:true,//修改swiper自己或子元素时，自动初始化swiper
                     observeParents:true,//修改swiper的父元素时，自动初始化swiper
                 })
-    $(window).scroll(function(){
-      var scrT = $(window).scrollTop();
-      var offT = $("#oranger").offset().top;
-      var Hhei = $('.ui-header').height();
-      var hei = $("#oranger").height();
-      var boxT = $(".box").offset().top;
-      
-      
-      if(scrT>=offT-Hhei-hei){
-        $(".orangerb").addClass('oranger-hei');
-      }
-      if(offT<=240){
-        $(".orangerb").removeClass('oranger-hei');
-      }
-    })
+      $(window).scroll(function(){
+        var scrT = $(window).scrollTop();
+        var offT = $("#oranger").offset().top;
+        var Hhei = $('.ui-header').height();
+        var hei = $("#oranger").height();
+        var boxT = $(".box").offset().top;
+        
+        
+        if(scrT>=offT-Hhei-hei){
+          $(".orangerb").addClass('oranger-hei');
+        }
+        if(offT<=240){
+          $(".orangerb").removeClass('oranger-hei');
+        }
+      })
     });
     
     $("#oranger li a").on("mouseover",function(){ //给li标签添加事件  
@@ -128,6 +131,39 @@
     })
     $("#pagehide").click(function(){
       $("#myPanel").toggle()
+    })
+
+    url = $('[name=url]').val();
+    $('.load').click(function(){
+      var thisObj = $(this);
+      var cid = thisObj.attr('cid'),
+          page = thisObj.attr('page');
+      $.ajax({
+        url : url,
+        type : 'GET',
+        data : {cid:cid,page:page},
+        dataType : 'json',
+        success : function(d){
+          thisObj.attr('page',parseInt(page)+{{config('hint.m_show_num')}});
+          var html = '';
+          if (d !=0) {
+            $.each(d,function(index,item){
+                html += '<dl class="list"><a href="'+item.url+'">';
+                html += '<dt class="list-img"><img src="'+item.cover+'" alt=""></dt>';
+                html += '<dd><p class="list-tit">'+item.title+'</p>';
+                html += '<p class="list-but"><span class="sp-time">'+item.publish_time+'</span>';
+                html += '<span class="sp-kind">'+item.n_name+'</span></p></dd></a></dl>';
+              });
+          }else{
+            html += '<p>已经到底部了</p>';
+            thisObj.hide();
+          }
+          thisObj.prev().append(html);
+        },
+        error : function(e){
+          console.log(e);
+        }
+      })
     })
   </script>
 @stop
