@@ -6,7 +6,6 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>POWER2018新时代新经济嘉宾峰会</title>
-  <link rel="icon" type="image/x-icon" href="{{asset('Home/images/wetalkTV.ico')}}" />
   <link rel="stylesheet" href="{{asset('Mobile/fonts/iconfont.css')}}">  
   <link rel="stylesheet" href="{{asset('Mobile/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('Mobile/css/meeting.css')}}">
