@@ -3,85 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>微信分享测试</title>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+     <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script>
 </head>
-<body onload="window_onload()">
-    <div style="width:100%;"><img style="width:100%" src="#" alt=""></div>
-</body>
-<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
-<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<input type="text" name="url" value="{{url('api/weixin/getShare')}}">
-<script>
-    function window_onload() {
-        var url = $('[name=url').val();
-        $.ajax({
-            type: "GET",
-            url: url,
-            data: {url: this.location.href},
-            dataType: "json",
-            success: function (data) {
-                wx.config({
-                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                    appId: data.appid, // 必填，公众号的唯一标识
-                    timestamp: data.timestamp, // 必填，生成签名的时间戳
-                    nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                    signature: data.signature,// 必填，签名，见附录1
-                    jsApiList: ['checkJsApi',
-                        'onMenuShareTimeline',
-                        'onMenuShareAppMessage',
-                        'onMenuShareQQ',
-                        'onMenuShareWeibo',
-                        'hideMenuItems',
-                        'showMenuItems',
-                        'hideAllNonBaseMenuItem',
-                        'showAllNonBaseMenuItem',
-                        'translateVoice',
-                        'startRecord',
-                        'stopRecord',
-                        'onRecordEnd',
-                        'playVoice',
-                        'pauseVoice',
-                        'stopVoice',
-                        'uploadVoice',
-                        'downloadVoice',
-                        'chooseImage',
-                        'previewImage',
-                        'uploadImage',
-                        'downloadImage',
-                        'getNetworkType',
-                        'openLocation',
-                        'getLocation',
-                        'hideOptionMenu',
-                        'showOptionMenu',
-                        'closeWindow',
-                        'scanQRCode',
-                        'chooseWXPay',
-                        'openProductSpecificView',
-                        'addCard',
-                        'chooseCard',
-                        'openCard'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-                });
-                wx.ready(function () {
-                    wx.onMenuShareAppMessage({
-                        title: '分享标题', // 分享标题
-                        desc: '分享描述', // 分享描述
-                        link: '#', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                        imgUrl: '#', // 分享图标
-                        type: 'link', // 分享类型,music、video或link，不填默认为link
-                        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                        success: function () {
-                          alert('分享成功')
-                        }
-                    });
-                });
- 
-                wx.error(function (res) {
-                    alert("error: " + res.errMsg);
-                });
-            },
-            error: function () {
-                alert(error);
+<body>
+    <div style="width:100%;height: 300px;background: #ff0;"></div>
+
+<input type="hidden" id="url" value="{{asset('')}}">
+<input type="text" id="signature" value="{{$signPackage['signature']}}">
+<input type="text" id="noncestr" value="{{$signPackage['nonceStr']}}">
+<input type="text" id="timestamp" value="{{$signPackage['timestamp']}}">
+<input type="text" id="appId" value="{{$signPackage['appId']}}">
+<script type="text/javascript">
+    var timestamp = $('#timestamp').val();
+    var noncestr = $('#noncestr').val();
+    var signature = $('#signature').val();
+    var appId = $('#appId').val();
+        wx.config({
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: appId, // 必填，公众号的唯一标识
+            timestamp: timestamp, // 必填，生成签名的时间戳
+            nonceStr: noncestr, // 必填，生成签名的随机串
+            signature: signature,// 必填，签名，见附录1
+            jsApiList: ['checkJsApi',
+            'onMenuShareTimeline',//
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+
+        window.share_config = {
+             "share": {
+                "imgUrl": "http://www.ijiabin.com/Home/images/wyjb_logo.png",//分享图，默认当相对路径处理，所以使用绝对路径的的话，“http://”协议前缀必须在。
+                "desc" : "你在这里能遇到更好的自己",//摘要,如果分享到朋友圈的话，不显示摘要。
+                "title" : 'DIDI 只为追寻最好的自己!',//分享卡片标题
+                "link": window.location.href,//分享出去后的链接，这里可以将链接设置为另一个页面。
+                "success":function(){
+                    //分享成功后的回调函数
+                },
+                'cancel': function () { 
+                    // 用户取消分享后执行的回调函数
+                }
             }
-        })
-    }
+        }; 
+        wx.ready(function () {
+            wx.onMenuShareAppMessage(share_config.share);//分享给好友
+            wx.onMenuShareTimeline(share_config.share);//分享到朋友圈
+            wx.onMenuShareQQ(share_config.share);//分享给手机QQ
+        });
 </script>
+</body>
 </html>

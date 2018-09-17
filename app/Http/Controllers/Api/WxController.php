@@ -38,7 +38,7 @@ class WxController extends Controller
         //时间戳
         $time = time();
         //拼接string1
-        $jsapiTicketNew = "jsapi_ticket=$jsapiTicket&noncestr=$noncestr&tamp=$time&url=$url";
+        $jsapiTicketNew = "jsapi_ticket=$jsapiTicket&noncestr=$noncestr&timestamp=$time&url=$url";
         //对string1作sha1加密
         $signature = sha1($jsapiTicketNew);
         //存入数据

@@ -63,6 +63,7 @@ Route::group(['prefix'=>'mobile'],function (){
     Route::group(['prefix'=>'page'],function (){
         Route::get('meeting_2018','Mobile\PageController@meeting_2018');
         Route::get('meeting_2018_map','Mobile\PageController@meeting_2018_map');
+        Route::get('test','Mobile\PageController@test');
     });
 });
 
