@@ -2,6 +2,17 @@
 @section('title',$data['title'])
 @section('content')
   <link rel="stylesheet" href="{{asset('Mobile/css/details.css')}}">
+  <style>
+    
+    img{
+      width:100% !important;
+      height:auto !important;
+    }
+    iframe{
+      width: 100%;
+      height: 2.2rem;
+    }
+  </style>
   <div class="centera">
     
     <div class="main-content">

@@ -11,6 +11,13 @@
 		background-image:url("{{asset('Home/images/right.png')}}")
 	}
 	</style>
+	 <script src={{asset("Home/js/jquery.min.js")}}></script>
+	<script>
+			var wid = $(window).width();
+			if(wid<750){
+				window.location.href="{{url('mobile/index')}}"
+			}
+	</script>
     <!-- <div class="box_cover"></div> -->
     <div class="wrapper">
             @include('layouts._header')
@@ -180,10 +187,7 @@
                 autoplayDisableOnInteraction : false,    //注意此参数，默认为true
             });
 
-			var wid = $(window).width();
-			if(wid<750){
-				window.location.href="{{url('mobile/index')}}"
-			}
+			
         } 
 
         // setTimeout(function () {
