@@ -84,7 +84,7 @@
               </div>
               @endif
             @endforeach
-              <div class="load" cid="{{$cate['id']}}" page="{{config('hint.m_show_num')}}">加载更多</div>
+          <div class="load" cid="{{$cate['id']}}" page="{{config('hint.m_show_num')}}">加载更多</div>
           </div>
           @endforeach
         </div>
@@ -132,7 +132,9 @@
     $("#pagehide").click(function(){
       $("#myPanel").toggle()
     })
-
+    $('#myPanel').click(function(){
+      $("#myPanel").hide();
+    })
     url = $('[name=url]').val();
     $('.load').click(function(){
       var thisObj = $(this);
@@ -155,10 +157,10 @@
                 html += '<span class="sp-kind">'+item.n_name+'</span></p></dd></a></dl>';
               });
           }else{
-            html += '<p>已经到底部了</p>';
+            html += '<p style="width:100%;text-align:center;color:#999999;margin-top:.1rem">已经到底部了</p>';
             thisObj.hide();
           }
-          thisObj.prev().append(html);
+          thisObj.prev().after(html);
         },
         error : function(e){
           console.log(e);
