@@ -37,7 +37,7 @@
               @endforeach
               <p class="load" nav="{{$towNav->id}}" page="{{config('hint.m_show_num')}}">加载更多</p>
             @else
-              <p>暂无内容</p>
+            <p style="width:100%;text-align:center;color:#999999;margin-top:.1rem">暂无内容</p>
             @endif
           </div>
          
@@ -61,7 +61,9 @@
     $("#pagehide").click(function(){
       $("#myPanel").toggle()
     })
-
+    $('#myPanel').click(function(){
+      $("#myPanel").hide();
+    })
     url = $('[name=url]').val();
     $('.load').click(function(){
       var thisObj = $(this);
@@ -93,10 +95,10 @@
               });
             }
           }else{
-            html += '<p>已经到底部了</p>';
+            html += '<p style="width:100%;text-align:center;color:#999999;margin-top:.1rem">已经到底部了</p>';
             thisObj.hide();
           }
-          thisObj.prev().append(html);
+          thisObj.prev().after(html);
         },
         error : function(e){
           console.log(e);

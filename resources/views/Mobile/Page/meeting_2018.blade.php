@@ -6,7 +6,6 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>POWER2018新时代新经济嘉宾峰会</title>
-  <link rel="icon" type="image/x-icon" href="{{asset('Home/images/wetalkTV.ico')}}" />
   <link rel="stylesheet" href="{{asset('Mobile/fonts/iconfont.css')}}">  
   <link rel="stylesheet" href="{{asset('Mobile/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('Mobile/css/meeting.css')}}">
@@ -64,7 +63,7 @@
               <img src="{{asset('Mobile/images/imgMeeting/2018.png')}}" alt="">
             </div>
             <p class="list_synopsis">
-                新时代商业盛典将发布新时代商业案例榜单、举办颁奖典礼，并同期举办商业歌王争霸赛。
+                新时代商业盛典将发布新时代商业案例榜单、举办颁奖典礼，并同期举办商界歌王争霸赛。
             </p>
             <div class="img_2018">
               <img src="{{asset('Mobile/images/imgMeeting/2018_img.png')}}" alt="">
