@@ -80,19 +80,24 @@
               </dl>
               <!-- 导师学员 -->
               @if($cate['id'] == 0 && $key == 2)
-                <div class="tutor"> 
+              <div class="tutor"> 
                 <h4 class="tutor-tit">导师与学员<a href="{{url('mobile/tutorStudent/oneId/3/secId/11')}}">更多<i class="icon iconfont icon-gengduo"></i></a></h4>
                 <div class="tutor-con">
-                  <ul class="tutor-list"> 
+                  
+                  <div class="tutor-list"> 
                     @foreach($data['tutor'] as $tutor)
-                    <li onclick="window.location.href='{{url('mobile/tsDetail/id/'.$tutor->id)}}'">
-                      <span class="kind">{{$tutor->type == 1 ? '导师' : '学员'}}</span>
-                      <img src="{{asset($tutor->head_pic)}}" alt="">
-                      <p class="name">{{$tutor->name}}</p>
-                      <p class="con">{{$tutor->position}}</p>
-                    </li> 
+                      <dl class="tutor_dl" onclick="window.location.href='{{url('mobile/tsDetail/id/'.$tutor->id)}}'">
+                        <dt class="tutor-img">
+                            <img src="{{asset($tutor->head_pic)}}" alt="">
+                        </dt>
+                        <dd>
+                            <p class="tutor-name">{{$tutor->name}}</p>
+                            <p class="tutor-txt">{{$tutor->position}}</p>
+                            <p class="classify">{{$tutor->type == 1 ? '导师' : '学员'}}</p>
+                        </dd>
+                      </dl>
                     @endforeach
-                  </ul>
+                  </div>
                 </div>
               </div>
               @endif
