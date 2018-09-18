@@ -182,7 +182,7 @@
     <script type="text/javascript">
         window.onload = function() {
             var mySwiper = new Swiper ('.swiper-container', {
-				autoplay:3000,//自动滚动
+				//autoplay:3000,//自动滚动
 				//loop:true,//循环
 				//speed:1000,//滚动速度
 				resistanceRatio : 0,
@@ -233,6 +233,11 @@
     				}})
     		
     	})
-
+		
+		if($(".swiper-slide").length==1){
+            $(".swiper-button-prev").hide();
+            $(".swiper-button-next").hide();
+            $(".swiper-container").addClass("swiper-no-swiping")
+        } 
     </script>
 @stop
