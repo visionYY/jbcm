@@ -30,7 +30,7 @@
               </div>
               @endforeach
             </div>
-            <p class="load" nav="{{$towNav->id}}" page="{{config('hint.m_show_num')}}">加载更多</p>
+            <p class="load" nav="{{$towNav->id}}" page="{{config('hint.m_tust_num')}}">加载更多</p>
           </div>
           @endforeach
         </div>
@@ -66,7 +66,7 @@
         data : {nav:nav,page:page},
         dataType : 'json',
         success : function(d){
-          thisObj.attr('page',parseInt(page)+{{config('hint.m_show_num')}});
+          thisObj.attr('page',parseInt(page)+{{config('hint.m_tust_num')}});
           var html = '';
           if (d != 0) {
               $.each(d,function(index,item){

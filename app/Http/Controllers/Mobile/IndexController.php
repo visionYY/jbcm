@@ -196,9 +196,9 @@ class IndexController extends Controller
         $data['towNav'] = Navigation::getNavTwo($oneId);
         foreach ($data['towNav'] as $towNav){
             if ($towNav->id == 11){
-                $towNav->people = TutorStudent::getPeople(1,config('hint.m_show_num'));
+                $towNav->people = TutorStudent::getPeople(1,config('hint.m_tust_num'));
             }else{
-                $towNav->people = TutorStudent::getPeople(2,config('hint.m_show_num'));
+                $towNav->people = TutorStudent::getPeople(2,config('hint.m_tust_num'));
             }
 
         }

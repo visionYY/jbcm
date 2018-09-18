@@ -64,6 +64,8 @@ return [
     'show_num'              => 20,
     //手机端默认展示条数
     'm_show_num'            => 5,
+    //手机端导师学员默认展示
+    'm_tust_num'            => 20,
 
     //截图比例(通用) 宽*高
     'scre_gm_width'   => 268,

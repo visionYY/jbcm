@@ -72,10 +72,12 @@ Route::group(['prefix'=>'mobile'],function (){
 
 //测试
 Route::get('/test', function () {
-   $abc = \App\Models\Admin::where('email','>','?')->toSql();
-   dd(asset('123'));
-   dd($abc);
-})->middleware('role');
+//   $abc = \App\Models\Admin::where('email','>','?')->toSql();
+//   dd(asset('123'));
+//   dd($abc);
+    $ip = $_SERVER['REMOTE_ADDR'];
+    dd($ip);
+});
 
 //后台
 Route::group(['prefix'=>'admin'],function(){
