@@ -125,7 +125,6 @@ video{
   font-size: .16rem;
   color: #4D63A7;
   margin: 0;
-  border-bottom:1px solid #F2F2F2;
 }
 .tutor-tit>a{
   float:right;
@@ -138,16 +137,59 @@ video{
   margin-left:.03rem;
 }
 .tutor-con{
-  width:100%;
-  height: 1.36rem;
+  width: 100%;
+  height: .94rem;
   overflow: hidden;
-  margin-top:.1rem;
 }
 .tutor-list{
   width: 100%;
   height:110%;
   overflow-x: auto;
   white-space: nowrap;
+  padding-top: .08rem;
+}
+.tutor_dl{
+  width:1.55rem;
+  height:.81rem;
+  border:1px solid #CCCCCC;
+  padding: .05rem;
+  display: inline-block;
+  position: relative;
+  margin-right:.1rem;
+}
+.tutor-img{
+  width:34%;
+  position: absolute;
+  left:.05rem;
+  top:.05rem
+}
+.tutor-img>img{
+  width:100%;
+}
+.tutor_dl>dd{
+  width: 66%;
+  padding-left: 40%;
+}
+.tutor-name{
+  font-size:.14rem;
+  color:#333333;
+}
+.tutor-txt{
+  color:#666666;
+  font-size:.1rem;
+  margin-top:.1rem;
+}
+.classify{
+  width: .34rem;
+  text-align: center;
+  height: .18rem;
+  font-size: .1rem;
+  line-height: .18rem;
+  color: #fff;
+  background: #cfa972;
+  position: absolute;
+  top: -6px;
+  right: -5px;
 }
 .tutor-list>li{
   background:#F1F6FF;
