@@ -12,7 +12,8 @@ class PageController extends Controller
     public function pageTop40(){
         $data['top40_pc'] = json_encode(config('hint.top40_pc'));
         $data['top40_yd'] = json_encode(config('hint.top40_yd'));
-        $signPackage = Helper::getJSSDK(url('page/pageTop40'));
+        //$signPackage = Helper::getJSSDK(url('page/pageTop40'));
+        $signPackage = array('appId'=>'wx87a51989fd90054d ','timestamp'=>'1537237991','nonceStr'=>'QS69mHIz3AwodX4T','signature'=>'913ec1d34f2e3529f9ca9fedadb7a7863b63c20d');
         return view('Home.Page.pageTop40',compact('data',$data),compact('signPackage',$signPackage));
     }
 

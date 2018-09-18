@@ -47,7 +47,7 @@
   z-index:9999;
 }
 .ui-header>b>img{
-  width:47px;
+  width:.43rem;
   height: auto;
 }
 .ui-header>a{
@@ -139,7 +139,7 @@
 .list-but>span.sp-kind{
   font-size:.12rem;
   float: right;
-  color:#4D63A7;
+  color:#999999;
 }
 
 .load{
