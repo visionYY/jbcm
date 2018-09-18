@@ -246,6 +246,12 @@
             </div>
           </div>
           <div class="tw_list">
+            <p class="tw_list_tit"><span>协办单位</span></p>
+            <div class="tw_list_con">
+              <p>深圳市南山区企业发展服务中心</p>
+            </div>
+          </div>
+          <div class="tw_list">
             <p class="tw_list_tit"><span>战略合作伙伴</span></p>
             <div class="tw_list_con">
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zww.png')}}" alt=""></a>
@@ -342,7 +348,6 @@
               <div class="left">
                 <p class="rel_img"><img src="{{asset('Home/images/imgPc/sw.png')}}" alt=""></p>
                 <p class="who">屈先生</p>
-                <p class="contact">T: 18910289963</p>
                 <p class="contact">W: 376717612</p>
                 <p class="contact">E: qugy@wetalktv.cn</p>
               </div>
@@ -354,7 +359,6 @@
               <div class="left">
                 <p class="rel_img"><img src="{{asset('Home/images/imgPc/mt.png')}}" alt=""></p>
                 <p class="who">梁女士</p>
-                <p class="contact">T: 15726635980</p>
                 <p class="contact">W: island1126</p>
                 <p class="contact">E: lh@wetalktv.cn</p>
               </div>

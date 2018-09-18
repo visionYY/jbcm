@@ -175,6 +175,12 @@
   height:auto;
   margin-left:50px;
 }
+.tw_list_con>p{
+  color:#fff;
+  height: 45px;
+  line-height: 45px;
+  font-size: 18px;
+}
 .tw_list_con>a{
   display:inline-block;
   margin-top: 5px;
@@ -192,15 +198,15 @@
   color:#fff;
   position: relative;
   padding-left:20px;
-  font-size:22px;
+  font-size:20px;
   line-height:30px;;
 }
 .topic>img{
   position: absolute;
-  width:13px;
-  height:13px;
-  left:0px;
-  top:7px;
+  width: 11px;
+  height: 11px;
+  left: 0px;
+  top: 8px;
 }
 .iss_con{
   margin-top:20px;
@@ -280,3 +286,4 @@
   width:80px;
   height:80px;
 }
+

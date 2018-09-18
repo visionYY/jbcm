@@ -192,7 +192,10 @@
   margin-top:.3rem;
   flex-wrap: wrap;
 }
-
+.tw_list_con>p{
+  color:#fff;
+  height: .25rem;
+}
 .tw_lists{
   justify-content:start; 
 }
@@ -214,7 +217,7 @@
   color:#fff;
   position: relative;
   padding-left:.16rem;
-  font-size:.14rem;
+  font-size:.12rem;
   line-height: .18rem;
 }
 .topic>img{
@@ -228,7 +231,7 @@
   margin-top: .14rem;
   padding-left:.16rem;
   color:#fff;
-  font-size:.12rem;
+  font-size:.11rem;
   opacity: 0.8;
   line-height: .17rem;
 }
@@ -292,7 +295,7 @@
   height:.75rem;
   position: fixed;
   right:0;
-  top:64%;
+  top:68%;
   margin-top:-.32.5rem;
 }
 .touch>img{
@@ -306,4 +309,20 @@
 }
 #container{
   width: 100%;height: 100%;overflow: hidden;
+}
+.logos{
+  width:100%;
+  text-align:center;
+  margin-top: -.05rem;
+}
+.logos>img{
+  width:1.8rem;
+}
+.times{
+  width:100%;
+  padding-left:.5rem;
+  margin-top: .2rem;
+}
+.times>img{
+  width:.9rem;
 }

@@ -73,6 +73,12 @@
             <div class="list2_titer">
               <img src="{{asset('Mobile/images/imgMeeting/china_power.png')}}" alt="">
             </div>
+            <p class="logos">
+              <img class="logos" src="{{asset('Mobile/images/imgMeeting/logos.png')}}" alt="">
+            </p>
+            <p class="times">
+              <img class="time" src="{{asset('Mobile/images/imgMeeting/time.png')}}" alt="">
+            </p>
             <p class="list_synopsis">
                 每一个敢于用创新的力量去引领时代、改变世界的人都值得荣耀。嘉宾传媒联合FT中文网，挖掘七大行业的100家中国企业，发布「中国力量」POWER100商业案例榜单，致敬具有创造精神、冒险精神的时代先锋。
             </p>    
@@ -98,6 +104,12 @@
               <div class="tw_list_con">
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/wyjb.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/jbdx.png')}}" alt=""></a>
+              </div>
+            </div>
+            <div class="tw_list">
+              <p class="tw_list_tit"><span>协办单位</span></p>
+              <div class="tw_list_con">
+                <p>深圳市南山区企业发展服务中心</p>
               </div>
             </div>
             <div class="tw_list">
@@ -197,7 +209,6 @@
                 <div class="left">
                   <p class="rel_img"><img src="{{asset('Mobile/images/imgMeeting/sw.png')}}" alt=""></p>
                   <p class="who">屈先生</p>
-                  <p class="contact">T: 18910289963</p>
                   <p class="contact">W: 376717612</p>
                   <p class="contact">E: qugy@wetalktv.cn</p>
                 </div>
@@ -209,7 +220,6 @@
                 <div class="left">
                   <p class="rel_img"><img src="{{asset('Mobile/images/imgMeeting/mt.png')}}" alt=""></p>
                   <p class="who">梁女士</p>
-                  <p class="contact">T: 15726635980</p>
                   <p class="contact">W: island1126</p>
                   <p class="contact">E: lh@wetalktv.cn</p>
                 </div>
