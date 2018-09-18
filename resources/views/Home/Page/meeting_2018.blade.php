@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>POWER2018新时代新经济嘉宾峰会</title>
+    <link rel="icon" type="image/x-icon" href="{{asset('Home/images/meeting.ico')}}" />
     <link rel="stylesheet" href="{{asset('Home/css/all.css')}}">
     <link rel="stylesheet" href="{{asset('Home/css/meeting.css')}}">
 </head>
@@ -369,7 +370,7 @@
           </div>
         </div>
       </div>
-      <div class="touch" onclick="window.location.href='http://t.cn/RFmd6vb'">
+      <div class="touch" onclick="window.open('http://t.cn/RFmd6vb')">
         <img src="{{asset('Home/images/imgPc/touch.png')}}" alt="">
       </div>
     </div>
@@ -393,7 +394,8 @@
       //地图
       $("#map").click(function(){
         var url = $('[name=url]').val();
-        location.href = url;
+        // location.href = url;
+        window.open(url);
       })
 
 

@@ -89,11 +89,12 @@ class Helper
     }
 
     //JSSDK
-    public static function getJSSDK($url){
+    public static function getJSSDK(){
         //获取参数
         $appid = config('hint.appId');
         $secret = config('hint.appSecret');
-
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         //缓存内是否存在accessToken
         $accessToken = Cache::remember('accessToken11',120,function () use ($appid,$secret){
             //获取access_token的请求地址

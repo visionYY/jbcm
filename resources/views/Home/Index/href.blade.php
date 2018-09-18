@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="img_box">
-      <img src="{{asset('Home/images/rbzct.jpg')}}" alt="">
+      <img src="{{asset('Home/images/rbzct.jpeg')}}" alt="">
     </div>
 </body>
 </html>

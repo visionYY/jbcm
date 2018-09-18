@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>POWER100·中国商业案例</title>
-    <link rel="icon" type="image/x-icon" href={{asset("Home/images/wetalkTV.ico")}} />
+    <link rel="icon" type="image/x-icon" href="{{asset('Home/images/meeting.ico')}}" />
     <link rel="stylesheet" href="{{asset('Home/css/top.css')}}" charset="utf-8">
     <link rel="stylesheet" media="screen and (max-width:750px)" href="{{asset('Home/css/reset.css')}}" charset="utf-8">
     <link rel="stylesheet" media="screen and (max-width:750px)" href="{{asset('Home/css/toph5.css')}}" charset="utf-8">
@@ -143,9 +143,9 @@
 
           window.share_config = {
                "share": {
-                  "imgUrl": "http://www.ijiabin.com/Mobile/images/nhfx.jpg",//分享图，默认当相对路径处理，所以使用绝对路径的的话，“http://”协议前缀必须在。
-                  "desc" : "随着中国科技力量的发展，人工智能、云计算、区块链等前沿科技的兴起，加之资本的推动，催生出新的产业、新的业态、新的经济增长。",//摘要,如果分享到朋友圈的话，不显示摘要。
-                  "title" : 'POWER100·中国商业案例',//分享卡片标题
+                  "imgUrl": "http://www.ijiabin.com/Home/images/imgTop/fenxiang.jpg",//分享图，默认当相对路径处理，所以使用绝对路径的的话，“http://”协议前缀必须在。
+                  "desc" : "诚邀您与我们一起寻找这些时代发展变革的动因，寻找100家正在或者即将引领时代、改变世界的企业。",//摘要,如果分享到朋友圈的话，不显示摘要。
+                  "title" : 'POWER100 中国新时代商业案例榜单',//分享卡片标题
                   "link": window.location.href,//分享出去后的链接，这里可以将链接设置为另一个页面。
                   "success":function(){
                       //分享成功后的回调函数
