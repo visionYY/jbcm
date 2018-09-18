@@ -197,10 +197,9 @@ video{
   position: absolute;
   font-size: .12rem;
   top:1.05rem;
-  word-wrap: break-word; 
-  word-break: normal; 
+  white-space: normal;
   color: #666666;
-  text-align:center;
+  padding: 0 .06rem;
 }
 .more-list{
 
