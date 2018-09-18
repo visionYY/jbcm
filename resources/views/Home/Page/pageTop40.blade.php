@@ -69,10 +69,10 @@
     </div>
     <input type="hidden" id="top40_pc" value="{{$data['top40_pc']}}">
     <input type="hidden" id="top40_yd" value="{{$data['top40_yd']}}">
-     <input type="text" id="signature" value="{{$signPackage['signature']}}">
-    <input type="text" id="noncestr" value="{{$signPackage['nonceStr']}}">
-    <input type="text" id="timestamp" value="{{$signPackage['timestamp']}}">
-    <input type="text" id="appId" value="{{$signPackage['appId']}}">
+    <input type="hidden" id="signature" value="{{$signPackage['signature']}}">
+    <input type="hidden" id="noncestr" value="{{$signPackage['nonceStr']}}">
+    <input type="hidden" id="timestamp" value="{{$signPackage['timestamp']}}">
+    <input type="hidden" id="appId" value="{{$signPackage['appId']}}">
 
     <script src="{{asset('Home/js/jquery.min.js')}}"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
