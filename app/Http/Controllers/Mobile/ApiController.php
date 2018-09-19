@@ -19,7 +19,15 @@ class ApiController extends Controller
         $res = Navigation::getCateAV($cid,config('hint.m_show_num'),$page);
         foreach ($res as $art){
             $nav = Navigation::find($art->nav_id);
-            $art->n_name = $nav->n_name;
+            if($nav){
+               if ($nav->id==1){
+                   $art->n_name = '';
+               }else{
+                   $art->n_name = $nav->n_name;
+               }
+            }else{
+                $art->n_name = '未知';
+            }
             if ($art->type==1){
                 $art->url = url('mobile/article/id/'.$art->id);
             }else{

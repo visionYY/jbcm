@@ -18,7 +18,8 @@ class IndexController extends Controller
     //首页
     public function index(){
         $data['title'] = '我有嘉宾-遍访天下公司、纪录时代商业';
-
+        $data['oneId'] = 1;
+        $data['secId'] = 1;
         //导航
         $data['navig'] = Navigation::getNav();
 
@@ -34,7 +35,11 @@ class IndexController extends Controller
             $c['content'] = Article::getArticleVideo($c['id'],config('hint.m_show_num'));
             foreach ($c['content'] as $cont){
                 $nav = Navigation::find($cont->nav_id);
-                $cont->n_name = $nav->n_name;
+                if($nav->id == 1){
+                    $cont->n_name = '';
+                }else{
+                    $cont->n_name = $nav->n_name;
+                }
                 $cont->publish_time = Helper::getDifferenceTime($cont->publish_time);
             }
         }
@@ -44,7 +49,7 @@ class IndexController extends Controller
         foreach ($data['tutor'] as $tutor){
             $tutor->classic_quote= explode('；',$tutor->classic_quote);
         }
-//        dd($data);
+        //dd($data);
         return view('Mobile.Index.index',compact('data',$data));
     }
 
@@ -81,6 +86,7 @@ class IndexController extends Controller
     //品牌节目
     public function brand($oneId,$secId){
         $data['title'] = '品牌节目';
+        $data['oneId'] = $oneId;
         $data['secId'] = $secId;
         //导航
         $data['navig'] = Navigation::getNav();
@@ -121,6 +127,7 @@ class IndexController extends Controller
     //嘉宾大学
     public function university($oneId,$secId){
         $data['title'] = '嘉宾大学';
+        $data['oneId'] = $oneId;
         $data['secId'] = $secId;
         //导航
         $data['navig'] = Navigation::getNav();
@@ -162,6 +169,7 @@ class IndexController extends Controller
     //嘉宾峰会
     public function summit($oneId,$secId){
         $data['title'] = '嘉宾峰会';
+        $data['oneId'] = $oneId;
         $data['secId'] = $secId;
         //导航
         $data['navig'] = Navigation::getNav();
@@ -189,6 +197,7 @@ class IndexController extends Controller
     //导师与学员
     public function tutorStudent($oneId,$secId){
         $data['title'] = '导师与学员';
+        $data['oneId'] = $oneId;
         $data['secId'] = $secId;
         //导航
         $data['navig'] = Navigation::getNav();
@@ -209,6 +218,7 @@ class IndexController extends Controller
     //关于我们
     public function aboutUs($oneId,$secId){
         $data['title'] = '关于我们';
+        $data['oneId'] = $oneId;
         $data['secId'] = $secId;
         //导航
         $data['navig'] = Navigation::getNav();
@@ -296,25 +306,37 @@ class IndexController extends Controller
     public function doSearch(Request $request){
         $data['title'] = '搜索';
         $keybord = $request->get('keybord');
-        $article =  Article::search($keybord);
-        if ($article){
-            foreach ($article as $v){
+        $res = Navigation::getSearch($keybord,config('hint.m_show_num'));
+        if ($res){
+            foreach ($res as $v){
                 $nav = Navigation::find($v->nav_id);
-                $v->n_name = $nav->n_name;
-                $v->type = 1;
-                $v->publish_time = Helper::getDifferenceTime($v->publish_time);
+                if ($nav){
+                    $v->n_name = $nav->n_name;
+                }else{
+                    $v->n_name = '未知';
+                }
             }
         }
-        $video = Video::search($keybord);
-        if ($video){
-            foreach ($video as $v){
-                $nav = Navigation::find($v->nav_id);
-                $v->n_name = $nav->n_name;
-                $v->type = 2;
-                $v->publish_time = Helper::getDifferenceTime($v->publish_time);
-            }
-        }
-        $data['res'] = array_merge($article,$video);
+//        $article =  Article::search($keybord);
+//        if ($article){
+//            foreach ($article as $v){
+//                $nav = Navigation::find($v->nav_id);
+//                $v->n_name = $nav->n_name;
+//                $v->type = 1;
+//                $v->publish_time = Helper::getDifferenceTime($v->publish_time);
+//            }
+//        }
+//        $video = Video::search($keybord);
+//        if ($video){
+//            foreach ($video as $v){
+//                $nav = Navigation::find($v->nav_id);
+//                $v->n_name = $nav->n_name;
+//                $v->type = 2;
+//                $v->publish_time = Helper::getDifferenceTime($v->publish_time);
+//            }
+//        }
+//        $data['res'] = array_merge($article,$video);
+        $data['res'] = $res;
         $data['keybord'] = $keybord;
 
         $hotbot = Hotbot::where('name',$keybord)->first();

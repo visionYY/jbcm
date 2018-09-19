@@ -3,14 +3,18 @@
   <div class="pagelist">
     @foreach($data['navig'] as $nav)
       @if($nav['nodes'])
-        <h4 class="pagetit">{{$nav['text']}}</h4>
+        <h4 class="pagetit">
+          <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nav['nodes'][0]['id'])}}"">{{$nav['text']}}</a>
+        </h4>
         <ul class="test">
           @foreach($nav['nodes'] as $nodes)
             <li><a class="{{$nodes['id']==$data['secId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nodes['id'])}}">{{$nodes['text']}}</a></li>
           @endforeach
         </ul>
       @else
-        <h4 class="pagetit"><a href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/0')}}"">{{$nav['text']}}</a></h4>
+        <h4 class="pagetit">
+          <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/1')}}"">{{$nav['text']}}</a>
+        </h4>
       @endif
     @endforeach
   </div>

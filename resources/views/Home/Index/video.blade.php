@@ -14,7 +14,7 @@
                           <source src="{{$data['video']->address}}" type="video/mp4">
                           <source src="movie.ogg" type="video/ogg">
                       </video>
-                      <p class="art-assist"><b>“</b>{{$data['video']->intro}}</p>
+                      <p class="art-assist"><b>“</b>{{$data['video']->content}}</p>
                     </div>
                     <p class="share">
                       <!-- 分享至：<i class="icon iconfont icon-weixin-copy"></i><i class="icon iconfont icon-weibo-copy"></i> -->
