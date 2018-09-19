@@ -132,11 +132,10 @@
         var hei = $("#oranger").height();
         var boxT = $(".box").offset().top;
         
-        
         if(scrT>=offT-Hhei-hei){
           $(".orangerb").addClass('oranger-hei');
         }
-        if(offT<=240){
+        if(offT<=220){
           $(".orangerb").removeClass('oranger-hei');
         }
       })
@@ -153,6 +152,7 @@
     $('#myPanel').click(function(){
       $("#myPanel").hide();
     })
+
     url = $('[name=url]').val();
     $('.load').click(function(){
       var thisObj = $(this);
