@@ -23,6 +23,7 @@
   display: inline-block;
   height:.4rem;
   line-height: .4rem;
+  font-weight:600;
 }
 .hover {
   color:#4D63A7;

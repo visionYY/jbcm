@@ -6,7 +6,7 @@
         <h4 class="pagetit">{{$nav['text']}}</h4>
         <ul class="test">
           @foreach($nav['nodes'] as $nodes)
-            <li><a href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nodes['id'])}}">{{$nodes['text']}}</a></li>
+            <li><a class="{{$nodes['id']==$data['secId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nodes['id'])}}">{{$nodes['text']}}</a></li>
           @endforeach
         </ul>
       @else
