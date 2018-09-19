@@ -9,9 +9,9 @@
             <dd>
                 <p class="tutor-name">{{$data['prople']->name}}</p>
                 <p class="tutor-post">{{$data['prople']->position}}</p>
-                <p class="tutor-tit">{{$data['prople']->intro}}</p>
             </dd>
         </dl>
+        <p class="tutor-tit">{{$data['prople']->intro}}</p>
 <!--         <div class="ana">
           <p class="ana-tit">经典语录</p>
           <div class="swiper-container">

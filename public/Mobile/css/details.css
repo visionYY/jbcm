@@ -48,6 +48,7 @@
   padding-left:.1rem;
 }
 .tutor-name{
+  padding-top:.1rem;
   width:100%;
   font-size: .16rem;
   font-weight:800;
@@ -62,6 +63,7 @@
   color:#666666;
   margin-top:.12rem;
   line-height:.14rem;
+  padding:0 .1rem;
 }
 .ana{
   width:100%;
