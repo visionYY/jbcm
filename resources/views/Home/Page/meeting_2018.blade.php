@@ -174,26 +174,30 @@
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/13_1.png')}}" alt="">
                 </p>
                 <p class="person person31">
+                  <img class="shows" src="{{asset('Home/images/imgPc/guest3/3.png')}}" alt="">
+                  <img class="hides" src="{{asset('Home/images/imgPc/guest3/3_1.png')}}" alt="">
+                </p>
+                <p class="person person32">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/14.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/14_1.png')}}" alt="">
                 </p>
-                <p class="person person32">
+                <p class="person person33">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/15.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/15_1.png')}}" alt="">
                 </p>
-                <p class="person person33">
+                <p class="person person34">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/16.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/16_1.png')}}" alt="">
                 </p>
-                <p class="person person34">
+                <p class="person person35">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/11.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/11_1.png')}}" alt="">
                 </p>
-                <p class="person person35">
+                <p class="person person36">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/12.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/12_1.png')}}" alt="">
                 </p>
-                <p class="person person36">
+                <p class="person person37">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/17.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/17_1.png')}}" alt="">
                 </p>
@@ -380,7 +384,7 @@
   <script>
     $(function(){
       /* 交互效果 */
-      for (var i = 1 ; i < 37 ; i ++) {
+      for (var i = 1 ; i < 38 ; i ++) {
         (function(i){
           $('.person' + i).mouseover(function () {
             $('.person' + i ).find('.shows').hide();
