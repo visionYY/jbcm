@@ -21,17 +21,19 @@
   line-height:.3rem;
   font-size:.15rem;
   margin-top:.15rem;
-  color: #333333;
+  color: #fff;
+  font-weight:600;
 }
 .pagelist::-webkit-scrollbar { width: 0 !important }
 .pagelist{
   width:60%;
-  background:#fff;
+  background:#3c3c44;
   height:100%;
   overflow-y: scroll;
    -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   padding: .3rem .1rem;
+  padding-top:.4rem;
 }
 .ui-header{
   background:#fff;
@@ -85,13 +87,16 @@
   line-height:.24rem;
   cursor: pointer;
 }
+.test>li>a{
+  color:#c7c7c7;
+}
 .selected{
-  color:#4D63A7;
+  color:#cfa972 !important;
 } 
 
 .list{
   width:100%;
-  padding:.1rem 0rem;
+  padding:.12rem 0rem;
   border-bottom:1px solid #e6e8eb;
   height:auto;
   

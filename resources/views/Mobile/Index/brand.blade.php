@@ -34,7 +34,7 @@
             @foreach($towNav->content as $article)
             <dl class="list">
               @if($article->type==1)
-                <a href="{{url('mobile/artile/id/'.$article->id)}}">
+                <a href="{{url('mobile/article/id/'.$article->id)}}">
               @else
                 <a href="{{url('mobile/video/id/'.$article->id)}}">
               @endif

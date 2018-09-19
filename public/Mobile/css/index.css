@@ -44,10 +44,10 @@
   right:0;
 }
 .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
-  bottom:.05rem;
-  left:75%;
-  right:0;
-  width:25%;
+  bottom: .05rem;
+  width: 100%;
+  text-align: right;
+  padding-right:.12rem;
 }
 .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
   margin: 0 3px;
