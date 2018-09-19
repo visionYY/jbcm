@@ -10,6 +10,19 @@
   <link rel="stylesheet" href="{{asset('Mobile/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('Mobile/css/meeting.css')}}">
 </head>
+<script src={{asset("Home/js/jquery.min.js")}}></script>
+  <script>
+		var wid = $(window).width();
+		if(wid>750){
+			window.location.href="{{url('page/meeting_2018')}}"
+		}
+		$(window).resize(function () {          //当浏览器大小变化时
+			var wida = $(window).width();
+			if(wida>750){
+				window.location.href="{{url('page/meeting_2018')}}"
+			}
+		});
+	</script>
 <style>
 .centera{
   background:url("{{asset('Mobile/images/imgMeeting/bg.png')}}") no-repeat;
