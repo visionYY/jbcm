@@ -81,7 +81,7 @@
               <!-- 导师学员 -->
               @if($cate['id'] == 0 && $key == 2)
               <div class="tutor"> 
-                <h4 class="tutor-tit">导师与学员<a href="{{url('mobile/tutorStudent/oneId/3/secId/11')}}">更多<i class="icon iconfont icon-gengduo"></i></a></h4>
+                <h4 class="tutor-tit">导师与学员<a href="{{url('mobile/tutorStudent/oneId/3/secId/11')}}">更多<img src="{{asset('Mobile/images//more_icon.png')}}" alt=""></a></h4>
                 <div class="tutor-con">
                   
                   <div class="tutor-list"> 
