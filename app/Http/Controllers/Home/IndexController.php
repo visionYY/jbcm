@@ -337,23 +337,45 @@ class IndexController extends Controller
         $data['navig'] = Helper::_tree_json($navig);
 
         $keybord = $request->get('keybord');
-        $article =  Article::search($keybord);
-        if ($article){
-            foreach ($article as $v){
+        $res = Navigation::getSearch($keybord,config('hint.show_num'));
+        if ($res){
+            foreach ($res as $v){
                 $nav = Navigation::find($v->nav_id);
-                $v->n_name = $nav->n_name;
-                $v->type = 1;
+                if ($nav){
+                    $v->n_name = $nav->n_name;
+                }else{
+                    $v->n_name = '未知';
+                }
             }
         }
-        $video = Video::search($keybord);
-        if ($video){
-            foreach ($video as $v){
-                $nav = Navigation::find($v->nav_id);
-                $v->n_name = $nav->n_name;
-                $v->type = 2;
-            }
-        }
-        $data['res'] = array_merge($article,$video);
+//        dd($res);
+//        $article =  Article::search($keybord);
+//        if ($article){
+//            foreach ($article as $v){
+//                $nav = Navigation::find($v->nav_id);
+//                if($nav){
+//                    $v->n_name = $nav->n_name;
+//                }else{
+//                    $v->n_name = '未知';
+//                }
+//                $v->type = 1;
+//            }
+//        }
+//        $video = Video::search($keybord);
+//        if ($video){
+//            foreach ($video as $v){
+//                $nav = Navigation::find($v->nav_id);
+//                if($nav){
+//                    $v->n_name = $nav->n_name;
+//                }else{
+//                    $v->n_name = '未知';
+//                }
+//
+//                $v->type = 2;
+//            }
+//        }
+//        $data['res'] = array_merge($article,$video);
+        $data['res'] = $res;
         $data['keybord'] = $keybord;
 
         $hotbot = Hotbot::where('name',$keybord)->first();

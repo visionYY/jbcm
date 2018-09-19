@@ -53,7 +53,15 @@ class Navigation extends Model
     //按标题获取相关的信息
     public static function getSearchTitle($title){
         $res = DB::select('SELECT * FROM (SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,content FROM hg_article UNION ALL 
-SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,content FROM hg_video ) t WHERE t.title LIKE "%'.$title.'%" ORDER BY t.publish_time;');
+SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,content FROM hg_video ) t WHERE t.title LIKE "%'.$title.'%" ORDER BY t.publish_time DESC;');
+        return $res;
+    }
+
+    //搜索
+    public static function getSearch($keyword,$num,$start=0){
+        $res = DB::select('SELECT * FROM (SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,content FROM hg_article UNION ALL 
+                                                SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,content FROM hg_video ) t 
+                                                WHERE (t.title LIKE "%'.$keyword.'%" OR t.content LIKE "'.$keyword.'") ORDER BY t.publish_time DESC LIMIT '.$start.','.$num);
         return $res;
     }
 }
