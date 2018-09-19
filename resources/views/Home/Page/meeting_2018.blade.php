@@ -314,6 +314,12 @@
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/wh.png')}}" alt=""></a>
             </div>
           </div>
+          <div class="tw_list">
+            <p class="tw_list_tit"><span>官方独家票务合作伙伴</span></p>
+            <div class="tw_list_con">
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/hdx.png')}}" alt=""></a>
+            </div>
+          </div>
         </div>
         <div class="issue_box">
           <h4>相关问题</h4>
