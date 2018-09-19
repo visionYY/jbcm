@@ -143,18 +143,26 @@ video{
   height: .94rem;
   overflow: hidden;
 }
-.tutor-list{
+/* .tutor-list{
   width: 100%;
   height:110%;
   overflow-x: auto;
   white-space: nowrap;
   padding-top: .05rem;
+} */
+.tutor-list{
+  width: 100%;
+  height:110%;
+  overflow-x: auto;
+  padding-top: .05rem;
+  white-space: nowrap;
 }
 .tutor_dl{
   width:1.55rem;
   height:.81rem;
   border:1px solid #e6e8eb;
   padding: .05rem;
+  vertical-align: middle;
   display: inline-block;
   position: relative;
   margin-right:.1rem;
@@ -168,9 +176,13 @@ video{
 .tutor-img>img{
   width:100%;
 }
-.tutor_dl>dd{
+/* .tutor_dl>dd{
   width: 100%;
   padding-left: 40%;
+} */
+.tutor_dl>dd{
+  padding-left: 40%;
+  flex: 1;
 }
 .tutor-name{
   font-size:.13rem;
@@ -182,6 +194,12 @@ video{
   font-size:.1rem;
   margin-top:.12rem;
   white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: .13rem;
 }
 .classify{
   width: .34rem;
