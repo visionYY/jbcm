@@ -3,7 +3,7 @@
 @section('content')
   <link rel="stylesheet" href="{{asset('Mobile/css/details.css')}}">
   <div class="centera">
-    <div class="main-content">
+    <div class="main-content mc">
         <dl class="tutor-list">
             <dt class="tutor-img"><img src="{{asset($data['prople']->head_pic)}}" alt=""></dt>
             <dd>
@@ -28,21 +28,25 @@
     </div>
     <div class="con">
         <p class="correlation">相关内容</p>
-        @foreach($data['about'] as $about)
-        <dl class="list">
-          @if($about->type ==1)
-            <a href="{{url('mobile/article/id/'.$about->id)}}">
-          @else
-            <a href="{{url('mobile/video/id/'.$about->id)}}">
-          @endif    
-              <dt class="list-img"><img src="{{asset($about->cover)}}" alt=""></dt>
-              <dd> 
-                <p class="list-tit">{{$about->title}}</p>
-                <p class="list-but"><span class="sp-time">{{$about->publish_time}}</span><span class="sp-kind">{{$about->nav_name}}</span></p>
-              </dd>
-            </a>
-        </dl>
-        @endforeach
+        @if($data['about'])
+          @foreach($data['about'] as $about)
+          <dl class="list">
+            @if($about->type ==1)
+              <a href="{{url('mobile/article/id/'.$about->id)}}">
+            @else
+              <a href="{{url('mobile/video/id/'.$about->id)}}">
+            @endif    
+                <dt class="list-img"><img src="{{asset($about->cover)}}" alt=""></dt>
+                <dd> 
+                  <p class="list-tit">{{$about->title}}</p>
+                  <p class="list-but"><span class="sp-time">{{$about->publish_time}}</span><span class="sp-kind">{{$about->nav_name}}</span></p>
+                </dd>
+              </a>
+          </dl>
+          @endforeach
+        @else
+          <p class="bottom">暂无内容</p>
+        @endif
       </div>
   </div>
 

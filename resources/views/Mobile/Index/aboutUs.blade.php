@@ -257,7 +257,7 @@
               </div>
               <div id="shrink">
                   <dl>
-                      <dt>导演<span>+</span></dt>
+                      <dt judeg='1'>导演<span>+</span></dt>
                       <dd>
                           <li>1.3年以上相关工作经验，有人物纪录片、电视台人物访谈、微电影、TVC等项目经验优先考虑；</li>
                           <li>2.有较好的文字功底，思路清晰，能写能拍能剪，享受创作过程；</li>
@@ -267,7 +267,7 @@
                       </dd>
                   </dl>
                   <dl>
-                      <dt>记者<span>+</span></dt>
+                      <dt judeg='1'>记者<span>+</span></dt>
                       <dd>
                           <li class="job_tit">工作职责</li>
                           <li>负责商业、科技、金融等新经济领域人物及公司案例稿采写；</li>
@@ -280,7 +280,7 @@
                       </dd>
                   </dl>
                   <dl>
-                    <dt>策划经理<span>+</span></dt>
+                    <dt judeg='1'>策划经理<span>+</span></dt>
                     <dd>
                         <li class="job_tit">岗位职责</li>
                         <li>1.独立策划、撰写品牌活动、营销策划方案，并跟进落地执行；</li>
@@ -296,7 +296,7 @@
                     </dd>
                 </dl>
                 <dl>
-                    <dt>高级设计师<span>+</span></dt>
+                    <dt judeg='1'>高级设计师<span>+</span></dt>
                     <dd>
                         <li class="job_tit">岗位职责</li>
                         <li>1.三年以上互联网行业或者广告企业视觉设计经验，平面设计、工业设计、广告等相关专业本科学历优先；</li>
@@ -346,9 +346,29 @@
       $("#myPanel").toggle()
     })
 
+    // $('#shrink dl dt').on('click',function(){
+        
+    //     $(this).parent().siblings().children('dt').children('span').html('+');
+    //     $(this).children('span').html('-');
+    //     $(this).next().slideToggle();//点击展开
+    //     $(this).parent().siblings().children('dd').slideUp();//只展开点击的其余的收起
+    // })
+
     $('#shrink dl dt').on('click',function(){
-        $(this).children('span').html('-');
+        // var judeg = $(this).attr('judeg');
+        // console.log($('#shrink dl dt').children('span').html())
         $(this).parent().siblings().children('dt').children('span').html('+');
+        if($(this).attr('judeg') == 1){
+            
+            $(this).parent().siblings().children('dt').attr('judeg',1);
+            $(this).attr('judeg',0);
+            $(this).children('span').html('-');
+
+        }else{
+            $(this).attr('judeg',1);
+            $(this).children('span').html('+');
+        }
+
         $(this).next().slideToggle();//点击展开
         $(this).parent().siblings().children('dd').slideUp();//只展开点击的其余的收起
     })

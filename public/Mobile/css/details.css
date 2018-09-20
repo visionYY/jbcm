@@ -12,6 +12,9 @@
   max-height:4rem;
   position: relative;
 }
+.mc{
+  max-height:none !important;
+}
 p{
   font-size:.13rem;
   font-weight: 400;
@@ -69,7 +72,9 @@ p{
   color:#666666;
   margin-top:.12rem;
   line-height:.14rem;
-  padding:0 .1rem;
+  padding:.1rem;
+  border-top:2px solid #313B5E;
+  box-shadow: 0 1px 4px #e6e8eb;
 }
 .ana{
   width:100%;
