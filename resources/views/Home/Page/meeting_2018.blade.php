@@ -312,6 +312,7 @@
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/hj.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/dy.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/wh.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/sy.png')}}" alt=""></a>
             </div>
           </div>
           <div class="tw_list">

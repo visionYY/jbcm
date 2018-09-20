@@ -169,6 +169,7 @@
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/hj.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/dy.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/wh.png')}}" alt=""></a>
+                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/sy.png')}}" alt=""></a>
               </div>
             </div>
             <div class="tw_list">
