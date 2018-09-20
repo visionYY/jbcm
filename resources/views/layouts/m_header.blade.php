@@ -13,7 +13,7 @@
       @elseif($nav['id']==6)
       <h4 class="pagetit">
       <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nav['nodes'][0]['id'])}}">
-            <img src="{{asset('Mobile/images/jbfh.jpeg')}}" alt="">
+            <img src="{{asset('Mobile/images/jbfh.png')}}" alt="">
           </a>
         </h4>
       @else
