@@ -33,8 +33,10 @@
           <div class="swiper-wrapper">
             @foreach($data['ind_sil_adv'] as $isa)
             <div class="swiper-slide">
+              <a href="{{$isa['href']}}" target="_blank">
               <img src="{{asset($isa['cover'])}}" />
               <h2 class="gallerytitle">{{$isa['title']}}</h2>
+              </a>
             </div>
             @endforeach
            <!--  <div class="swiper-slide">
