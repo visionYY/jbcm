@@ -25,7 +25,7 @@
   font-weight:600;
 }
 .pagetit>a>img{
-  width: .95rem;
+  width: .85rem;
   margin-bottom: .2rem;
   display: block;
 }
@@ -143,6 +143,7 @@
   width:98%;
   position: absolute;
   bottom: 0;
+  line-height:normal;
 }
 .list-but>span.sp-time{
   float: left;
