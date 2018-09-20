@@ -37,7 +37,7 @@
               @endforeach
               <p class="load" nav="{{$towNav->id}}" page="{{config('hint.m_show_num')}}">加载更多</p>
             @else
-              <p>暂无内容</p>
+              <p class="bottom">暂无内容</p>
             @endif
           </div>
          
