@@ -24,6 +24,11 @@
   color: #fff;
   font-weight:600;
 }
+.pagetit>a>img{
+  width: .95rem;
+  margin-bottom: .2rem;
+  display: block;
+}
 .pagelist::-webkit-scrollbar { width: 0 !important }
 .pagelist{
   width:60%;

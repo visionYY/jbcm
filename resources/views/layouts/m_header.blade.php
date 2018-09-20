@@ -2,19 +2,26 @@
 <div data-role="panel" id="myPanel"> 
   <div class="pagelist">
     @foreach($data['navig'] as $nav)
-      @if($nav['nodes'])
+      @if($nav['id']==1)
         <h4 class="pagetit">
-          <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nav['nodes'][0]['id'])}}"">{{$nav['text']}}</a>
+          <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/1')}}">{{$nav['text']}}</a>
+        </h4>
+       
+      @elseif($nav['id']==6)
+      <h4 class="pagetit">
+      <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nav['nodes'][0]['id'])}}">
+            <img src="{{asset('Mobile/images/jbfh.jpeg')}}" alt="">
+          </a>
+        </h4>
+      @else
+        <h4 class="pagetit">
+          <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nav['nodes'][0]['id'])}}">{{$nav['text']}}</a>
         </h4>
         <ul class="test">
           @foreach($nav['nodes'] as $nodes)
             <li><a class="{{$nodes['id']==$data['secId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nodes['id'])}}">{{$nodes['text']}}</a></li>
           @endforeach
         </ul>
-      @else
-        <h4 class="pagetit">
-          <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/1')}}"">{{$nav['text']}}</a>
-        </h4>
       @endif
     @endforeach
   </div>
