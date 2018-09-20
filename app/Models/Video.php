@@ -9,7 +9,7 @@ class Video extends Model
 {
     protected $table = 'video';
 
-    protected $fillable = ['title','address','duration','cover','cg_id','nav_id','labels','status','author','publish_time','brief','intro'];
+    protected $fillable = ['title','address','duration','cover','cg_id','nav_id','labels','status','author','publish_time','content','intro'];
 
     /*
      * 后台查询

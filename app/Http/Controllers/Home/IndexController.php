@@ -401,20 +401,22 @@ class IndexController extends Controller
         $cgid = $request->get('cgid');
         $page = $request->get('page');
         $res = Article::getArticleVideo($cgid,config('hint.show_num'),$page);
-        foreach ($res as $art){
-            $nav = Navigation::find($art->nav_id);
-            if ($nav->id == 1){
-                $art->n_name = '';
-            }else{
-                $art->n_name = $nav->n_name;
-            }
+        if($res){
+            foreach ($res as $art){
+                $nav = Navigation::find($art->nav_id);
+                if ($nav->id == 1){
+                    $art->n_name = '';
+                }else{
+                    $art->n_name = $nav->n_name;
+                }
 
-            if ($art->type==1){
-                $art->url = url('article/id/'.$art->id);
-            }else{
-                $art->url = url('video/id/'.$art->id);
+                if ($art->type==1){
+                    $art->url = url('article/id/'.$art->id);
+                }else{
+                    $art->url = url('video/id/'.$art->id);
+                }
+                $art->cover = asset($art->cover);
             }
-            $art->cover = asset($art->cover);
         }
         return response($res);
     }

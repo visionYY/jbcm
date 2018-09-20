@@ -5,11 +5,11 @@
   <div data-role="page" id="pageone">
      @include('layouts.m_header')
     <div class="centera">
-      <ul id="oranger"> 
+      <!-- <ul id="oranger"> 
         @foreach($data['towNav'] as $towNav)
         <li><a class="{{$towNav->id == $data['secId'] ? 'hover' : ''}}" href="javascript:;">{{$towNav->n_name}}</a> </li>
         @endforeach
-      </ul>
+      </ul> -->
       <div id="tablea" class="tablea">
         @foreach($data['towNav'] as $towNav)
         <div class="towNav {{$towNav->id == $data['secId'] ? '' : 'box'}}">

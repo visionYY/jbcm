@@ -6,7 +6,10 @@
         <h4 class="pagetit">
           <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/1')}}">{{$nav['text']}}</a>
         </h4>
-       
+      @elseif($nav['id']==4)
+       <h4 class="pagetit">
+          <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nav['nodes'][0]['id'])}}">{{$nav['text']}}</a>
+        </h4>
       @elseif($nav['id']==6)
       <h4 class="pagetit">
       <a class="{{$nav['id']==$data['oneId'] ? 'selected' : ''}}" href="{{url('mobile/transmit/oneId/'.$nav['id'].'/secId/'.$nav['nodes'][0]['id'])}}">
