@@ -347,10 +347,27 @@
     })
 
     $('#shrink dl dt').on('click',function(){
+        // if($(this).children('span').html('+')){
+        //     $(this).children('span').html('-');
+        //     
+        //     console.log(1)
+        // }else if($(this).children('span').html('-')){
+        //     $(this).children('span').html('+');
+        //     console.log(2)
+        // }
         $(this).children('span').html('-');
         $(this).parent().siblings().children('dt').children('span').html('+');
         $(this).next().slideToggle();//点击展开
         $(this).parent().siblings().children('dd').slideUp();//只展开点击的其余的收起
     })
+
+    // $('#shrink dl dt').toggle(function() {
+    //     $(this).children('span').html('-');
+    //     $(this).parent().siblings().children('dt').children('span').html('+');
+    //     $(this).next().slideToggle();//点击展开
+    //     $(this).parent().siblings().children('dd').slideUp();//只展开点击的其余的收起
+    // },function() {
+    //     $(this).children('span').html('+');
+    // })
   </script>
 @stop

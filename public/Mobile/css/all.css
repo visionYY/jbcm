@@ -104,7 +104,18 @@
   padding:.12rem 0rem;
   border-bottom:1px solid #e6e8eb;
   height:auto;
-  
+  min-height: .81rem;
+  position: relative;
+}
+.bofang{
+  position: absolute;
+  width: .4rem;
+  top: 50%;
+  height: .4rem;
+  left: 16.2%;
+  margin-left: -.2rem;
+  margin-top: -.2rem;
+  z-index: 999;
 }
 .list a{
   display:flex;

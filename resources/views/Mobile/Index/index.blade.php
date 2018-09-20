@@ -72,6 +72,7 @@
                   <a href="{{url('mobile/article/id/'.$content->id)}}">
                 @else
                   <a href="{{url('mobile/video/id/'.$content->id)}}">
+                    <img class="bofang" src="{{asset('Mobile/images/bfang.png')}}" alt="">
                 @endif
                     <dt class="list-img"><img src="{{asset($content->cover)}}" alt=""></dt>
                     <dd>
