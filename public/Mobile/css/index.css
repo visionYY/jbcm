@@ -107,7 +107,8 @@ video{
   color:#4D63A7;
 }
 .box {
-	display:none
+  display:none;
+  padding:0 .1rem;
 }
 .oranger-hei{
   position:fixed;
