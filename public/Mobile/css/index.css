@@ -379,10 +379,10 @@ video{
   top:0;
 }
 .c_box{
-  width:75%;
-  height:auto;
+  width: 85%;
+  height: auto;
   position: relative;
-  margin:30% auto;
+  margin: 20% auto;
 }
 .c_box>img{
   width:100%;
@@ -402,8 +402,8 @@ video{
 .gogo{
   width: .8rem;
   position: absolute;
-  right: .13rem;
-  bottom: .15rem;
+  right: .2rem;
+  bottom: 0.19rem;
 }
 .gogo>img{
   width:.8rem;
