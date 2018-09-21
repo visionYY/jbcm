@@ -121,14 +121,14 @@
   <script>
     $(document).ready(function(){
       var mySwiper = new Swiper(".swiper-container",{
-                    autoplay:2000,
-                    loop:true,//循环
-                    pagination : '.swiper-pagination',
-                    paginationClickable :true,
-                    observer:true,//修改swiper自己或子元素时，自动初始化swiper
-                    observeParents:true,//修改swiper的父元素时，自动初始化swiper
-                })
-
+          autoplay:2500,
+          loop:true,//循环
+          pagination : '.swiper-pagination',
+          paginationClickable :true,
+          observer:true,//修改swiper自己或子元素时，自动初始化swiper
+          observeParents:true,//修改swiper的父元素时，自动初始化swiper
+      })
+      
       $(window).scroll(function(){
         var scrT = $(window).scrollTop();
         var offT = $("#oranger").offset().top;

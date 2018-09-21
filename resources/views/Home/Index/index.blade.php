@@ -11,7 +11,7 @@
 		background-image:url("{{asset('Home/images/right.png')}}")
 	}
 	</style>
-	 <script src={{asset("Home/js/jquery.min.js")}}></script>
+	<script src={{asset("Home/js/jquery.min.js")}}></script>
 	<script>
 		var wid = $(window).width();
 		if(wid<750){
@@ -177,13 +177,13 @@
     	</div>
     </div>
     <input type="hidden" name="url" value="{{url('getCategoryPage')}}">
-    @include('layouts._footer')
+	@include('layouts._footer')
     <script src="{{asset('Home/js/swiper.min.js')}}"></script>
     <script type="text/javascript">
         window.onload = function() {
             var mySwiper = new Swiper ('.swiper-container', {
-				autoplay:3000,//自动滚动
 				//loop:true,//循环
+				autoplay:2500,//自动滚动
 				//speed:1000,//滚动速度
 				slidesOffsetBefore : 0,
 				resistanceRatio : 0,
