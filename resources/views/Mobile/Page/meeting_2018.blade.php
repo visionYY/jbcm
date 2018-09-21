@@ -147,6 +147,7 @@
               <div class="tw_list_con tw_lists">
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/36kr.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/tx.png')}}" alt=""></a>
+                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/wlcj.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/xl.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/nbd.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/zaker.png')}}" alt=""></a>

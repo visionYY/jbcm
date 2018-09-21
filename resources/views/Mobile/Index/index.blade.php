@@ -14,7 +14,13 @@
 				window.location.href="{{url('/')}}"
 			}
 		});
-	</script>
+  </script>
+  <style>
+    .cover_box{
+      background:url("{{asset('Mobile/images/cover.jpg')}}") no-repeat;
+      background-size:cover;
+    }
+  </style>
   <div data-role="page" id="pageone">
      @include('layouts.m_header')
   
@@ -112,7 +118,15 @@
       </div>
       
     </div>
+
   @include('layouts.m_footer')
+
+  <div class="cover_box">
+    <div class="c_box" onclick="window.location.href='http://t.cn/RFmd6vb'">
+      <p class="cover_close"><img src="{{asset('Mobile/images/cover_close.png')}}" alt=""></p>
+      <p class="gogo"  ><img src="{{asset('Mobile/images/gogo.gif')}}" alt=""></p>
+    </div>
+  </div>
   <input type="hidden" name="url" value="{{url('mobile/getIndexMessge')}}">
   <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script>
   <script src="{{asset('Mobile/js/swiper.min.js')}}"></script>
@@ -121,14 +135,14 @@
   <script>
     $(document).ready(function(){
       var mySwiper = new Swiper(".swiper-container",{
-                    autoplay:2000,
-                    loop:true,//循环
-                    pagination : '.swiper-pagination',
-                    paginationClickable :true,
-                    observer:true,//修改swiper自己或子元素时，自动初始化swiper
-                    observeParents:true,//修改swiper的父元素时，自动初始化swiper
-                })
-
+          autoplay:2500,
+          loop:true,//循环
+          pagination : '.swiper-pagination',
+          paginationClickable :true,
+          observer:true,//修改swiper自己或子元素时，自动初始化swiper
+          observeParents:true,//修改swiper的父元素时，自动初始化swiper
+      })
+      
       $(window).scroll(function(){
         var scrT = $(window).scrollTop();
         var offT = $("#oranger").offset().top;
@@ -142,6 +156,11 @@
         if(offT<=220){
           $(".orangerb").removeClass('oranger-hei');
         }
+      })
+
+      $(".cover_close").click(function(e){
+        e.stopPropagation();
+        $('.cover_box').hide();
       })
     });
     

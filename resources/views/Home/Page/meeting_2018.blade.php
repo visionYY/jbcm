@@ -80,25 +80,29 @@
                 <img class="shows" src="{{asset('Home/images/imgPc/guest1/3.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest1/3_1.png')}}" alt="">
               </p>
-              <p class="person person5">
+              <p class="person person4">
                 <img class="shows" src="{{asset('Home/images/imgPc/guest1/5.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest1/5_1.png')}}" alt="">
               </p>
-              <p class="person person6">
+              <p class="person person5">
                 <img class="shows" src="{{asset('Home/images/imgPc/guest1/6.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest1/6_1.png')}}" alt="">
               </p>
-              <p class="person person7">
+              <p class="person person6">
                 <img class="shows" src="{{asset('Home/images/imgPc/guest1/7.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest1/7_1.png')}}" alt="">
               </p>
-              <p class="person person8">
+              <p class="person person7">
                 <img class="shows" src="{{asset('Home/images/imgPc/guest1/8.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest1/8_1.png')}}" alt="">
               </p>
-              <p class="person person9">
+              <p class="person person8">
                 <img class="shows" src="{{asset('Home/images/imgPc/guest1/9.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest1/9_1.png')}}" alt="">
+              </p>
+              <p class="person person9">
+                <img class="shows" src="{{asset('Home/images/imgPc/guest1/10.png')}}" alt="">
+                <img class="hides" src="{{asset('Home/images/imgPc/guest1/10_1.png')}}" alt="">
               </p>
             </div>
             <div class="guest1">
@@ -290,6 +294,7 @@
             <div class="tw_list_con tw_lists">
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/36kr.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/tx.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/wlcj.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/xl.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/nbd.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zaker.png')}}" alt=""></a>
