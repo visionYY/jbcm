@@ -115,7 +115,7 @@
   left: 16.2%;
   margin-left: -.2rem;
   margin-top: -.2rem;
-  z-index: 999;
+  z-index: 99;
 }
 .list a{
   display:flex;
