@@ -294,6 +294,7 @@
             <div class="tw_list_con tw_lists">
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/36kr.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/tx.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/wlcj.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/xl.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/nbd.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zaker.png')}}" alt=""></a>

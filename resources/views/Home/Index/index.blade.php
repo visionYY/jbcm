@@ -185,15 +185,14 @@
 				autoplay:3000,//自动滚动
 				//loop:true,//循环
 				//speed:1000,//滚动速度
+				slidesOffsetBefore : 0,
 				resistanceRatio : 0,
                 pagination : '.swiper-pagination',
                 paginationClickable :true,
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
-                autoplayDisableOnInteraction : false,    //注意此参数，默认为true
+				autoplayDisableOnInteraction : false,    //注意此参数，默认为true
             });
-
-			
         } 
 
         // setTimeout(function () {
