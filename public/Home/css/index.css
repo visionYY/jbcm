@@ -581,3 +581,46 @@ video{
 .dls_imgs{
   min-height: 60.78px;
 }
+
+
+.cover_box{
+  width:100%;
+  height:100%;
+  position: fixed;
+  z-index:999999;
+  background:rgba(0,0,0, 0.5);
+  left:0;
+  top:0;
+}
+.c_box{
+  width:1000px;
+  height:auto;
+  position: relative;
+  left:50%;
+  top:50%;
+  margin-left:-500px;
+  margin-top:-208px;
+}
+.c_box>img{
+  width:1000px;
+}
+.cover_close{
+  width:30px;
+  height:30px;
+  position: absolute;
+  right: -45px;
+  top: -50px;
+}
+.cover_close>img{
+  width:30px;
+  height:30px;
+}
+.gogo{
+  width: 150px;
+  position: absolute;
+  right: 400px;
+  bottom: 0px;
+}
+.gogo>img{
+  width:150px;
+}

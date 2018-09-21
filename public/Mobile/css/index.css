@@ -350,15 +350,15 @@ video{
   position: relative;
 }
 .cover_close{
-  width:.4rem;
-  height:.4rem;
+  width:.3rem;
+  height:.3rem;
   position: absolute;
   right: .1rem;
   top: .1rem;
 }
 .cover_close>img{
-  width:.4rem;
-  height:.4rem;
+  width:.3rem;
+  height:.3rem;
 }
 .gogo{
   width:1.1rem;
