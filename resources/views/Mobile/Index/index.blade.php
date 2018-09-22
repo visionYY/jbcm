@@ -15,12 +15,12 @@
 			}
 		});
   </script>
-  <style>
+  <!-- <style>
     .cover_box{
       background:url("{{asset('Mobile/images/cover.jpg')}}") no-repeat;
       background-size:cover;
     }
-  </style>
+  </style> -->
   <div data-role="page" id="pageone">
      @include('layouts.m_header')
   
@@ -122,11 +122,12 @@
   @include('layouts.m_footer')
 
   <div class="cover_box">
-    <div class="c_box" onclick="window.location.href='http://t.cn/RFmd6vb'">
-      <p class="cover_close"><img src="{{asset('Mobile/images/cover_close.png')}}" alt=""></p>
-      <p class="gogo"  ><img src="{{asset('Mobile/images/gogo.gif')}}" alt=""></p>
-    </div>
-  </div>
+		<div class="c_box" onclick="window.location.href='http://t.cn/RFmd6vb'">
+			<img src="{{asset('Mobile/images/cover.jpg')}}" alt="">
+			<p class="cover_close"><img src="{{asset('Mobile/images/cover_close.png')}}" alt=""></p>
+      <p class="gogo"><img src="{{asset('Mobile/images/gogo.gif')}}" alt=""></p>
+		</div>
+	</div>
   <input type="hidden" name="url" value="{{url('mobile/getIndexMessge')}}">
   <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script>
   <script src="{{asset('Mobile/js/swiper.min.js')}}"></script>
