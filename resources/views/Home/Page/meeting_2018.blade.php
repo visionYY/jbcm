@@ -306,7 +306,8 @@
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zqsb.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/cyj.png')}}" alt=""></a>  
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/hxsp.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/tysp.png')}}" alt=""></a>           
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/tysp.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/lusa.png')}}" alt=""></a>           
             </div>
           </div>
           <div class="tw_list">
