@@ -14,7 +14,6 @@
         <p class="text">
             <span class="text-icon">“</span>{!!$data['video']->content!!}
         </p>
-        <p class="btn"><i class="icon iconfont icon-gengduo1"></i>展开全文</p>
     </div>
     <!-- <div class="fun">
         <div class="like">

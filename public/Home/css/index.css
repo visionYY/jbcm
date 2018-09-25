@@ -619,8 +619,17 @@ video{
   width: 150px;
   position: absolute;
   right: 475px;
-  bottom: 0px;
+  bottom: 5px;
 }
 .gogo>img{
   width:150px;
+}
+.code{
+  width: 120px;
+  position: absolute;
+  right: 434px;
+  bottom: 56px;
+}
+.code>img{
+  width:120px;
 }
