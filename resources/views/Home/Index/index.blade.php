@@ -186,6 +186,7 @@
 		<div class="c_box" onclick="window.location.href='http://t.cn/RFmd6vb'">
 			<img src="{{asset('Home/images/cover.jpg')}}" alt="">
 			<p class="cover_close"><img src="{{asset('Home/images/cover_close.png')}}" alt=""></p>
+			<p class="code"><img src="{{asset('Home/images/code.png')}}" alt=""></p>
       		<p class="gogo"><img src="{{asset('Home/images/wxgif.gif')}}" alt=""></p>
 		</div>
 	</div>
