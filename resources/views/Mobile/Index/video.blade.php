@@ -7,7 +7,7 @@
     <div class="main-content">
       <h3 class="title">{{$data['video']->title}}</h3>
       <p class="kind"><span>{{$data['video']->nav_name}}</span><span>{{$data['video']->cg_name}}·{{$data['video']->push}}</span></p>
-      <video controls>
+      <video controls poster="{{$data['video']->cover}}">
           <source src="{{$data['video']->address}}" type="video/webm">
           <source src="{{$data['video']->address}}" type="video/mp4">
         </video>
