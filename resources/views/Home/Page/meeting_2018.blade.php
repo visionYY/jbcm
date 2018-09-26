@@ -100,10 +100,6 @@
                 <img class="shows" src="{{asset('Home/images/imgPc/guest1/9.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest1/9_1.png')}}" alt="">
               </p>
-              <p class="person person9">
-                <img class="shows" src="{{asset('Home/images/imgPc/guest1/10.png')}}" alt="">
-                <img class="hides" src="{{asset('Home/images/imgPc/guest1/10_1.png')}}" alt="">
-              </p>
             </div>
             <div class="guest1">
               <p><img src="{{asset('Home/images/imgPc/guest2/guest1_top.png')}}" alt=""></p>
