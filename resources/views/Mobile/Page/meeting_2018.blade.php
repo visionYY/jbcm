@@ -150,6 +150,7 @@
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/sqyc.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/xzdz.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/lmm.png')}}" alt=""></a>
+                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/lw.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/cj.png')}}" alt=""></a>
               </div>
             </div>
@@ -173,7 +174,8 @@
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/36kr.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/flf.png')}}" alt=""></a>
                 <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/gfcj.png')}}" alt=""></a>
-                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/wyxw.png')}}" alt=""></a>                
+                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/wyxw.png')}}" alt=""></a> 
+                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/sz.png')}}" alt=""></a>                
               </div>
             </div>
             <div class="tw_list">
@@ -191,7 +193,7 @@
             <div class="tw_list">
               <p class="tw_list_tit"><span>官方独家共享充电合作伙伴</span></p>
               <div class="tw_list_con">
-                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/ps.png')}}" alt=""></a>
+                <a href="javascript:;"><img src="{{asset('Mobile/images/imgMeeting/ld.png')}}" alt=""></a>
               </div>
             </div>
             <div class="tw_list">
