@@ -143,14 +143,18 @@
                 <img class="shows" src="{{asset('Home/images/imgPc/guest2/10.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest2/10_1.png')}}" alt="">
               </p>
+              <p class="person person20">
+                <img class="shows" src="{{asset('Home/images/imgPc/guest2/11.png')}}" alt="">
+                <img class="hides" src="{{asset('Home/images/imgPc/guest2/11_1.png')}}" alt="">
+              </p>
             </div>
             <div class="guest1">
                 <p><img src="{{asset('Home/images/imgPc/guest3/guest1_top.png')}}" alt=""></p>
-                <p class="person person20">
+                <p class="person person21">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/1.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/1_1.png')}}" alt="">
                 </p>
-                <p class="person person21">
+                <p class="person person22">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/2.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/2_1.png')}}" alt="">
                 </p>
