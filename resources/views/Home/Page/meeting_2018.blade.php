@@ -100,10 +100,6 @@
                 <img class="shows" src="{{asset('Home/images/imgPc/guest1/9.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest1/9_1.png')}}" alt="">
               </p>
-              <p class="person person9">
-                <img class="shows" src="{{asset('Home/images/imgPc/guest1/10.png')}}" alt="">
-                <img class="hides" src="{{asset('Home/images/imgPc/guest1/10_1.png')}}" alt="">
-              </p>
             </div>
             <div class="guest1">
               <p><img src="{{asset('Home/images/imgPc/guest2/guest1_top.png')}}" alt=""></p>
@@ -147,14 +143,18 @@
                 <img class="shows" src="{{asset('Home/images/imgPc/guest2/10.png')}}" alt="">
                 <img class="hides" src="{{asset('Home/images/imgPc/guest2/10_1.png')}}" alt="">
               </p>
+              <p class="person person20">
+                <img class="shows" src="{{asset('Home/images/imgPc/guest2/11.png')}}" alt="">
+                <img class="hides" src="{{asset('Home/images/imgPc/guest2/11_1.png')}}" alt="">
+              </p>
             </div>
             <div class="guest1">
                 <p><img src="{{asset('Home/images/imgPc/guest3/guest1_top.png')}}" alt=""></p>
-                <p class="person person20">
+                <p class="person person21">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/1.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/1_1.png')}}" alt="">
                 </p>
-                <p class="person person21">
+                <p class="person person22">
                   <img class="shows" src="{{asset('Home/images/imgPc/guest3/2.png')}}" alt="">
                   <img class="hides" src="{{asset('Home/images/imgPc/guest3/2_1.png')}}" alt="">
                 </p>
@@ -274,51 +274,56 @@
             </div>
           </div>
           <div class="tw_list">
-            <p class="tw_list_tit"><span>战略合作伙伴</span></p>
+            <p class="tw_list_tit"><span>首席战略合作伙伴</span></p>
+            <div class="tw_list_con">
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/kdxf.png')}}" alt=""></a>
+            </div>
+          </div>
+          <div class="tw_list">
+            <p class="tw_list_tit"><span>战略合作媒体</span></p>
             <div class="tw_list_con">
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zww.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/kdxf.png')}}" alt=""></a>
+            </div>
+          </div>
+          <div class="tw_list">
+            <p class="tw_list_tit"><span>官方指定用车平台</span></p>
+            <div class="tw_list_con">
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/sqyc.png')}}" alt=""></a>
             </div>
           </div>
           <div class="tw_list">
             <p class="tw_list_tit"><span>品牌合作伙伴</span></p>
             <div class="tw_list_con tw_lists">
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/sqyc.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/szss.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/lmm.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/xzdz.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/lmm.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/szss.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/lw.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/cj.png')}}" alt=""></a>
             </div>
           </div>
           <div class="tw_list">
             <p class="tw_list_tit"><span>合作媒体</span></p>
             <div class="tw_list_con tw_lists">
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/36kr.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/tx.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/wlcj.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/xl.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/nbd.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zaker.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/wlcj.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/jm.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/xlkj.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/hs.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zc.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/ly.png')}}" alt=""></a>
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/donews.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/ly.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/cyj.png')}}" alt=""></a> 
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zqsb.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/cyj.png')}}" alt=""></a>  
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/hxsp.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/tysp.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/lusa.png')}}" alt=""></a>           
-            </div>
-          </div>
-          <div class="tw_list">
-            <p class="tw_list_tit"><span>官方视频直播平台</span></p>
-            <div class="tw_list_con tw_lists">
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/yxzb.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/szb.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/hj.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/dy.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/wh.png')}}" alt=""></a>
-              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/sy.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/nbd.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/zc.png')}}" alt=""></a> 
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/lusa.png')}}" alt=""></a>  
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/36kr.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/flf.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/gfcj.png')}}" alt=""></a> 
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/wyxw.png')}}" alt=""></a>  
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/sz.png')}}" alt=""></a>          
             </div>
           </div>
           <div class="tw_list">
@@ -327,6 +332,30 @@
               <a href="javascript:;"><img src="{{asset('Home/images/imgPc/hdx.png')}}" alt=""></a>
             </div>
           </div>
+          <div class="tw_list">
+            <p class="tw_list_tit"><span>官方独家图片直播平台</span></p>
+            <div class="tw_list_con">
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/ps.png')}}" alt=""></a>
+            </div>
+          </div>
+          <div class="tw_list">
+            <p class="tw_list_tit"><span>官方独家共享充电合作伙伴</span></p>
+            <div class="tw_list_con">
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/ld.png')}}" alt=""></a>
+            </div>
+          </div>
+          <div class="tw_list">
+            <p class="tw_list_tit"><span>官方视频直播平台</span></p>
+            <div class="tw_list_con tw_lists">
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/fhxw.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/wh.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/sy.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/dy.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/hj.png')}}" alt=""></a>
+              <a href="javascript:;"><img src="{{asset('Home/images/imgPc/yxzb.png')}}" alt=""></a>
+            </div>
+          </div>
+          
         </div>
         <div class="issue_box">
           <h4>相关问题</h4>
