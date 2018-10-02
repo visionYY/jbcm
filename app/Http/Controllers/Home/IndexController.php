@@ -36,15 +36,20 @@ class IndexController extends Controller
         $zuixin = array('id'=>0,'cg_name'=>'最新推荐',"sort"=>100,'status'=>1,'created_at'=>'2018-08-02 08:09:54','updated_at'=>'2018-08-02 08:09:54');
         array_unshift($cate,$zuixin);
         foreach ($cate as &$c){
-            $c['content'] = Article::getArticleVideo($c['id'],config('hint.show_num'));
-            foreach ($c['content'] as $cont){
-                $nav = Navigation::find($cont->nav_id);
-                if($nav['id'] == 1){
-                    $cont->n_name = '';
-                }else{
-                    $cont->n_name = $nav->n_name;
+            if($c['id'] ==0){
+                $c['content'] = Article::getArticleVideo($c['id'],config('hint.show_num'));
+                foreach ($c['content'] as $cont){
+                    $nav = Navigation::find($cont->nav_id);
+                    if($nav['id'] == 1){
+                        $cont->n_name = '';
+                    }else{
+                        $cont->n_name = $nav->n_name;
+                    }
                 }
+            }else{
+                $c['content'] = [];
             }
+
         }
         $data['cate'] = $cate;
         //精选
@@ -55,6 +60,7 @@ class IndexController extends Controller
         /*foreach ($data['tutor'] as $tutor){
             $tutor->classic_quote= explode('；',$tutor->classic_quote);
         }*/
+//        dd($data);
         return view('Home.Index.index',compact('data',$data));
     }
 

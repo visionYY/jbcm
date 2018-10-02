@@ -14,6 +14,7 @@
       background:url("{{asset('Home/images/cover.jpg')}}") no-repeat;
       background-size:cover;
     } */
+    .ckgd{width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #00f;}
 	</style>
 	<script src={{asset("Home/js/jquery.min.js")}}></script>
 	<script>
@@ -82,7 +83,7 @@
                     <div class="main_tab">
                         <ul id="myTab" class="nav_bot nav-tabs">
                         	@foreach($data['cate'] as $k=>$cate)
-                            <li class="{{$k==0 ? 'active' : ''}}">
+                            <li class="{{$k==0 ? 'active' : ''}} cate" cgid="{{$cate['id']}}" page="{{config('hint.show_num')}}">
                                 <a href="#ios_{{$k}}" data-toggle="tab">{{$cate['cg_name']}}</a>
                             </li>
                             @endforeach
@@ -90,6 +91,7 @@
                         <div id="myTabContent" class="tab-content">
                         	@foreach($data['cate'] as $k=>$cate)
                             <div class="tab-pane fade {{$k==0 ? 'in active' : ''}}" id="ios_{{$k}}">
+                                @if($cate['content'])
                             	<div class="cont_list">
 	                            	@foreach($cate['content'] as $cont)
 	                                <dl class="tab_list">
@@ -111,11 +113,9 @@
 	                                    </a>
 	                                </dl>
 	                                @endforeach
-
                                 </div>
-                                @if($cate['content'])
                                 <div class="btn_more">
-									<button cgid="{{$cate['id']}}" page="{{config('hint.show_num')}}" class="ckgd" style="width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #00f;">查看更多</button>
+									<button cgid="{{$cate['id']}}" page="{{config('hint.show_num')}}" class="ckgd">查看更多</button>
 								</div>
                                 @else
                                 <p style="width: 100%;text-align: center;">没有相关内容</p>
@@ -181,6 +181,7 @@
     	</div>
     </div>
     <input type="hidden" name="url" value="{{url('getCategoryPage')}}">
+    <input type="hidden" name="cateUrl" value="{{url('getIndexCate')}}">
 	@include('layouts._footer')
 	<div class="cover_box">
 		<div class="c_box" onclick="window.location.href='http://t.cn/RFmd6vb'">
@@ -212,6 +213,42 @@
         // }, 1500);  
     </script>
 	<script type="text/javascript">
+        //分类点击
+        $('.cate').click(function(){
+            var href = $(this).find('a').attr('href');
+            var cgid = $(this).attr('cgid');
+            var page = $(this).attr('page');
+            var cateUrl = $('[name=cateUrl]').val();
+            
+            $.ajax({url:cateUrl,
+                    type:'GET',
+                    data:{cgid:cgid},
+                    dataType:'json',
+                    success:function(d){
+                        console.log(d);
+                        var html = '';
+                        if (d !=0) {
+                           html += '<div class="cont_list">';
+                           $.each(d,function(index,item){
+                                html += '<dl class="tab_list"><a href="'+item.url+'" target="_blank">';
+                                if (item.type==2) {
+                                    html += '<img class="bofang" src={{asset("Home/images/bfang.png")}} alt="">';
+                                }
+                                html += '<dt><img src="'+item.cover+'" alt=""></dt>';
+                                html += '<dd><h4 class="tab_tit">'+item.title+'</h4>';
+                                html += '<p class="tab_con">'+item.intro+'</p>';
+                                html += '<p class="tab_time">'+item.publish_time.substr(0,10)+'</p><span>'+item.n_name+'</span></dd></a></dl>';
+                                
+                            }); 
+                            html += '</div><div class="btn_more">';
+                            html += '<button cgid="'+cgid+'" page="'+page+'" class="ckgd">查看更多</button></div>';   
+                        }else{
+                            html += '<p style="width: 100%;text-align: center;">没有相关内容</p>';
+                        }
+                        $(href).empty().append(html);
+                    }})
+        })
+
 		$(".cover_close").click(function(e){
 			e.stopPropagation();
 			$('.cover_box').hide();

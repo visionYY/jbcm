@@ -48,7 +48,10 @@
                       observeParents:true,//修改swiper的父元素时，自动初始化swiper
                   })
       });
-
+      //提交
+      $('.icon-iconsousuo').click(function(){
+         $('form').submit();
+      });
       //分页
       url = $('[name=url]').val();
       $('.load').click(function(){
