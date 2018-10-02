@@ -360,24 +360,24 @@
         <div class="issue_box">
           <h4>相关问题</h4>
           <div class="issue_list">
-            <p class="topic"><img src="{{asset('Home/images/imgPc/icon.png')}}" alt="">如何报名，何时截止报名？</p>
+            <p class="topic"><img src="{{asset('Home/images/imgPc/icons.png')}}" alt="">如何报名，何时截止报名？</p>
             <p class="iss_con">请点击“立即购票”，选择票种；或在活动行PC端、手机端APP搜索“POWER 2018 新时代新经济嘉宾峰会”，点击页面进行购票
               峰会购票截止日期为 2018 年 10月 16 日 22:00</p>
           </div>
           <div class="issue_list">
-            <p class="topic"><img src="{{asset('Home/images/imgPc/icon.png')}}" alt="">购票付款成功后，有凭证吗？如何签到？</p>
+            <p class="topic"><img src="{{asset('Home/images/imgPc/icons.png')}}" alt="">购票付款成功后，有凭证吗？如何签到？</p>
             <p class="iss_con">活动行购票成功后，会收到确认短信通知。在活动当天凭活动行发给您短信中的参会二维码，到深Reborn755签到处找工作人员签到，工作人员会扫取二维码并发放入场手环。</p>
           </div>
           <div class="issue_list">
-            <p class="topic"><img src="{{asset('Home/images/imgPc/icon.png')}}" alt="">是否有座位图？会议现场是否需要对号入座？中途离开，座位是否可以保留？</p>
+            <p class="topic"><img src="{{asset('Home/images/imgPc/icons.png')}}" alt="">是否有座位图？会议现场是否需要对号入座？中途离开，座位是否可以保留？</p>
             <p class="iss_con">购票时，请选择票种，不同票种对应不同区域，暂没有指定座位号码，购票用户可根据现场指引，在指定区域就坐，如您中途离开会场，不能确保继续有座位</p>
           </div>
           <div class="issue_list">
-            <p class="topic"><img src="{{asset('Home/images/imgPc/icon.png')}}" alt="">大会现场有同声传译服务吗？如何领取同传设备？</p>
+            <p class="topic"><img src="{{asset('Home/images/imgPc/icons.png')}}" alt="">大会现场有同声传译服务吗？如何领取同传设备？</p>
             <p class="iss_con">现场有同传设备及服务支持，活动当天可凭本人身份证，到会场入场处换取同传设备，活动结束后，您需归还同传设备并取回身份证。</p>
           </div>
           <div class="issue_list">
-            <p class="topic"><img src="{{asset('Home/images/imgPc/icon.png')}}" alt="">有活动相关照片及视频吗？</p>
+            <p class="topic"><img src="{{asset('Home/images/imgPc/icons.png')}}" alt="">有活动相关照片及视频吗？</p>
             <p class="iss_con">我们会有专门的摄影团队在活动现场进行照片拍摄及上传，现场设置了照片传输通道，可扫描二维码获取，您也可以加会刊上的活动小助手微信，进入活动现场微信群，在第一时间获取活动照片。</p>
           </div>
         </div>
