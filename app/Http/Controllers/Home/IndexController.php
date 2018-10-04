@@ -202,11 +202,16 @@ class IndexController extends Controller
         //二级导航
         $data['towNav'] = Navigation::getNavTwo($oneId);
         foreach ($data['towNav'] as $twoNav){
-            if ($twoNav->id ==11){
-                $twoNav->user = TutorStudent::where('type',1)->orderBy('sort','desc')->get();
+            if($twoNav->id == $data['secId']){
+                if ($twoNav->id ==11){
+                    $twoNav->user = TutorStudent::getPeople(1,config('hint.ts_show_tust'),0);
+                }else{
+                    $twoNav->user = TutorStudent::getPeople(2,config('hint.ts_show_tust'),0);
+                }
             }else{
-                $twoNav->user = TutorStudent::where('type',2)->orderBy('sort','desc')->get();
+                $twoNav->user = [];
             }
+
         }
 //        dd($data);
         return view('Home.Index.tutorStudent',compact('data',$data));

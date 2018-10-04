@@ -60,8 +60,10 @@ return [
     'index_show_adv'        => 2,       //1:视频；2：轮播；
     //首页导师学员展示设置
     'index_show_tust'       => 8,
+    //导师学员页展示条数
+    'ts_show_tust'          => 8,
     //首页文章推荐 展示几条
-    'show_num'              => 20,
+    'show_num'              => 5,
     //手机端默认展示条数
     'm_show_num'            => 5,
     //手机端导师学员默认展示

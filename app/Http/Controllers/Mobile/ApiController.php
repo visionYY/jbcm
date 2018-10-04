@@ -16,7 +16,11 @@ class ApiController extends Controller
     public function getIndexMessge(Request $request){
         $cid = $request->get('cid');
         $page = $request->get('page');
-        $res = Navigation::getCateAV($cid,config('hint.m_show_num'),$page);
+        if ($page != null) {
+            $res = Navigation::getCateAV($cid, config('hint.m_show_num'), $page);
+        }else{
+            $res = Navigation::getCateAV($cid, config('hint.m_show_num'));
+        }
         if($res){
             foreach ($res as $art){
                 $nav = Navigation::find($art->nav_id);
@@ -89,7 +93,12 @@ class ApiController extends Controller
         }else{
             $type = 2;
         }
-        $res = TutorStudent::getPeople($type,config('hint.m_show_num'),$page);
+        if ($page != null){
+            $res = TutorStudent::getPeople($type,config('hint.m_show_num'),$page);
+        }else{
+            $res = TutorStudent::getPeople($type,config('hint.m_show_num'));
+        }
+
         if ($res){
             foreach ($res as $v){
                 $v->url = url('mobile/tsDetail/id/'.$v->id);

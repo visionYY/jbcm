@@ -30,6 +30,7 @@ Route::get('doSearch','Home\IndexController@doSearch');
 //API
 Route::get('getCategoryPage','Home\IndexController@getCategoryPage');       //首页数据获取
 Route::get('getIndexCate','Home\ApiController@getIndexCate');       //首页分类数据获取
+Route::get('getPeopleMessge','Home\ApiController@getPeopleMessge');       //导师学员分页数据获取
 
 //公共链接PC
 Route::get('getHref/id/{id}','Home\IndexController@getHref');
@@ -56,9 +57,9 @@ Route::group(['prefix'=>'mobile'],function (){
     Route::get('article/id/{id}','Mobile\IndexController@article');
     Route::get('video/id/{id}','Mobile\IndexController@video');
     //API
-    Route::get('getIndexMessge','Mobile\ApiController@getIndexMessge');     //首页页数据获取
-    Route::get('getBrandMessge','Mobile\ApiController@getBrandMessge');     //品牌页数据获取
-    Route::get('getPeopleMessge','Mobile\ApiController@getPeopleMessge');     //导师学员分页数据获取
+    Route::get('getIndexMessge','Mobile\ApiController@getIndexMessge');         //首页数据获取
+    Route::get('getBrandMessge','Mobile\ApiController@getBrandMessge');         //品牌页数据获取
+    Route::get('getPeopleMessge','Mobile\ApiController@getPeopleMessge');       //导师学员分页数据获取
 
     //公共链接M
     Route::group(['prefix'=>'page'],function (){

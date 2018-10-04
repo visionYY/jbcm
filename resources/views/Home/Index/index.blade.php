@@ -83,7 +83,7 @@
                     <div class="main_tab">
                         <ul id="myTab" class="nav_bot nav-tabs">
                         	@foreach($data['cate'] as $k=>$cate)
-                            <li class="{{$k==0 ? 'active' : ''}} cate" cgid="{{$cate['id']}}" page="{{config('hint.show_num')}}">
+                            <li class="{{$k==0 ? 'active' : ''}} cate" cgid="{{$cate['id']}}" dj="{{$k==0 ? '1' : '0'}}">
                                 <a href="#ios_{{$k}}" data-toggle="tab">{{$cate['cg_name']}}</a>
                             </li>
                             @endforeach
@@ -91,35 +91,36 @@
                         <div id="myTabContent" class="tab-content">
                         	@foreach($data['cate'] as $k=>$cate)
                             <div class="tab-pane fade {{$k==0 ? 'in active' : ''}}" id="ios_{{$k}}">
-                                @if($cate['content'])
                             	<div class="cont_list">
-	                            	@foreach($cate['content'] as $cont)
-	                                <dl class="tab_list">
-	                                    @if($cont->type ==1)
-			                            <a href="{{url('article/id/'.$cont->id)}}" target="_blank">
-			                            @else
-			                            <a href="{{url('video/id/'.$cont->id)}}" target="_blank">
-                                            <img class="bofang" src="{{asset('Home/images/bfang.png')}}" alt="">
-			                            @endif
-	                                        <dt>
-	                                            <img src={{asset($cont->cover)}} alt="">
-	                                        </dt>
-	                                        <dd>
-	                                            <h4 class="tab_tit">{{$cont->title}}</h4>
-	                                            <p class="tab_con">{{$cont->intro}}</p>
-	                                            <p class="tab_time">{{substr($cont->publish_time,0,10)}}</p>
-	                                            <span>{{$cont->n_name}}</span>
-	                                        </dd>
-	                                    </a>
-	                                </dl>
-	                                @endforeach
+                                    @if($cate['content'])
+    	                            	@foreach($cate['content'] as $cont)
+    	                                <dl class="tab_list">
+    	                                    @if($cont->type ==1)
+    			                            <a href="{{url('article/id/'.$cont->id)}}" target="_blank">
+    			                            @else
+    			                            <a href="{{url('video/id/'.$cont->id)}}" target="_blank">
+                                                <img class="bofang" src="{{asset('Home/images/bfang.png')}}" alt="">
+    			                            @endif
+    	                                        <dt>
+    	                                            <img src={{asset($cont->cover)}} alt="">
+    	                                        </dt>
+    	                                        <dd>
+    	                                            <h4 class="tab_tit">{{$cont->title}}</h4>
+    	                                            <p class="tab_con">{{$cont->intro}}</p>
+    	                                            <p class="tab_time">{{substr($cont->publish_time,0,10)}}</p>
+    	                                            <span>{{$cont->n_name}}</span>
+    	                                        </dd>
+    	                                    </a>
+    	                                </dl>
+    	                                @endforeach
+                                    @endif
                                 </div>
                                 <div class="btn_more">
 									<button cgid="{{$cate['id']}}" page="{{config('hint.show_num')}}" class="ckgd">查看更多</button>
 								</div>
-                                @else
-                                <p style="width: 100%;text-align: center;">没有相关内容</p>
-                                @endif
+                                
+                                <!-- <p style="width: 100%;text-align: center;">没有相关内容</p> -->
+                                
                             </div>
                             @endforeach
                         </div>
@@ -180,8 +181,8 @@
             </div>
     	</div>
     </div>
-    <input type="hidden" name="url" value="{{url('getCategoryPage')}}">
-    <input type="hidden" name="cateUrl" value="{{url('getIndexCate')}}">
+    <input type="hidden" name="url" value="{{url('getIndexCate')}}">
+    <input type="hidden" name="show_num" value="{{config('hint.show_num')}}">
 	@include('layouts._footer')
 	<div class="cover_box">
 		<div class="c_box" onclick="window.location.href='http://t.cn/RFmd6vb'">
@@ -213,22 +214,26 @@
         // }, 1500);  
     </script>
 	<script type="text/javascript">
+        var show_num = $('[name=show_num]').val(),
+            url = $('[name=url]').val();
         //分类点击
         $('.cate').click(function(){
-            var href = $(this).find('a').attr('href');
-            var cgid = $(this).attr('cgid');
-            var page = $(this).attr('page');
-            var cateUrl = $('[name=cateUrl]').val();
-            
-            $.ajax({url:cateUrl,
+            var thisObj = $(this);
+            var href = thisObj.find('a').attr('href');
+            var cgid = thisObj.attr('cgid');
+            // var cateUrl = $('[name=cateUrl]').val();
+            var dj = thisObj.attr('dj');
+            if (dj==0) {
+                $.ajax({url:url,
                     type:'GET',
                     data:{cgid:cgid},
                     dataType:'json',
                     success:function(d){
                         console.log(d);
+                        thisObj.attr('dj',1);
                         var html = '';
                         if (d !=0) {
-                           html += '<div class="cont_list">';
+                           // html += '<div class="cont_list">';
                            $.each(d,function(index,item){
                                 html += '<dl class="tab_list"><a href="'+item.url+'" target="_blank">';
                                 if (item.type==2) {
@@ -240,20 +245,23 @@
                                 html += '<p class="tab_time">'+item.publish_time.substr(0,10)+'</p><span>'+item.n_name+'</span></dd></a></dl>';
                                 
                             }); 
-                            html += '</div><div class="btn_more">';
-                            html += '<button cgid="'+cgid+'" page="'+page+'" class="ckgd">查看更多</button></div>';   
+                            // html += '</div><div class="btn_more">';
+                            // html += '<button cgid="'+cgid+'" page="'+show_num+'" class="ckgd">查看更多</button></div>';   
                         }else{
                             html += '<p style="width: 100%;text-align: center;">没有相关内容</p>';
+                            $(href).find('.btn_more').hide();
                         }
-                        $(href).empty().append(html);
+                        $(href).find('.cont_list').append(html);
                     }})
+            }
+            
         })
 
 		$(".cover_close").click(function(e){
 			e.stopPropagation();
 			$('.cover_box').hide();
 		})
-    	var url = $('[name=url]').val();
+    	
     	$('.btn_more').click(function(){
     		var thisObj = $(this);
     		var cgid = thisObj.find('button').attr('cgid'),
@@ -263,7 +271,7 @@
     				data:{cgid:cgid,page:page},
     				dataType:'json',
     				success:function(d){
-    					thisObj.find('button').attr('page',parseInt(page)+{{config('hint.show_num')}});
+    					thisObj.find('button').attr('page',parseInt(page)+parseInt(show_num));
     					var html = '';
     					console.log(d);
     					if (d != 0) {
