@@ -41,3 +41,13 @@ a:hover,a:active{text-decoration:underline;color:#f60;}
 li>a{
   font-size: 14px;
 }
+.bofang{
+  position: absolute;
+  width: 55px;
+  top: 50%;
+  height: 55px;
+  left: 16.2%;
+  margin-left: -27.5px;
+  margin-top: -36.5px;
+  z-index: 999;
+}

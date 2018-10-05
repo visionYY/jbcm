@@ -101,7 +101,7 @@
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
                                     <textarea id="intro" style="width: 100%;height: 100px;resize: none;" name="intro">{{$data['article']->intro}}</textarea>
-                                    <p><span id="text-count">80</span>/80</p>
+                                    <p><span id="text-intro">80</span>/80</p>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
@@ -120,15 +120,11 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                            <input type="hidden" name="old_cover" value="{{$data['article']->cover}}">
-                                            <input type="hidden" name="old_labels" value="{{$data['article']->labels}}">
-                                            <input type="hidden" name="_method" value="put"/>
-                                            <input type="hidden" name="cover">
-                                        </label>
-                                    </div>
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <input type="hidden" name="old_cover" value="{{$data['article']->cover}}">
+                                    <input type="hidden" name="old_labels" value="{{$data['article']->labels}}">
+                                    <input type="hidden" name="_method" value="put"/>
+                                    <input type="hidden" name="cover">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -204,6 +200,8 @@
             }
         });
         // 限制
+        var intro = $('[name=intro').val();
+        $("#text-intro").text(80-intro.length);
         $('#intro').on('input propertychange',function(){
                      var $this = $(this),
                          _val = $this.val(),
@@ -212,7 +210,7 @@
                 $this.val(_val.substring(0, 80));
             }
             count = 80 - $this.val().length;
-            $("#text-count").text(count);   
+            $("#text-intro").text(count);   
         });
     </script>
 @stop

@@ -45,35 +45,31 @@
       </div>
       <div class="top40_con">
       <div class="row">
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <img src="{{asset('Home/images/imgTop/sqyc.png')}}" alt="">
           <p class="triangle"><span></span></p>
           <div class="row_detil">
             <div class="del_con">
               <p><span></span></p>
-              <p>的发生的方式地方是东方时代水电费水电费水电费水电费水电费收到水电费水电费水电费水电费水电费c s</p>
-              <p>随着中国崛起、科技发展、人民对美好生活的不断追求向往，人工智能、云计算、新材料、生物医药等前沿科技应势蓬勃发展。技术与产业嫁接，资本与市场同力，新时代下，新经济、新业态、新企业家都成为时代标签。</p>
-              <p> 我们看到了O2O、VR、共享经济等风口的诞生和洗牌，也看到了AI、区块链、生命科学等新产业的巨大发展前景。科技与资本协同作用，在各行各业催生出新的可能性，政商产学研合力推动着中国产业迭代升级。</p>
-              <p>沙鸥翔集，这是一个动荡的，但也是一个充满机遇的商业时代。中国诞生了很多新独角兽企业，这不仅是中国商业的创新突破，同时也是普惠大众的伟大实践。</p>
-              <p>每一个敢于用创新的力量去引领时代、改变世界的人都值得荣耀。嘉宾传媒联合FT中文网，挖掘七大行业的100家中国企业，发布「中国力量」POWER100商业案例榜单，并从中甄选了40位近年来对中国商业作出杰出贡献的时代企业，致敬具有创造精神、冒险精神的时代先锋。</p>
+              
             </div>
           </div>
-        </div>
+        </div> -->
+        @foreach($data as $k=>$top)
         <div class="col-md-6">
-          <img src="{{asset('Home/images/imgTop/wl.png')}}" alt="">
+          <img src="{{asset('Home/images/imgTop/'.$top['img'])}}" alt="">
           <p class="triangle"><span></span></p>
-          <div class="row_detil del2">
+          <div class="row_detil {{$k%2 == 1 ? 'del2' : ''}}">
             <div class="del_con">
               <p><span></span></p>
-              <p>的发生的方式地方是东方时代水电费水电费水电费水电费水电费收到水电费水电费水电费水电费水电费c s</p>
-              <p>随着中国崛起、科技发展、人民对美好生活的不断追求向往，人工智能、云计算、新材料、生物医药等前沿科技应势蓬勃发展。技术与产业嫁接，资本与市场同力，新时代下，新经济、新业态、新企业家都成为时代标签。</p>
-              <p> 我们看到了O2O、VR、共享经济等风口的诞生和洗牌，也看到了AI、区块链、生命科学等新产业的巨大发展前景。科技与资本协同作用，在各行各业催生出新的可能性，政商产学研合力推动着中国产业迭代升级。</p>
-              <p>沙鸥翔集，这是一个动荡的，但也是一个充满机遇的商业时代。中国诞生了很多新独角兽企业，这不仅是中国商业的创新突破，同时也是普惠大众的伟大实践。</p>
-              <p>每一个敢于用创新的力量去引领时代、改变世界的人都值得荣耀。嘉宾传媒联合FT中文网，挖掘七大行业的100家中国企业，发布「中国力量」POWER100商业案例榜单，并从中甄选了40位近年来对中国商业作出杰出贡献的时代企业，致敬具有创造精神、冒险精神的时代先锋。</p>
+              @foreach($top['detail'] as $v)
+              <p>{{$v}}</p>
+              @endforeach
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        @endforeach
+        <!-- <div class="col-md-6">
           <img src="{{asset('Home/images/imgTop/elm.png')}}" alt="">
           <p class="triangle"><span></span></p>
           <div class="row_detil">
@@ -86,7 +82,7 @@
               <p>每一个敢于用创新的力量去引领时代、改变世界的人都值得荣耀。嘉宾传媒联合FT中文网，挖掘七大行业的100家中国企业，发布「中国力量」POWER100商业案例榜单，并从中甄选了40位近年来对中国商业作出杰出贡献的时代企业，致敬具有创造精神、冒险精神的时代先锋。</p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       </div>
       <div class="box-bom">
@@ -97,8 +93,6 @@
         </p>
       </div>
     </div>
-    <input type="hidden" id="top40_pc" value="{{$data['top40_pc']}}">
-    <input type="hidden" id="top40_yd" value="{{$data['top40_yd']}}">
     <input type="hidden" id="signature" value="{{$signPackage['signature']}}">
     <input type="hidden" id="noncestr" value="{{$signPackage['nonceStr']}}">
     <input type="hidden" id="timestamp" value="{{$signPackage['timestamp']}}">
@@ -214,6 +208,6 @@
       //         wx.onMenuShareTimeline(share_config.share);//分享到朋友圈
       //         wx.onMenuShareQQ(share_config.share);//分享给手机QQ
       //     });
-  </script>
+    </script>
 </body>
 </html>

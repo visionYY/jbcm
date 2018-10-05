@@ -3,7 +3,7 @@
 @section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>添加视频</h5>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form action={{url('admin/video')}} class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
+                        <form action="{{url('admin/video')}}" class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
                             @include('layouts.admin_error')
                             <!-- 标题： -->
                             <div class="form-group">
@@ -115,7 +115,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-group" style="width: 100%;height: 80px;resize: none;" name="intro">{{old('intro')}}</textarea>
+                                    <textarea style="width: 100%;height: 80px;resize: none;" name="intro">{{old('intro')}}</textarea>
                                     <p><span id="text-intro">80</span>/80</p>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
@@ -124,17 +124,15 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">内容：</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-group" style="width: 100%;height: 150px;resize: none;" name="content">{{old('content')}}</textarea>
+                                    <textarea style="width: 100%;height: 150px;resize: none;" name="content">{{old('content')}}</textarea>
                                     <p><span id="text-content">255</span>/255</p>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                        <input type="hidden" name="cover" value="{{old('cover')}}">
-                                    </div>
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <input type="hidden" name="cover" value="{{old('cover')}}">
                                 </div>
                             </div>
                             
@@ -180,18 +178,8 @@
             $('[name=cover]').attr('value',dataURL);
         }
     });
-
+    //简介
     $('[name=intro]').on('input propertychange',function(){
-                 var $this = $(this),
-                     _val = $this.val(),
-                     count = "";
-        if (_val.length > 255) {
-            $this.val(_val.substring(0, 255));
-        }
-        count = 255 - $this.val().length;
-        $("#text-intro").text(count);   
-    });
-    $('[name=content]').on('input propertychange',function(){
                  var $this = $(this),
                      _val = $this.val(),
                      count = "";
@@ -199,7 +187,19 @@
             $this.val(_val.substring(0, 80));
         }
         count = 80 - $this.val().length;
+        $("#text-intro").text(count);   
+    });
+    //内容
+    $('[name=content]').on('input propertychange',function(){
+                 var $this = $(this),
+                     _val = $this.val(),
+                     count = "";
+        if (_val.length > 255) {
+            $this.val(_val.substring(0, 255));
+        }
+        count = 255 - $this.val().length;
         $("#text-content").text(count);   
     });
+    
     </script>
 @stop

@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title',$data['title'])
 @section('content')
-    <link rel="stylesheet" href={{asset("Home/css/index.css")}}>
+    <link rel="stylesheet" href="{{asset('Home/css/index.css')}}">
     <link rel="stylesheet" href="{{asset('Home/css/swiper.min.css')}}">
 	<style>
 	.swiper-button-prev.swiper-button-white, .swiper-container-rtl .swiper-button-next.swiper-button-white{

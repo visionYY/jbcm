@@ -3,7 +3,7 @@
 @section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>视频修改</h5>
@@ -115,7 +115,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">简介：</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-group" style="width: 100%;height: 80px;resize: none;" name="intro">{{$data['video']['intro']}}</textarea>
+                                    <textarea style="width: 100%;height: 80px;resize: none;" name="intro">{{$data['video']['intro']}}</textarea>
                                     <p><span id="text-intro">80</span>/80</p>
                                 </div>
                             </div>
@@ -123,19 +123,17 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">内容：</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-group" style="width: 100%;height: 150px;resize: none;" name="content">{{$data['video']['content']}}</textarea>
+                                    <textarea style="width: 100%;height: 150px;resize: none;" name="content">{{$data['video']['content']}}</textarea>
                                     <p><span id="text-content">255</span>/255</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                            <input type="hidden" name="old_cover" value="{{$data['video']['cover']}}">
-                                            <input type="hidden" name="old_labels" value="{{$data['video']['labels']}}">
-                                            <input type="hidden" name="_method" value="put"/>
-                                            <input type="hidden" name="cover">
-                                       
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <input type="hidden" name="old_cover" value="{{$data['video']['cover']}}">
+                                    <input type="hidden" name="old_labels" value="{{$data['video']['labels']}}">
+                                    <input type="hidden" name="_method" value="put"/>
+                                    <input type="hidden" name="cover">
                                 </div>
                             </div>
                             
@@ -182,7 +180,9 @@
             $('[name=cover]').attr('value',dataURL);
         }
     });
-
+    //简介
+    var intro = $('[name=intro').val();
+    $("#text-intro").text(80-intro.length);
     $('[name=intro]').on('input propertychange',function(){
                  var $this = $(this),
                      _val = $this.val(),
@@ -193,6 +193,9 @@
         count = 80 - $this.val().length;
         $("#text-intro").text(count);   
     });
+    //内容
+    var content = $('[name=content').val();
+    $("#text-content").text(255-content.length);
     $('[name=content]').on('input propertychange',function(){
                  var $this = $(this),
                      _val = $this.val(),

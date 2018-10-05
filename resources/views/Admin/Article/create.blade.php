@@ -102,7 +102,7 @@
                                 <div class="col-sm-8">
                                     <textarea id="intro" style="width: 100%;height: 100px;resize: none;" name="intro">{{old('intro')}}</textarea>
                                     <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
-                                    <p><span id="text-count">80</span>/80</p>
+                                    <p><span id="text-intro">80</span>/80</p>
                                 </div>
                             </div>
 
@@ -122,10 +122,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                        <input type="hidden" name="cover" value="{{old('cover')}}">
-                                    </div>
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <input type="hidden" name="cover" value="{{old('cover')}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -197,7 +195,7 @@
             $('[name=cover]').attr('value',dataURL);
         }
     });
-
+        //简介
         $('#intro').on('input propertychange',function(){
                      var $this = $(this),
                          _val = $this.val(),
@@ -206,7 +204,7 @@
                 $this.val(_val.substring(0, 80));
             }
             count = 80 - $this.val().length;
-            $("#text-count").text(count);   
+            $("#text-intro").text(count);   
         });
     </script>
 @stop
