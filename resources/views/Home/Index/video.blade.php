@@ -1,5 +1,8 @@
 @extends('layouts.home')
 @section('title',$data['title'])
+<style type="text/css">
+  #code{display: none;}
+</style>
 @section('content')
     <link rel="stylesheet" href="{{asset('Home/css/details.css')}}">
     <div class="wrapper">
@@ -17,8 +20,9 @@
                       <p class="art-assist"><b>“</b>{{$data['video']->content}}</p>
                     </div>
                     <p class="share">
-                      <!-- 分享至：<i class="icon iconfont icon-weixin-copy"></i><i class="icon iconfont icon-weibo-copy"></i> -->
+                      分享至：<i class="icon iconfont icon-weixin-copy"></i><i class="icon iconfont icon-weibo-copy"></i>
                     </p>
+                    <div id="code"></div>
                 </div>
                 <div class="main-right">
                     <div class="rig-top">
@@ -39,5 +43,53 @@
             </div>
         </div>
     </div>
+    
+    <input type="hidden" name="title" value="{{$data['title']}}">
+    <input type="hidden" name="picurl" value="{{asset($data['video']->cover)}}">
+    <input type="hidden" name="src" value="{{asset('Home/images/wyjb_logo.png')}}">
 @include('layouts._footer')
+<script src="{{asset('Home/js/jquery.qrcode.js')}}"></script>
+<script src="{{asset('Home/js/qrcode.js')}}"></script>
+<script src="{{asset('Home/js/utf.js')}}"></script>
+<script type="text/javascript">
+  var title =  $('[name=title]').val(),
+      picurl =  $('[name=picurl]').val(),
+      src = $('[name=src]').val();
+  var url = window.location.href;
+  var domain = window.location.host;
+  var arr = url.split(domain);
+  var shareUrl = arr[0]+domain+'/mobile'+arr[1];
+  // console.log(url);
+  // console.log(domain);
+  console.log(arr);
+  var ShareTip = function()  {};
+  //分享到新浪微博       
+  ShareTip.prototype.sharetosina=function(title,url,picurl){        
+    var sharesinastring='http://v.t.sina.com.cn/share/share.php?title='+title+'&url='+url+'&content=utf-8&sourceUrl='+url+'&pic='+picurl;         
+    window.open(sharesinastring,'newwindow','height=400,width=400,top=100,left=100');        
+  } 
+
+  $('.icon-weibo-copy').click(function(){
+    var share = new ShareTip();
+    share.sharetosina(title,shareUrl,picurl);
+  })
+
+  //分享到微信
+  $('.icon-weixin-copy').hover(function(){
+    $('#code').css('display','block');
+  },function(){
+    $('#code').css('display','none');
+  })
+
+  //二维码
+  jQuery('#code').qrcode({
+      render : "canvas",
+      text : shareUrl,
+      width : "150",               //二维码的宽度
+      height : "150",              //二维码的高度
+      background : "#ffffff",       //二维码的后景色
+      foreground : "#000000",        //二维码的前景色
+      src: src             //二维码中间的图片
+    }); 
+</script>
 @stop
