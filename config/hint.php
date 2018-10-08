@@ -73,8 +73,8 @@ return [
     'scre_gm_width'   => 268,
     'scre_gm_height'  => 151,
     //输出比例(通用) 宽*高
-    'opt_gm_width'   => 536,
-    'opt_gm_height'  => 302,
+    'opt_gm_width'   => 268,
+    'opt_gm_height'  => 151,
 
     //截图比例(导师/学员) 宽*高
     'scre_ts_width'   => 285,

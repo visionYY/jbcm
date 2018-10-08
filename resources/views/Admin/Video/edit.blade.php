@@ -101,7 +101,8 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">封面：</label>
                                 <div class="col-sm-8">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 选择图片</button>
+                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 选择图片</button> -->
+                                    <button type="button" class="btn btn-primary choi"> 选择图片</button>
                                 </div>
                             </div>
                              <!-- 封面 -->
@@ -130,10 +131,10 @@
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                                    <input type="file" name="cover" style="display: none;" value="{{old('cover')}}">
                                     <input type="hidden" name="old_cover" value="{{$data['video']['cover']}}">
                                     <input type="hidden" name="old_labels" value="{{$data['video']['labels']}}">
                                     <input type="hidden" name="_method" value="put"/>
-                                    <input type="hidden" name="cover">
                                 </div>
                             </div>
                             
@@ -155,31 +156,54 @@
     <!-- <script src={{asset("Admin/js/plugins/chosen/chosen.jquery.js")}}></script> -->
     <!-- <script src={{asset("Admin/js/demo/form-advanced-demo.min.js")}}></script> -->
 
-    @include('layouts.admin_picpro')
+    <!-- @include('layouts.admin_picpro') -->
     <script type="text/javascript">
-        var sgw = $('[name=scre_gm_width]').val(),
+    //截图上传
+        /*var sgw = $('[name=scre_gm_width]').val(),
             sgh = $('[name=scre_gm_height]').val(),
             ogw = $('[name=opt_gm_width]').val(),
             ogh = $('[name=opt_gm_height]').val();
         //图片比例 814:513
         var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [sgw, sgh],
-        outputSize: [ogw, ogh],
-        file: "#file",
-        view: "#view",
-        ok: "#clipBtn",
-        loadStart: function() {
-            console.log("照片读取中");
-        },
-        loadComplete: function() {
-            console.log("照片读取完成");
-        },
-        clipFinish: function(dataURL) {
-            // console.log(dataURL);
-            $('#cover').attr('src',dataURL);
-            $('[name=cover]').attr('value',dataURL);
+            size: [sgw, sgh],
+            outputSize: [ogw, ogh],
+            file: "#file",
+            view: "#view",
+            ok: "#clipBtn",
+            loadStart: function() {
+                console.log("照片读取中");
+            },
+            loadComplete: function() {
+                console.log("照片读取完成");
+            },
+            clipFinish: function(dataURL) {
+                // console.log(dataURL);
+                $('#cover').attr('src',dataURL);
+                $('[name=cover]').attr('value',dataURL);
+            }
+        });*/
+    //普通上传
+        $('.choi').click(function(){
+            $('[name=cover]').trigger('click');
+        })
+        $('[name=cover]').change(function(){
+            var imgurl = getObjectURL(this.files[0]);
+            console.log(imgurl);
+            $('#cover').attr('src',imgurl);
+        });
+
+        //图片预览
+        function getObjectURL(file){
+            var url = null;
+            if (window.createObjectURL!=undefined) {  
+              url = window.createObjectURL(file) ;  
+             } else if (window.URL!=undefined) { // mozilla(firefox)  
+              url = window.URL.createObjectURL(file) ;  
+             } else if (window.webkitURL!=undefined) { // webkit or chrome  
+              url = window.webkitURL.createObjectURL(file) ;  
+             }  
+             return url ;
         }
-    });
     //简介
     var intro = $('[name=intro').val();
     $("#text-intro").text(80-intro.length);
