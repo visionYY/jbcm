@@ -70,6 +70,7 @@
   padding:0 .05rem;
   margin-top:20px;
   display:flex;
+  height:auto;
 }
 .one{
   margin-top:.2rem;
