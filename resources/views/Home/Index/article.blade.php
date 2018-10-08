@@ -1,7 +1,15 @@
 @extends('layouts.home')
 @section('title',$data['title'])
 <style type="text/css">
-  #code{display: none;}
+  #code{display: none;
+    position: relative;
+  }
+  canvas{
+    position: absolute;
+    top: -123px;
+    left: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 </style>
 @section('content')
     <link rel="stylesheet" href="{{asset('Home/css/details.css')}}">
@@ -21,10 +29,10 @@
                     <div class="article">
                       {!! $data['article']->content !!}
                     </div>
+                    <div id="code"></div>
                     <p class="share">
                       分享至：<i class="icon iconfont icon-weixin-copy"></i><i class="icon iconfont icon-weibo-copy"></i>
                     </p>
-                    <div id="code"></div>
                     <div class="else">
                       <p>上一篇：{!! $data['prev'] ? '<a href="'.url('article/id/'.$data['prev'][0]->id).'" >'.$data['prev'][0]->title.'</a>' : '无' !!}</p>
                       <p>下一篇：{!! $data['next'] ? '<a href="'.url('article/id/'.$data['next'][0]->id).'" >'.$data['next'][0]->title.'</a>' : '无' !!}</p> 
@@ -138,8 +146,8 @@
   jQuery('#code').qrcode({
       render : "canvas",
       text : shareUrl,
-      width : "150",               //二维码的宽度
-      height : "150",              //二维码的高度
+      width : "120",               //二维码的宽度
+      height : "120",              //二维码的高度
       background : "#ffffff",       //二维码的后景色
       foreground : "#000000",        //二维码的前景色
       src: src             //二维码中间的图片
