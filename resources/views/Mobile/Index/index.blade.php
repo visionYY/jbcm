@@ -124,10 +124,10 @@
   @include('layouts.m_footer')
 
   <div class="cover_box">
-		<div class="c_box" onclick="window.location.href='http://t.cn/RFmd6vb'">
+		<div class="c_box">
 			<img src="{{asset('Mobile/images/cover.jpg')}}" alt="">
 			<p class="cover_close"><img src="{{asset('Mobile/images/cover_close.png')}}" alt=""></p>
-      <p class="gogo"><img src="{{asset('Mobile/images/gogo.gif')}}" alt=""></p>
+      <p class="gogo" onclick="window.location.href='http://t.cn/RFmd6vb'"><img src="{{asset('Mobile/images/gogo.gif')}}" alt=""></p>
 		</div>
 	</div>
   <input type="hidden" name="url" value="{{url('mobile/getIndexMessge')}}">
