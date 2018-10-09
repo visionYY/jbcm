@@ -126,7 +126,7 @@
   <div class="cover_box">
 		<div class="c_box">
 			<img src="{{asset('Mobile/images/cover.jpg')}}" alt="">
-			<p class="cover_close"><img src="{{asset('Mobile/images/cover_close.png')}}" alt=""></p>
+			<p class="cover_close" onclick="cover_close()"><img src="{{asset('Mobile/images/cover_close.png')}}" alt=""></p>
       <p class="gogo" onclick="window.location.href='http://t.cn/RFmd6vb'"><img src="{{asset('Mobile/images/gogo.gif')}}" alt=""></p>
 		</div>
 	</div>
@@ -164,12 +164,20 @@
         }
       })
 
-      $(".cover_close").click(function(e){
-        e.stopPropagation();
-        $('.cover_box').css("display","none");
-      })
+
     });
     
+     /*$(".cover_close").click(function(e){
+        // e.stopPropagation();
+        // $('.cover_box').css("display","none");
+        alert(123);
+        
+      })*/
+    function cover_close(){
+      // alert(123);
+        // e.stopPropagation();
+        $('.cover_box').hide();
+    }
     $("#oranger li a").on("mouseover",function(){ //给li标签添加事件  
       var index=$(this).parent().index();  //获取当前li标签的个数  
       $(this).parent().parent().next().find(".box").hide().eq(index).show(); //返回上一层，在下面查找css名为box隐藏，然后选中的显示  
