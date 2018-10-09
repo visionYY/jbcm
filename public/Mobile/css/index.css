@@ -357,6 +357,7 @@ video{
   position: absolute;
   right: 0;
   top: 0px;
+  z-index:999;
 }
 .cover_close>img{
   width:.3rem;
