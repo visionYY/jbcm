@@ -166,7 +166,7 @@
 
       $(".cover_close").click(function(e){
         e.stopPropagation();
-        $('.cover_box').hide();
+        $('.cover_box').css("display","none");
       })
     });
     
