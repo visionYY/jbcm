@@ -270,6 +270,9 @@ class IndexController extends Controller
         $data['navig'] = Helper::_tree_json($navig);
 
         $data['article'] = Article::find($id);
+        //正式服需要替换的
+        $data['article'] -> content = str_replace('http://tx3.ijiabin.net','https://www.ijiabin.com',$data['article'] -> content);
+//        dd($data);
         //当前导航
         $nav = Navigation::select('n_name')->find($data['article']->nav_id)->toArray();
         $data['article'] -> nav_name = $nav['n_name'];
