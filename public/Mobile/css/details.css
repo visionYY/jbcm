@@ -12,6 +12,9 @@
   max-height:4rem;
   position: relative;
 }
+.main-content1{
+  max-height:none !important;
+}
 .mc{
   max-height:none !important;
 }

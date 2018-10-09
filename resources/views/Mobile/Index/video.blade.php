@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="{{asset('Mobile/css/details.css')}}">
   <div class="centera">
     
-    <div class="main-content">
+    <div class="main-content main-content1">
       <h3 class="title">{{$data['video']->title}}</h3>
       <p class="kind"><span>{{$data['video']->nav_name}}</span><span>{{$data['video']->cg_name}}·{{$data['video']->push}}</span></p>
       <video controls poster="{{$data['video']->cover}}">
