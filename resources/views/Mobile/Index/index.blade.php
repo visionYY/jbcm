@@ -1,8 +1,11 @@
 @extends('layouts.mobile')
 @section('title',$data['title'])
 @section('content')
+<style type="text/css">
+  .cover_close{cursor: pointer;-webkit-tap-highlight-color: transparent;}
+</style>
   <link rel="stylesheet" href="{{asset('Mobile/css/index.css')}}">
-  <script src={{asset("Home/js/jquery.min.js")}}></script>
+  <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script>
   <script>
 		var wid = $(window).width();
 		if(wid>750){
@@ -126,19 +129,24 @@
   <div class="cover_box">
 		<div class="c_box">
 			<img src="{{asset('Mobile/images/cover.jpg')}}" alt="">
-			<p class="cover_close" onclick="cover_close()"><img src="{{asset('Mobile/images/cover_close.png')}}" alt=""></p>
+			<p class="cover_close"><img src="{{asset('Mobile/images/cover_close.png')}}" alt=""></p>
       <p class="gogo" onclick="window.location.href='http://t.cn/RFmd6vb'"><img src="{{asset('Mobile/images/gogo.gif')}}" alt=""></p>
 		</div>
 	</div>
-  <input type="hidden" name="url" value="{{url('mobile/getIndexMessge')}}">
-  <input type="hidden" name="m_show_num" value="{{config('hint.m_show_num')}}">
-  <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script>
+  <!-- <input type="hidden" name="url" value="{{url('mobile/getIndexMessge')}}"> -->
+  <!-- <input type="hidden" name="m_show_num" value="{{config('hint.m_show_num')}}"> -->
+  <div id="common" url="{{url('mobile/getIndexMessge')}}" m_show_num="{{config('hint.m_show_num')}}"></div>
   <script src="{{asset('Mobile/js/swiper.min.js')}}"></script>
   <script src="{{asset('Mobile/js/iscroll.js')}}"></script>
-  <script src="{{asset('Mobile/js/index.js')}}"></script>
-  <script>
-    var url = $('[name=url]').val(),
-        m_show_num = $('[name=m_show_num').val();
+  <script type="text/javascript">
+    var url = $('#common').attr('url');
+    var m_show_num = $('#common').attr('m_show_num');
+    $(".tablea").find(".box:first").show();    //为每个BOX的第一个元素显示  
+    //关闭遮罩
+    $('.cover_close').click(function(){
+       $('.cover_box').hide();
+     })
+    //浮动分类导航
     $(document).ready(function(){
       var mySwiper = new Swiper(".swiper-container",{
           autoplay:2500,
@@ -163,73 +171,50 @@
           $(".orangerb").removeClass('oranger-hei');
         }
       })
-
-
     });
     
-     /*$(".cover_close").click(function(e){
-        // e.stopPropagation();
-        // $('.cover_box').css("display","none");
-        alert(123);
-        
-      })*/
-    function cover_close(){
-      // alert(123);
-        // e.stopPropagation();
-        $('.cover_box').hide();
-    }
-    $("#oranger li a").on("mouseover",function(){ //给li标签添加事件  
-      var index=$(this).parent().index();  //获取当前li标签的个数  
-      $(this).parent().parent().next().find(".box").hide().eq(index).show(); //返回上一层，在下面查找css名为box隐藏，然后选中的显示  
-      $(this).addClass("hover").parent().siblings().children().removeClass("hover"); //a标签样式
-    })
     $("#pagehide").click(function(){
       $("#myPanel").toggle()
     })
     $('#myPanel').click(function(){
       $("#myPanel").hide();
     })
-
-    //分类数据加载
-      $('.cate').click(function(){
-        var thisObj = $(this);
-        var index = $('.cate').index(this);
-        // console.log(index);
-        var cid = thisObj.attr('cid'),
-            page = thisObj.attr('page'),
-            dj = thisObj.attr('dj');
-        if (dj == 0) {
-          $.ajax({
-            url : url,
-            type : 'GET',
-            data : {cid:cid},
-            dataType : 'json',
-            success : function(d){
-              // console.log(d);
-              thisObj.attr('dj',1);
-              var html = '';
-              if (d !=0) {
-                $.each(d,function(index,item){
-                    html += '<dl class="list"><a href="'+item.url+'">';
-                    html += '<dt class="list-img"><img src="'+item.cover+'" alt=""></dt>';
-                    html += '<dd><p class="list-tit">'+item.title+'</p>';
-                    html += '<p class="list-but"><span class="sp-time">'+item.publish_time+'</span>';
-                    html += '<span class="sp-kind">'+item.n_name+'</span></p></dd></a></dl>';
-                  });
-              // }else{
-              //   html += '<p style="width:100%;text-align:center;color:#999999;margin-top:.1rem">已经到底部了</p>';
-              //   thisObj.hide();
-              }
-              // thisObj.prev().after(html);
-            $('#tablea').find('.box').find('.artcon').eq(index).after(html);
-
-            },
-            error : function(e){
-              console.log(e);
+    
+    $("#oranger li").on("mouseover",function(){ //给a标签添加事件  
+      var index=$(this).index();  //获取当前a标签的个数  
+      $(this).parent().parent().next().find(".box").hide().eq(index).show(); //返回上一层，在下面查找css名为box隐藏，然后选中的显示  
+      $(this).addClass("hover").siblings().removeClass("hover"); //a标签显示，同辈元素隐藏  
+      var thisObj = $(this);
+      var cid = thisObj.attr('cid'),
+          dj = thisObj.attr('dj');
+      if (dj == 0) {
+        $.ajax({
+          url : url,
+          type : 'GET',
+          data : {cid:cid},
+          dataType : 'json',
+          success : function(d){
+            // console.log(d);
+            thisObj.attr('dj',1);
+            var html = '';
+            if (d !=0) {
+              $.each(d,function(index,item){
+                  html += '<dl class="list"><a href="'+item.url+'">';
+                  html += '<dt class="list-img"><img src="'+item.cover+'" alt=""></dt>';
+                  html += '<dd><p class="list-tit">'+item.title+'</p>';
+                  html += '<p class="list-but"><span class="sp-time">'+item.publish_time+'</span>';
+                  html += '<span class="sp-kind">'+item.n_name+'</span></p></dd></a></dl>';
+                });
             }
-          })
-        }
-      })
+            $('#tablea').find('.box').find('.artcon').eq(index).after(html);
+          },
+          error : function(e){
+            console.log(e);
+          }
+        })
+      }
+    })
+    
     //分页数据加载
       $('.load').click(function(){
         var thisObj = $(this);
@@ -263,5 +248,7 @@
           }
         })
       })
+    
+
   </script>
 @stop

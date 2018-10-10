@@ -94,9 +94,9 @@ class ApiController extends Controller
             $type = 2;
         }
         if ($page != null){
-            $res = TutorStudent::getPeople($type,config('hint.m_show_num'),$page);
+            $res = TutorStudent::getPeople($type,config('hint.m_tust_num'),$page);
         }else{
-            $res = TutorStudent::getPeople($type,config('hint.m_show_num'));
+            $res = TutorStudent::getPeople($type,config('hint.m_tust_num'));
         }
 
         if ($res){

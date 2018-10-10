@@ -286,7 +286,7 @@
       </div>
     </div>
   <input type="hidden" name="url" value="{{asset('mobile/page/meeting_2018_map')}}">
-  <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script>
+  <!-- <script src="{{asset('Mobile/js/jquery-1.10.1.min.js')}}"></script> -->
   <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
   <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Ddk4dEgl09mEERDAV94xx6SgeyWmzw8V"></script> -->
   <input type="hidden" id="signature" value="{{$signPackage['signature']}}">

@@ -92,6 +92,7 @@
             }
             // thisObj.prev().after(html);
             $('#tablea .towNav').eq(index).find('.tutor').append(html);
+            console.log($('#tablea .towNav').eq(index).find('.tutor'))
           },
           error : function(e){
             console.log(e);
@@ -126,7 +127,7 @@
             html += '<p style="width:100%;text-align:center;color:#999999;margin-top:.1rem">已经到底部了</p>';
             thisObj.hide();
           }
-          thisObj.prev().after(html);
+          thisObj.prev().append(html);
         },
         error : function(e){
           console.log(e);

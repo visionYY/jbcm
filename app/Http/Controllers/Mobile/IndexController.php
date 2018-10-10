@@ -263,6 +263,8 @@ class IndexController extends Controller
         //当前分类
         $cate = Category::select('cg_name')->find($data['article']->cg_id)->toArray();
         $data['article'] -> cg_name = $cate['cg_name'];
+        //正式服需要替换的
+        $data['article'] -> content = str_replace('http://tx3.ijiabin.net','https://www.ijiabin.com',$data['article'] -> content);
         //时间
         $data['article'] -> push = Helper::getDifferenceTime($data['article']->publish_time);
 
