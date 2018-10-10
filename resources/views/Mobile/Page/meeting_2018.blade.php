@@ -97,7 +97,7 @@
             </p>    
             <div class="top">
               <!-- {{url('page/pageTop40')}} -->
-              <a href="JavaScript:;"><img src="{{asset('Mobile/images/imgMeeting/top40.png')}}" alt=""></a>
+              <a href="{{url('page/pageTop40')}}"><img src="{{asset('Mobile/images/imgMeeting/top40.png')}}" alt=""></a>
             </div>
           </div>  
           <div class="interact">

@@ -42,9 +42,9 @@
           <div class="swiper-wrapper">
             @foreach($data['ind_sil_adv'] as $isa)
             <div class="swiper-slide">
-              <a href="{{$isa['href']}}" target="_blank">
-              <img src="{{asset($isa['cover'])}}" />
-              <h2 class="gallerytitle">{{$isa['title']}}</h2>
+              <a href="{{$isa['href']}}">
+                <img src="{{asset($isa['cover'])}}" />
+                <h2 class="gallerytitle">{{$isa['title']}}</h2>
               </a>
             </div>
             @endforeach
@@ -96,7 +96,6 @@
                 <div class="tutor"> 
                   <h4 class="tutor-tit">导师与学员<a href="{{url('mobile/tutorStudent/oneId/3/secId/11')}}">更多<img src="{{asset('Mobile/images//more_icon.png')}}" alt=""></a></h4>
                   <div class="tutor-con">
-                    
                     <div class="tutor-list"> 
                       @foreach($data['tutor'] as $tutor)
                         <dl class="tutor_dl" onclick="window.location.href='{{url('mobile/tsDetail/id/'.$tutor->id)}}'">
