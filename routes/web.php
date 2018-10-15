@@ -67,6 +67,14 @@ Route::group(['prefix'=>'mobile'],function (){
         Route::get('meeting_2018_map','Mobile\PageController@meeting_2018_map');
         Route::get('test','Mobile\PageController@test');
     });
+    //年会
+    Route::group(['prefix'=>'metting'],function (){
+        Route::get('luckyDraw','Mobile\MettingController@luckyDraw');
+        Route::get('register','Mobile\MettingController@register');
+        Route::post('doRegister','Mobile\MettingController@doRegister');
+        Route::get('myAward/uid/{uid}','Mobile\MettingController@myAward');
+        Route::post('clickOne','Mobile\MettingController@clickOne');
+    });
 });
 
 
@@ -100,6 +108,14 @@ Route::group(['prefix'=>'admin'],function(){
     Route::resource('article','Admin\ArticleController');       //文章
     Route::resource('advertising','Admin\AdvertisingController');//广告
     Route::resource('hotbot','Admin\HotbotController');         //热搜
+
+    Route::resource('metting','Admin\MettingController');                            //年会
+    Route::get('metting/award/ldid/{ldid}','Admin\MettingController@award');         //年会奖品列表
+    Route::post('metting/awardStore','Admin\MettingController@awardStore');          //年会奖品添加
+    Route::put('metting/awardUpdate/id/{id}','Admin\MettingController@awardUpdate'); //年会奖品修改
+    Route::delete('metting/awardDestroy/{id}','Admin\MettingController@awardDestroy'); //年会奖品修改
+
+    Route::get('metting/winners/ldid/{ldid}','Admin\MettingController@winners');      //年会中奖名单
 
     //功能路由
     Route::get('choiceness/setting/type/{type}/id/{id}','Admin\ChoicenessController@setting');                  //设置精选
