@@ -129,10 +129,9 @@
                         </div>
                     </div>
                     <h4><img src="{{asset('Mobile/metting/images/notice.png')}}" alt=""></h4>
-                    <p>1. 中奖后请点击领奖，并填写姓名、电话信息。</p>
-                    <p class="notice not"><strong>*</strong>注：您所填写的信息仅作为奖品派发凭证，嘉宾 大学不会对外公开</p>
-                    <p class="not">2. 请于2018年10月18日嘉宾峰会期间到峰会现场<span class="notices">嘉宾大学展位处</span>兑奖</p>
-                    <p class="not">3. 本活动最终解释权归嘉宾大学所有。</p>
+                    <p>1. 中奖后请点击领奖，并填写相应信息，奖品将在会后以免费邮寄的方式派发！</p>
+                    <p>2. 本活动最终解释权归嘉宾大学所有。</p>
+                    <!-- <p class="notice not"><strong>*</strong>注：您所填写的信息仅作为奖品派发凭证，嘉宾 大学不会对外公开</p> -->
         
                 </div>
                 <div style="display: none; padding-bottom: 4rem; position: relative;">
