@@ -92,19 +92,13 @@
                         <div class="main_0">
                             <div class="content_0">
                                 <div>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
+                                    <li><img src="{{asset('Mobile/metting/images/ddyx.png')}}" alt=""></li>
+                                    <li><img src="{{asset('Mobile/metting/images/lms.png')}}" alt=""></li>
+                                    <li><img src="{{asset('Mobile/metting/images/njy.png')}}" alt=""></li>
                                 </div>
                                 <div>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>                                                                                
-                                </div>
-                                <div>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
+                                    <li><img src="{{asset('Mobile/metting/images/pmsm.png')}}" alt=""></li>
+                                    <li><img src="{{asset('Mobile/metting/images/xg1.png')}}" alt=""></li>                                                                               
                                 </div>
                             </div>
                         </div>
@@ -120,19 +114,12 @@
                         <div class="main_1">
                             <div class="content_1">
                                 <div>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
+                                    <li><img src="{{asset('Mobile/metting/images/jbej.png')}}" alt=""></li>
+                                    <li><img src="{{asset('Mobile/metting/images/kdxf.png')}}" alt=""></li>
+                                    <li><img src="{{asset('Mobile/metting/images/sqyc.png')}}" alt=""></li>
                                 </div>
                                 <div>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>                                                                                
-                                </div>
-                                <div>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
-                                    <li><img src="{{asset('Mobile/metting/images/jp-1.png')}}" alt=""></li>
+                                    <li><img src="{{asset('Mobile/metting/images/xg.png')}}" alt=""></li>                                                                              
                                 </div>
                             </div>
                         </div>
