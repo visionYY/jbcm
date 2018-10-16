@@ -225,7 +225,10 @@
 }
 
 
-.acePack {position: absolute; top: 2%;  right: .3rem; width: 3rem;}
+.acePack {position: absolute;
+    top: 2%;
+    right: .5rem;
+    width: 2rem;}
 
 /* .footer > p {margin: 0 0 2%; text-align: center; color: #fff; font-size: 90%;}
 .footer > p span {color: #eabf4d;}
