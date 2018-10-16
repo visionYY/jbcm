@@ -27,6 +27,7 @@ class MettingController extends Controller
 
     //年会抽奖
     public function luckyDraw(){
+//        setcookie('uid',1);
 //        dd(!array_key_exists('uid',$_COOKIE));
         if (!array_key_exists('uid',$_COOKIE)){
             return Redirect::to('mobile/metting/wxLogin');die;
@@ -41,11 +42,12 @@ class MettingController extends Controller
                 break;
             }
         }
-//        dd($this->uid);
+        $winner = Winners::where('ld_id',$open['id'])->get();
+//        dd($winner);
         $user = User::find($uid);
         $open['uid'] = $uid;
         $open['nickname'] = $user->nickname;
-        return view('Mobile.Metting.luckyDraw',compact('open',$open));
+        return view('Mobile.Metting.luckyDraw',compact('open',$open),compact('winner',$winner));
     }
 
     //登记领奖
@@ -112,6 +114,7 @@ class MettingController extends Controller
             }
             //添加中奖名单
             $winner['user_id'] = $uid;
+            $winner['ld_id'] = $ld_id;
             $winner['nickname'] = $nickname;
             $winner['award_id'] = $arawd[0]['id'];
             $winner['award_name'] = $arawd[0]['name'];

@@ -135,10 +135,9 @@
         
                 </div>
                 <div style="display: none; padding-bottom: 4rem; position: relative;">
-                    <p class="win"><span>9999</span><span>9999</span><span>9999</span></p>
-                    <p class="win"><span>9999</span><span>9999</span><span>9999</span></p>
-                    <p class="win"><span>9999</span><span>9999</span><span>9999</span></p>
-                    <p class="win"><span>9999</span><span>9999</span><span>9999</span></p>               
+                    @foreach($winner as $v)
+                    <p class="win"><span>{{$v->nickname}}</span><span>{{$v->award_name}}</span><span>{{substr($v->time,11,5)}}</span></p>
+                    @endforeach             
                 </div>
             </div>
         </div>

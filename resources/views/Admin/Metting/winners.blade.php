@@ -35,7 +35,7 @@
                                     <th>中奖人昵称</th>
                                     <th>中奖人姓名</th>
                                     <th>中奖人电话</th>
-                                    <!-- <th>最后登陆IP</th> -->
+                                    <th>地址</th>
                                     <th>是否派发</th>
                                     <th>操作</th>
                                 </tr>
@@ -48,6 +48,7 @@
                                     <td class="center">{{$v->nickname}}</td>
                                     <td class="center">{{$v->truename}}</td>
                                     <td class="center">{{$v->mobile}}</td>
+                                    <td class="center">{{$v->address}}</td>
                                     <td>
                                         @if($v->is_receive == 1)
                                             <span class="label label-info">已派发</span>

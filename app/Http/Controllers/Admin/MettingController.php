@@ -133,6 +133,7 @@ class MettingController extends Controller
 //            dd($v->user_id);
             $v->mobile = $user->mobile;
             $v->truename = $user->truename;
+            $v->address = $user->address;
         }
         return view('Admin.Metting.winners',compact('list'),compact('metting',$metting));
     }
