@@ -31,6 +31,15 @@
     margin-top: -3.5rem;
 }
 .winBox p {position: absolute; left:10%; top:70%;width: 80%;padding: 0.5rem;}
+.pri_name{
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+    font-weight:700;
+    position: absolute;
+    top: 58%;
+}
 .winBox .btn{
     width:100%;
     padding: 0.5rem;
