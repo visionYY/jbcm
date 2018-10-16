@@ -62,11 +62,12 @@
         @endif
         <!--中奖-->
         <div class="winBox" style="display: none;">
-            <h4>恭喜你获得了!</h4>
+            <h4>恭喜你获得了</h4>
             <div class="prizeImg">
                 <img class="prize_bg" src="{{asset('Mobile/metting/images/prize_bg.png')}}" alt="">
                 <img src="" class="prize_img">
             </div>
+            <h5 class="pri_name">小狗电器一台</h5>
             <p></p>
         </div>
     </div>
@@ -232,7 +233,7 @@
                                 }else {
                                     $(".lanren").hide();
                                     $(".winBox").show().find(".prize_img").attr("src",d.data.pic);
-                                    $(".winBox").find("p").html("<button class='btn' style='margin: 1.5% 0;'>登记领奖</button>").on("click",function () {
+                                    $(".winBox").find("p").html("<button class='btn' style='margin: 1.5% 0;'>立即领取</button>").on("click",function () {
                                         window.location.replace(register+'?uid='+d.uid);
                                     })
                                 }
