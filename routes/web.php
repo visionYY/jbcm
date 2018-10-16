@@ -74,6 +74,8 @@ Route::group(['prefix'=>'mobile'],function (){
         Route::post('doRegister','Mobile\MettingController@doRegister');
         Route::get('myAward/uid/{uid}','Mobile\MettingController@myAward');
         Route::post('clickOne','Mobile\MettingController@clickOne');
+        Route::get('wxLogin','Mobile\MettingController@wxLogin');
+        Route::get('getInfo','Mobile\MettingController@getInfo');
     });
 });
 
@@ -114,6 +116,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('metting/awardStore','Admin\MettingController@awardStore');          //年会奖品添加
     Route::put('metting/awardUpdate/id/{id}','Admin\MettingController@awardUpdate'); //年会奖品修改
     Route::delete('metting/awardDestroy/{id}','Admin\MettingController@awardDestroy'); //年会奖品修改
+    Route::get('metting/winners/ldid/{ldid}','Admin\MettingController@winners');         //中奖名单
 
     Route::get('metting/winners/ldid/{ldid}','Admin\MettingController@winners');      //年会中奖名单
 

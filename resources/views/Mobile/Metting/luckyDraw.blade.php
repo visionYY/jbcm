@@ -157,7 +157,7 @@
 </div>
 
 
-<img src="{{asset('Mobile/metting/images/jingnan.png')}}" class="acePack" onclick="window.location.href='{{url('mobile/metting/myAward')}}'">
+<img src="{{asset('Mobile/metting/images/jingnan.png')}}" class="acePack" onclick="window.location.href='{{url('mobile/metting/myAward/uid/'.$open['uid'])}}'">
 
 
 <div class="landscape" style="display: none">
@@ -232,6 +232,7 @@
                                 }else {
                                     $(".lanren").hide();
                                     $(".winBox").show().find(".prize_img").attr("src",d.data.pic);
+                                    $('.pri_name').html(d.data.name)
                                     $(".winBox").find("p").html("<button class='btn' style='margin: 1.5% 0;'>立即领取</button>").on("click",function () {
                                         window.location.replace(register+'?uid='+d.uid);
                                     })

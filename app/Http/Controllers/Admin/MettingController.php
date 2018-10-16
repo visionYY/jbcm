@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Award;
 use App\Models\LuckyDraw;
+use App\Models\Winners;
 use App\Services\Upload;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -42,12 +44,17 @@ class MettingController extends Controller
     }
 
     //执行修改
-    public function update(){
-
+    public function update(Request $request,$id){
+        $credentials = $this->validate($request,['title'=>'required','time'=>'required','screening'=>'required']);
+        if (LuckyDraw::find($id)->update($credentials)){
+            return back()->with('success',config('hint.mod_success'));
+        }else{
+            return back()->with('hint',config('hint.mod_failure'));
+        }
     }
 
     //删除
-    public function destroy(){
+    public function destroy($id){
 
     }
 
@@ -115,5 +122,18 @@ class MettingController extends Controller
         }else{
             return back() -> with('hint',config('hint.del_failure'));
         }
+    }
+
+    //中将名单
+    public function winners($ldid){
+        $metting = LuckyDraw::find($ldid);
+        $list = Winners::where('ld_id',$ldid)->get();
+        foreach ($list as $v){
+            $user = User::find($v->user_id);
+//            dd($v->user_id);
+            $v->mobile = $user->mobile;
+            $v->truename = $user->truename;
+        }
+        return view('Admin.Metting.winners',compact('list'),compact('metting',$metting));
     }
 }

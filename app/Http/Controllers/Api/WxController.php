@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 class WxController extends Controller
 {
@@ -61,6 +62,7 @@ class WxController extends Controller
 
     //微信登陆
     public function wxLogin(){
+        return redirect('mobile/metting/luckyDraw');die;
         $appid = config('hint.appId');;
         $red_uri = urlencode('https://www.ijiabin.com/api/weixin/getInfo');
         $scope = 'snsapi_userinfo';
@@ -79,17 +81,20 @@ class WxController extends Controller
         $res = json_decode($acctok,true);
 
         //判断是否第一次登陆
-        $user = User::where('open_id',$res['openid'])->get();
-        dd($user);
-        if($user == 1){
+        $user = User::where('open_id',$res['openid'])->get()->toArray();
+        if(!$user){
             $accUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'].'&lang=zh_CN';
             $newtok = json_decode($this->request($accUrl),true);
-            $data['openid'] = $newtok['openid'];
+            $data['open_id'] = $newtok['openid'];
             $data['nickname'] = $newtok['nickname'];
-            //$data['userlogo'] = $newtok['headimgurl'];
-            User::addWei($data);
+            $data['head_pic'] = $newtok['headimgurl'];
+            $user = User::create($data);
+            setcookie('uid',$user->id, time()+3600*24);
+
+        }else{
+            setcookie('uid',$user[0]['id'], time()+3600*24);
         }
-        return redirect('home/H5/index');
+        return redirect('mobile/metting/luckyDraw');
     }
 
     /*

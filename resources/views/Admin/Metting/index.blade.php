@@ -49,7 +49,7 @@
                                     <td>{{$v->id}}</td>
                                     <td>{{$v->title}}</td>
                                     <td>{{$v->time}}</td>
-                                    <td class="center">第 {{$v->screening}} 场</td>
+                                    <td class="center">第 <span>{{$v->screening}}</span> 场</td>
                                     <td class="center">
                                         @if($v->status == 1)
                                             <span class="label label-info">进行中</span>
@@ -65,8 +65,8 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="{{url('admin/metting/award/ldid/'.$v->id)}}">奖品列表</a></li>
-                                                <li><a href="{{url('admin/metting/award/ldid/'.$v->id)}}">获奖列表</a></li>
-                                                <!-- <li><a href={{url("admin/admin/$v->id/edit")}} class="font-bold">修改</a></li> -->
+                                                <li><a href="{{url('admin/metting/winners/ldid/'.$v->id)}}">获奖列表</a></li>
+                                                <li><a class="font-bold cgedit" data-toggle="modal" data-target="#myModalMod" url="{{url('admin/metting/'.$v->id)}}" >修改</a></li>
                                                 <!-- <li><a href="javascript:;" class="demo4">禁用</a></li> -->
                                                 <li class="divider"></li>
                                                 <li><a href="javascript:;" id="{{$v->id}}" class="delete" url="{{url('admin/metting/'.$v->id)}}">删除</a>
@@ -135,4 +135,60 @@
             </form>
         </div>
     </div>
+     <!-- 弹框(修改) -->
+    <div class="modal inmodal" id="myModalMod" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="mettingMod" method="post" class="form-horizontal m-t">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                    </button>
+                    <!-- <i class="fa fa-laptop modal-icon"></i> -->
+                    <h5 class="modal-title">活动修改</h5>
+                    <!-- <small class="font-bold">这里可以显示副标题。 -->
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">活动名称：</label>
+                        <div class="col-sm-8">
+                            <input  name="title" id="titleMod" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">活动场次：</label>
+                        <div class="col-sm-8">
+                            <input  name="screening" id="screeningMod" class="form-control" type="number" aria-required="true" aria-invalid="true" class="error">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">活动时间：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control layer-date" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" name="time" id="timeMod" value="{{old('time')}}"><label class="laydate-icon"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }} 
+                    <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" >保存</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('.cgedit').click(function(){
+            var title = $(this).parent().parent().parent().parent().prev().prev().prev().prev().html();
+            var time = $(this).parent().parent().parent().parent().prev().prev().prev().html();
+            var screening = $(this).parent().parent().parent().parent().prev().prev().find('span').html();
+            var url = $(this).attr('url');
+
+            $('#titleMod').val(title);
+            $('#screeningMod').val(screening);
+            $('#timeMod').val(time);
+             $('#mettingMod').attr('action',url);
+
+        })
+    </script>
 @stop
