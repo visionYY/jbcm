@@ -61,6 +61,10 @@
         @else
         <input type="hidden" id="ld_id" value="{{$open['id']}}">
         @endif
+        <div class="cover" id="latlon" style="display: block;">
+            <p>本活动仅限嘉宾峰会现场参加</p>
+            <!-- <p>活动尚未开始</p> -->
+        </div>
         <!--中奖-->
         <div class="winBox" style="display: none;">
             <h4>恭喜你获得了</h4>
@@ -388,18 +392,26 @@
             var longitude =position.coords.longitude;
             //纬度
             var latitude = position.coords.latitude;
-            console.log(longitude);
-            console.log(latitude);
-            alert('经度'+longitude+'，纬度'+latitude);
-
+            // console.log(longitude);
+            // console.log(latitude);
+            // alert('经度'+longitude+'，纬度'+latitude);
+            
+            //判断当前位置离
+            var latnow = '39.920884';
+            var lonnow = '116.459137';
+            var juli = GetDistance(latitude,longitude,latnow,lonnow);
+            if (juli <= 5000) {
+                $('#latlon').css('display','none');
+            }
+            alert('距离当前中心定位约 '+juli+' 米');
             //根据经纬度获取地理位置，不太准确，获取城市区域还是可以的
-            var map = new BMap.Map("allmap");
-            var point = new BMap.Point(longitude,latitude);
-            var gc = new BMap.Geocoder();
-            gc.getLocation(point, function(rs){
-                var addComp = rs.addressComponents;
-                // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-            });
+            // var map = new BMap.Map("allmap");
+            // var point = new BMap.Point(longitude,latitude);
+            // var gc = new BMap.Geocoder();
+            // gc.getLocation(point, function(rs){
+            //     var addComp = rs.addressComponents;
+            //     // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+            // });
         }
         //失败时
         function onError(error){
@@ -419,8 +431,20 @@
             }
         }
         window.onload=getLocation();
-            
-
+         
+         //判断两点的距离   
+        function GetDistance( lat1,  lng1,  lat2,  lng2){
+            var radLat1 = lat1*Math.PI / 180.0;
+            var radLat2 = lat2*Math.PI / 180.0;
+            var a = radLat1 - radLat2;
+            var  b = lng1*Math.PI / 180.0 - lng2*Math.PI / 180.0;
+            var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) +
+            Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
+            s = s *6378.137 ;// EARTH_RADIUS;
+            s = Math.round(s * 10000) / 10;
+            //单位米
+            return s;
+        }
         
     }
 
@@ -445,25 +469,6 @@
         };
         window.addEventListener('DOMContentLoaded', init, false);
     })();
-
-/*var map = new BMap.Map("allmap");
-var longitude, latitude;
-navigator.geolocation.getCurrentPosition(function (position) {
-    longitude = position.coords.longitude;
-    latitude = position.coords.latitude;
-});
-console.log(longitude);
-console.log(latitude);
-setTimeout(function () {
-    var gpsPoint = new BMap.Point(longitude, latitude);
-    BMap.Convertor.translate(gpsPoint, 0, function (point) {
-        var geoc = new BMap.Geocoder();
-        geoc.getLocation(point, function (rs) {
-            var addComp = rs.addressComponents;
-            alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-        });
-    });
-}, 3000);*/
 </script>
 
 </body>

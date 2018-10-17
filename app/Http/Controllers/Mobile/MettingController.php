@@ -29,6 +29,7 @@ class MettingController extends Controller
     public function luckyDraw(){
 //        setcookie('uid',1);
 //        dd(!array_key_exists('uid',$_COOKIE));
+
         if (!array_key_exists('uid',$_COOKIE)){
             return Redirect::to('mobile/metting/wxLogin');die;
         }

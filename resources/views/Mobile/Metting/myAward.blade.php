@@ -33,7 +33,8 @@
       <p class="wx_name">微信昵称：{{$data['user']->nickname}}</p>
       <p class="win_time">中奖时间：{{$data['winner']->time}}</p>
       <p class="win_code">中奖编号：{{$data['winner']->id}}</p>
-      <p class="phone">客服电话：130000000000</p>
+      <p class='prize_name'>奖品状态：<span>{{$data['award']->name}}</span></p>
+      <p class="phone">客服电话：18910289963</p>
     </div>
   @else
     <div class="wrapper">
