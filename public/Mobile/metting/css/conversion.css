@@ -1,9 +1,11 @@
+
 .top{
   width: 90%;
   margin:0 auto;
-  margin-top: 4.5rem;
+  margin-top: 3.5rem;
   padding: .3rem;
   height:auto;
+  padding-bottom: 2rem;
   border: 1px solid #D6D6D6;
 }
 .top p{

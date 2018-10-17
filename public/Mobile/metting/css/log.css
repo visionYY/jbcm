@@ -69,6 +69,11 @@
   margin-bottom:2rem;
   color:#ec640c;
 }
+.hint1{
+  margin:0;
+  margin-bottom:2rem;
+  color:red ! important;
+}
 textarea{
   border: 1px solid #ccc;
   width:65%;
