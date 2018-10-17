@@ -55,7 +55,8 @@
         </div>
         @if($open['status'] != 1)
         <div class="cover" style="display: block;">
-            <p>活动尚未开始</p>
+            <p>本场奖品已派完，敬请期待下一场！</p>
+            <!-- <p>活动尚未开始</p> -->
         </div>
         @else
         <input type="hidden" id="ld_id" value="{{$open['id']}}">
@@ -155,21 +156,10 @@
     </div>
 </div>
 
-
 <img src="{{asset('Mobile/metting/images/jingnan.png')}}" class="acePack" onclick="window.location.href='{{url('mobile/metting/myAward/uid/'.$open['uid'])}}'">
-
 
 <div class="landscape" style="display: none">
     <div><img src="{{asset('Mobile/metting/images/fpts.png')}}"></div>
-</div>
-
-
-<!-- <img src="Mobile/metting/images/musicIocn.png" id="music" class="music"> -->
-<!-- 浮动窗口 -->
-<div id="div1">
-    <a href="#" >知识决定一切</a>
-    <a href="#" >好好学习</a>
-    <a href="#" >寻龙诀</a>
 </div>
 <div id="dandan">
     <img src="{{asset('Mobile/metting/images/hammer.png')}}" class="hammer">
@@ -182,7 +172,8 @@
 <input type="hidden" id="clickUrl" value="{{url('mobile/metting/clickOne')}}">
 <script type="text/javascript" src="{{asset('Mobile/metting/js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('Mobile/metting/js/preloadjs-NEXT.min.js')}}"></script>
-<!-- <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=Ddk4dEgl09mEERDAV94xx6SgeyWmzw8V"></script> -->
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=Ddk4dEgl09mEERDAV94xx6SgeyWmzw8V"></script>
+<script type="text/javascript" src="{{asset('Mobile/js/convertor.js')}}"></script>
 <script>
 
     var chance = 5;  //砸蛋次数
@@ -286,60 +277,6 @@
             divs.eq(index).show();
         });  
 
-        //浮动窗口
-        var oDiv = document.getElementById('div1');
-        var aA = document.getElementsByTagName('a');
-        var i = 0;
-        for (i = 0; i < aA.length; i++) {
-            aA[i].pause = 1;
-            aA[i].time = null;
-            initialize(aA[i]);
-            aA[i].onmouseover = function() {
-                this.pause = 0;
-            };
-            aA[i].onmouseout = function() {
-                this.pause = 1;
-            };
-        }
-        setInterval(starmove, 50);
-
-        function starmove() {
-            for (i = 0; i < aA.length; i++) {
-                if (aA[i].pause) {
-                    domove(aA[i]);
-                }
-            }
-        }
-
-        function domove(obj) {
-            if (obj.offsetTop <= -obj.offsetHeight) {
-                obj.style.top = oDiv.offsetHeight + "px";
-                initialize(obj);
-            } else {
-                obj.style.top = obj.offsetTop - obj.ispeed + "px";
-            }
-        }
-
-        function initialize(obj) {
-            //var iLeft = parseInt(Math.random() * oDiv.offsetWidth);
-            var scale = Math.random() * 1 + 1;
-            var iTimer = parseInt(Math.random() * 1500);
-            obj.pause = 0;
-
-            //obj.style.fontSize = 12 * scale + 'px';
-
-            // if ((iLeft - obj.offsetWidth) > 0) {
-            //     obj.style.left = iLeft - obj.offsetWidth + "px";
-            // } else {
-            //     obj.style.left = iLeft + "px";
-            // }
-            clearTimeout(obj.time);
-            obj.time = setTimeout(function() {
-                obj.pause = 1;
-            }, iTimer);
-            obj.ispeed = Math.ceil(Math.random() * 3) + 1;
-        }
-
         //轮播
         var mainWidth = $('.main_0').width()
         var mainWidth1 = $('.main_1').width()
@@ -431,57 +368,60 @@
         })
 
         //地图
-        // function getLocation(){
-        //     var options={
-        //         enableHighAccuracy:true,
-        //         maximumAge:1000
-        //     }
-        //     if(navigator.geolocation){
-        //         //浏览器支持geolocation
-        //         navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
-        //     }else{
-        //         //浏览器不支持geolocation
-        //         alert('您的浏览器不支持地理位置定位');
-        //     }
-        // }
-        // //成功时
-        // function onSuccess(position){
-        //     //返回用户位置
-        //     //经度
-        //     var longitude =position.coords.longitude;
-        //     //纬度
-        //     var latitude = position.coords.latitude;
-        //     console.log(longitude);
-        //     console.log(latitude);
-        //     alert('经度'+longitude+'，纬度'+latitude);
+        function getLocation(){
+            var options={
+                enableHighAccuracy:true,
+                maximumAge:1000
+            }
+            if(navigator.geolocation){
+                //浏览器支持geolocation
+                navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+            }else{
+                //浏览器不支持geolocation
+                alert('您的浏览器不支持地理位置定位');
+            }
+        }
+        //成功时
+        function onSuccess(position){
+            //返回用户位置
+            //经度
+            var longitude =position.coords.longitude;
+            //纬度
+            var latitude = position.coords.latitude;
+            console.log(longitude);
+            console.log(latitude);
+            alert('经度'+longitude+'，纬度'+latitude);
 
-        //     //根据经纬度获取地理位置，不太准确，获取城市区域还是可以的
-        //     var map = new BMap.Map("allmap");
-        //     var point = new BMap.Point(longitude,latitude);
-        //     var gc = new BMap.Geocoder();
-        //     gc.getLocation(point, function(rs){
-        //         var addComp = rs.addressComponents;
-        //         alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-        //     });
-        // }
-        // //失败时
-        // function onError(error){
-        //     switch(error.code){
-        //         case 1:
-        //             alert("位置服务被拒绝");
-        //             break;
-        //         case 2:
-        //             alert("暂时获取不到位置信息");
-        //             break;
-        //         case 3:
-        //             alert("获取信息超时");
-        //             break;
-        //         case 4:
-        //             alert("未知错误");
-        //             break;
-        //     }
-        // }
-        // window.onload=getLocation();
+            //根据经纬度获取地理位置，不太准确，获取城市区域还是可以的
+            var map = new BMap.Map("allmap");
+            var point = new BMap.Point(longitude,latitude);
+            var gc = new BMap.Geocoder();
+            gc.getLocation(point, function(rs){
+                var addComp = rs.addressComponents;
+                alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+            });
+        }
+        //失败时
+        function onError(error){
+            switch(error.code){
+                case 1:
+                    alert("位置服务被拒绝");
+                    break;
+                case 2:
+                    alert("暂时获取不到位置信息");
+                    break;
+                case 3:
+                    alert("获取信息超时");
+                    break;
+                case 4:
+                    alert("未知错误");
+                    break;
+            }
+        }
+        window.onload=getLocation();
+            
+
+        
     }
 
 
@@ -506,6 +446,24 @@
         window.addEventListener('DOMContentLoaded', init, false);
     })();
 
+// var map = new BMap.Map("allmap");
+// var longitude, latitude;
+// navigator.geolocation.getCurrentPosition(function (position) {
+//     longitude = position.coords.longitude;
+//     latitude = position.coords.latitude;
+// });
+// console.log(longitude);
+// console.log(latitude);
+// setTimeout(function () {
+//     var gpsPoint = new BMap.Point(longitude, latitude);
+//     BMap.Convertor.translate(gpsPoint, 0, function (point) {
+//         var geoc = new BMap.Geocoder();
+//         geoc.getLocation(point, function (rs) {
+//             var addComp = rs.addressComponents;
+//             alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+//         });
+//     });
+// }, 3000);
 </script>
 
 </body>

@@ -27,7 +27,7 @@ class MettingController extends Controller
 
     //年会抽奖
     public function luckyDraw(){
-//        setcookie('uid',1);
+        setcookie('uid',1);
 //        dd(!array_key_exists('uid',$_COOKIE));
         if (!array_key_exists('uid',$_COOKIE)){
             return Redirect::to('mobile/metting/wxLogin');die;
@@ -42,7 +42,7 @@ class MettingController extends Controller
                 break;
             }
         }
-        $winner = Winners::where('ld_id',$open['id'])->get();
+        $winner = Winners::where('ld_id',$open['id'])->orderBy('time','desc')->get();
 //        dd($winner);
         $user = User::find($uid);
         $open['uid'] = $uid;
