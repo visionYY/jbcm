@@ -39,8 +39,6 @@
   border-bottom:1px solid #ccc;
 }
 #btn-lq{
-  background:#Cfc;
-  border: 1px solid #cfc;
   width:70%;
   height:2rem;
   border-radius:8px;
@@ -51,7 +49,9 @@
   position: relative;
   text-align:center;
 }
-#btn-lq {border-radius: 0.3rem; background-color: #4382D1; color:#fff; border: none; padding: 0.4rem 1rem; display: inline-block;}
+#btn-lq {border-radius: 0.3rem; background-color: #4382D1; color:#fff; border: none; padding: 0.4rem 1rem;
+   display: inline-block;}
+
 .wedded{
   position: absolute;
   right: 3rem;

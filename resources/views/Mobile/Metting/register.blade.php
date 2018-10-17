@@ -39,10 +39,15 @@
   <script>
     //登记
     $("form").submit(function(){
-        if($("#username").val()=="" || $("#myphone").val()=="" || $("#site").val()==""){
+      var phone = document.getElementById('myphone').value;
+        if($("#username").val()=="" || phone =="" || $("#site").val()==""){
             alert("请输补全信息！");
             return false;
         }
+        if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phone))){ 
+              alert("手机号码有误，请重填");  
+              return false; 
+          } 
     });
   </script>
 </body>
