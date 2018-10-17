@@ -61,7 +61,7 @@
                                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#">派发</a></li>
+                                                <li><a href="{{url('admin/metting/winnersDistribute/wid/'.$v->id)}}">派发</a></li>
                                                 <!-- <li><a href="javascript:;" class="demo4">禁用</a></li> -->
                                                 <li class="divider"></li>
                                                 <!-- <li><a href="javascript:;" id="{{$v->id}}" class="delete" url="{{url('admin/metting/awardDestroy/'.$v->id)}}">删除</a> -->

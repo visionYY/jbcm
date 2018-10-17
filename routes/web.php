@@ -122,6 +122,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('metting/winners/ldid/{ldid}','Admin\MettingController@winners');         //中奖名单
 
     Route::get('metting/winners/ldid/{ldid}','Admin\MettingController@winners');      //年会中奖名单
+    Route::get('metting/winnersDistribute/wid/{wid}','Admin\MettingController@winnersDistribute');      //派发
 
     //功能路由
     Route::get('choiceness/setting/type/{type}/id/{id}','Admin\ChoicenessController@setting');                  //设置精选

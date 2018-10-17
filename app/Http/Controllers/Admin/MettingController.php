@@ -137,4 +137,19 @@ class MettingController extends Controller
         }
         return view('Admin.Metting.winners',compact('list'),compact('metting',$metting));
     }
+
+    //派发奖品
+    public function winnersDistribute($wid){
+        $winners = Winners::find($wid);
+        if ($winners->is_receive ==1){
+            $data['is_receive'] = 0;
+        }else{
+            $data['is_receive'] = 1;
+        }
+        if ($winners->update($data)){
+            return back()->with('success',config('hint.set_suss'));
+        }else{
+            return back()->with('hint',config('hint.set_fail'));
+        }
+    }
 }

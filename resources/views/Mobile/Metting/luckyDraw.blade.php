@@ -397,16 +397,17 @@
             // alert('经度'+longitude+'，纬度'+latitude);
             
             //判断当前位置离
+            // 北京
             // var latnow = '39.920884';
             // var lonnow = '116.459137';
-            
+            // 深圳
             var latnow = '22.477291';
             var lonnow = '113.899711';
             var juli = GetDistance(latitude,longitude,latnow,lonnow);
             if (juli <= 5000) {
                 $('#latlon').css('display','none');
             }
-            alert('距离当前中心定位约 '+juli+' 米');
+            // alert('距离当前中心定位约 '+juli+' 米');
             //根据经纬度获取地理位置，不太准确，获取城市区域还是可以的
             // var map = new BMap.Map("allmap");
             // var point = new BMap.Point(longitude,latitude);

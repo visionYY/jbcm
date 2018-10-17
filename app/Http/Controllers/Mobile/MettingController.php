@@ -126,7 +126,7 @@ class MettingController extends Controller
         $ld_id = $request->post('ld_id');
         $click = Click::find(1);
         $nowClick = $click->num+1;
-        if ($nowClick % 13 == 0){
+        if ($nowClick % 33 == 0){
             //该场所有奖品
             $arawd = Award::where('ld_id',$ld_id)->where('num','>',0)->get()->toArray();
             //奖品抽完，该场次结束
