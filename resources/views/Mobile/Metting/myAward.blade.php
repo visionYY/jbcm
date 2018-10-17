@@ -31,9 +31,9 @@
       <p class="winner_tel">中奖人电话：{{$data['user']->mobile}}</p>
       <p class="winner_site">收货地址：{{$data['user']->address}}</p>
       <p class="wx_name">微信昵称：{{$data['user']->nickname}}</p>
-      <p class="win_time">中奖时间：{{$data['winner']->time}}</p>
-      <p class="win_code">中奖编号：{{$data['winner']->id}}</p>
-      <p class='prize_name'>奖品状态：<span>{{$data['award']->name}}</span></p>
+      <p class="win_time">中奖时间：{{$data['winner']['time']}}</p>
+      <p class="win_code">中奖编号：{{$data['winner']['id']}}</p>
+      <p class='prize_name'>奖品状态：<span>{{$data['winner']['is_receive']==1 ? '已派送' : '未派送'}}</span></p>
       <p class="phone">客服电话：18910289963</p>
     </div>
   @else

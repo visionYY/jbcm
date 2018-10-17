@@ -29,7 +29,6 @@ class MettingController extends Controller
     public function luckyDraw(){
 //        setcookie('uid',1);
 //        dd(!array_key_exists('uid',$_COOKIE));
-
         if (!array_key_exists('uid',$_COOKIE)){
             return Redirect::to('mobile/metting/wxLogin');die;
         }
@@ -83,11 +82,12 @@ class MettingController extends Controller
         if (!array_key_exists('uid',$_COOKIE)){
             return Redirect::to('mobile/metting/wxLogin');die;
         }
-        $winner = Winners::where('user_id',$uid)->get();
+        $winner = Winners::where('user_id',$uid)->get()->toArray();
+//        dd($winner);
         if ($winner){
             $data['status'] = 1;
             $data['winner'] = $winner[0];
-            $data['award'] = Award::find($winner[0]->award_id);
+            $data['award'] = Award::find($winner[0]['award_id']);
             $data['user'] = User::find($uid);
         }else{
             $data['status'] = 0;
@@ -112,7 +112,6 @@ class MettingController extends Controller
                 $res['code'] = 401;
                 $res['msg'] = '已经结束';
                 LuckyDraw::find($ld_id)->update(['status'=>0]);
-                $click->update(['num'=>$nowClick]);
                 return response($res);
             }
             //查看是否已经中奖
@@ -120,7 +119,6 @@ class MettingController extends Controller
             if ($zhong){
                 $res['code'] = 404;
                 $res['msg'] = '您已中奖';
-                $click->update(['num'=>$nowClick]);
                 return response($res);
             }
             //添加中奖名单
