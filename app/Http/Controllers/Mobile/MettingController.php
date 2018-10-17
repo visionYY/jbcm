@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mobile;
 
+use App\Http\Resources\view;
 use App\Models\Award;
 use App\Models\Click;
 use App\Models\LuckyDraw;
@@ -40,6 +41,13 @@ class MettingController extends Controller
                 $open['id'] = $v->id;
                 $open['status'] = 1;
                 break;
+            }
+        }
+        if ($open['status'] ==1){
+            $arawd = Award::where('ld_id',$open['id'])->where('num','>',0)->get()->toArray();
+            if (!$arawd){
+                LuckyDraw::find($open['id'])->update(['status'=>0]);
+                $open['status'] = 0;
             }
         }
         $winner = Winners::orderBy('time','desc')->get();
@@ -97,7 +105,21 @@ class MettingController extends Controller
         return view('Mobile.Metting.myAward',compact('data',$data));
     }
 
-    //
+    //控制页
+    public function control(){
+        $data = LuckyDraw::all();
+//        dd($lucky);
+        return view('Mobile.Metting.control',compact('data',$data));
+    }
+
+    //点击开始
+    public function doControl($status,$ldid){
+//        dd($ldid);
+        LuckyDraw::find($ldid)->update(['status'=>$status]);
+        return Redirect::to('mobile/metting/control');
+    }
+
+    //点击抽奖
     public function clickOne(Request $request){
         $uid = $request->post('uid');
         $nickname = $request->post('nickname');

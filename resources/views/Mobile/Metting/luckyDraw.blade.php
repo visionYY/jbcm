@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-<title>砸金蛋抽奖</title>
+<title>砸金蛋赢好礼</title>
 <link rel="stylesheet" type="text/css" href="{{asset('Mobile/metting/css/reset.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('Mobile/metting/css/index.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('Mobile/metting/font/iconfont.css')}}">
@@ -135,7 +135,7 @@
                     </div>
                     <h4><img src="{{asset('Mobile/metting/images/notice.png')}}" alt=""></h4>
                     <p>1. 中奖后请点击领奖，并填写相应信息，奖品将在会后以免费邮寄的方式派发！</p>
-                    <p>2. 本活动最终解释权归嘉宾大学所有。</p>
+                    <p>2. 本活动最终解释权归活动主办方所有。</p>
                     <!-- <p class="notice not"><strong>*</strong>注：您所填写的信息仅作为奖品派发凭证，嘉宾 大学不会对外公开</p> -->
         
                 </div>
@@ -397,8 +397,11 @@
             // alert('经度'+longitude+'，纬度'+latitude);
             
             //判断当前位置离
-            var latnow = '39.920884';
-            var lonnow = '116.459137';
+            // var latnow = '39.920884';
+            // var lonnow = '116.459137';
+            
+            var latnow = '22.477291';
+            var lonnow = '113.899711';
             var juli = GetDistance(latitude,longitude,latnow,lonnow);
             if (juli <= 5000) {
                 $('#latlon').css('display','none');

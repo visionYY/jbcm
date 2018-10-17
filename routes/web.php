@@ -76,6 +76,9 @@ Route::group(['prefix'=>'mobile'],function (){
         Route::post('clickOne','Mobile\MettingController@clickOne');
         Route::get('wxLogin','Mobile\MettingController@wxLogin');
         Route::get('getInfo','Mobile\MettingController@getInfo');
+
+        Route::get('control','Mobile\MettingController@control');   //控制活动开始页
+        Route::get('doControl/status/{status}/ldid/{ldid}','Mobile\MettingController@doControl');   //控制
     });
 });
 

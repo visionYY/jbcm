@@ -18,7 +18,7 @@
   display: inline-block;
   width:32%;
   position: relative;
-  top:-75%;
+  top:-50%;
   text-align:right;
 }
 .fill>span{
@@ -77,4 +77,5 @@
 textarea{
   border: 1px solid #ccc;
   width:65%;
+  line-height: 1rem;
 }
