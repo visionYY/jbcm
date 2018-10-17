@@ -398,7 +398,7 @@
             var gc = new BMap.Geocoder();
             gc.getLocation(point, function(rs){
                 var addComp = rs.addressComponents;
-                alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
             });
         }
         //失败时
@@ -446,24 +446,24 @@
         window.addEventListener('DOMContentLoaded', init, false);
     })();
 
-// var map = new BMap.Map("allmap");
-// var longitude, latitude;
-// navigator.geolocation.getCurrentPosition(function (position) {
-//     longitude = position.coords.longitude;
-//     latitude = position.coords.latitude;
-// });
-// console.log(longitude);
-// console.log(latitude);
-// setTimeout(function () {
-//     var gpsPoint = new BMap.Point(longitude, latitude);
-//     BMap.Convertor.translate(gpsPoint, 0, function (point) {
-//         var geoc = new BMap.Geocoder();
-//         geoc.getLocation(point, function (rs) {
-//             var addComp = rs.addressComponents;
-//             alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-//         });
-//     });
-// }, 3000);
+/*var map = new BMap.Map("allmap");
+var longitude, latitude;
+navigator.geolocation.getCurrentPosition(function (position) {
+    longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+});
+console.log(longitude);
+console.log(latitude);
+setTimeout(function () {
+    var gpsPoint = new BMap.Point(longitude, latitude);
+    BMap.Convertor.translate(gpsPoint, 0, function (point) {
+        var geoc = new BMap.Geocoder();
+        geoc.getLocation(point, function (rs) {
+            var addComp = rs.addressComponents;
+            alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+        });
+    });
+}, 3000);*/
 </script>
 
 </body>
