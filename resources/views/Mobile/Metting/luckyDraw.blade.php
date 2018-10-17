@@ -367,7 +367,7 @@
             }
         })
 
-        //地图
+     /*   //地图
         function getLocation(){
             var options={
                 enableHighAccuracy:true,
@@ -418,7 +418,7 @@
                     break;
             }
         }
-        window.onload=getLocation();
+        window.onload=getLocation();*/
             
 
         

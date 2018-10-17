@@ -21,11 +21,22 @@
       doc.addEventListener('DOMContentLoaded', recalc, false);
     })(document, window);
   </script>
+  <style>
+    #btn-lq1{
+      border-radius: 0.3rem; background-color: #D7AA6F; color:#000; border: none; padding: 0.4rem 1rem;
+      display: inline-block;
+      width: 70%;
+      height: 2rem;
+      margin: 0 15%;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
   <div class="wrapper">
     <p class="line"><img src="{{asset($award->pic)}}" alt=""><img class="wedded" src="{{asset('Mobile/metting/images/wedded.png')}}" alt=""></p>
     <button id="btn-lq" onclick="window.location.href='{{url('mobile/metting/myAward/uid/'.$award->uid)}}'">查看奖品详情</button>
+    <button id="btn-lq1" onclick="window.location.href='{{url('mobile/metting/myAward/uid/'.$award->uid)}}'">返回首页</button>
   </div>
 </body>
 </html>
