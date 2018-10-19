@@ -10,6 +10,10 @@
 	.swiper-button-next.swiper-button-white, .swiper-container-rtl .swiper-button-prev.swiper-button-white{
 		background-image:url("{{asset('Home/images/right.png')}}")
 	}
+	/* .cover_box{
+      background:url("{{asset('Home/images/cover.jpg')}}") no-repeat;
+      background-size:cover;
+    } */
     .ckgd{width: 100%;height:30px;text-align: center;line-height: 30px;font-size: 16px;color: #00f;}
 	</style>
 	<script src={{asset("Home/js/jquery.min.js")}}></script>
@@ -180,7 +184,14 @@
     <input type="hidden" name="url" value="{{url('getIndexCate')}}">
     <input type="hidden" name="show_num" value="{{config('hint.show_num')}}">
 	@include('layouts._footer')
-	
+	<!-- <div class="cover_box">
+		<div class="c_box" onclick="window.location.href='http://t.cn/RFmd6vb'">
+			<img src="{{asset('Home/images/cover.jpg')}}" alt="">
+			<p class="cover_close"><img src="{{asset('Home/images/cover_close.png')}}" alt=""></p>
+			<p class="code"><img src="{{asset('Home/images/code.png')}}" alt=""></p>
+      		<p class="gogo"><img src="{{asset('Home/images/wxgif.gif')}}" alt=""></p>
+		</div>
+	</div> -->
     <script src="{{asset('Home/js/swiper.min.js')}}"></script>
     <script type="text/javascript">
         window.onload = function() {
@@ -246,7 +257,10 @@
             
         })
 
-		
+		// $(".cover_close").click(function(e){
+		// 	e.stopPropagation();
+		// 	$('.cover_box').hide();
+		// })
     	
     	$('.btn_more').click(function(){
     		var thisObj = $(this);
