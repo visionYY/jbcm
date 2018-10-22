@@ -125,7 +125,13 @@
 
   @include('layouts.m_footer')
 
-  
+  <!-- <div class="cover_box">
+		<div class="c_box">
+			<img src="{{asset('Mobile/images/cover.jpg')}}" alt="">
+			<p class="cover_close"><img src="{{asset('Mobile/images/cover_close.png')}}" alt=""></p>
+      <p class="gogo" onclick="window.location.href='http://t.cn/RFmd6vb'"><img src="{{asset('Mobile/images/gogo.gif')}}" alt=""></p>
+		</div>
+	</div> -->
   <!-- <input type="hidden" name="url" value="{{url('mobile/getIndexMessge')}}"> -->
   <!-- <input type="hidden" name="m_show_num" value="{{config('hint.m_show_num')}}"> -->
   <div id="common" url="{{url('mobile/getIndexMessge')}}" m_show_num="{{config('hint.m_show_num')}}"></div>
@@ -135,7 +141,10 @@
     var url = $('#common').attr('url');
     var m_show_num = $('#common').attr('m_show_num');
     $(".tablea").find(".box:first").show();    //为每个BOX的第一个元素显示  
-    
+    //关闭遮罩
+    // $('.cover_close').click(function(){
+    //    $('.cover_box').hide();
+    //  })
     //浮动分类导航
     $(document).ready(function(){
       var mySwiper = new Swiper(".swiper-container",{
