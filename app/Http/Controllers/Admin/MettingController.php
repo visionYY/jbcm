@@ -141,6 +141,10 @@ class MettingController extends Controller
     //派发奖品
     public function winnersDistribute($wid){
         $winners = Winners::find($wid);
+        // $user = User::find($winners->user_id);
+        // dd($user);die;
+        // $url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN';
+
         if ($winners->is_receive ==1){
             $data['is_receive'] = 0;
         }else{
@@ -151,5 +155,28 @@ class MettingController extends Controller
         }else{
             return back()->with('hint',config('hint.set_fail'));
         }
+    }
+
+    public function request($url,$https=true,$method='post',$data=null){
+        //1.初始化url
+        $ch = curl_init($url);
+        //2.设置相关的参数
+        //字符串不直接输出,进行一个变量的存储
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        //判断是否为https请求
+        if($https === true){
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
+        //判断是否为post请求
+        if($method == 'post'){
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        }
+        //3.发送请求
+        $str = curl_exec($ch);
+        //4.关闭连接,避免无效消耗资源
+        curl_close($ch);
+        return $str;
     }
 }

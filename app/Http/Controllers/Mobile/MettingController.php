@@ -91,6 +91,7 @@ class MettingController extends Controller
             return Redirect::to('mobile/metting/wxLogin');die;
         }
         $winner = Winners::where('user_id',$uid)->get()->toArray();
+
 //        dd($winner);
         if ($winner){
             $data['status'] = 1;
@@ -126,7 +127,15 @@ class MettingController extends Controller
         $ld_id = $request->post('ld_id');
         $click = Click::find(1);
         $nowClick = $click->num+1;
-        if ($nowClick % 33 == 0){
+        $click->update(['num'=>$nowClick]);
+        if ($nowClick % 2 == 0){
+            //查看是否已经中奖
+            $zhong = Winners::where('user_id',$uid)->get()->toArray();
+            if ($zhong){
+                $res['code'] = 404;
+                $res['msg'] = '您已中奖';
+                return response($res);die;
+            }
             //该场所有奖品
             $arawd = Award::where('ld_id',$ld_id)->where('num','>',0)->get()->toArray();
             //奖品抽完，该场次结束
@@ -134,45 +143,38 @@ class MettingController extends Controller
                 $res['code'] = 401;
                 $res['msg'] = '已经结束';
                 LuckyDraw::find($ld_id)->update(['status'=>0]);
-                return response($res);
+                return response($res);die;
             }
-            //查看是否已经中奖
-            $zhong = Winners::where('user_id',$uid)->get()->toArray();
-            if ($zhong){
-                $res['code'] = 404;
-                $res['msg'] = '您已中奖';
-                return response($res);
-            }
-            //添加中奖名单
-            $winner['user_id'] = $uid;
-            $winner['ld_id'] = $ld_id;
-            $winner['nickname'] = $nickname;
-            $winner['award_id'] = $arawd[0]['id'];
-            $winner['award_name'] = $arawd[0]['name'];
-            $winner['time'] = date('Y-m-d H:i:s',time());
-            $winRes = Winners::create($winner);
+            //减奖品
             $arawdNum = $arawd[0]['num'] - 1;
-            if ($winRes){
-                //减奖品
-                $awardRes = Award::find($arawd[0]['id'])->update(['num'=>$arawdNum]);
-                if ($awardRes){
+            $awardRes = Award::find($arawd[0]['id'])->update(['num'=>$arawdNum]);
+            if ($awardRes){
+                //添加中奖名单
+                $winner['user_id'] = $uid;
+                $winner['ld_id'] = $ld_id;
+                $winner['nickname'] = $nickname;
+                $winner['award_id'] = $arawd[0]['id'];
+                $winner['award_name'] = $arawd[0]['name'];
+                $winner['time'] = date('Y-m-d H:i:s',time());
+                $winRes = Winners::create($winner);
+                if ($winRes){
+                    //减奖品
                     $res['code'] = 200;
                     $res['msg'] = '恭喜您中奖啦！';
                     $res['data'] = $arawd[0];
                     $res['uid'] = $uid;
                 }else{
-                    $res['code'] = 403;
-                    $res['msg'] = '减奖品数目失败！';
+                    $res['code'] = 402;
+                    $res['msg'] = '添加中奖名单失败！';
                 }
             }else{
-                $res['code'] = 402;
-                $res['msg'] = '添加中奖名单失败！';
+                $res['code'] = 403;
+                $res['msg'] = '减奖品数目失败！';
             }
         }else{
             $res['code'] = 400;
             $res['msg'] = '未中奖';
         }
-        $click->update(['num'=>$nowClick]);
         return response($res);
     }
 

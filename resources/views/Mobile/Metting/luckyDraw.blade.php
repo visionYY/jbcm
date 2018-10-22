@@ -61,7 +61,7 @@
         @else
         <input type="hidden" id="ld_id" value="{{$open['id']}}">
         @endif
-        <div class="cover" id="latlon" style="display: block;">
+        <div class="cover" id="latlon" style="display: none;">
             <p>本活动仅限嘉宾峰会现场参加</p>
             <!-- <p>活动尚未开始</p> -->
         </div>
