@@ -90,7 +90,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa fa-book"></i>
+                            <i class="fa fa-file-excel-o"></i>
                             <span class="nav-label">内容管理</span>
                             <span class="fa arrow"></span>
                         </a>
@@ -129,6 +129,22 @@
                                 <!-- <a class="J_menuItem" href="navigation">导航列表</a> -->
                                 <!-- <a class="J_menuItem" href="label">标签列表</a> -->
                                 <!-- <a class="J_menuItem" href="hotbot">热搜列表</a> -->
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-book"></i>
+                            <span class="nav-label">课程管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="season">线下季课</a>
+                                <a class="J_menuItem" href="navigation">课程分类</a>
+                                <a class="J_menuItem" href="label">课程列表</a>
+                                <a class="J_menuItem" href="hotbot">季课报名</a>
+                                <a class="J_menuItem" href="hotbot">课程订单</a>
                             </li>
                         </ul>
                     </li>
