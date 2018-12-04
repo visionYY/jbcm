@@ -65,4 +65,5 @@
       });
       
     </script>
+    @include('layouts._wxshare')
 @stop

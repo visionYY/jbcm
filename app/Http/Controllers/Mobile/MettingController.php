@@ -28,7 +28,7 @@ class MettingController extends Controller
 
     //年会抽奖
     public function luckyDraw(){
-//        setcookie('uid',1);
+       setcookie('uid',1);
 //        dd(!array_key_exists('uid',$_COOKIE));
         if (!array_key_exists('uid',$_COOKIE)){
             return Redirect::to('mobile/metting/wxLogin');die;

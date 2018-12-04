@@ -122,6 +122,7 @@ Route::group(['prefix'=>'admin'],function(){
 
     //小程序
     Route::resource('season','Admin\SeasonController');         //线下季课
+    Route::resource('site','Admin\SiteController');         //线下季课站点
 
 
     //年会活动

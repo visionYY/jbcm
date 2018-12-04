@@ -57,11 +57,11 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">头像：</label>
                                 <div class="col-sm-8">
-                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 选择图片</button> -->
-                                    <button type="button" class="btn btn-primary choi"> 选择图片</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 选择图片</button>
+                                    <!-- <button type="button" class="btn btn-primary choi"> 选择图片</button>
                                     <span class="m-b-none" style="color:red;">
                                         <i class="fa fa-info-circle"></i> 为保证图片展示效果，请上传分辨率为570*790，小于100k的图片
-                                    </span>
+                                    </span> -->
                                 </div>
                             </div>
 
@@ -92,8 +92,8 @@
                             </div>
 
                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                            <!-- <input type="hidden" name="head_pic" value="{{old('head_pic')}}"> -->
-                            <input type="file" name="head_pic" style="display: none;" value="{{old('head_pic')}}">
+                            <input type="hidden" name="head_pic" value="{{old('head_pic')}}">
+                            <!-- <input type="file" name="head_pic" style="display: none;" value="{{old('head_pic')}}"> -->
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <button class="btn btn-primary" type="submit">提交</button>
@@ -107,10 +107,10 @@
         </div>
     </div>
     @include('layouts.admin_js')
-    <!-- @include('layouts.admin_picpro') -->
+    @include('layouts.admin_picpro')
     <script type="text/javascript">
     //截图上传
-        /*var stw = $('[name=scre_ts_width]').val(),
+        var stw = $('[name=scre_ts_width]').val(),
             sth = $('[name=scre_ts_height]').val(),
             otw = $('[name=opt_ts_width]').val(),
             oth = $('[name=opt_ts_height]').val();
@@ -131,16 +131,16 @@
                 $('#head_pic').attr('src',dataURL);
                 $('[name=head_pic]').attr('value',dataURL);
             }
-        });*/
+        });
     // 普通上传
-        $('.choi').click(function(){
+        /*$('.choi').click(function(){
             $('[name=head_pic]').trigger('click');
         })
         $('[name=head_pic]').change(function(){
             var imgurl = getObjectURL(this.files[0]);
             // console.log(imgurl);
             $('#head_pic').attr('src',imgurl);
-        });
+        });*/
 
         //图片预览
         function getObjectURL(file){

@@ -60,7 +60,7 @@ class IndexController extends Controller
         /*foreach ($data['tutor'] as $tutor){
             $tutor->classic_quote= explode('；',$tutor->classic_quote);
         }*/
-//        dd($data);
+        dd($data);
         return view('Home.Index.index',compact('data',$data));
     }
 

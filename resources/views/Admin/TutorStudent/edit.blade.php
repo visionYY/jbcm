@@ -57,11 +57,11 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">头像：</label>
                                 <div class="col-sm-8">
-                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 选择图片</button> -->
-                                    <button type="button" class="btn btn-primary choi"> 选择图片</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 选择图片</button>
+                                    <!-- <button type="button" class="btn btn-primary choi"> 选择图片</button>
                                     <span class="m-b-none" style="color:red;">
                                         <i class="fa fa-info-circle"></i> 为保证图片展示效果，请上传分辨率为570*790，小于100k的图片
-                                    </span>
+                                    </span> -->
                                 </div>
                             </div>
 
@@ -93,8 +93,8 @@
 
                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                             <input type="hidden" name="_method" value="put"/>
-                            <!-- <input type="hidden" name="head_pic"> -->
-                            <input type="file" name="head_pic" style="display: none;" value="{{old('head_pic')}}">
+                            <input type="hidden" name="head_pic">
+                            <!-- <input type="file" name="head_pic" style="display: none;" value="{{old('head_pic')}}"> -->
                             <!-- 旧图片 提交用-->
                             <input type="hidden" name="head_old_pic" value={{$tutor['head_pic']}}>
                             <!-- 旧图片地址 供点击取消用 不参与提交-->
@@ -113,10 +113,10 @@
         </div>
     </div>
     @include('layouts.admin_js')
-    <!-- @include('layouts.admin_picpro') -->
+    @include('layouts.admin_picpro')
     <script type="text/javascript">
     // 截图上传
-        /*var clipArea = new bjj.PhotoClip("#clipArea", {
+        var clipArea = new bjj.PhotoClip("#clipArea", {
             size: [285, 395],
             outputSize: [570, 790],
             file: "#file",
@@ -134,13 +134,13 @@
                 $('[name=head_pic]').attr('value',dataURL);
             }
         });
-
-        var apic = $('[name=head_old_pic_url]').val();
+        
+        var apic = $('[name=head_old_pic]').val();
         $('.quxiao').click(function(){
             $('#head_pic').attr('src',apic)
-        })*/
+        })
      // 普通上传
-        $('.choi').click(function(){
+        /*$('.choi').click(function(){
             $('[name=head_pic]').trigger('click');
         })
         $('[name=head_pic]').change(function(){
@@ -160,6 +160,6 @@
               url = window.webkitURL.createObjectURL(file) ;  
              }  
              return url ;
-        }             
+        }             */
     </script>
 @stop
