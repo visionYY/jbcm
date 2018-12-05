@@ -30,6 +30,7 @@ class Navigation extends Model
 
     //同时获取文章跟视频(按导航)
     public static function getArticleVideo($nids,$num,$start=0){
+
         $where = 'WHERE t.nav_id IN ('.$nids.')';
         $res = DB::select('SELECT * FROM (SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,labels FROM hg_article UNION ALL 
                                                 SELECT id,nav_id,cg_id,title,cover,intro,publish_time,type,labels FROM hg_video ) t 
