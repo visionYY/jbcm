@@ -8,8 +8,7 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="商学教育、商学教育服务、新商学教育品牌、财经媒体、新商业媒体、企业赋能、新经济、产业、战略咨询、品牌提升、价值管理、投融资服务
 ">
-    <meta name="keywords" content="商学教育、商学教育服务、新商学教育品牌、财经媒体、新商业媒体、企业赋能、新经济、产业、战略咨询、品牌提升、价值管理、投融资服务
-">
+    <meta name="keywords" content="我有嘉宾、嘉宾大学、嘉宾传媒、嘉宾派、吴婷、产业共同体、商学教育、财经媒体、商业媒体">
     <title>@yield('title', '嘉宾大学')</title>
     <link rel="icon" type="image/x-icon" href={{asset("Home/images/wetalkTV.ico")}} />
     <!-- Bootstrap -->
