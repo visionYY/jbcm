@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form action={{url('admin/article/'.$data['article']->id)}} class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
+                        <form action="{{url('admin/article/'.$data['article']->id)}}" class="form-horizontal m-t" id="signupForm" method="POST" enctype="multipart/form-data">
                             @include('layouts.admin_error')
                             <!-- 标题： -->
                             <div class="form-group">

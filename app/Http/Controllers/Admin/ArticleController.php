@@ -145,7 +145,10 @@ class articleController extends Controller
         if ($request->author){
             $credentials['author'] = $request->author;
         }
+        //图片大小
+//        $size = strlen(file_get_contents($request->cover))/1024;
 
+//        dd($size);
         //图像上传
 //        if ($request->file('cover')){
         if ($request->cover){

@@ -121,8 +121,9 @@ Route::group(['prefix'=>'admin'],function(){
 
 
     //小程序
-    Route::resource('season','Admin\SeasonController');         //线下季课
-    Route::resource('site','Admin\SiteController');         //线下季课站点
+    Route::resource('course','Admin\DX\CourseController');         //课程列表
+    Route::resource('content','Admin\DX\ContentController');       //课程内容
+    Route::get('content/create/course_id/{course_id}','Admin\DX\ContentController@create');       //课程内容添加
 
 
     //年会活动
