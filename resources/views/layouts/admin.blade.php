@@ -9,22 +9,23 @@
     <link rel="shortcut icon" href={{asset("Admin/favicon.ico")}}>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', '嘉宾传媒')</title>
-    <link href={{asset("Admin/css/bootstrap.min14ed.css?v=3.3.6")}} rel="stylesheet">
-    <link href={{asset("Admin/css/font-awesome.min93e3.css?v=4.4.0")}} rel="stylesheet">
+    <link href="{{asset('Admin/css/bootstrap.min14ed.css?v=3.3.6')}}" rel="stylesheet">
+    <link href="{{asset('Admin/css/font-awesome.min93e3.css?v=4.4.0')}}" rel="stylesheet">
+    <link href="{{asset('Admin/css/plugins/footable/footable.core.css')}}" rel="stylesheet">
 
-    <link href={{asset("Admin/css/plugins/iCheck/custom.css")}} rel="stylesheet">
-    <link href={{asset("Admin/css/plugins/chosen/chosen.css")}} rel="stylesheet">
-    <link href={{asset("Admin/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css")}} rel="stylesheet">
-    <link href={{asset("Admin/css/plugins/cropper/cropper.min.css")}} rel="stylesheet">
+    <link href="{{asset('Admin/css/plugins/iCheck/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('Admin/css/plugins/chosen/chosen.css')}}" rel="stylesheet">
+    <link href="{{asset('Admin/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet">
+    <link href="{{asset('Admin/css/plugins/cropper/cropper.min.css')}}" rel="stylesheet">
 
     
 
-    <link href={{asset("Admin/css/animate.min.css")}} rel="stylesheet">
-    <link href={{asset("Admin/css/style.min862f.css?v=4.1.0")}} rel="stylesheet">
+    <link href="{{asset('Admin/css/animate.min.css')}}" rel="stylesheet">
+    <link href="{{asset('Admin/css/style.min862f.css?v=4.1.0')}}" rel="stylesheet">
     <!-- Data Tables -->
-    <link href={{asset("Admin/css/plugins/dataTables/dataTables.bootstrap.css")}} rel="stylesheet">
+    <link href="{{asset('Admin/css/plugins/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet">
     <!-- Sweet Alert -->
-    <link href={{asset("Admin/css/plugins/sweetalert/sweetalert.css")}} rel="stylesheet">
+    <link href="{{asset('Admin/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->

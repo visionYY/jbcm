@@ -28,7 +28,8 @@
                     <div class="ibox-content">
                         <div class="">
                             <!-- <button class="btn btn-primary J_menuItem" data-toggle="modal" data-target="#myModalAdd">添加课程</button> -->
-                            <a class="btn btn-primary J_menuItem" href="{{url('admin/content/create/course_id/1')}}">添加章节</a>
+                            <a class="btn btn-primary J_menuItem" href="{{url('admin/jbdx/content/create/course_id/'.$id)}}">添加章节</a>
+                            <a class="btn btn-outline btn-default" href="{{url('admin/jbdx/course')}}">返回课程</a>
                         </div>
                         @include('layouts.admin_error')
                          <table class="table table-hover">
@@ -53,10 +54,10 @@
                                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="font-bold cgedit" href="{{url('admin/content/'.$v->id.'/edit')}}">修改</a></li>
-                                                <!-- <li><a href="{{url('admin/course/'.$v->id)}}" class="demo4">详情</a></li> -->
+                                                <li><a class="font-bold cgedit" href="{{url('admin/jbdx/content/'.$v->id.'/edit')}}">修改</a></li>
+                                                <li><a href="{{url('admin/jbdx/content/'.$v->id)}}" class="demo4">自测试题</a></li>
                                                 <li class="divider"></li>
-                                                <li><a href="javascript:;" id="{{$v->id}}" class="delete" url="{{url('admin/content/'.$v->id)}}">删除</a>
+                                                <li><a href="javascript:;" id="{{$v->id}}" class="delete" url="{{url('admin/jbdx/content/'.$v->id)}}">删除</a>
                                                 </li>
                                             </ul>
                                         </div>

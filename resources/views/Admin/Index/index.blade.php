@@ -140,11 +140,10 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="course">课程列表</a>
-                                <a class="J_menuItem" href="navigation">课程分类</a>
-                                <a class="J_menuItem" href="label">课程列表</a>
-                                <a class="J_menuItem" href="hotbot">季课报名</a>
-                                <a class="J_menuItem" href="hotbot">课程订单</a>
+                                <a class="J_menuItem" href="jbdx/course">课程列表</a>
+                                <a class="J_menuItem" href="order">课程订单</a>
+                                <a class="J_menuItem" href="label">线下报名</a>
+                                <a class="J_menuItem" href="hotbot">议题列表</a>
                             </li>
                         </ul>
                     </li>

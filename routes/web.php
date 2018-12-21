@@ -120,10 +120,22 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('tutorStudent/changeSort/id/{id}/sort/{sort}','Admin\TutorStudentController@changeSort');        //修改排序（导师学员）
 
 
-    //小程序
-    Route::resource('course','Admin\DX\CourseController');         //课程列表
-    Route::resource('content','Admin\DX\ContentController');       //课程内容
-    Route::get('content/create/course_id/{course_id}','Admin\DX\ContentController@create');       //课程内容添加
+    //嘉宾大学
+    Route::group(['prefix'=>'jbdx'],function (){
+        Route::resource('course','Admin\DX\CourseController');         //课程列表
+        Route::resource('content','Admin\DX\ContentController');       //课程内容
+        Route::get('content/create/course_id/{course_id}','Admin\DX\ContentController@create');       //课程内容添加
+        Route::resource('quiz','Admin\DX\QuizController');                 //自测题
+        Route::resource('answer','Admin\DX\AnswerController');             //自测题答案
+        Route::get('getQuiz','Admin\DX\QuizController@getQuiz');           //获取自测题信息;
+        Route::get('getAnswer','Admin\DX\AnswerController@getAnswer');     //获取问题列表;
+
+        Route::resource('order','Admin\DX\OrderController');                //订单列表
+        Route::resource('OfflineApply','Admin\DX\OfflineApplyController');  //线下报名列表
+        Route::resource('discussion','Admin\DX\discussionController');      //议题列表
+    });
+
+
 
 
     //年会活动

@@ -24,7 +24,7 @@ class CourseController extends Controller
         $list = Content::where('course_id',$id)->get();
 //        dd($content);
 
-        return view('Admin.DX.Course.show',compact('list'));
+        return view('Admin.DX.Course.show',compact('list','id'));
     }
 
     //添加
@@ -59,7 +59,7 @@ class CourseController extends Controller
             return back() -> with('hint',config('hint.upload_failure'));
         }
         if (Course::create($credentials)){
-            return redirect('admin/course')->with('success', config('hint.add_success'));
+            return redirect('admin/jbdx/course')->with('success', config('hint.add_success'));
         }else{
             return back()->with('hint',config('hint.add_failure'));
         }
@@ -110,7 +110,7 @@ class CourseController extends Controller
         }
         unset($credentials['old_cover']);
         if (Course::find($id)->update($credentials)){
-            return redirect('admin/course')->with('success',config('hint.mod_success'));
+            return redirect('admin/jbdx/course')->with('success',config('hint.mod_success'));
         }else{
             return back()->with('hint',config('hint.mod_failure'));
         }
@@ -122,10 +122,10 @@ class CourseController extends Controller
         if (!$Course){
             return back() -> with('hint',config('hint.data_exist'));
         }
-//        $site = CourseSite::where('sc_id',$Course->id)->get()->toArray();
-//        if ($site){
-//            return back()->with('hint',config('hint.del_failure_exist'));
-//        }else{
+        $content = Content::where('course_id',$Course->id)->get()->toArray();
+        if ($content){
+            return back()->with('hint',config('hint.del_failure_exist'));
+        }else{
             if (Course::destroy($id)){
                 if (is_file(public_path($Course->cover))){
                     unlink(public_path($Course->cover));
@@ -137,6 +137,6 @@ class CourseController extends Controller
             }else{
                 return back() -> with('hint',config('hint.del_failure'));
             }
-//        }
+        }
     }
 }
