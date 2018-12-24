@@ -141,9 +141,9 @@
                         <ul class="nav nav-second-level">
                             <li>
                                 <a class="J_menuItem" href="jbdx/course">课程列表</a>
-                                <a class="J_menuItem" href="order">课程订单</a>
-                                <a class="J_menuItem" href="label">线下报名</a>
-                                <a class="J_menuItem" href="hotbot">议题列表</a>
+                                <a class="J_menuItem" href="jbdx/order">课程订单</a>
+                                <a class="J_menuItem" href="jbdx/gjkc">线下报名</a>
+                                <a class="J_menuItem" href="jbdx/discussion">议题列表</a>
                             </li>
                         </ul>
                     </li>

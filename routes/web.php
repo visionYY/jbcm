@@ -131,8 +131,11 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('getAnswer','Admin\DX\AnswerController@getAnswer');     //获取问题列表;
 
         Route::resource('order','Admin\DX\OrderController');                //订单列表
-        Route::resource('OfflineApply','Admin\DX\OfflineApplyController');  //线下报名列表
         Route::resource('discussion','Admin\DX\discussionController');      //议题列表
+
+        Route::get('gjkc','Admin\DX\ApplyController@gjkc');  //国际课程报名
+        Route::get('jbp','Admin\DX\ApplyController@jbp');    //嘉宾派报名
+
     });
 
 
