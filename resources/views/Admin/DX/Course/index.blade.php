@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','线下季课')
+@section('title','课程')
 @section('content')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">

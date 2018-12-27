@@ -32,10 +32,10 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="{{thumbnail(session('a_pic'))}}" /></span>
+                            <span><img alt="image" class="img-circle" src="{{thumbnail($admin->admin_pic)}}" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">{{session('a_name')}}</strong></span>
+                               <span class="block m-t-xs"><strong class="font-bold">{{$admin->nickname}}</strong></span>
                                 <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
                                 </span>
                             </a>

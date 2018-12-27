@@ -32,7 +32,7 @@ class AdminController extends Controller
             'admin_pic'=>'required');
         $credentials = $this->validate($request,$verif);
         unset($credentials['password_confirmation']);
-        $credentials['password'] = md5($credentials['password']);
+        $credentials['password'] = bcrypt($credentials['password']);
         //上传头像
         $admin_pic = Upload::baseUpload($credentials['admin_pic'],'upload/Admin');
         //创建缩略图

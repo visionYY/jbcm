@@ -14,6 +14,9 @@ return [
     //设置提示信息
     'account_null'          => '账号不存在！',
     'password_error'        => '密码错误！',
+    'error'                 => '账号密码不匹配！',
+    'welcome'               => '欢迎回来！',
+    'back'                  => '欢迎再来！',
 
     //上传限制 10M
     'images_size_big'       => 10000*1024,

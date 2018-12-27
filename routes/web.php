@@ -103,6 +103,8 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('login','Admin\IndexController@store');			//执行登陆
    	Route::get('loginout','Admin\IndexController@loginOut');	//退出
 
+//    Route::resource('index','Admin\IndexController');           //管理员
+
     Route::resource('admin','Admin\AdminController');           //管理员
     Route::resource('category','Admin\CategoryController');     //分类
     Route::resource('navigation','Admin\NavigationController'); //导航
