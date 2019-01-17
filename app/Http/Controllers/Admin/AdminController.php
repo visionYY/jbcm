@@ -67,7 +67,7 @@ class AdminController extends Controller
         //密码验证
         if ($request->get('newpwd')){
             if ($request->get('newpwd') == $request->get('newpwd_confirmation')){
-                $credentials['password'] = md5($request->get('newpwd'));
+                $credentials['password'] = bcrypt($request->get('newpwd'));
             }else{
                 return back() -> with('hint',config('hint.password_two'));
             }

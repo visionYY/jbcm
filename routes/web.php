@@ -82,6 +82,34 @@ Route::group(['prefix'=>'mobile'],function (){
     });
 });
 
+//嘉宾大学
+Route::group(['prefix'=>'university'],function(){
+    Route::get('index','University\IndexController@index');
+    Route::get('discussion/index','University\DiscussionController@index');
+
+    //我的
+    Route::get('my/index','University\MyController@index');
+    Route::get('my/guesteScore','University\MyController@guesteScore');
+    Route::get('my/aboutGuesteScore','University\MyController@aboutGuesteScore');
+    Route::get('my/setting','University\MyController@setting');
+    Route::get('my/accountManagement','University\MyController@accountManagement');
+    Route::any('my/editMobile','University\MyController@editMobile');
+    Route::any('my/editPassWord','University\MyController@editPassWord');
+    Route::get('my/aboutUs','University\MyController@aboutUs');
+
+    //登陆
+    Route::get('login','University\LoginController@passwordLogin');
+    Route::post('login','University\LoginController@doPasswordLogin');
+    Route::get('quickLogin','University\LoginController@quickLogin');
+    Route::post('quickLogin','University\LoginController@doQuickLogin');
+    Route::get('loginOut','University\LoginController@loginOut');
+
+    Route::get('getCode','University\LoginController@getCode');
+    Route::get('register','University\LoginController@register');
+
+
+});
+
 
 //Route::get('upload','Home\IndexController@getCategoryPage');
 
@@ -99,9 +127,9 @@ Route::group(['prefix'=>'admin'],function(){
     //网站
     Route::get('index','Admin\IndexController@index');			//首页
     Route::get('home','Admin\IndexController@home');			//首页内容
-    Route::get('login','Admin\IndexController@login');			//登陆界面
-    Route::post('login','Admin\IndexController@store');			//执行登陆
-   	Route::get('loginout','Admin\IndexController@loginOut');	//退出
+    Route::get('login','Admin\LoginController@showLoginForm');	//登陆界面
+    Route::post('login','Admin\LoginController@store');			//执行登陆
+   	Route::get('loginout','Admin\LoginController@loginOut');	//退出
 
 //    Route::resource('index','Admin\IndexController');           //管理员
 
@@ -133,7 +161,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('getAnswer','Admin\DX\AnswerController@getAnswer');     //获取问题列表;
 
         Route::resource('order','Admin\DX\OrderController');                //订单列表
-        Route::resource('discussion','Admin\DX\discussionController');      //议题列表
+        Route::resource('discussion','Admin\DX\DiscussionController');      //议题列表
 
         Route::get('gjkc','Admin\DX\ApplyController@gjkc');  //国际课程报名
         Route::get('jbp','Admin\DX\ApplyController@jbp');    //嘉宾派报名
