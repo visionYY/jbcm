@@ -85,7 +85,14 @@ Route::group(['prefix'=>'mobile'],function (){
 //嘉宾大学
 Route::group(['prefix'=>'university'],function(){
     Route::get('index','University\IndexController@index');
-    Route::get('discussion/index','University\DiscussionController@index');
+    //议题部分
+    Route::group(['prefix'=>'discussion'],function (){
+        Route::get('index','University\DiscussionController@index');
+        Route::get('content/id/{id}/source/{source}','University\DiscussionController@content');
+        Route::post('putContent','University\DiscussionController@putContent');
+        Route::get('detail/id/{id}','University\DiscussionController@detail');
+
+    });
 
     //我的
     Route::get('my/index','University\MyController@index');
@@ -96,6 +103,9 @@ Route::group(['prefix'=>'university'],function(){
     Route::any('my/editMobile','University\MyController@editMobile');
     Route::any('my/editPassWord','University\MyController@editPassWord');
     Route::get('my/aboutUs','University\MyController@aboutUs');
+    Route::get('my/replenish','University\MyController@replenish');
+    Route::get('my/doReplenish','University\MyController@doReplenish');
+    Route::any('my/fillInfo','University\MyController@fillInfo');
 
     //登陆
     Route::get('login','University\LoginController@passwordLogin');
@@ -103,6 +113,7 @@ Route::group(['prefix'=>'university'],function(){
     Route::get('quickLogin','University\LoginController@quickLogin');
     Route::post('quickLogin','University\LoginController@doQuickLogin');
     Route::get('loginOut','University\LoginController@loginOut');
+    Route::get('serviceAgreement','University\LoginController@serviceAgreement');
 
     Route::get('getCode','University\LoginController@getCode');
     Route::get('register','University\LoginController@register');
@@ -129,7 +140,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('home','Admin\IndexController@home');			//首页内容
     Route::get('login','Admin\LoginController@showLoginForm');	//登陆界面
     Route::post('login','Admin\LoginController@store');			//执行登陆
-   	Route::get('loginout','Admin\LoginController@loginOut');	//退出
+   	Route::get('loginout','Admin\LoginController@logout');	//退出
 
 //    Route::resource('index','Admin\IndexController');           //管理员
 

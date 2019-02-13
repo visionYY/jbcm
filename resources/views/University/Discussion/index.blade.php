@@ -1,11 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>每日一议</title>
-</head>
-<body>
-	<a href="{{url('university/index')}}">发现</a>
-	<a href="{{url('university/discussion/index')}}">每日一议</a>
-	<a href="{{url('university/my/index')}}">我的</a>
-</body>
-</html>
+@extends('layouts.university')
+@section('title','每日一议')
+@section('content')
+	<link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
+	<link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
+	<link rel="stylesheet" href="{{asset('University/css/all.css')}}">
+	<link rel="stylesheet" href="{{asset('University/css/diacuss.css')}}">
+
+	<div class="wrapper">
+		@foreach($discussion as $disc)
+			<div class="diacuss_box">
+			  <h4 class="dia_tit"><em></em>今日议题</h4>
+			  <div class="dia">
+			    <h3 class="dia_topic">{{$disc->title}}</h3>
+			    <p class="dia_label">出题人：{{$disc->author}}</p>
+			  </div>
+			  <div class="dia_relevance">
+			    <p class="left">{{$disc->count}} 人发表观点</p>
+			    <p class="right">
+			      <a href="{{url('university/discussion/content/id/'.$disc->id.'/source/1')}}">
+			      	<img src="{{asset('University/images/icon_yiyiyi@2x.png')}}" alt="">议一议
+			      </a>
+			      <a href=""><img src="{{asset('University/images/icon_haibao@2x.png')}}" alt="">海报</a>
+			      <a href="{{url('university/discussion/detail/id/'.$disc->id)}}">
+			      	<img src="{{asset('University/images/icon_chakan@2x.png')}}" alt="">查看
+			      </a>
+			    </p>
+			  </div>
+			</div>
+		@endforeach
+	<!-- <div class="diacuss_box">
+	  <h4 class="dia_tit"><em></em>今日议题</h4>
+	  <div class="dia">
+	    <h3 class="dia_topic">是谁拽住了三只松鼠的尾巴，导致其IPO失败？</h3>
+	    <p class="dia_label">出题人：周伯通（创世纪科技CEO）</p>
+	  </div>
+	  <div class="dia_relevance">
+	    <p class="left">1000人发表观点</p>
+	    <p class="right">
+	      <a href=""><img src="{{asset('University/images/icon_yiyiyi@2x.png')}}" alt="">议一议</a>
+	      <a href=""><img src="{{asset('University/images/icon_fenxiang@2x.png')}}" alt="">海报</a>
+	      <a href=""><img src="{{asset('University/images/icon_chakan@2x.png')}}" alt="">查看</a>
+	    </p>
+	  </div>
+	</div> -->
+	</div>
+  
+
+  <footer class="foot">
+    <a href="{{url('university/index')}}" class="Imgbox one"><img src="{{asset('University/images/icon_faxianhui@2x.png')}}" />发现</a>
+    <a href="{{url('university/discussion/index')}}" class="Imgbox clo"><img src="{{asset('University/images/icon_meiriyiyi.png')}}" />议一议</a>
+    <a href="{{url('university/my/index')}}" class="Imgbox"><img src="{{asset('University/images/icon_wode@2x.png')}}" />我的</a>
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      
+    })
+  </script>
+@stop

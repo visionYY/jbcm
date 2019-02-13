@@ -74,6 +74,7 @@ class IndexController extends Controller
 //        Session::forget('a_id');
 //        Session::forget('a_name');
 //        Session::forget('a_logo');
+        dd(3212);
         Auth::logout();
         return Redirect::to('admin/login')->with('success',config('hint.back'));
     }

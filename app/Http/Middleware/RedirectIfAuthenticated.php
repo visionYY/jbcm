@@ -29,7 +29,6 @@ class RedirectIfAuthenticated
 //            $path = $guard ? '/admin' : '/home';
             return redirect($path);
         }
-
         return $next($request);
     }
 }

@@ -72,7 +72,9 @@ class LoginController extends Controller
 //        $request->session()->flush();
 //        $request->session()->regenerate();
 //        return redirect('/admin/login');
-        Auth::logout();
+//        dd(123);
+        Auth::guard('admin')->logout();
+//        dd($res);
         return Redirect::to('admin/login')->with('success',config('hint.back'));
     }
     /**

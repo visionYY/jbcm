@@ -58,9 +58,13 @@ class Handler extends ExceptionHandler
             switch ($exception->guards()[0]){
                 case 'admin':
                     return redirect()->guest('/admin/login');
-//                    break;
                 case 'university':
-                    return redirect()->guest('/university/login');
+                    if ($request->source){
+                        return redirect()->guest('/university/login?source='.$request->source.'&yid='.$request->id);
+                    }else{
+                        return redirect()->guest('/university/login');
+                    }
+
 //                    break;
                 default:
                     return redirect()->guest('login');
