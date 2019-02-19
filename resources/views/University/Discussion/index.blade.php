@@ -20,7 +20,9 @@
 			      <a href="{{url('university/discussion/content/id/'.$disc->id.'/source/1')}}">
 			      	<img src="{{asset('University/images/icon_yiyiyi@2x.png')}}" alt="">议一议
 			      </a>
-			      <a href=""><img src="{{asset('University/images/icon_haibao@2x.png')}}" alt="">海报</a>
+			      <a href="{{url('university/discussion/discussionPoster/did/'.$disc->id)}}">
+			      	<img src="{{asset('University/images/icon_haibao@2x.png')}}" alt="">海报
+			      </a>
 			      <a href="{{url('university/discussion/detail/id/'.$disc->id)}}">
 			      	<img src="{{asset('University/images/icon_chakan@2x.png')}}" alt="">查看
 			      </a>
@@ -28,21 +30,6 @@
 			  </div>
 			</div>
 		@endforeach
-	<!-- <div class="diacuss_box">
-	  <h4 class="dia_tit"><em></em>今日议题</h4>
-	  <div class="dia">
-	    <h3 class="dia_topic">是谁拽住了三只松鼠的尾巴，导致其IPO失败？</h3>
-	    <p class="dia_label">出题人：周伯通（创世纪科技CEO）</p>
-	  </div>
-	  <div class="dia_relevance">
-	    <p class="left">1000人发表观点</p>
-	    <p class="right">
-	      <a href=""><img src="{{asset('University/images/icon_yiyiyi@2x.png')}}" alt="">议一议</a>
-	      <a href=""><img src="{{asset('University/images/icon_fenxiang@2x.png')}}" alt="">海报</a>
-	      <a href=""><img src="{{asset('University/images/icon_chakan@2x.png')}}" alt="">查看</a>
-	    </p>
-	  </div>
-	</div> -->
 	</div>
   
 

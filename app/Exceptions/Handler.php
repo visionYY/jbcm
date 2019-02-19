@@ -52,13 +52,16 @@ class Handler extends ExceptionHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
+//        dd($request->expectsJson());
         if($request->expectsJson()){
+//            return response(['code'=>'001','msg'=>'没权限']);
             return response()->json(['message' => $exception->getMessage()], 401);
         }else{
             switch ($exception->guards()[0]){
                 case 'admin':
                     return redirect()->guest('/admin/login');
                 case 'university':
+//                    return response(['code'=>'001','msg'=>'没权限']);
                     if ($request->source){
                         return redirect()->guest('/university/login?source='.$request->source.'&yid='.$request->id);
                     }else{
