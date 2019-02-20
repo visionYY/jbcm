@@ -143,34 +143,37 @@ class DiscussionController extends Controller
                 $v->user_pic = 'https://www.ijiabin.com/Home/images/wyjb_logo.png';
             }
             //议题回复
-            $v->reply = Reply::where('type',0)->where('relevance_id',$v->id)->orderBy('created_at','desc')->get();
-            $v->count = count($v->reply);
-//            $v->reply
-            foreach ($v->reply as $reply){
-                $r_user =User::find($reply->user_id);
-                if ($r_user){
-                    $reply->user_name = $r_user->nickname;
-                }else{
-                    $reply->user_name = '该账户已注销';
+            $reply = Reply::where('type',0)->where('relevance_id',$v->id)->orderBy('created_at','desc')->get()->toArray();
+            $replys = $this->recursionReply($reply);
+            $v->count = count($replys);
+            $info = array();
+            foreach ($replys as $k=>&$rv){
+                if ($k>=3){
+                    break;
                 }
-                //回复回复
-                $reply->rep = Reply::where('type',1)->where('relevance_id',$reply->id)->orderBy('created_at','desc')->get();
-                foreach ($reply->rep as $rep){
-                    $rep_user =User::find($rep->user_id);
-                    if ($rep_user){
-                        $rep->user_name = $rep_user->nickname;
+                $r_user =User::find($rv['user_id']);
+                if ($r_user){
+                    $rv['user_name'] = $r_user->nickname;
+                }else{
+                    $rv['user_name'] = '该账户已注销';
+                }
+                if ($rv['type'] ==1){
+                    $s_user = User::find($rv['replyId']);
+                    if ($s_user){
+                        $rv['s_user_name'] = $s_user->nickname;
                     }else{
-                        $rep->user_name = '该账户已注销';
+                        $rv['s_user_name'] = '该账户已注销';
                     }
                 }
+                $info[] = $rv;
             }
+            $v->reply = $info;
         }
-//        dd($comment);
         return view('University.Discussion.detail',compact('discussion','comment'));
     }
 
     //回复评论
-    public function reply($cid,$id,$source,$type){
+    public function reply($cid,$type){
         if ($type == 1){
             $reply = Reply::find($cid);
             $rep_user = User::find($reply->user_id);
@@ -183,9 +186,10 @@ class DiscussionController extends Controller
         }else{
             $comment['user'] = '该账户已注销';
         }
-//        dd($comment);
         $comment['id'] =$cid;
         $user = Auth::user();
+//        dd($comment);
+
         return view('University.Discussion.reply',compact('user','comment','type'));
     }
 
@@ -237,6 +241,20 @@ class DiscussionController extends Controller
         }
     }
 
+    //删除回复
+    public function delReply(Request $request){
+//        dd($request->all());
+        $reply = Reply::find($request->rid);
+        if (!$reply){
+            return response(['code'=>'001','msg'=>'该评论已被删除']);
+        }
+        if (Reply::destroy($request->rid)){
+            return response(['code'=>'002','msg'=>'删除成功']);
+        }else{
+            return response(['code'=>'003','msg'=>'删除失败']);
+        }
+    }
+
     //评论详情
     public function commentDetail($id){
         $comment = Comment::find($id);
@@ -248,6 +266,12 @@ class DiscussionController extends Controller
             }else{
                 $comment->coll_status = 0;
             }
+            $praise = Praise::where('user_id',$login->id)->where('by_praise_id',$comment->id)->where('type',1)->first();
+            if ($praise){
+                $comment->prai_status = $praise->status;
+            }else{
+                $comment->prai_status = 0;
+            }
         }
         $comment->time = Helper::getDifferenceTime($comment->created_at);
         $user = User::find($comment->user_id);
@@ -258,30 +282,6 @@ class DiscussionController extends Controller
             $comment->user_name = '该账户已注销';
             $comment->user_pic = 'https://www.ijiabin.com/Home/images/wyjb_logo.png';
         }
-
-        /*$comment->reply = Reply::where('type',0)->where('relevance_id',$comment->id)->orderBy('created_at','desc')->get();
-        foreach ($comment->reply as $reply){
-            $r_user =User::find($reply->user_id);
-            if ($r_user){
-                $reply->user_name = $r_user->nickname;
-                $reply->user_pic = $r_user->head_pic;
-            }else{
-                $reply->user_name = '该账户已注销';
-                $reply->user_pic = 'https://www.ijiabin.com/Home/images/wyjb_logo.png';
-            }
-            //回复回复
-            $reply->rep = Reply::where('type',1)->where('relevance_id',$reply->id)->orderBy('created_at','desc')->get();
-            foreach ($reply->rep as $rep){
-                $rep_user =User::find($rep->user_id);
-                if ($rep_user){
-                    $rep->user_name = $rep_user->nickname;
-                    $rep->user_pic = $r_user->head_pic;
-                }else{
-                    $rep->user_name = '该账户已注销';
-                    $rep->user_pic = 'https://www.ijiabin.com/Home/images/wyjb_logo.png';
-                }
-            }
-        }*/
         $reply = Reply::where('type',0)->where('relevance_id',$comment->id)->orderBy('created_at','desc')->get()->toArray();
         $replys = $this->recursionReply($reply);
         foreach ($replys as &$v){
@@ -346,12 +346,19 @@ class DiscussionController extends Controller
         if (!$user){
             return response(['code'=>'001','msg'=>'尚未登陆']);
         }
+        //查看该评论下有多少赞
+        $comment = Comment::find($request->cid);
+        if ($request->status ==1){
+            $praise_num = $comment->praise + 1;
+        }else{
+            $praise_num = $comment->praise - 1 >= 0 ? $comment->praise - 1 : 0 ;
+        }
+//        dd($praise_num);
         //判断是否有点赞
         $praise = Praise::where('user_id',$user->id)->where('by_praise_id',$request->cid)->where('type',1)->first();
         if ($praise){
-            $data['status'] = $request->status;
-            if ($praise->update($data)){
-                return response(['code'=>'002','msg'=>'操作成功']);
+            if ($praise->update(['status'=>$request->status]) && $comment->update(['praise'=>$praise_num])){
+                return response(['code'=>'002','msg'=>'操作成功','praise'=>$praise_num,'status'=>$request->status]);
             }else{
                 return response(['code'=>'003','msg'=>'操作失败，稍后重试！']);
             }

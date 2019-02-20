@@ -37,14 +37,17 @@
             <p class="dt_con" onclick="window.location.href='{{url("university/discussion/commentDetail/id/".$com->id)}}'">{{$com->content}}</p>
             <div class="reply">
               @foreach($com->reply as $reply)
-              <p class="rep_com" onclick="window.location.href='{{url("university/discussion/reply/cid/$reply->id/id/$discussion->id/source/2/type/1")}}'"><span>{{$reply->user_name}}：</span>{{$reply->content}}</p>
-                @foreach($reply->rep as $rep)
-                  @if(Auth::guard('university')->check())
-                  <p class="rep_com">{{$rep->user_id != Auth::guard('university')->user()->id ? $rep->user_name : '我'}}回复<span>{{$reply->user_name}}：</span>{{$rep->content}}</p>
+                @if(Auth::guard('university')->check())
+                <p class="rep_com" onclick="window.location.href='{{url("university/discussion/reply/cid/$reply[id]/type/1")}}'">
+                  @if($reply['type'] == 1)
+                  {{$reply['user_name']}} 回复 <span>{{$reply['s_user_name']}}：</span>{{$reply['content']}}
                   @else
-                  <p class="rep_com"><span>{{$rep->user_name}}</span>回复<span>{{$reply->user_name}}：</span>{{$rep->content}}</p>
+                  <span>{{$reply['user_name']}}：</span>{{$reply['content']}}
                   @endif
-                @endforeach
+                </p>
+                @else
+
+                @endif
               @endforeach
               
               <p class="look"><a href="{{url('university/discussion/commentDetail/id/'.$com->id)}}">查看{{$com->count}}条评论</a></p>
@@ -58,7 +61,7 @@
                 <img src="{{asset('University/images/icon_shoucang@2x.png')}}" />收藏
                 @endif
               </a>
-              <a href="{{url('university/discussion/reply/cid/'.$com->id.'/id/'.$discussion->id.'/source/2/type/0')}}" class="Imgbox">
+              <a href="{{url('university/discussion/reply/cid/'.$com->id.'/type/0')}}" class="Imgbox">
                 <img src="{{asset('University/images/icon_pinglun@2x.png')}}" />评论
               </a>
               <a href="javascript:;" class="Imgbox zantong" cid="{{$com->id}}" status="{{$com->prai_status}}">
@@ -100,6 +103,7 @@
   </footer>
   <script>
     $(document).ready(function () {
+      //收藏
       $('.com_box').each(function(index) {
         $('.com_box').eq(index).find(".shoucang").click(function() {
           var csrf = "{{csrf_token()}}";
@@ -120,9 +124,10 @@
           })
         })
       })
+      //点赞
       $('.com_box').each(function(index) {
         $('.com_box').eq(index).find(".zantong").click(function() {
-          var thisOBJ = $(this).find("img");
+          var thisOBJ = $(this);
           var csrf = "{{csrf_token()}}";
           var cid = $(this).attr('cid');
           var status = $(this).attr('status') == 1 ? 0 : 1;
@@ -132,8 +137,10 @@
             type:'POST',
             dataType:'json',
             success:function(d){
+              console.log(d)
               if (d.code == '002') {
-               thisOBJ.attr("src") == "{{asset('University/images/icon_dianzan1@2x.png')}}"  ?  thisOBJ.attr("src","{{asset('University/images/icon_dianzan@2x.png')}}") : thisOBJ.attr("src","{{asset('University/images/icon_dianzan1@2x.png')}}")
+               thisOBJ.attr('status',d.status)
+               thisOBJ.find("img").attr("src") == "{{asset('University/images/icon_dianzan1@2x.png')}}"  ?  thisOBJ.find("img").attr("src","{{asset('University/images/icon_dianzan@2x.png')}}") : thisOBJ.find("img").attr("src","{{asset('University/images/icon_dianzan1@2x.png')}}")
              }
             }
           })  

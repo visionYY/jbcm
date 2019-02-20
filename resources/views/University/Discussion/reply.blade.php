@@ -4,12 +4,32 @@
   <link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/diacuss_reply1.css')}}">
+  <link rel="stylesheet" href="{{asset('University/css/diacuss_reply.css')}}">
   <div class="wrapper">
     <p class="top">回复<em>{{$comment['user']}}</em> <span  id="num">(0/500)</span>：</p>
-    <textarea id="textarea" maxlength="500" oninput="content()" placeholder='在这里回复Peter'></textarea>
+    <textarea id="textarea" maxlength="500" oninput="content()" placeholder='在这里回复{{$comment['user']}}'></textarea>
     <button class="btn" type="button" disabled="disabled">提交</button>
   </div>
-
+  <div class="cover">
+    <div class="box2">
+      <p class="boximg"><img src="{{asset('University/images/icon_yifabu@2x.png')}}" alt=""></p>
+      <p class="boxtit">已发布</p>
+      <div class="btns">
+        <p class="yesl" onclick="javascript:history.go(-1)">关闭</p>
+        <!-- <p class="nor">生成海报</p> -->
+      </div>
+    </div>
+  </div>
+  <div class="cover1">
+    <div class="box3">
+      <div class="btop">
+        <p class="tuz"><img src="{{asset('University/images/icon_tuzi@2x.png')}}" alt=""></p>
+        <p class="tz_tit">以下文字可能含有“涉政”信息， 请修改后重新提交！</p>
+      </div>
+      <p class="tz_con"></p>
+      <button class="tz_btn" >去修改</button>
+    </div>
+  </div>
   <script type="text/javascript">
       function content(){
           var text=document.getElementById("textarea");
@@ -44,10 +64,10 @@
             success:function(d){
               if (d.code == '001') {
                 $('.tz_con').text(d.content);
-                // $('.cover1').fadeIn()
+                $('.cover1').fadeIn()
                 console.log(d.msg);
               }else if(d.code == '002'){
-                // $('.cover').fadeIn()  
+                $('.cover').fadeIn()  
                 console.log(d.msg);
 
               }else{
@@ -56,6 +76,9 @@
             }
           });
         });
-        
+
+        $('.tz_btn').click(function(){
+          $('.cover1').fadeOut() 
+        })
   </script>
 @stop

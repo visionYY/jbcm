@@ -91,10 +91,11 @@ Route::group(['prefix'=>'university'],function(){
         Route::get('content/id/{id}/source/{source}','University\DiscussionController@content');//评论议题
         Route::post('putContent','University\DiscussionController@putContent');     //添加评论
         Route::get('detail/id/{id}','University\DiscussionController@detail');      //议题详情
-        Route::get('reply/cid/{cid}/id/{id}/source/{source}/type/{type}','University\DiscussionController@reply');      //回复评论
+        Route::get('reply/cid/{cid}/type/{type}','University\DiscussionController@reply');      //回复评论
         Route::get('discussionPoster/did/{did}','University\DiscussionController@discussionPoster');      //议题海报
         Route::get('commentPoster/cid/{cid}','University\DiscussionController@commentPoster');      //评论海报
         Route::post('putReply','University\DiscussionController@putReply');     //添加回复
+        Route::delete('delReply','University\DiscussionController@delReply');     //删除回复
         Route::get('commentDetail/id/{id}','University\DiscussionController@commentDetail'); //评论详情
 
         Route::post('collect','University\DiscussionController@collect');     //添加收藏

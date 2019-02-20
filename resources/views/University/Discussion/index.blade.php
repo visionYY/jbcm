@@ -10,7 +10,7 @@
 		@foreach($discussion as $disc)
 			<div class="diacuss_box">
 			  <h4 class="dia_tit"><em></em>今日议题</h4>
-			  <div class="dia">
+			  <div class="dia" onclick="window.location.href='{{url("university/discussion/detail/id/".$disc->id)}}'">
 			    <h3 class="dia_topic">{{$disc->title}}</h3>
 			    <p class="dia_label">出题人：{{$disc->author}}</p>
 			  </div>
