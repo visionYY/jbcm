@@ -13,10 +13,9 @@
   <div class="cover">
     <div class="box2">
       <p class="boximg"><img src="{{asset('University/images/icon_yifabu@2x.png')}}" alt=""></p>
-      <p class="boxtit">已发布</p>
+      <p class="boxtit">已回复</p>
       <div class="btns">
-        <p class="yesl" onclick="javascript:history.go(-1)">关闭</p>
-        <!-- <p class="nor">生成海报</p> -->
+        <p class="yes" onclick="javascript:history.go(-1)">关闭</p>
       </div>
     </div>
   </div>

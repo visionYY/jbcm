@@ -9,7 +9,7 @@
   .wrapper{
     height:100%;
     width:100%;
-    background: url({{asset($data['discussion']->cover)}}) no-repeat;
+    background: url("{{asset($data['discussion']->cover)}}") no-repeat;
     background-size:100% 100%;
     position: relative;
   }
@@ -57,4 +57,11 @@
       @endif
     </div>
   </div>
+  <div class="know" onclick="this.style.display = 'none'">
+    <img src="{{asset('University/images/hint.png')}}" alt="">
+  </div>
+  <script>
+    
+  </script>
+  
 @stop
