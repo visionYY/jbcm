@@ -163,12 +163,12 @@ class CourseController extends Controller
             }
         }else{
             if($request->old_cro_cover){
-                $credentials['crosswise_cover'] = $request->old_len_cover;
+                $credentials['lengthways_cover'] = $request->old_len_cover;
             }else{
                 return back() -> with('hint','没有原图，也没有图片上传');
             }
         }
-
+//        dd($credentials);
         unset($credentials['old_cro_cover']);
         unset($credentials['old_len_cover']);
         if (Course::find($id)->update($credentials)){

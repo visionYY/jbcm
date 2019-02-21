@@ -85,6 +85,13 @@ Route::group(['prefix'=>'mobile'],function (){
 //嘉宾大学
 Route::group(['prefix'=>'university'],function(){
     Route::get('index','University\IndexController@index');
+    Route::get('courseCategory/cgid/{cgid}','University\IndexController@courseCategory');
+
+    //课程部分
+    Route::group(['prefix'=>'course'],function (){
+        Route::get('show/id/{id}','University\CourseController@show');
+    });
+
     //议题部分
     Route::group(['prefix'=>'discussion'],function (){
         Route::get('index','University\DiscussionController@index');    //议题列表

@@ -101,19 +101,23 @@
 		  <div class="classify1">
 		    <img src="{{asset('University/images/guojikecheng@2x.png')}}" alt="">
 		  </div>
-		  <div class="classify1">
+		  <div class="classify1" onclick="window.location.href='{{url("university/courseCategory/cgid/1")}}'">
 		    <img src="{{asset('University/images/gongkaike@2x.png')}}" alt="">
 		  </div>
 
 		</div>
+		{{--议题--}}
 		<div class="diacuss_box">
-		  <h4 class="dia_tit"><em></em>今日议题<img src="images/icon_gengduo@2x.png" alt=""></h4>
-		  <h3 class="dia_topic">{{$discu->title}}</h3>
-		  <p class="dia_label">出题人：{{$discu->author}}</p>
-		  <p class="dia_con">{{strip_tags($discu->content)}}</p>
-		  <div class="observer">
-		    <p class="ob_name"><img src="images/jbdx.png" alt="">peter</p>
-		    <p class="ob_con">上市是一条捷径，三只松鼠有自身短板，投资机构并不放心，因此才有对赌协议。未来食品零售电商行业发展，还需平台提高准入门槛，加强前置事项规范和管理，加强...</p>
+		  <h4 class="dia_tit">
+		  	<em></em>今日议题
+		  	<img src="images/icon_gengduo@2x.png" alt="" onclick="window.location.href='{{url("university/discussion/detail/id/".$discussion->id)}}'">
+		  </h4>
+		  <h3 class="dia_topic">{{$discussion->title}}</h3>
+		  <p class="dia_label">出题人：{{$discussion->author}}</p>
+		  <p class="dia_con">{{strip_tags($discussion->content)}}</p>
+		  <div class="observer" onclick="window.location.href='{{url("university/discussion/commentDetail/id/".$comment->id)}}'">
+		    <p class="ob_name"><img src="{{$comment->user_pic}}" alt="">{{$comment->user_name}}</p>
+		    <p class="ob_con">{{$comment->content}}</p>
 		  </div>
 		</div>
 		<div class="boutique_box">
@@ -137,7 +141,7 @@
 		  <h4 class="bus_tit">商业案例课</h4>
 		  @foreach($course['business'] as $busi)
 		  <dl class="bus_list">
-		      <a href="#">
+		      <a href="{{url('university/course/show/id/'.$busi->id)}}">
 		        <dt class="list-img"><img src="{{asset($busi->lengthways_cover)}}" alt=""></dt>
 		        <dd>
 		          <p class="list-tit">{{$busi->name}}</p>
