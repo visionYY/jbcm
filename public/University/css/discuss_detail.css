@@ -1,5 +1,5 @@
 .wrapper{
-  margin-bottom:.3rem;
+  margin-bottom:.25rem;
 }
 .discuss{
   width:100%;
@@ -158,7 +158,7 @@ h6{
 }
 .com_fun a{
   display: inline-block;
-  width:25%;
+  width:23%;
   font-size:.11rem;
   font-family:PingFang-SC-Medium;
   color:#666666;
@@ -175,6 +175,7 @@ h6{
 footer{
   height:.44rem;
   width:100%;
+  margin-bottom:.15rem
 }
 button{
   width:90%;
