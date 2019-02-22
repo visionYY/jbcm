@@ -126,7 +126,7 @@
 		    <section class="carousel2">
 		      <ul class="box2">
 		      	@foreach($course['boutique'] as $bout)
-		        <li><a href="#"><img src="{{url($bout->crosswise_cover)}}" alt=""></a></li>
+		        <li><a href="{{url('university/course/show/id/'.$bout->id)}}"><img src="{{url($bout->crosswise_cover)}}" alt=""></a></li>
 		        @endforeach
 		      </ul>
 		      <ol class="points2"></ol>

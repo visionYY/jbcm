@@ -54,3 +54,106 @@
 </script>
 </body>
 </html>
+
+ @foreach($reply->rep as $rep)
+          @if(Auth::guard('university')->check())
+            @if(Auth::guard('university')->user()->id == $reply->user_id)
+            <dl class="huifu" >
+            @else
+            <dl onclick="window.location.href='{{url("university/discussion/reply/cid/$rep->id/id/$discussion->id/source/2/type/1")}}'">
+            @endif  
+          @else
+          <dl onclick="alert('尚未登陆！');window.location.href='{{url("university/login?source=3&yid=".$comment->id)}}'">
+          @endif 
+            <dd><img src="{{$rep->user_pic}}" alt=""></dd>
+            <dt>
+              <p class="dt_namet">{{$rep->user_name}}<em>回复</em><span>{{$reply->user_name}}</span></p>
+              <p class="dt_con">{{$rep->content}}</p>
+            </dt>
+          </dl>
+        @endforeach
+
+
+        @if(Auth::guard('university')->check())
+        @if(Auth::guard('university')->user()->id == $reply->user_id)
+        <dl class="huifu" >
+        @else
+        <dl onclick="window.location.href='{{url("university/discussion/reply/cid/$reply->id/id/$discussion->id/source/2/type/1")}}'">
+        @endif  
+       @else
+        <dl onclick="alert('尚未登陆！');window.location.href='{{url("university/login?source=3&yid=".$comment->id)}}'">
+       @endif 
+
+       /id/{id}/source/{source}/type/{type}
+
+       @foreach($reply->rep as $rep)
+          @if(Auth::guard('university')->check())
+          <p class="rep_com">{{$rep->user_id != Auth::guard('university')->user()->id ? $rep->user_name : '我'}}回复
+            <span>{{$reply->user_name}}：</span>{{$rep->content}}
+          </p>
+          @else
+          <p class="rep_com"><span>{{$rep->user_name}}</span>回复<span>{{$reply->user_name}}：</span>{{$rep->content}}</p>
+          @endif
+        @endforeach
+
+
+        @foreach($quiz->answers as $k=>$answer)
+
+        @endforeach
+
+        {{$k}}. {{$answer->title}}
+
+         <div class="testBox">
+                      
+                      <div class="topicbox">
+                        <p class="t_tit"><span>(单选）</span>02. 商业的本质是恒定不变的还是变化的？</p>
+                        <input type="radio"  id="radio1"  name="one" /><label class="label" for="radio1">A. 变</label>
+                        <input type="radio"  id="radio2"  name="one"/><label class="label" for="radio2">B. 不变</label>
+                        <input type="radio"  id="radio3"  name="one"/><label class="label" for="radio3">C. 变又不变</label>                      
+                      </div>
+                      
+                      <!-- <div class="topicbox">
+                        <p class="t_tit"><span>(多选）</span>02. 商业的本质是恒定不变的还是变化的？</p>                      
+                        <input type="checkbox"  id="checkbox1"/><label class="label" for="checkbox1">A. 变</label>
+                        <div class="line"></div>
+                        <input type="checkbox"  id="checkbox2"/><label class="label" for="checkbox2">B. 不变</label>
+                        <div class="line"></div>
+                        <input type="checkbox"  id="checkbox3"/><label class="label" for="checkbox3">C. 变又不变</label>
+                      </div>
+                      <div class="topicbox">
+                        <p class="t_tit"><span>(单选）</span>01. 商业的本质是恒定不变的还是变化的？</p>
+                        <input type="radio"  id="radio4"  name="two" disabled/><label class="label" for="radio4">A. 变</label>
+                        <input type="radio"  id="radio5"  name="two" disabled/><label class="label" for="radio5" >B. 不变</label>
+                        <input type="radio"  id="radio6"  name="two" checked/><label class="label" for="radio6">C. 变又不变</label> 
+                        <div class="analysis">
+                          <div class="ana_tit">
+                            <p class="le">正确答案：<span>b</span></p>
+                            <p class="ri">显示解析</p>
+                          </div>
+                          <div class="ana_con">题目解析：人力资源管例商业案例课商业案例0商0人力管
+                              例商业案例课商业案例0商人力资源管0例商业案例课案例
+                              0商人力资源管例商业案例商课商业案例0商。</div>
+                        </div>                     
+                      </div>
+                      <div class="topicbox">
+                        <p class="t_tit"><span>(多选）</span>02. 商业的本质是恒定不变的还是变化的？</p>                      
+                        <input type="checkbox"  id="checkbox4" checked/><label class="label" for="checkbox4">A. 变</label>
+                        <div class="line"></div>
+                        <input type="checkbox"  id="checkbox5" checked/><label class="label" for="checkbox5">B. 不变</label>
+                        <div class="line"></div>
+                        <input type="checkbox"  id="checkbox6" disabled/><label class="label" for="checkbox6">C. 变又不变</label>
+                        <div class="analysis">
+                          <div class="ana_tit">
+                            <p class="le">正确答案：<span>b</span></p>
+                            <p class="ri">显示解析</p>
+                          </div>
+                          <div class="ana_con">题目解析：人力资源管例商业案例课商业案例0商0人力管
+                              例商业案例课商业案例0商人力资源管0例商业案例课案例
+                              0商人力资源管例商业案例商课商业案例0商。</div>
+                        </div>    
+                      </div> -->
+                      <button class="sub">提交</button>
+                    </div>
+
+                    @foreach($content->quizs as $quiz)
+                     @endforeach

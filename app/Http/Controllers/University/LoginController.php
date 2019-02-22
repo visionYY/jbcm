@@ -38,6 +38,9 @@ class LoginController extends Controller
                 case 3:
                     //议题详情
                     return redirect('university/discussion/commentDetail/id/'.$request->yid);
+                case 4:
+                    //课程内容页
+                    return redirect('university/course/show/id/'.$request->yid);
                 default:
                     return redirect('university/my/index')->with('success',config('jbdx.login_success'));
             }
@@ -85,6 +88,12 @@ class LoginController extends Controller
             case 2:
                 //议题详情
                 return redirect('university/discussion/detail/id/'.$request->yid);
+            case 3:
+                //议题详情
+                return redirect('university/discussion/commentDetail/id/'.$request->yid);
+            case 4:
+                //课程内容页
+                return redirect('university/course/show/id/'.$request->yid);
             default:
                 return redirect('university/my/index')->with('success',config('jbdx.login_success'));
         }

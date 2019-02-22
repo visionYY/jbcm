@@ -90,6 +90,7 @@ Route::group(['prefix'=>'university'],function(){
     //课程部分
     Route::group(['prefix'=>'course'],function (){
         Route::get('show/id/{id}','University\CourseController@show');
+        Route::get('buy/id/{id}','University\CourseController@buy');
     });
 
     //议题部分
@@ -134,6 +135,8 @@ Route::group(['prefix'=>'university'],function(){
     Route::get('getCode','University\LoginController@getCode');
     Route::get('register','University\LoginController@register');
 
+    //支付
+//    Route::
 
 });
 

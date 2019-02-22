@@ -22,7 +22,7 @@ class IndexController extends Controller
         $comment->user_pic = $user->head_pic;
         $course['boutique'] = Course::getIfy(2,3);
         $course['business'] = Course::getIfy(3,3);
-//        dd($comment);
+//        dd($course);
         return view('University.Index.index',compact('adver','discussion','course','comment'));
     }
 

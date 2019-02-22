@@ -7,16 +7,23 @@
    
   <div class="wrapper">
     <div class="bad-video">
+      @if($course->oneType ==0 || Auth::guard('university')->check() && $course->is_pay != 1 && $course->isBuy==1)
       <video class="" poster="{{asset($course->crosswise_cover)}}" webkit-playsinline style="object-fit:fill;">
-          <source src="http://1256356427.vod2.myqcloud.com/12b315c8vodgzp1256356427/3a41bf907447398156921405349/W42LpYmyxX0A.mp4?nsukey=mYSh%2FpaubhjtG1T1N7Z1dcVsOMp4O6nD78YAqcNmlon9%2B9MxTpNQmXu2jmPjPUtav2tT4JY3B6YGn7FnJlmQLQqDDFUU7nMorWbTHtAY2p8DEuWfV6a54kINIU%2FSnr16EB49D5kfXbVzN31pU%2BuMTd%2BQby9QP1a7WEJ33pjJDfggbq5rY4oV19wduJ6ogSzTHa9CB4ObhKvV9ANilf8TUg%3D%3D" type="video/mp4">            
+          <source src="{{$course->oneVideo}}" type="video/mp4">            
           <p>设备不支持</p>
       </video>
-      <!-- <div class="nopay">
+      @else
+      <div class="nopay">
           <p class="nopay_com">开通后才能继续学习~</p>
-          <button class="nopay_btn">立即开通</button>
+          @if(Auth::guard('university')->check())
+          <button class="nopay_btn onBuy">立即开通</button>
+          @else
+          <button class="nopay_btn onlogin">立即开通</button>
+          @endif
           <img src="{{asset('University/images/icon_yinpin@2x.png')}}" class="vaudio"/>
-          <img src="{{asset('University/images/icon_vshoucang.png')}}" class="vcollect"/>
-      </div> -->
+          <img src="{{asset('University/images/icon_vshoucang.png')}}" class="vcollect onlogin"/>
+      </div>
+      @endif
     </div>
     <div id="centera">
       <div class="orangerb">
@@ -42,7 +49,7 @@
               {{--课程内容--}}
               <div class="box2">
                 @foreach($contents as $content)
-                  @if(Auth::guard('university')->check())
+                  @if($content->type == 0 || Auth::guard('university')->check())
                   <div class="class_list">
                     <p class="list_name">
                       <span class="col">{{$content->chapter}} {{$content->title}}</span>
@@ -61,7 +68,7 @@
                     </p>
                     <p class="list_time">{{substr($content->time,3,5)}}</p>
                     <p class="list_img"><img src="{{asset('University/images/icon_zhankai@2x.png')}}" alt=""></p>
-                  </div>  
+                  </div> 
                   @endif
                 @endforeach
                 
@@ -74,107 +81,78 @@
                   <p class="list_img"><img src="{{asset('University/images/icon_zhankai@2x.png')}}" alt=""></p>
                 </div> -->
               </div>
+              {{--自测试题--}}
               <div class="box2"  style="display: none">
-                <div class="class_list">
-                  <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
-                  <div class="lis">
-                    <p class="cons blue">(5/5）</p>
-                    <p class="con blue">01</p>
-                    <p class="lis_tit blue">人力资源管理教育预告片商业案例商业案例课商业案例0商</p>
+                @foreach($contents as $content)
+                  @if($course->oneType == 0 || Auth::guard('university')->check())
+                  
+                  <div class="class_list">
+                    <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
+                    <div class="lis">
+                      <p class="cons blue">(5/{{$content->quizCount}}）</p>
+                      <p class="con blue">{{$content->chapter}}</p>
+                      <p class="lis_tit blue">{{$content->title}}</p>
+                    </div>
+                    
+                    <div class="testBox">
+                      @foreach($content->quizs as $k=>$quiz)
+                      <div class="topicbox">
+                        <p class="t_tit"><span>(单选）</span>{{$k}}. {{$quiz->title}}</p>
+                        @foreach($quiz->answers as $ak=>$answer)
+                        <input type="radio"  id="radio_{{$ak}}"  name="one_{{$ak}}" />
+                        <label class="label" for="radio_{{$ak}}">{{$answer->card}}. {{$answer->answer}}</label>
+                        @endforeach                      
+                      </div>
+                      @endforeach
+                      <button class="sub">提交</button>
+                    </div>
                   </div>
-                  <div class="testBox">
-                    <div class="topicbox">
-                      <p class="t_tit"><span>(单选）</span>01. 商业的本质是恒定不变的还是变化的？</p>
-                      <input type="radio"  id="radio1"  name="one" /><label class="label" for="radio1">A. 变</label>
-                      <input type="radio"  id="radio2"  name="one"/><label class="label" for="radio2">B. 不变</label>
-                      <input type="radio"  id="radio3"  name="one"/><label class="label" for="radio3">C. 变又不变</label>                      
+                 
+                  @else
+                  <div class="class_list">
+                    <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
+                    <div class="lis">
+                      <p class="cons">({{$content->quizCount}}/{{$content->quizCount}}）</p>
+                      <p class="con">{{$content->chapter}}</p>
+                      <p class="lis_tit">{{$content->title}}</p>
+                      <p class="imag"><img src="{{asset('University/images/icon_suo@2x.png')}}" alt=""></p>
                     </div>
-                    <div class="topicbox">
-                      <p class="t_tit"><span>(多选）</span>02. 商业的本质是恒定不变的还是变化的？</p>                      
-                      <input type="checkbox"  id="checkbox1"/><label class="label" for="checkbox1">A. 变</label>
-                      <div class="line"></div>
-                      <input type="checkbox"  id="checkbox2"/><label class="label" for="checkbox2">B. 不变</label>
-                      <div class="line"></div>
-                      <input type="checkbox"  id="checkbox3"/><label class="label" for="checkbox3">C. 变又不变</label>
-                    </div>
-                    <div class="topicbox">
-                      <p class="t_tit"><span>(单选）</span>01. 商业的本质是恒定不变的还是变化的？</p>
-                      <input type="radio"  id="radio4"  name="two" disabled/><label class="label" for="radio4">A. 变</label>
-                      <input type="radio"  id="radio5"  name="two" disabled/><label class="label" for="radio5" >B. 不变</label>
-                      <input type="radio"  id="radio6"  name="two" checked/><label class="label" for="radio6">C. 变又不变</label> 
-                      <div class="analysis">
-                        <div class="ana_tit">
-                          <p class="le">正确答案：<span>b</span></p>
-                          <p class="ri">显示解析</p>
-                        </div>
-                        <div class="ana_con">题目解析：人力资源管例商业案例课商业案例0商0人力管
-                            例商业案例课商业案例0商人力资源管0例商业案例课案例
-                            0商人力资源管例商业案例商课商业案例0商。</div>
-                      </div>                     
-                    </div>
-                    <div class="topicbox">
-                      <p class="t_tit"><span>(多选）</span>02. 商业的本质是恒定不变的还是变化的？</p>                      
-                      <input type="checkbox"  id="checkbox4" checked/><label class="label" for="checkbox4">A. 变</label>
-                      <div class="line"></div>
-                      <input type="checkbox"  id="checkbox5" checked/><label class="label" for="checkbox5">B. 不变</label>
-                      <div class="line"></div>
-                      <input type="checkbox"  id="checkbox6" disabled/><label class="label" for="checkbox6">C. 变又不变</label>
-                      <div class="analysis">
-                        <div class="ana_tit">
-                          <p class="le">正确答案：<span>b</span></p>
-                          <p class="ri">显示解析</p>
-                        </div>
-                        <div class="ana_con">题目解析：人力资源管例商业案例课商业案例0商0人力管
-                            例商业案例课商业案例0商人力资源管0例商业案例课案例
-                            0商人力资源管例商业案例商课商业案例0商。</div>
-                      </div>    
-                    </div>
-                    <button class="sub">提交</button>
                   </div>
-                </div>
-                <div class="class_list">
-                  <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
-                  <div class="lis">
-                    <p class="cons">(5/5）</p>
-                    <p class="con">01</p>
-                    <p class="lis_tit">人力资源管理例课商业案例例课商业案例例课商业案例0商</p>
-                    <p class="imag"><img src="{{asset('University/images/icon_suo@2x.png')}}" alt=""></p>
-                  </div>
-                </div>
+                  @endif
+                @endforeach
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <button class="btn">开通课程 | ￥99</button>
+    {{--判断是否登陆--}}
+    @if(Auth::guard('university')->check())
+      {{--判断是否收费课--}}
+      @if($course->is_pay == 1)
+        {{--判断是否购买--}}
+        @if($course->isBuy != 1)
+        <button class="btn onBuy">开通课程 | ￥99</button>
+        @endif
+      @endif
+    @else
+        <button class="btn onlogin">开通课程 | ￥99</button>
+    @endif
     <div class="hint">购买后才能继续学习</div>
-    <div class="wengaotab"><img src="{{asset('University/images/icon_wengao@2x.png')}}" alt=""></div>
-    <div class="wengaobox">
-      <h4>毛大庆：“品类王”才能赢得市场</h4>
-      <p class="class_guest">
-          <span>导师简介：</span>走进韶钢·复盘宝武韶钢并购整合走进韶钢·复
-          购整合走进韶钢·复盘宝武韶钢并购整合走进韶钢·复盘宝
-          韶钢并购整合走进韶钢·复盘宝武韶钢并购整合走进韶钢·
-          盘宝武韶钢并走进韶钢·复盘宝武韶钢并购整合走进韶钢·
-          盘宝武韶钢并购走进韶钢购整合走进韶钢·复盘宝武韶钢并
-          购整合走进韶钢·复盘宝韶钢并购整合走进韶钢·复盘宝武
-          韶钢并购整合走进韶钢·盘宝武韶钢并走进韶钢·复盘宝武
-      </p>
-      <p class="class_guest">
-          <span>导师简介：</span>走进韶钢·复盘宝武韶钢并购整合走进韶钢·复
-          购整合走进韶钢·复盘宝武韶钢并购整合走进韶钢·复盘宝
-          韶钢并购整合走进韶钢·复盘宝武韶钢并购整合走进韶钢·
-          盘宝武韶钢并走进韶钢·复盘宝武韶钢并购整合走进韶钢·
-          盘宝武韶钢并购走进韶钢购整合走进韶钢·复盘宝武韶钢并
-          购整合走进韶钢·复盘宝韶钢并购整合走进韶钢·复盘宝武
-          韶钢并购整合走进韶钢·盘宝武韶钢并走进韶钢·复盘宝武
-      </p>
-    </div>
+    @if($course->oneType == 0 || Auth::guard('university')->check())
+    <div class="wengaotab denlu"><img src="{{asset('University/images/icon_wengao@2x.png')}}" alt=""></div>
+    <div class="wengaobox">{{$course->oneContent}}</div>
+    @else
+    <div class="wengaotab onlogin"><img src="{{asset('University/images/icon_wengao@2x.png')}}" alt=""></div>
+    @endif
   </div>
+  {{-- 登陆地址 --}}
+  <input type="hidden" name="loginUrl" value="{{url('university/login?source=4&yid='.$course->id)}}">
+
     <!-- <script type="text/javascript" src="{{asset('University/js/audio.js')}}"></script> -->
     <script type="text/javascript" src="{{asset('University/js/mui.min.js')}}"></script>
     <!-- <script type="text/javascript" src="{{asset('University/js/bvd.js')}}"></script> -->
+    @if($course->oneType ==0 || Auth::guard('university')->check())
     <script type="text/javascript">
       (function($) {
         var bvd = function(dom) {
@@ -630,10 +608,12 @@
         var v = mui.bvd();
         // v.test();
     </script>
+    @endif
     <script>
       $(document).ready(function () {
-         //课程详情
-         $('.class_list').each(function(index) {
+        
+        //课程详情
+        $('.class_list').each(function(index) {
           $('.class_list').eq(index).find(".list_img").click(function() {
             $(this).find("img").attr("src") == "{{asset('University/images/icon_fanhui.png')}}"  ?  $(this).find("img").attr("src","{{asset('University/images/icon_zhankai@2x.png')}}") : $(this).find("img").attr("src","{{asset('University/images/icon_fanhui.png')}}");
             $(this).next().toggle()
@@ -672,7 +652,7 @@
         });
 
         //切换文稿
-        $(".wengaotab img").click(function(){ 
+        $(".denlu img").click(function(){ 
             if(this.src.search("University/images/icon_wengao@2x.png")!=-1){ 
                 this.src="{{asset('University/images/icon_guanbi@2x.png')}}"; 
                 $("#centera").hide();
@@ -687,6 +667,16 @@
         // $(".vaudio").click(function(){
         //   location.href ="audio.html"
         // })
+        //登陆
+        $('.onlogin').click(function(){
+          var href = $('[name=loginUrl]').val();
+          alert('尚未登陆！')
+          window.location.href=href
+          
+        })
+        $('.onBuy').click(function(){
+          window.location.href="{{url('university/course/buy/id/'.$course->id)}}"
+        })
       })
     </script>
 @stop
