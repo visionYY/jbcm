@@ -7,8 +7,8 @@
    
   <div class="wrapper">
     <div class="bad-video">
-      @if($course->oneType ==0 || Auth::guard('university')->check() && $course->is_pay != 1 && $course->isBuy==1)
-      <video class="" poster="{{asset($course->crosswise_cover)}}" webkit-playsinline style="object-fit:fill;">
+      @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
+      <video class="video_player" poster="{{asset($course->crosswise_cover)}}" webkit-playsinline style="object-fit:fill;">
           <source src="{{$course->oneVideo}}" type="video/mp4">            
           <p>设备不支持</p>
       </video>
@@ -49,26 +49,39 @@
               {{--课程内容--}}
               <div class="box2">
                 @foreach($contents as $content)
-                  @if($content->type == 0 || Auth::guard('university')->check())
-                  <div class="class_list">
+                  @if($content->type == 0 || Auth::guard('university')->check() && $course->isBuy == 1)
+                  @if(Auth::guard('university')->check())
+                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="{{$content->learning->id}}">
+                  @else  
+                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="0">
+                  @endif  
                     <p class="list_name">
                       <span class="col">{{$content->chapter}} {{$content->title}}</span>
                       <span><img class="bianj" src="{{asset('University/images/icon_bianji@2x2.png')}}" alt=""></span>
                     </p>
                     {{--学习状态--}}
-                    <p class="list_time"><span class="notice">预告</span>{{substr($content->time,3,5)}}<span class="acc">已完成</span></p>
+                    <p class="list_time">
+                      <span class="notice">{{$content->type==1? '正课' : '预告'}}</span>{{substr($content->time,3,5)}}
+                      @if(Auth::guard('university')->check())
+                      <span class="acc">{{$content->learning->state ==1 ? '已完成' : '学习中'}}</span>
+                      @else
+                      <span class="acc">未学习</span>
+                      @endif
+                    </p>
                     <p class="list_img"><img src="{{asset('University/images/icon_zhankai@2x.png')}}" alt=""></p>
                     <div class="lisImgBox">{{$content->intro}}</div>
                   </div>
                   @else
-                  <div class="class_list">
-                    <p class="list_name">
-                      <span>{{$content->chapter}} {{$content->title}}</span>
-                      <span><img src="{{asset('University/images/icon_suo@2x.png')}}" alt=""></span>
-                    </p>
-                    <p class="list_time">{{substr($content->time,3,5)}}</p>
-                    <p class="list_img"><img src="{{asset('University/images/icon_zhankai@2x.png')}}" alt=""></p>
-                  </div> 
+                   
+                    <div class="class_list">
+                      <p class="list_name">
+                        <span>{{$content->chapter}} {{$content->title}}</span>
+                        <span><img src="{{asset('University/images/icon_suo@2x.png')}}" alt=""></span>
+                      </p>
+                      <p class="list_time">{{substr($content->time,3,5)}}</p>
+                      <p class="list_img"><img src="{{asset('University/images/icon_zhankai@2x.png')}}" alt=""></p>
+                    </div> 
+                    
                   @endif
                 @endforeach
                 
@@ -83,41 +96,81 @@
               </div>
               {{--自测试题--}}
               <div class="box2"  style="display: none">
+                {{--章节循环--}}
                 @foreach($contents as $content)
-                  @if($course->oneType == 0 || Auth::guard('university')->check())
-                  
+                  @if($content->type == 0 || Auth::guard('university')->check() && $course->isBuy == 1)
                   <div class="class_list">
                     <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
                     <div class="lis">
-                      <p class="cons blue">(5/{{$content->quizCount}}）</p>
+                      @if(Auth::guard('university')->check())
+                      <p class="cons blue">({{$content->learning->quiz_state}}/{{$content->quizCount}}）</p>
+                      @else
+                      <p class="cons blue">(0/{{$content->quizCount}}）</p>
+                      @endif
                       <p class="con blue">{{$content->chapter}}</p>
                       <p class="lis_tit blue">{{$content->title}}</p>
                     </div>
-                    
                     <div class="testBox">
+                      <form id="form_{{$content->id}}">
+                        @csrf
+                        @if(Auth::guard('university')->check())
+                        <input type="hidden" name="learning_id" value="{{$content->learning->id}}">
+                        @endif
+                      {{--题目循环--}}
                       @foreach($content->quizs as $k=>$quiz)
                       <div class="topicbox">
-                        <p class="t_tit"><span>(单选）</span>{{$k}}. {{$quiz->title}}</p>
+                        <p class="t_tit"><span>({{$quiz->type==1 ? '多选' : '单选'}}）</span>{{$k}}. {{$quiz->title}}</p>
+                        {{--答案循环--}}
                         @foreach($quiz->answers as $ak=>$answer)
-                        <input type="radio"  id="radio_{{$ak}}"  name="one_{{$ak}}" />
-                        <label class="label" for="radio_{{$ak}}">{{$answer->card}}. {{$answer->answer}}</label>
-                        @endforeach                      
+                        <div>
+                          @if($quiz->type ==1)
+                          <input type="checkbox"  id="checkbox{{$answer->id}}" name="more_{{$quiz->id}}[]" value="{{$answer->card}}" />
+                          <label class="label" for="checkbox{{$answer->id}}">{{$answer->card}}. {{$answer->answer}}</label>
+                          <div class="line"></div>
+                          @else
+                          <input type="radio"  id="radio_{{$answer->id}}"  name="one_{{$quiz->id.$k}}" value="{{$answer->card}}" />
+                          <label class="label" for="radio_{{$answer->id}}">{{$answer->card}}. {{$answer->answer}}</label>
+                          @endif
+                        </div>
+                        
+                        @endforeach  
+                        {{--判断是否显示正确答案--}}
+                        @if(Auth::guard('university')->check())
+                          @if($content->learning->quiz_state != 0)
+                          <div class="analysis">
+                          @else
+                          <div class="analysis" style="display:none;">
+                          @endif
+                        @else
+                          <div class="analysis" style="display:none;">
+                        @endif  
+                          <div class="ana_tit">
+                            <p class="le">正确答案：<span>{{$quiz->answer}}</span></p>
+                            <p class="ri">显示解析</p>
+                          </div>
+                          <div class="ana_con">题目解析：{{$quiz->analysis}}</div>
+                        </div>                      
                       </div>
                       @endforeach
-                      <button class="sub">提交</button>
+                      </form>
+                      @if(Auth::guard('university')->check())
+                      <button class="sub submit" id="{{$content->id}}">提交</button>
+                      @else
+                      <button class="sub onlogin" id="{{$content->id}}">提交</button>
+                      @endif
                     </div>
                   </div>
-                 
                   @else
-                  <div class="class_list">
-                    <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
-                    <div class="lis">
-                      <p class="cons">({{$content->quizCount}}/{{$content->quizCount}}）</p>
-                      <p class="con">{{$content->chapter}}</p>
-                      <p class="lis_tit">{{$content->title}}</p>
-                      <p class="imag"><img src="{{asset('University/images/icon_suo@2x.png')}}" alt=""></p>
+                   
+                    <div class="class_list">
+                      <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
+                      <div class="lis">
+                        <p class="cons">({{$content->quizCount}}/{{$content->quizCount}}）</p>
+                        <p class="con">{{$content->chapter}}</p>
+                        <p class="lis_tit">{{$content->title}}</p>
+                        <p class="imag"><img src="{{asset('University/images/icon_suo@2x.png')}}" alt=""></p>
+                      </div>
                     </div>
-                  </div>
                   @endif
                 @endforeach
               </div>
@@ -128,9 +181,8 @@
     </div>
     {{--判断是否登陆--}}
     @if(Auth::guard('university')->check())
-      {{--判断是否收费课--}}
+      {{--判断是否收费课 并且 判断是否购买--}}
       @if($course->is_pay == 1)
-        {{--判断是否购买--}}
         @if($course->isBuy != 1)
         <button class="btn onBuy">开通课程 | ￥99</button>
         @endif
@@ -139,20 +191,29 @@
         <button class="btn onlogin">开通课程 | ￥99</button>
     @endif
     <div class="hint">购买后才能继续学习</div>
-    @if($course->oneType == 0 || Auth::guard('university')->check())
+    @if($course->oneType == 0 || Auth::guard('university')->check() && $course->isBuy == 1)
     <div class="wengaotab denlu"><img src="{{asset('University/images/icon_wengao@2x.png')}}" alt=""></div>
-    <div class="wengaobox">{{$course->oneContent}}</div>
+    <div class="wengaobox con_content">{{$course->oneContent}}</div>
     @else
     <div class="wengaotab onlogin"><img src="{{asset('University/images/icon_wengao@2x.png')}}" alt=""></div>
     @endif
   </div>
   {{-- 登陆地址 --}}
   <input type="hidden" name="loginUrl" value="{{url('university/login?source=4&yid='.$course->id)}}">
-
+  <input type="hidden" id="audioUrl" value="{{url('university/course/audio/id/'.$course->id)}}">
+  @if(Auth::guard('university')->check())
+  <input type="hidden" name="ls_id" value="{{$course->oneId}}">
+  <input type="hidden" name="status" value="{{$course->coll_status}}" id="status">
+  <input type="hidden" value="1" id="is_login">
+  @else
+  <input type="hidden" name="ls_id" value="0">
+  <input type="hidden" name="status" value="0" id="status">
+  <input type="hidden" value="0" id="is_login">
+  @endif
     <!-- <script type="text/javascript" src="{{asset('University/js/audio.js')}}"></script> -->
     <script type="text/javascript" src="{{asset('University/js/mui.min.js')}}"></script>
     <!-- <script type="text/javascript" src="{{asset('University/js/bvd.js')}}"></script> -->
-    @if($course->oneType ==0 || Auth::guard('university')->check())
+    @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy == 1)
     <script type="text/javascript">
       (function($) {
         var bvd = function(dom) {
@@ -174,7 +235,7 @@
         };
 
         var pro = bvd.prototype;
-
+        var status = document.getElementById('status').value;
         //记录信息
         pro.initInfo = function() {
           var that = this;
@@ -233,11 +294,22 @@
           this.vRoom.appendChild(this.vaudio);
 
           //先添加收藏按钮
-          this.vcollect = document.createElement("img");
-          this.vcollect.src = "{{asset('University/images/icon_vshoucang.png')}}";
-          this.vcollect.className = "vcollect";
-          this.vRoom.appendChild(this.vcollect);
+            this.vcollect1 = document.createElement("img");
+            this.vcollect1.src = "{{asset('University/images/icon_yishoucang@2x.png')}}";
+            this.vcollect1.className = "vcollect1";
+            this.vRoom.appendChild(this.vcollect1);
 
+            this.vcollect = document.createElement("img");
+            this.vcollect.src = "{{asset('University/images/icon_vshoucang.png')}}";
+            this.vcollect.className = "vcollect";
+            this.vRoom.appendChild(this.vcollect);
+            if (status != 1) {
+              this.vcollect1.style.display = "none";
+            }else{
+              this.vcollect.style.display = "none";
+            }
+        
+         
           //先添加播放按钮
           this.vimg = document.createElement("img");
           this.vimg.src = "{{asset('University/images/play2.png')}}";
@@ -263,9 +335,64 @@
 
           //切换音频
           this.vaudio.addEventListener("touchend", function() {
-            location.href ="audio.html"
+
+            location.href = document.getElementById('audioUrl').value;
           });
+
+          //收藏按钮
+            this.vcollect1.addEventListener('touchend',function(){
+              $.ajax({
+                  url:"{{url('university/course/collect')}}",
+                  data:{_token:"{{csrf_token()}}",cid:"{{$course->id}}",status:0},
+                  type:'POST',
+                  dataType:'json',
+                  success:function(d){
+                    if (d.code == '002') {
+                        that.vcollect1.style.display = 'none';
+                        that.vcollect.style.display = 'block';
+                        document.getElementById('status').value = '0';
+                    }else{
+                      console.log(2)
+                    }
+                  }
+                })
+            })
+            this.vcollect.addEventListener('touchend',function(){
+              var is_login = document.getElementById('is_login');
+              if (is_login.value == 1) {
+                $.ajax({
+                  url:"{{url('university/course/collect')}}",
+                  data:{_token:"{{csrf_token()}}",cid:"{{$course->id}}",status:1},
+                  type:'POST',
+                  dataType:'json',
+                  success:function(d){
+                    if (d.code == '002') {
+                        that.vcollect.style.display = 'none';
+                        that.vcollect1.style.display = 'block';
+                        document.getElementById('status').value = '1';
+                    }else{
+                      console.log(2)
+                    }
+                  }
+                })
+              }else{
+                var loginUrl = document.getElementsByName('loginUrl');
+                window.location.href=loginUrl[0].value;
+              }
+            })  
           
+          
+          
+          
+
+          //上一个
+          this.vtop.addEventListener('touchend',function(){
+            console.log('上一个')
+          })
+          //下一个
+          this.vbelow.addEventListener('touchend',function(){
+            console.log('下一个')
+          })
           //给播放按钮图片添加事件
           this.vimg.addEventListener("tap", function() {
             isScroll = false;
@@ -277,8 +404,9 @@
           this.video.addEventListener("loadedmetadata", function() {
             that.vDuration = this.duration;
             that.vC.querySelector(".duration").innerHTML = stom(that.vDuration);
+            window.localStorage.setItem('total_time',stom(that.vDuration));
           });
-
+         
           var allEvents = {};
           //视频播放事件
           this.video.addEventListener("play", function() {
@@ -418,8 +546,15 @@
 
             //更新当前播放时间
             that.vC.querySelector(".current").innerHTML = stom(currentPos);
+            // console.log(stom(currentPos));
+            var total_time = window.localStorage.getItem('total_time'); 
+              if (stom(currentPos) == total_time) {
+                  console.log('结束')
+                  getVideoTime(1);
+              }
+              window.localStorage.setItem('now_time',stom(currentPos));
           });
-
+          
           //视频点击暂停或播放事件
           this.video.addEventListener("tap", function() {
             if (this.paused || this.ended) {
@@ -457,6 +592,8 @@
                 that.vC.style.visibility = "hidden";
               }
             }
+            
+            console.log(stom(this.currentTime));
           });
 
           //暂停or停止
@@ -619,7 +756,22 @@
             $(this).next().toggle()
           })
         })
+        $('.get_video').click(function(){
+          $('.video_player').attr('src',$(this).attr('video'))
 
+          $('.simg').css('display','block');
+          $('.vtop').css('display','block');
+          $('.vbelow').css('display','block');
+          $('.vaudio').css('display','block');
+          $('.vcollect').css('display','block');
+          $('.vplay').css('display','block');
+          $('.controls').remove('vhidden');
+          $('.controls').css('visibility','visible');
+          
+          $('.con_content').text($(this).attr('content'))
+          $('[name=ls_id]').val($(this).attr('ls_id'))     
+          console.log($(this).attr('video'));
+        })
         //答案详情
         $('.topicbox').each(function(index) {
           $('.topicbox').eq(index).find(".ri").click(function() {
@@ -648,11 +800,13 @@
               $(contents[index]).show();
               $(contents[index]).siblings().hide();
             }
+           
           });
         });
 
         //切换文稿
         $(".denlu img").click(function(){ 
+           
             if(this.src.search("University/images/icon_wengao@2x.png")!=-1){ 
                 this.src="{{asset('University/images/icon_guanbi@2x.png')}}"; 
                 $("#centera").hide();
@@ -664,9 +818,9 @@
             } 
         })
 
-        // $(".vaudio").click(function(){
-        //   location.href ="audio.html"
-        // })
+       /* $(".vaudio").click(function(){
+          location.href ="audio.html"
+        })*/
         //登陆
         $('.onlogin').click(function(){
           var href = $('[name=loginUrl]').val();
@@ -678,5 +832,93 @@
           window.location.href="{{url('university/course/buy/id/'.$course->id)}}"
         })
       })
+
+      //测试题点击
+        $('.class_list').each(function(index) {
+          $('.class_list').eq(index).find(".lis").click(function() {
+            $(this).next().toggle()
+          })
+        })
+
+      //提交测试题
+      $('.submit').click(function(){
+        var analysis = $(this).parent().find('.analysis');
+        var id = 'form_'+$(this).attr('id');
+        var form = new FormData(document.getElementById(id));
+        $.ajax({
+                url:"{{url('university/course/quizForm')}}",
+                type:"post",
+                data:form,
+                processData:false,
+                contentType:false,
+                dataType:'json',
+                success:function(d){
+                    if (d.code == '002') {
+                        analysis.each(function(index){         
+                          analysis.eq(index).css('display','block');
+                        })
+                    }
+                    console.log(d);
+                },
+            });
+
+      })
+
+     window.onbeforeunload= function(){
+        getVideoTime(0);
+        // return '确认关闭';
+     }
+
+     
+      function getVideoTime(state){
+        var _token = "{{csrf_token()}}"
+        var now_time = window.localStorage.getItem('now_time');
+        var ls_id = $('[name=ls_id]').val();
+        var is_login = $('#is_login').val();
+        console.log(ls_id)
+        if (is_login == 1) {
+
+          $.ajax({
+              url:"{{url('university/course/learningPut')}}",
+              data:{_token:_token,ls_id:ls_id,now_time:now_time,state:state},
+              type:'POST',
+              dataType:'json',
+              success:function(d){
+                console.log(d)
+              }
+          })
+        }else{
+          console.log('未登录')
+        }
+      }
+
+      /*function getCourseCollect(status){
+        var ls_id = $('[name=ls_id').val();
+        if (ls_id != 0) {
+          var cid = "{{$course->id}}";
+          var _token = "{{csrf_token()}}";
+          var res = 0;
+          $.ajax({
+            url:"{{url('university/course/collect')}}",
+            data:{_token:_token,cid:cid,status:status},
+            type:'POST',
+            dataType:'json',
+            success:function(d){
+              if (d.code == '002') {
+                console.log(res)
+                res += 1;
+                console.log(res)
+              }else{
+
+                console.log(2)
+                res += 2;
+              }
+            }
+          })
+        }else{
+          console.log('未登录')
+        }
+        return res;
+      }*/
     </script>
 @stop

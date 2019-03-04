@@ -95,10 +95,10 @@
 		  </video>  -->
 		</div>
 		<div class="classify">
-		  <div class="classify1">
+		  <div class="classify1" onclick="window.location.href='{{url("university/jbp")}}'">
 		    <img src="{{asset('University/images/jiabinpai@2x.png')}}" alt="">
 		  </div>
-		  <div class="classify1">
+		  <div class="classify1" onclick="window.location.href='{{url("university/gjkc")}}'">
 		    <img src="{{asset('University/images/guojikecheng@2x.png')}}" alt="">
 		  </div>
 		  <div class="classify1" onclick="window.location.href='{{url("university/courseCategory/cgid/1")}}'">
@@ -115,10 +115,12 @@
 		  <h3 class="dia_topic">{{$discussion->title}}</h3>
 		  <p class="dia_label">出题人：{{$discussion->author}}</p>
 		  <p class="dia_con">{{strip_tags($discussion->content)}}</p>
+		  @if($comment)
 		  <div class="observer" onclick="window.location.href='{{url("university/discussion/commentDetail/id/".$comment->id)}}'">
 		    <p class="ob_name"><img src="{{$comment->user_pic}}" alt="">{{$comment->user_name}}</p>
 		    <p class="ob_con">{{$comment->content}}</p>
 		  </div>
+		  @endif
 		</div>
 		<div class="boutique_box">
 		  <h4 class="bou_tit">精品课</h4>

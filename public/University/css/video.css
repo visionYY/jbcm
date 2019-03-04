@@ -67,6 +67,15 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+.bad-video .vcollect1{
+  position: absolute;
+  width: .175rem;
+  z-index: 99;
+  top: 12%;
+  left: 93%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 .bad-video .vplay{
   position: absolute;
   width: .33rem;
