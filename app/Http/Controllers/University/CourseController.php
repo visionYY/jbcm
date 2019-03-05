@@ -15,6 +15,10 @@ use Auth;
 
 class CourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:university',['only'=>['buy']]);
+    }
     //
     public function show($id){
         $course = Course::find($id);
@@ -37,7 +41,7 @@ class CourseController extends Controller
         }
         if (Auth::guard('university')->check()){
             $user = Auth::guard('university')->user();
-            $order = Order::where('user_id',$user->id)->where('couser_id',$course->id)->where('status',1)->first();
+            $order = Order::where('user_id',$user->id)->where('course_id',$course->id)->where('status',1)->first();
             if ($order){
                 $course->isBuy = 1;
             }else{
@@ -91,7 +95,7 @@ class CourseController extends Controller
         }
         if (Auth::guard('university')->check()){
             $user = Auth::guard('university')->user();
-            $order = Order::where('user_id',$user->id)->where('couser_id',$course->id)->where('status',1)->first();
+            $order = Order::where('user_id',$user->id)->where('course_id',$course->id)->where('status',1)->first();
             if ($order){
                 $course->isBuy = 1;
             }else{
@@ -121,8 +125,46 @@ class CourseController extends Controller
         return view('University.Course.audio',compact('course','contents'));
     }
 
+    /*
+     * 创建订单
+     * */
     public function buy($id){
-        dd($id);
+        $course = Course::find($id);
+        $user = Auth::guard('university')->user();
+        $order = Order::where('user_id',$user->id)->where('course_id',$course->id)->first();
+        if (!$order){
+            $data = [
+                'order_num' => time(),
+                'title' => $course->name,
+                'user_id' => $user->id,
+                'course_id' => $course->id,
+                'price' => $course->price,
+                'status' => 0,
+            ];
+            if (!$order = Order::create($data)){
+                return response(['code'=>'001','msg'=>'未知错误，订单创建失败，请稍后再试！']);
+            }
+        }
+        $wx_order =[
+            'out_trade_no' => $order->order_num,
+            'body' => $order->title,
+            'total_fee' => $order->price * 100,
+        ];
+        //判断是否微信页面
+        if ( strpos($_SERVER['HTTP_USER_AGENT'],'MicroMessenger') !== false ) {
+            if (!$user->open_id){
+                return response(['code'=>'003','msg'=>'未获取到openid稍后处理']);
+            }
+            $wx_order['openid'] = $user->open_id;
+            $wechat_pay = app('wechat_pay')->mp($wx_order);
+            return response(['code'=>'002','msg'=>'请求成功','data'=>$wechat_pay]);
+//            return view('Payment.wxmp',compact('wechat_pay','order'));
+        }else{
+            $wechat_pay = app('wechat_pay')->wap($wx_order);
+            return response(['code'=>'002','msg'=>'请求成功','data'=>$wechat_pay]);
+//            return view('Payment.wxwap',compact('wechat_pay','order'));
+        }
+
     }
 
     /*

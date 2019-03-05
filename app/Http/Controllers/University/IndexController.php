@@ -25,7 +25,7 @@ class IndexController extends Controller
         }
         $course['boutique'] = Course::getIfy(2,3);
         $course['business'] = Course::getIfy(3,3);
-//        dd($course);
+//        dd($adver);
         return view('University.Index.index',compact('adver','discussion','course','comment'));
     }
 

@@ -70,7 +70,15 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- 昵称： -->
+                             <!-- 价格 -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">价格：</label>
+                                <div class="col-sm-3">
+                                    <input name="price" class="form-control" type="number" value="{{old('price')}}">
+                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span> -->
+                                </div>
+                            </div>
+                            <!-- 观看次数： -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">观看次数：</label>
                                 <div class="col-sm-3">

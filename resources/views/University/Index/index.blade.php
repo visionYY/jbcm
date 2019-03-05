@@ -110,7 +110,7 @@
 		<div class="diacuss_box">
 		  <h4 class="dia_tit">
 		  	<em></em>今日议题
-		  	<img src="images/icon_gengduo@2x.png" alt="" onclick="window.location.href='{{url("university/discussion/detail/id/".$discussion->id)}}'">
+		  	<img src="{{asset('University/images/icon_gengduo@2x.png')}}" alt="" onclick="window.location.href='{{url("university/discussion/detail/id/".$discussion->id)}}'">
 		  </h4>
 		  <h3 class="dia_topic">{{$discussion->title}}</h3>
 		  <p class="dia_label">出题人：{{$discussion->author}}</p>

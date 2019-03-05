@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="{{asset('University/css/audio.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/video.css')}}">
-   
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
   <div class="wrapper">
     <div class="bad-video">
       @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
@@ -184,11 +184,11 @@
       {{--判断是否收费课 并且 判断是否购买--}}
       @if($course->is_pay == 1)
         @if($course->isBuy != 1)
-        <button class="btn onBuy">开通课程 | ￥99</button>
+        <button class="btn onBuy">开通课程 | ￥{{$course->price}}</button>
         @endif
       @endif
     @else
-        <button class="btn onlogin">开通课程 | ￥99</button>
+        <button class="btn onlogin">开通课程 | ￥{{$course->price}}</button>
     @endif
     <div class="hint">购买后才能继续学习</div>
     @if($course->oneType == 0 || Auth::guard('university')->check() && $course->isBuy == 1)
@@ -829,7 +829,48 @@
           
         })
         $('.onBuy').click(function(){
-          window.location.href="{{url('university/course/buy/id/'.$course->id)}}"
+          // window.location.href="{{url('university/course/buy/id/'.$course->id)}}"
+          $.ajax({
+            url:"{{url('university/course/buy/id/'.$course->id)}}",
+            type:'GET',
+            dataType:'json',
+            success:function(d){
+              if (d.code == '002') {
+                function onBridgeReady(){
+                   WeixinJSBridge.invoke(
+                      'getBrandWCPayRequest', {
+                         "appId":d.data.appId,     //公众号名称，由商户传入     
+                         "timeStamp":d.data.timeStamp,         //时间戳，自1970年以来的秒数     
+                         "nonceStr":d.data.nonceStr, //随机串     
+                         "package":d.data.package,     
+                         "signType":"MD5",                //微信签名方式：     
+                         "paySign":d.data.paySign //微信签名 
+                      },
+                      function(res){
+                        
+                        location.reload();
+                      if(res.err_msg == "get_brand_wcpay_request:ok" ){
+                        // 使用以上方式判断前端返回,微信团队郑重提示：
+                        //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+                        alert('支付成功！');
+                      } 
+                   }); 
+                }
+                if (typeof WeixinJSBridge == "undefined"){
+                   if( document.addEventListener ){
+                       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                   }else if (document.attachEvent){
+                       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+                       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                   }
+                }else{
+                   onBridgeReady();
+                }
+              }else{
+                console.log(d)
+              }
+            }
+          })
         })
       })
 

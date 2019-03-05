@@ -149,7 +149,9 @@ Route::group(['prefix'=>'university'],function(){
 
 
 //Route::get('upload','Home\IndexController@getCategoryPage');
-
+//支付
+Route::get('payment/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
+Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')->name('payment.wechat.notify');
 //测试
 Route::get('/test', function () {
 //   $abc = \App\Models\Admin::where('email','>','?')->toSql();

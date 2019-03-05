@@ -47,6 +47,7 @@ class CourseController extends Controller
             'ify'=>'required|numeric',
             'is_pay'=>'required|numeric',
             'looks'=>'required|numeric',
+            'price'=>'required|numeric',
             'crosswise_cover'=>'required',
             'lengthways_cover'=>'required');
         $credentials = $this->validate($request,$verif);
@@ -104,6 +105,7 @@ class CourseController extends Controller
             'intro'=>'required',
             'ify'=>'required|numeric',
             'is_pay'=>'required|numeric',
+            'price'=>'required|numeric',
             'looks'=>'required|numeric');
         $credentials = $this->validate($request,$verif);
 //        dd($credentials);

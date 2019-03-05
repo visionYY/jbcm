@@ -8,7 +8,7 @@ class Course extends Model
 {
     protected $table = 'dx_course';
 
-    protected $fillable = ['name', 'crosswise_cover','lengthways_cover','teacher','professional','intro','ify','is_pay','looks'];
+    protected $fillable = ['name', 'crosswise_cover','lengthways_cover','teacher','professional','intro','ify','is_pay','looks','price'];
 
     //分类获取课程
     public static function getIfy($ify,$num){
