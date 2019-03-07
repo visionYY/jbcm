@@ -139,17 +139,22 @@
   	</footer>
 		<script>
     var swiper = new Swiper('.swiper-container', {
+			loop: true,
+			autoplay: {
+				delay: 5000,
+				stopOnLastSlide: false,
+				disableOnInteraction: false,
+			},
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
-        loop: true,
       },
     });
     var swiper2 = new Swiper('.swiper-container2', {
+			loop: true,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
-        loop: true,
       },
     });
   </script>
