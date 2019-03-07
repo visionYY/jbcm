@@ -151,10 +151,10 @@
       },
     });
     var swiper2 = new Swiper('.swiper-container2', {
+			loop: true,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
-        loop: true,
       },
     });
   </script>

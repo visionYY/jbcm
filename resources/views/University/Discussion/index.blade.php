@@ -18,13 +18,13 @@
 			    <p class="left">{{$disc->count}} 人发表观点</p>
 			    <p class="right">
 			      <a href="{{url('university/discussion/content/id/'.$disc->id.'/source/1')}}">
-			      	<img src="{{asset('University/images/icon_yiyiyi@2x.png')}}" alt="">议一议
+			      	<img src="{{asset('University/images/yiyiyi@2.png')}}" alt="">议一议
 			      </a>
 			      <a href="{{url('university/discussion/discussionPoster/did/'.$disc->id)}}">
-			      	<img src="{{asset('University/images/icon_haibao@2x.png')}}" alt="">海报
+			      	<img src="{{asset('University/images/icon_haibao@2.png')}}" alt="">海报
 			      </a>
 			      <a href="{{url('university/discussion/detail/id/'.$disc->id)}}">
-			      	<img src="{{asset('University/images/icon_chakan@2x.png')}}" alt="">查看
+			      	<img src="{{asset('University/images/icon_chakan@2.png')}}" alt="">查看
 			      </a>
 			    </p>
 			  </div>
