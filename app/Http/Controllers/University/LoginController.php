@@ -126,6 +126,11 @@ class LoginController extends Controller
         return view('University.Login.serviceAgreement');
     }
 
+    //隐私政策
+    public function privacyPolicy(){
+        return view('University.Login.privacyPolicy');
+    }
+
     //获取验证码
     public function getCode(Request $request){
         if (!$request->mobile){

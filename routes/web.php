@@ -128,6 +128,10 @@ Route::group(['prefix'=>'university'],function(){
         Route::get('guesteScore','University\MyController@guesteScore');
         Route::get('aboutGuesteScore','University\MyController@aboutGuesteScore');
         Route::get('comment','University\MyController@comment');
+        Route::get('order','University\MyController@order');
+        Route::get('collect','University\MyController@collect');
+        Route::post('cancelCollect','University\MyController@cancelCollect');
+        Route::any('feedback','University\MyController@feedback');
         Route::get('setting','University\MyController@setting');
         Route::get('accountManagement','University\MyController@accountManagement');
         Route::any('editMobile','University\MyController@editMobile');
@@ -144,7 +148,9 @@ Route::group(['prefix'=>'university'],function(){
     Route::get('quickLogin','University\LoginController@quickLogin');
     Route::post('quickLogin','University\LoginController@doQuickLogin');
     Route::get('loginOut','University\LoginController@loginOut');
+
     Route::get('serviceAgreement','University\LoginController@serviceAgreement');
+    Route::get('privacyPolicy','University\LoginController@privacyPolicy');
 
     Route::get('getCode','University\LoginController@getCode');
     Route::get('register','University\LoginController@register');

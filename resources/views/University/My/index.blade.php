@@ -26,15 +26,15 @@
 		    	<span><img src="{{asset('University/images/icon_guandian@2x.png')}}" alt="">发表我的观点</span>
 		    	<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 		    </li>
-		    <li class="lis">
+		    <li class="lis" onclick="window.location.href='{{url("university/my/order")}}'">
 		    	<span><img src="{{asset('University/images/icon_yigou@2x.png')}}" alt="">我的已购</span>
 		    	<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 		    </li>
-		    <li class="lis" onclick="window.location.href='mine_collect.html'">
+		    <li class="lis" onclick="window.location.href='{{url("university/my/collect")}}'">
 		    	<span><img src="{{asset('University/images/icon_shoucang@2x2.png')}}" alt="">我的收藏</span>
 		    	<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 		    </li>
-		    <li class="lis">
+		    <li class="lis" onclick="window.location.href='{{url("university/my/feedback")}}'">
 		    	<span><img src="{{asset('University/images/icon_wentifankui@2x.png')}}" alt="">问题反馈</span>
 		    	<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 		    </li>

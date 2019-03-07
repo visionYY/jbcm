@@ -67,19 +67,20 @@ class IndexController extends Controller
                 'pay_attention'=>'required',
                 'referrer'=>'required',
                 'referrer_mobile'=>'required');
-            $credentials = $this->validate($request,$verif,['']);
-            $identity = implode(';',$credentials['identity']);
+            $credentials = $this->validate($request,$verif);
+            $credentials['identity'] = implode(';',$credentials['identity']);
             if ($request->idqt){
-                $credentials['identity'] = $identity.'：'.$request->idqt;
+                $credentials['identity'] .= '：'.$request->idqt;
             }
-            $expectation = implode(';',$credentials['expectation']);
+            $credentials['expectation'] = implode(';',$credentials['expectation']);
             if($request->exqt){
-                $credentials['expectation'] = $expectation.'：'.$request->exqt;
+                $credentials['expectation'] .= '：'.$request->exqt;
             }
-            $pay_attention = implode('；',$credentials['pay_attention']);
+            $credentials['pay_attention'] = implode('；',$credentials['pay_attention']);
             if ($request->paqt){
-                $credentials['pay_attention'] = $pay_attention.'：'.$request->paqt;
+                $credentials['pay_attention'] .= '：'.$request->paqt;
             }
+//            dd($credentials );
             if (ApplyJbp::create($credentials)){
                 return redirect('university/jbp_success');
             }else{
