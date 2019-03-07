@@ -4,6 +4,7 @@ namespace App\Http\Controllers\University;
 
 use App\Http\Resources\view;
 use App\Models\Advertising;
+use App\Models\DX\ApplyJbp;
 use App\Models\DX\Comment;
 use App\Models\DX\Course;
 use App\Models\DX\Discussion;
@@ -38,9 +39,59 @@ class IndexController extends Controller
     //嘉宾派报名提交
     public function jbp_apply(Request $request){
         if($request->all()){
-            dd($request->all());
+
+            $verif = array('name'=>'required',
+                'sex'=>'required',
+                'birthday'=>'required',
+                'address'=>'required',
+                'venture_years'=>'required|numeric',
+                'identity'=>'required',
+                'mobile'=>'required|numeric',
+                'weixin'=>'required',
+                'email'=>'required',
+                'graduate_scholl'=>'required',
+                'education_background'=>'required',
+                'company'=>'required',
+                'position'=>'required',
+                'establish'=>'required',
+                'staff_number'=>'required',
+                'company_address'=>'required',
+                'financing_phases'=>'required',
+                'income'=>'required',
+                'market_value'=>'required',
+                'investor'=>'required',
+                'operation_state'=>'required',
+                'expectation'=>'required',
+                'interest_jbp'=>'required',
+                'interest_in'=>'required',
+                'pay_attention'=>'required',
+                'referrer'=>'required',
+                'referrer_mobile'=>'required');
+            $credentials = $this->validate($request,$verif,['']);
+            $identity = implode(';',$credentials['identity']);
+            if ($request->idqt){
+                $credentials['identity'] = $identity.'：'.$request->idqt;
+            }
+            $expectation = implode(';',$credentials['expectation']);
+            if($request->exqt){
+                $credentials['expectation'] = $expectation.'：'.$request->exqt;
+            }
+            $pay_attention = implode('；',$credentials['pay_attention']);
+            if ($request->paqt){
+                $credentials['pay_attention'] = $pay_attention.'：'.$request->paqt;
+            }
+            if (ApplyJbp::create($credentials)){
+                return redirect('university/jbp_success');
+            }else{
+                return back()->with('hint','当前系统繁忙，请稍后再试');
+            }
         }
-        return view('University.Index.gbp_apply');
+        return view('University.Index.jbp_apply');
+    }
+
+    public function jbp_success(){
+
+        return view('University.Index.jbp_success');
     }
 
     //国际课程
@@ -51,8 +102,15 @@ class IndexController extends Controller
 
     //国际课程报名
     public function gjkc_apply(Request $request){
+        if ($request->all()){
+            dd($request->all());
+        }
+        return view('University.Index.gjkc_apply');
+    }
 
-        return view('Uninversity.Index.gjkc_apply');
+    public function gjkc_success(){
+
+        return view('University.Index.gjkc_success');
     }
 
     //课程列表

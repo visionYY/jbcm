@@ -87,7 +87,11 @@ Route::group(['prefix'=>'university'],function(){
     Route::get('index','University\IndexController@index');
     Route::get('jbp','University\IndexController@jbp');
     Route::any('jbp_apply','University\IndexController@jbp_apply');
+    Route::get('jbp_success','University\IndexController@jbp_success');
     Route::get('gjkc','University\IndexController@gjkc');
+    Route::any('gjkc_apply','University\IndexController@gjkc_apply');
+    Route::get('gjkc_success','University\IndexController@gjkc_success');
+
     Route::get('courseCategory/cgid/{cgid}','University\IndexController@courseCategory');
 
     //课程部分
@@ -119,17 +123,20 @@ Route::group(['prefix'=>'university'],function(){
     });
 
     //我的
-    Route::get('my/index','University\MyController@index');
-    Route::get('my/guesteScore','University\MyController@guesteScore');
-    Route::get('my/aboutGuesteScore','University\MyController@aboutGuesteScore');
-    Route::get('my/setting','University\MyController@setting');
-    Route::get('my/accountManagement','University\MyController@accountManagement');
-    Route::any('my/editMobile','University\MyController@editMobile');
-    Route::any('my/editPassWord','University\MyController@editPassWord');
-    Route::get('my/aboutUs','University\MyController@aboutUs');
-    Route::get('my/replenish','University\MyController@replenish');
-    Route::get('my/doReplenish','University\MyController@doReplenish');
-    Route::any('my/fillInfo','University\MyController@fillInfo');
+    Route::group(['prefix'=>'my'],function(){
+        Route::get('index','University\MyController@index');
+        Route::get('guesteScore','University\MyController@guesteScore');
+        Route::get('aboutGuesteScore','University\MyController@aboutGuesteScore');
+        Route::get('comment','University\MyController@comment');
+        Route::get('setting','University\MyController@setting');
+        Route::get('accountManagement','University\MyController@accountManagement');
+        Route::any('editMobile','University\MyController@editMobile');
+        Route::any('editPassWord','University\MyController@editPassWord');
+        Route::get('aboutUs','University\MyController@aboutUs');
+        Route::get('replenish','University\MyController@replenish');
+        Route::get('doReplenish','University\MyController@doReplenish');
+        Route::any('fillInfo','University\MyController@fillInfo');
+    });
 
     //登陆
     Route::get('login','University\LoginController@passwordLogin');
@@ -149,7 +156,7 @@ Route::group(['prefix'=>'university'],function(){
 
 
 //Route::get('upload','Home\IndexController@getCategoryPage');
-//支付
+//微信支付
 Route::get('payment/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
 Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')->name('payment.wechat.notify');
 //测试

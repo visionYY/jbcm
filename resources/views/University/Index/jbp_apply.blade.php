@@ -4,13 +4,40 @@
   <link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/apply.css')}}">
+<style type="text/css">
+  .alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
+  .alert-dismissable, .alert-dismissible {
+      padding-right: 35px;
+  }
+  .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+  }
+  * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  div {
+      display: block;
+  }
+</style>
+
   <div class="wrapper">
+
     <div class="hint_box">
       <p class="hint">提示：</p>
       <p class="hint_con">1、收到报名信息后客服人员会在5个工作日内跟您取得联系</p>
       <p class="hint_con">2、嘉宾派将严格保密您所填写的信息，请您如实填写。</p>
     </div>
     <h5 class="one_tit">个人信息</h5>
+    @include('layouts.admin_error')
     <form method="post" action="">
       @csrf
     <div class='formlist'>
@@ -30,17 +57,17 @@
     <div class='formlist'>
       <div class='fname'>出生日期<text>*</text></div>
       <p class="top">
-          <input type='text' value="birthday" value="{{old('birthday')}}"></input>
+          <input type='text' name="birthday" value="{{old('birthday')}}" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
           <img src="{{asset('University/images/icon_rili@2x.png')}}" class="img_rili" alt="">
       </p>
     </div>
     <div class='formlist'>
       <div class='fname'>常住地<text>*</text></div>
-      <input type='text' name="address" value="address"></input>
+      <input type='text' name="address" value="{{old('address')}}"></input>
     </div>
     <div class='formlist'>
       <div class='fname'>创业年数<text>*</text></div>
-      <input type='text' name="venture_years" value="{{old('venture_years')}}"></input>
+      <input type='number' name="venture_years" value="{{old('venture_years')}}"></input>
     </div>
     <div class='formlist'>
       <div class='fname'>目前您的身份属性（可多选）<text>*</text></div>
@@ -89,7 +116,7 @@
     </div>
     <div class='formlist'>
       <div class='fname'>企业员工数<text>*</text></div>
-      <input type='number' name="staff_number" value="{{old('staff_number')}}"></input>
+      <input type='text' name="staff_number" value="{{old('staff_number')}}"></input>
     </div>
     <div class='formlist'>
       <div class='fname'>企业地址<text>*</text></div>
@@ -183,11 +210,10 @@
     </div>
     </form>
   </div>
-
-  
-  <script>
-    $(document).ready(function () {
-      
-    })
-  </script>
+   <script src="{{asset('Admin/js/plugins/layer/laydate/laydate.js')}}"></script>
+    <script type="text/javascript">
+      $('.close').click(function(){
+        $(this).parent().hide();
+      })
+    </script>
 @stop

@@ -16,13 +16,13 @@
 		    <dt><img src="{{asset($user->head_pic)}}" alt=""></dt>
 		    <dd>
 		      <p class="mineName">{{$user->nickname}}</p>
-		      <p class="mineScore" onclick="window.location.href='mine_score2.html'">{{$score->score}}嘉分<b></b></p>
+		      <p class="mineScore" onclick="window.location.href='{{url("university/my/guesteScore")}}'">{{$score->score}}嘉分<b></b></p>
 		    </dd>
 		  </dl>
 		</div>
 		<div class="mine_bot">
 		  <ul>
-		    <li class="lis" onclick="window.location.href='mine_view.html'">
+		    <li class="lis" onclick="window.location.href='{{url("university/my/comment")}}'">
 		    	<span><img src="{{asset('University/images/icon_guandian@2x.png')}}" alt="">发表我的观点</span>
 		    	<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 		    </li>

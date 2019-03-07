@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\University;
 
+use App\Models\DX\Comment;
+use App\Models\DX\Discussion;
 use App\Models\DX\ScoreRecord;
 use App\Models\DX\GuesteScore;
 use App\Models\User;
@@ -21,7 +23,7 @@ class MyController extends Controller
 
     //我的界面
     public function index(){
-        $user = Auth::user();
+        $user = Auth::guard('university')->user();
         $score = GuesteScore::where('user_id',$user->id)->first();
         if (!$score){
             $score = GuesteScore::create(array('user_id'=>$user->id,'score'=>0));
@@ -32,15 +34,30 @@ class MyController extends Controller
 
     //我的嘉分
     public function guesteScore(){
-        $user = Auth::user();
+        $user = Auth::guard('university')->user();
         $score = GuesteScore::where('user_id',$user->id)->first();
-        $record = ScoreRecord::where('gs_id',$score->id)->get();
-        return view('University.My.guesteScore',compact('score','record'));
+        $records = ScoreRecord::where('gs_id',$score->id)->get();
+//        dd($score,$records);
+        return view('University.My.guesteScore',compact('score','records'));
     }
 
     //关于嘉分
     public function aboutGuesteScore(){
         return view('University.My.aboutGuesteScore');
+    }
+
+    //我的评论
+    public function comment(){
+        $user = Auth::guard('university')->user();
+        $comments = Comment::where('user_id',$user->id)->get();
+        foreach ($comments as $comment){
+            $discussion = Discussion::find($comment->discussion_id);
+            $comment->dis_title = $discussion->title;
+            $comment->dis_time = str_replace('-','.',substr($discussion->time,0,10));
+            $comment->dis_count = Comment::where('discussion_id',$discussion->id)->count();
+        }
+//        dd($comments);
+        return view('University.My.comment',compact('comments','user'));
     }
 
     //设置
@@ -50,7 +67,7 @@ class MyController extends Controller
 
     //账号管理
     public function accountManagement(){
-        $user = Auth::user();
+        $user = Auth::guard('university')->user();
 //        dd($user);
         return view('University.My.accountManagement',compact('user'));
     }
@@ -110,7 +127,7 @@ class MyController extends Controller
         $userInfo = array('nickname' => $newtok['nickname'],
                         'head_pic'=> $newtok['headimgurl'],
                         'open_id'=> $newtok['openid'],);
-        $user = Auth::user();
+        $user = Auth::guard('university')->user();
         if ($user->update($userInfo)){
             return redirect('university/my/index')->with('success','欢迎');
         }else{
@@ -141,7 +158,7 @@ class MyController extends Controller
             }else{
                 return back() -> with('hint',config('hint.upload_failure'));
             }
-            $user = Auth::user();
+            $user = Auth::guard('university')->user();
             if ($user->update($credentials)){
                 return redirect('university/my/index')->with('success','欢迎');
             }else{
