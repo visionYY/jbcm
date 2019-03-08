@@ -26,7 +26,7 @@
 
 .classify{
   background:#fff;  
-  padding: 0 .15rem .12rem .15rem;
+  padding: 0 .15rem .08rem .15rem;
   display: flex;
   justify-content: space-between;
 }
@@ -39,7 +39,7 @@
 .classify1 img{
   display:block;
   width: 100%;
-  height:.533333rem;
+  height:.38333rem;
 }
 
 .diacuss_box,.boutique_box,.business_box{
