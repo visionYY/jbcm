@@ -43,15 +43,13 @@
   position: relative;
 }
 .mineScore b{
-  display:block;
+  display:inline-block;
   width: 0;
   height: 0;
   border-top: .036rem solid transparent;
   border-left: .04rem solid #305CBA;
   border-bottom: .036rem solid transparent;
-  position:absolute;
-  left: .47rem;
-  top: .02rem;
+  margin-left: .05rem;
 }
 .mine_bot{
   margin-top: .05rem;
