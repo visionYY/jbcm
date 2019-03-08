@@ -326,16 +326,17 @@
           this.vRoom.appendChild(this.vC);
 
         };
+        
 
+        var nowPage = "small";
         pro.initEvent = function() {
           var that = this;
 
           var isScroll = false;
-          var nowPage = "small";
 
           //切换音频
           this.vaudio.addEventListener("touchend", function() {
-
+            isScroll = false;
             location.href = document.getElementById('audioUrl').value;
           });
 
@@ -659,6 +660,12 @@
 
         //全屏 mini 两种模式切换
         pro.switch = function() {
+          if (nowPage == 'small') {
+            document.getElementsByClassName('controls')[0].getElementsByTagName('div')[0].style.width = "80%"
+            document.getElementsByClassName('controls')[0].getElementsByTagName('div')[3].style.flex = 15
+          } else {
+            document.getElementsByClassName('controls')[0].getElementsByTagName('div')[0].style.width = "64%"
+          }
           var vR = this.vRoom;
           //获取需要转换的样式信息
           var info = this.isMax ? this.miniInfo : this.maxInfo;

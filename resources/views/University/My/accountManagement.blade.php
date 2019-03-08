@@ -8,8 +8,8 @@
 	<div class="wrapper">
       <ul>
         <li class="lis" onclick="window.location.href='{{url("university/my/editMobile")}}'">
-        	<span><img src="{{asset('University/images/icon_shoujihao@2x2.png')}}" alt="">手机号：{{$user->mobile}}</span>
-        	<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
+        	<span><img src="{{asset('University/images/icon_shoujihao@2x2.png')}}" alt="">手机号：</span>
+        	<span><em>{{$user->mobile}}</em><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
         </li>
         <li class="lis" onclick="window.location.href='{{url("university/my/editPassWord")}}'">
         	<span><img src="{{asset('University/images/icon_shezhimima@2x2.png')}}" alt="">设置密码</span>

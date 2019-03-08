@@ -42,6 +42,11 @@
   width: .17rem;
   height: .22rem;
 }
+.two img {
+  display: block;
+  width: .2rem;
+  height: .22rem;
+}
 .clo{
   font-size: .12rem;
   width: 100%;
