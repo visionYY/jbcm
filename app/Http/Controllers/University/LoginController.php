@@ -78,6 +78,7 @@ class LoginController extends Controller
             $user = $users[0];
         }
         Auth::guard('university')->login($user);
+//        dd($user);
         //完善信息
         if (!$user->nickname){
             return redirect('university/my/replenish');

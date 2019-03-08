@@ -24,7 +24,7 @@
           @endif
         </div>
         @else
-        <div class="collect" onclick="alert('尚未登陆！');window.location.href='{{url("university/login?source=3&yid=".$comment->id)}}'">
+        <div class="collect" onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=3&yid=".$comment->id)}}'">
           <img src="{{asset('University/images/icon_shoucang@2x.png')}}" alt="">收藏
         </div>
         @endif
@@ -49,7 +49,7 @@
         <dl onclick="window.location.href='{{url("university/discussion/reply/cid/$reply[id]/type/1")}}'">
         @endif  
       @else
-      <dl onclick="alert('尚未登陆！');window.location.href='{{url("university/login?source=3&yid=".$comment->id)}}'">
+      <dl onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=3&yid=".$comment->id)}}'">
       @endif 
         <dd><img src="{{$reply['user_pic']}}" alt=""></dd>
         <dt>
@@ -99,7 +99,7 @@
     </p>
   </footer>
   @else
-  <footer onclick="alert('尚未登陆！');window.location.href='{{url("university/login?source=3&yid=".$comment->id)}}'">
+  <footer onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=3&yid=".$comment->id)}}'">
     <p class="input"><input type="text" placeholder="我来说两句..." disabled></p>
     <p class="fun">
       <a href="{{url('university/discussion/commentPoster/cid/'.$comment->id)}}" class="Imgbox">

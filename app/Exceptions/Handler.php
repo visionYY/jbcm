@@ -63,9 +63,9 @@ class Handler extends ExceptionHandler
                 case 'university':
 //                    return response(['code'=>'001','msg'=>'没权限']);
                     if ($request->source){
-                        return redirect()->guest('/university/login?source='.$request->source.'&yid='.$request->id);
+                        return redirect()->guest('/university/quickLogin?source='.$request->source.'&yid='.$request->id);
                     }else{
-                        return redirect()->guest('/university/login');
+                        return redirect()->guest('/university/quickLogin');
                     }
 
 //                    break;

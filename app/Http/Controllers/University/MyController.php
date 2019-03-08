@@ -214,7 +214,8 @@ class MyController extends Controller
             $this->validate($request,['password'=>'required|confirmed|min:6']);
             $user = Auth::user();
             if ($user->update(['password'=>bcrypt($request->password)])){
-                return back()->with('success',config('jbdx.update_success'));
+//                return back()->with('success',config('jbdx.update_success'));
+                return redirect('university/my/index')->with('success',config('jbdx.update_success'));
             }else{
                 return back()->with('hint',config('jbdx.update_error'));
             }
@@ -268,17 +269,19 @@ class MyController extends Controller
                 $per = 0.4;
             }
             $path = Upload::uploadOne('User',$credentials['head_pic']);
+            $credentials['head_pic'] = asset($path);
             if ($path){
-                $credentials['head_pic'] = $path;
+//                dd($credentials['head_pic']);
                 //创建缩略图
-                $Compress = new Compress(public_path($credentials['head_pic']),$per);
-                $Compress->compressImg(public_path(thumbnail($credentials['head_pic'])));
+                $Compress = new Compress(public_path($path),$per);
+                $Compress->compressImg(public_path(thumbnail($path)));
             }else{
                 return back() -> with('hint',config('hint.upload_failure'));
             }
             $user = Auth::guard('university')->user();
             if ($user->update($credentials)){
-                return redirect('university/my/index')->with('success','欢迎');
+//                return redirect('university/my/index')->with('success','欢迎');
+                return redirect('university/my/editPassWord');
             }else{
                 return redirect('university/my/index')->with('hint','填写失败，请稍后重试！');
             }

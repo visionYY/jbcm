@@ -77,14 +77,14 @@
             </p>
             @else
             <p class="com_fun">
-              <a href="javascript:;" class="Imgbox" onclick="alert('尚未登陆！');window.location.href='{{url("university/login?source=2&yid=".$discussion->id)}}'">
+              <a href="javascript:;" class="Imgbox" onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=2&yid=".$discussion->id)}}'">
                 <img src="{{asset('University/images/icon_shoucang@2x.png')}}" />收藏
               </a>
               <!-- <a href="{{url('university/discussion/reply/cid/'.$com->id.'/id/'.$discussion->id.'/source/2/type/0')}}" class="Imgbox"> -->
-              <a href="javascript:;" class="Imgbox" onclick="alert('尚未登陆！');window.location.href='{{url("university/login?source=2&yid=".$discussion->id)}}'">
+              <a href="javascript:;" class="Imgbox" onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=2&yid=".$discussion->id)}}'">
                 <img src="{{asset('University/images/icon_pinglun@2x.png')}}" />评论
               </a>
-              <a href="javascript:;" class="Imgbox" onclick="alert('尚未登陆！');window.location.href='{{url("university/login?source=2&yid=".$discussion->id)}}'">
+              <a href="javascript:;" class="Imgbox" onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=2&yid=".$discussion->id)}}'">
                 <img src="{{asset('University/images/icon_dianzan1@2x.png')}}" />赞同
               </a>
               <a href="{{url('university/discussion/commentPoster/cid/'.$com->id)}}" class="Imgbox">

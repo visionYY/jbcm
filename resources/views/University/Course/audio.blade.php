@@ -208,7 +208,7 @@
     @endif
   </div>
   {{-- 登陆地址 --}}
-  <input type="hidden" name="loginUrl" value="{{url('university/login?source=5&yid='.$course->id)}}">
+  <input type="hidden" name="loginUrl" value="{{url('university/quickLogin?source=5&yid='.$course->id)}}">
   <input type="hidden" id="videoUrl" value="{{url('university/course/show/id/'.$course->id)}}">
   @if(Auth::guard('university')->check())
   <input type="hidden" name="ls_id" value="{{$course->oneId}}">

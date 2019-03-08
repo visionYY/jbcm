@@ -5,8 +5,6 @@
 	<link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
 	<link rel="stylesheet" href="{{asset('University/css/all.css')}}">
 	<link rel="stylesheet" href="{{asset('University/css/index.css')}}">
-
-
 	<style>
 		.swiper-container {
 			width: 100%;
@@ -55,7 +53,9 @@
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
 						@foreach($adver as $ad)
-							<div class="swiper-slide"><img src="{{asset($ad['cover'])}}" alt=""></div>
+							<div class="swiper-slide">
+								<img src="{{asset($ad['cover'])}}" onclick="window.location.href='{{$ad["href"]}}'">
+							</div>
 						@endforeach
 					</div>
 					<!-- Add Pagination -->
@@ -87,7 +87,7 @@
 		  </h4>
 		  <h3 class="dia_topic">{{$discussion->title}}</h3>
 		  <p class="dia_label">出题人：{{$discussion->author}}</p>
-		  <p class="dia_con">{{strip_tags($discussion->content)}}</p>
+		  <!-- <p class="dia_con">{{strip_tags($discussion->content)}}</p> -->
 		  @if($comment)
 		  <div class="observer" onclick="window.location.href='{{url("university/discussion/commentDetail/id/".$comment->id)}}'">
 		    <p class="ob_name"><img src="{{$comment->user_pic}}" alt="">{{$comment->user_name}}</p>
@@ -102,7 +102,9 @@
 					<div class="swiper-container2">
 						<div class="swiper-wrapper">
 						@foreach($course['boutique'] as $bout)
-								<div class="swiper-slide"><img src="{{url($bout->crosswise_cover)}}" alt=""></div>
+								<div class="swiper-slide">
+									<img src="{{url($bout->crosswise_cover)}}" onclick="window.location.href='{{url("university/course/show/id/".$bout->id)}}'">
+								</div>
 							@endforeach
 						</div>
 						<!-- Add Pagination -->
