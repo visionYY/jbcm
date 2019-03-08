@@ -77,9 +77,23 @@
   width:.2rem;
   height:.19rem;
 }
+.lis>span:last-child{
+  position: relative;
+}
+.lis>span:last-child>em{
+  position: absolute;
+  right: .12rem;
+  top: .01rem;
+  font-size:.12rem;
+  font-family:PingFang-SC-Regular;
+  font-weight:400;
+  color:rgba(102,102,102,1);
+}
+
 .lis>span:last-child img{
   width:.075rem;
   height:.135rem;
+  margin-left: .1rem;
 }
 
 .score_box{
