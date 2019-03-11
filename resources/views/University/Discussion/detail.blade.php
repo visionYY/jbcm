@@ -12,8 +12,7 @@
         <p class="funr">
           <a href="{{url('university/discussion/discussionPoster/did/'.$discussion->id)}}" class="Imgbox">
             <img src="{{asset('University/images/icon_haibao.png')}}" />海报</a>
-          <a href="#" class="Imgbox">
-            <img src="{{asset('University/images/icon_fenxiang2@2x.png')}}" />分享</a>
+          <!-- <a href="#" class="Imgbox"><img src="{{asset('University/images/icon_fenxiang2@2x.png')}}" />分享</a> -->
         </p>
       </div>
       <div class="dis_con">{!!$discussion->content!!}</div>
@@ -56,9 +55,9 @@
             <p class="com_fun">
               <a href="javascript:;" class="Imgbox shoucang" cid="{{$com->id}}" status="{{$com->coll_status}}">
                 @if($com->coll_status)
-                <img src="{{asset('University/images/icon_yishoucang@2x.png')}}" />收藏
+                <img src="{{asset('University/images/icon_yishoucang@2x.png')}}" /><em>已收藏</em>
                 @else
-                <img src="{{asset('University/images/icon_shoucang@2x.png')}}" />收藏
+                <img src="{{asset('University/images/icon_shoucang@2x.png')}}" /><em>收藏</em>
                 @endif
               </a>
               <a href="{{url('university/discussion/reply/cid/'.$com->id.'/type/0')}}" class="Imgbox">
@@ -66,9 +65,9 @@
               </a>
               <a href="javascript:;" class="Imgbox zantong" cid="{{$com->id}}" status="{{$com->prai_status}}">
                 @if($com->prai_status)
-                <img src="{{asset('University/images/icon_dianzan@2x.png')}}" />赞同
+                <img src="{{asset('University/images/icon_dianzan@2x.png')}}" /><em>{{$com->praise}}</em>
                 @else
-                <img src="{{asset('University/images/icon_dianzan1@2x.png')}}" />赞同
+                <img src="{{asset('University/images/icon_dianzan1@2x.png')}}" /><em>赞同</em>
                 @endif
               </a>
               <a href="{{url('university/discussion/commentPoster/cid/'.$com->id)}}" class="Imgbox">
@@ -109,7 +108,7 @@
           var csrf = "{{csrf_token()}}";
           var cid = $(this).attr('cid');
           var status = $(this).attr('status') == 1 ? 0 : 1;
-           var thisOBJ = $(this).find("img");
+           var thisOBJ = $(this);
           $.ajax({
             url:"{{url('university/discussion/collect')}}",
             data:{_token:csrf,cid:cid,status:status},
@@ -118,7 +117,8 @@
             success:function(d){
               console.log(d)
               if (d.code == '002') {
-                thisOBJ.attr("src") == "{{asset('University/images/icon_shoucang@2x.png')}}"  ?  thisOBJ.attr("src","{{asset('University/images/icon_yishoucang@2x.png')}}") : thisOBJ.attr("src","{{asset('University/images/icon_shoucang@2x.png')}}")
+                thisOBJ.find('em').text() == '收藏' ? thisOBJ.find('em').text('已收藏') : thisOBJ.find('em').text('收藏');
+                thisOBJ.find("img").attr("src") == "{{asset('University/images/icon_shoucang@2x.png')}}"  ?  thisOBJ.find("img").attr("src","{{asset('University/images/icon_yishoucang@2x.png')}}") : thisOBJ.find("img").attr("src","{{asset('University/images/icon_shoucang@2x.png')}}")
               }
             }
           })
@@ -140,6 +140,7 @@
               console.log(d)
               if (d.code == '002') {
                thisOBJ.attr('status',d.status)
+               thisOBJ.find('em').text() == '点赞' ? thisOBJ.find('em').text(d.praise) : thisOBJ.find('em').text('点赞');
                thisOBJ.find("img").attr("src") == "{{asset('University/images/icon_dianzan1@2x.png')}}"  ?  thisOBJ.find("img").attr("src","{{asset('University/images/icon_dianzan@2x.png')}}") : thisOBJ.find("img").attr("src","{{asset('University/images/icon_dianzan1@2x.png')}}")
              }
             }

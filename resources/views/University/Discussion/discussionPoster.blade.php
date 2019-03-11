@@ -17,7 +17,7 @@
 </style>
   <div class="wrapper">
     <div class="btn">
-      <p class="left">保存本地</p>
+      <a class="left" href="{{asset($data['discussion']->cover)}}" download="{{$data['download']}}">保存本地</a>
       @if($data['web'] ==1)
         <p class="right">分享</p>
         <script type="text/javascript">

@@ -56,7 +56,7 @@
                   @endif  
                     <p class="list_name">
                       <span class="col">{{$content->chapter}} {{$content->title}}</span>
-                      <span><img class="bianj" src="{{asset('University/images/icon_bianji@2x2.png')}}" alt=""></span>
+                      <!-- <span><img class="bianj" src="{{asset('University/images/icon_bianji@2x2.png')}}" alt=""></span> -->
                     </p>
                     {{--学习状态--}}
                     <p class="list_time">
@@ -782,6 +782,11 @@
         $('.topicbox').each(function(index) {
           $('.topicbox').eq(index).find(".ri").click(function() {
             $(this).parent().next().toggle()
+            if ($(this).html() == '显示解析') {
+              $(this).html("收起解析");
+            }else{
+              $(this).html("显示解析");
+            }
           })
         })
 

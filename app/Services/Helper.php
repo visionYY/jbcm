@@ -76,7 +76,9 @@ class Helper
     public static function getDifferenceTime($date){
         $time = strtotime($date);
         $difference = time() - $time;
-        if ($difference < 60*60){
+        if($difference < 60){
+            $diffTime = '刚刚';
+        }elseif($difference > 60 && $difference < 60*60){
             $diff = floor($difference/60);
             $diffTime = $diff.'分钟前';
         }elseif($difference > 60*60 && $difference < 60*60*24){

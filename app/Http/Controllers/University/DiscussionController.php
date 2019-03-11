@@ -47,6 +47,10 @@ class DiscussionController extends Controller
         }else{
             $data['web'] = 0;
         }
+        $pic = explode('/',$data['discussion']->cover);
+        $len = count($pic);
+        $data['download'] = $pic[$len-1];
+//        dd($data);
         return view('University.Discussion.discussionPoster',compact('data'));
     }
 

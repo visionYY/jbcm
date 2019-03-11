@@ -166,8 +166,20 @@ h6{
   padding-left:.18rem;
   margin-right: .22rem;
 }
+.com_fun a em{
+  font-size: .11rem;
+}
 .com_fun a:last-child{
   margin-right: .0rem;
+}
+.com_fun a:first-child{
+  width: 20%;
+  font-size: .11rem;
+  font-family: PingFang-SC-Medium;
+  color: #666666;
+  position: relative;
+  padding-left: .18rem;
+  margin-right: .17rem;
 }
 .com_fun img{
   position: absolute;
