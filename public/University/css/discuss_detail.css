@@ -158,12 +158,16 @@ h6{
 }
 .com_fun a{
   display: inline-block;
-  width:23%;
+  width: 17%;
   font-size:.11rem;
   font-family:PingFang-SC-Medium;
   color:#666666;
   position: relative;
   padding-left:.18rem;
+  margin-right: .22rem;
+}
+.com_fun a:last-child{
+  margin-right: .0rem;
 }
 .com_fun img{
   position: absolute;

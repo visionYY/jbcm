@@ -49,7 +49,7 @@
 
 	<footer class="foot">
 		<a href="{{url('university/index')}}" class="Imgbox one"><img src="{{asset('University/images/icon_faxianhui@2x.png')}}" />发现</a>
-		<a href="{{url('university/discussion/index')}}" class="Imgbox"><img src="{{asset('University/images/icon_meiriyiyi@2x.png')}}" />议一议</a>
+		<a href="{{url('university/discussion/index')}}" class="Imgbox"><img src="{{asset('University/images/icon_meiriyiyi@2x.png')}}" />每日一议</a>
 		<a href="{{url('university/my/index')}}" class="Imgbox two clo"><img src="{{asset('University/images/icon_wodelan@2x.png')}}" />我的</a>
 	</footer>
 	<script src="{{asset('University/js/swiper.min.js')}}"></script>

@@ -445,6 +445,7 @@
       $('.topicbox').each(function(index) {
         $('.topicbox').eq(index).find(".ri").click(function() {
           $(this).parent().next().toggle()
+          $(this).html("收起解析");
         })
       })
 

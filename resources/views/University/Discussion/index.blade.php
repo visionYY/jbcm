@@ -35,7 +35,7 @@
 
   <footer class="foot">
     <a href="{{url('university/index')}}" class="Imgbox one"><img src="{{asset('University/images/icon_faxianhui@2x.png')}}" />发现</a>
-    <a href="{{url('university/discussion/index')}}" class="Imgbox clo"><img src="{{asset('University/images/icon_meiriyiyi.png')}}" />议一议</a>
+    <a href="{{url('university/discussion/index')}}" class="Imgbox clo"><img src="{{asset('University/images/icon_meiriyiyi.png')}}" />每日一议</a>
     <a href="{{url('university/my/index')}}" class="Imgbox two"><img src="{{asset('University/images/icon_wode@2x.png')}}" />我的</a>
   </footer>
 
