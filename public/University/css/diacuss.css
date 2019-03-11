@@ -29,7 +29,7 @@
   background:rgba(255,255,255,1);
   border:1px solid rgba(222,222,222,1);
   border-radius:4px;
-  padding:.13rem .165rem;
+  padding:.13rem .13rem;
 }
 .dia_topic{
   font-size:.13rem;
@@ -55,7 +55,7 @@
   line-height:.35rem;
 }
 .left{
-  font-size:.12rem;
+  font-size:.10rem;
   font-family:PingFang-SC-Medium;
   color:#666;
 }
@@ -63,7 +63,7 @@
   font-size:.12rem;
   font-family:PingFang-SC-Medium;
   color:rgba(33,57,147,1);
-  margin-left: .2rem;
+  margin-left: .3rem;
   position: relative;
 }
 .right img{
