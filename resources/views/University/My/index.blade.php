@@ -23,7 +23,7 @@
 		<div class="mine_bot">
 		  <ul>
 		    <li class="lis" onclick="window.location.href='{{url("university/my/comment")}}'">
-		    	<span><img src="{{asset('University/images/icon_guandian@2x.png')}}" alt="">发表我的观点</span>
+		    	<span><img src="{{asset('University/images/icon_guandian@2x.png')}}" alt="">我发表的观点</span>
 		    	<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 		    </li>
 		    <li class="lis" onclick="window.location.href='{{url("university/my/order")}}'">
