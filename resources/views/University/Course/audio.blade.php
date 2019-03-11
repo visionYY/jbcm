@@ -632,6 +632,10 @@
         }
       })
 
+      // document.body.addEventListener('touchmove', function (event) {
+      //     event.preventDefault();
+      // }, false);
+
   /*$('.get_video').click(function(){
     initAudioEvent()
  })*/
