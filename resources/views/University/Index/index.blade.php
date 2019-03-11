@@ -1,5 +1,5 @@
 @extends('layouts.university')
-@section('title','发现')
+@section('title','嘉宾大学')
 @section('content')
 	<link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
 	<link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
@@ -136,7 +136,7 @@
 
   	<footer class="foot">
 	    <a href="{{url('university/index')}}" class="Imgbox one clo"><img src="{{asset('University/images/icon_faxiandianliang@2x.png')}}" />发现</a>
-	    <a href="{{url('university/discussion/index')}}" class="Imgbox"><img src="{{asset('University/images/icon_meiriyiyi@2x.png')}}" />议一议</a>
+	    <a href="{{url('university/discussion/index')}}" class="Imgbox"><img src="{{asset('University/images/icon_meiriyiyi@2x.png')}}" />每日一议</a>
 	    <a href="{{url('university/my/index')}}" class="Imgbox two"><img src="{{asset('University/images/icon_wode@2x.png')}}" />我的</a>
   	</footer>
 		<script>
