@@ -173,13 +173,13 @@ h6{
   margin-right: .0rem;
 }
 .com_fun a:first-child{
-  width: 20%;
+  width: 21%;
   font-size: .11rem;
   font-family: PingFang-SC-Medium;
   color: #666666;
   position: relative;
   padding-left: .18rem;
-  margin-right: .17rem;
+  margin-right: 0.1rem;
 }
 .com_fun img{
   position: absolute;

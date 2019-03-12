@@ -66,7 +66,7 @@
             @if(isset($data['comment']))
             @foreach($data['comment'] as $comment)
             <div class="boxs boxs2">
-              <p class="checkboxF2">
+              <p class="checkboxF22">
                   <label class="my_protocol">
                     <input class="input_agreement_protocol" type="checkbox" name="items2" value="{{$comment->collect_id}}" />
                     <span class="sp"></span>
@@ -103,6 +103,15 @@
       </div>
     </div>
     <div class="cover1">未选中任何项</div>
+    <div class="cover">
+      <div class="box2">
+        <p class="boxtit">确认删除？</p>
+        <div class="btns">
+          <p class="yesl">确认</p>
+          <p class="nor">取消</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   
@@ -133,14 +142,14 @@
       $(".tabBtn11").click(function(){
         $(".tabBtn11").css("display","none");
         $(".tabBtn22").css("display","block");
-        $('.checkboxF2').css('display','block');
+        $('.checkboxF22').css('display','block');
         $('.delete2').css('display','block');
       })
 
       $("#cancel2").click(function(){
         $(".tabBtn11").css("display","block");
         $(".tabBtn22").css("display","none");
-        $('.checkboxF2').css('display','none');
+        $('.checkboxF22').css('display','none');
         $('.delete2').css('display','none');
       })
 
@@ -168,13 +177,19 @@
             $(".cover1").css("display","none");
           },3000);
         }else{
-          var course_ids = new Array();
-          for (var i = checks.length - 1; i >= 0; i--) {
-            course_ids[i] = checks[i].value
-          }
-        // console.log(course_ids);
-          cancelCollect(course_ids)
-          $("input[name='items']:checked").parents(".boxs").remove();
+          $('.cover').css('display','block');
+          $('.yesl').click(function(){
+            var course_ids = new Array();
+            for (var i = checks.length - 1; i >= 0; i--) {
+              course_ids[i] = checks[i].value
+            }
+            cancelCollect(course_ids)
+            $("input[name='items']:checked").parents(".boxs").remove();
+            $('.cover').css('display','none');
+          })
+          $('.nor').click(function(){
+            $('.cover').css('display','none');
+          })
         }
       })
 
@@ -186,12 +201,19 @@
             $(".cover1").css("display","none");
           },2000);
         }else{
-          var comment_ids = new Array();
-          for (var i = checks.length - 1; i >= 0; i--) {
-            comment_ids[i] = checks[i].value
-          }
-          cancelCollect(comment_ids)
-          $("input[name='items2']:checked").parents(".boxs").remove();
+          $('.cover').css('display','block');
+          $('.yesl').click(function(){
+            var comment_ids = new Array();
+            for (var i = checks.length - 1; i >= 0; i--) {
+              comment_ids[i] = checks[i].value
+            }
+            cancelCollect(comment_ids)
+            $("input[name='items2']:checked").parents(".boxs").remove();
+            $('.cover').css('display','none');
+          })
+          $('.nor').click(function(){
+            $('.cover').css('display','none');
+          })
         }
       })
     })

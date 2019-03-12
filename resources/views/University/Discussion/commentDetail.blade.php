@@ -28,6 +28,11 @@
           <img src="{{asset('University/images/icon_shoucang@2x.png')}}" alt="">收藏
         </div>
         @endif
+        <p class="funr">
+          <a href="{{url('university/discussion/discussionPoster/did/'.$discussion->id)}}" class="Imgbox">
+            <img src="{{asset('University/images/icon_shoucang@2x.png')}}" />收藏</a>
+            <a href="#" class="Imgbox delcli"><img src="{{asset('University/images/icon_shanchu@2x.png')}}" />删除</a>
+        </p>
       </div>
       <div class="detailCon">
           {{$comment->content}}
@@ -66,11 +71,11 @@
   </div>
   <div class="cover">
     <div class="box1">
-      <p class="yes">删除回复</p>
+      <p class="yes">删除评论</p>
       <p class="no">取消</p>
     </div>
     <div class="box2">
-      <p class="boxtit">确认删除你的观点？</p>
+      <p class="boxtit">确认删除你的评论？</p>
       <div class="btns">
         <p class="yesl">确认</p>
         <p class="nor">取消</p>
@@ -149,6 +154,18 @@
             $('.nor').click(function(){
               $('.cover').hide();
             })
+        })
+      })
+      //删除自己评论
+      $('.delcli').click(function(){
+        $('.cover').show();
+        $('.box2').show();
+        $('.box1').hide();
+        $('.yesl').click(function(){
+          
+        });
+        $('.nor').click(function(){
+          $('.cover').hide();
         })
       })
       //收藏
