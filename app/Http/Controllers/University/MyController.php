@@ -103,13 +103,19 @@ class MyController extends Controller
         $data = array();
         foreach($collects as $collect){
             if ($collect->type ==1){
+                //课程收藏
                 $course = Course::find($collect->by_collect_id);
-                $course->collect_id = $collect->id;
-                $data['course'][] = $course;
+                if ($course){
+                    $course->collect_id = $collect->id;
+                    $data['course'][] = $course;
+                }
             }else{
+                //评论收藏
                 $comment = Comment::find($collect->by_collect_id);
-                $comment->collect_id = $collect->id;
-                $data['comment'][] = $comment;
+                if ($comment){
+                    $comment->collect_id = $collect->id;
+                    $data['comment'][] = $comment;
+                }
             }
         }
         if (isset($data['course'])){

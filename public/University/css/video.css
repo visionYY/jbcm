@@ -2,12 +2,14 @@
 
 @-webkit-keyframes vhide {0% {opacity: 1;}100% {opacity: 0;}}
 
+
 .vhidden {
   animation: vhide 3.5s ease-in;
   -webkit-animation: vhide 3.5s ease-in;
   animation-fill-mode:forwards;
   -webkit-animation-fill-mode: forwards;
 }
+
 .wengaotab{
   position: absolute;
   top: 1.8rem;
@@ -18,6 +20,7 @@
   /* overflow: hidden; */
   background-color: #CCCCCC;
   width:100%;
+  /* height:2.11rem; */
 }
 .bad-video .pause {
   position: absolute;
@@ -57,15 +60,6 @@
   transform: translate(-50%, -50%);
 }
 .bad-video .vcollect{
-  position: absolute;
-  width: .175rem;
-  z-index: 99;
-  top: 12%;
-  left: 93%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-.bad-video .vcollect1{
   position: absolute;
   width: .175rem;
   z-index: 99;
@@ -199,16 +193,9 @@
   z-index:99;
 }
 
-@media screen and (min-width:450px){
-  .bad-video .controls>*:nth-child(1) {
-    width: 75%;
-  }
-}
-
-
 .orangerb{
-  width: 100%;
-  height: .4rem;
+  width:100%;
+  height:.4rem;
   overflow: hidden;
   border-bottom: 1px solid rgba(222,222,222,1);
 }
@@ -238,15 +225,10 @@
   color:#4D63A7!important;
 }
 .box {
-  display: none;
+  display:none;
   padding: .1rem .15rem;
   padding-bottom: .6rem;
-  /* overflow-x: hidden;
-  overflow-y: scroll; */
 }
-/* .box::-webkit-scrollbar {
-  display: none;
-} */
 
 .class_tit{
   font-size:.16rem;
@@ -254,6 +236,7 @@
   font-weight:bold;
   color:rgba(26,29,53,1);
   line-height:22px;
+  height:.2rem;
   line-height:.2rem;
   position: relative;
   padding-left:.08rem;
@@ -268,12 +251,11 @@
   top: .02rem;
 }
 .class_guest{
-  margin-top: .1rem;
-  font-size: .12rem;
-  font-family: PingFang-SC-Medium;
-  color: #535353;
-  line-height: .18rem;
-  /* height: 3rem; */
+  margin-top:.1rem;
+  font-size:.12rem;
+  font-family:PingFang-SC-Medium;
+  color:#535353;
+  line-height:.18rem;
 }
 .class_guest>span{
   font-size:.13rem;
@@ -281,7 +263,6 @@
   font-weight:bold;
   color:rgba(51,51,51,1);
   line-height:.18rem;
-  
 }
 .btn{
   position: fixed;
@@ -426,8 +407,8 @@
 
 .biaoqian{
   position: absolute;
-  left:0.02rem;
-  top: 0.01rem;
+  left:0;
+  top: 0;
 }
 .biaoqian img{
   width:.14rem;
@@ -492,8 +473,8 @@
   display: none;
 }
 .wengaotab img{
-  width: .36rem;
-  height:.53rem;
+  width: .31rem;
+  height: .46rem;
 }
 .wengaobox{
   display: none;
@@ -565,7 +546,7 @@ input[type="checkbox"],input[type="radio"]{
   top: .03rem;
   left: .03rem;
 }
-input:checked+.label:after{
+input:checked+label:after{
   width: .06rem;
   height: .06rem;
   border: 5px solid rgba(48, 92, 186, 1);
@@ -636,4 +617,40 @@ input:checked+.label:after{
   color:rgba(102,102,102,1);
   line-height:.16rem;
   margin-top:.06rem;
+}
+
+@media screen and (min-width:450px){
+  .bad-video .controls>*:nth-child(1) {
+    width: 75%;
+  }
+}
+
+.cli{
+  display: none;
+  width:.3rem;
+  height:.9rem;
+  background:rgba(230,191,131,1);
+  border-radius:30px;
+  position: absolute;
+  right: .08rem;
+  top: 2.3rem;
+  padding: .05rem 0;
+}
+.cli p{
+  width:.3rem;
+  height:.27rem;
+  text-align: center;
+  line-height:.3rem;
+}
+.sc img{
+  width:.14rem;
+  height:.13rem;
+}
+.wb img{
+  width:.12rem;
+  height:.13rem;
+}
+.yp img{
+  width:.11rem;
+  height:.14rem;
 }

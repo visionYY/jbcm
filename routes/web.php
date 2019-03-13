@@ -115,6 +115,7 @@ Route::group(['prefix'=>'university'],function(){
         Route::get('commentPoster/cid/{cid}','University\DiscussionController@commentPoster');      //评论海报
         Route::post('putReply','University\DiscussionController@putReply');     //添加回复
         Route::delete('delReply','University\DiscussionController@delReply');     //删除回复
+        Route::delete('delComment','University\DiscussionController@delComment');     //删除评论
         Route::get('commentDetail/id/{id}','University\DiscussionController@commentDetail'); //评论详情
 
         Route::post('collect','University\DiscussionController@collect');     //添加收藏

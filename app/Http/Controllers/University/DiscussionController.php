@@ -245,12 +245,24 @@ class DiscussionController extends Controller
         }
     }
 
+    //删除评论
+    public function delComment(Request $request){
+        $comment = Comment::find($request->cid);
+        if (!$comment){
+            return response(['code'=>'001','msg'=>'该评论已被删除']);
+        }
+        if ($comment->delete()){
+            return response(['code'=>'002','msg'=>'删除成功']);
+        }else{
+            return response(['code'=>'003','msg'=>'删除失败']);
+        }
+    }
     //删除回复
     public function delReply(Request $request){
 //        dd($request->all());
         $reply = Reply::find($request->rid);
         if (!$reply){
-            return response(['code'=>'001','msg'=>'该评论已被删除']);
+            return response(['code'=>'001','msg'=>'该回复已被删除']);
         }
         if (Reply::destroy($request->rid)){
             return response(['code'=>'002','msg'=>'删除成功']);
@@ -262,6 +274,9 @@ class DiscussionController extends Controller
     //评论详情
     public function commentDetail($id){
         $comment = Comment::find($id);
+        if (!$comment){
+            return back();
+        }
         if (Auth::guard('university')->check()){
             $login = Auth::guard('university')->user();
             $collect = Collect::where('user_id',$login->id)->where('by_collect_id',$comment->id)->where('type',2)->first();
@@ -270,11 +285,18 @@ class DiscussionController extends Controller
             }else{
                 $comment->coll_status = 0;
             }
+            //点赞
             $praise = Praise::where('user_id',$login->id)->where('by_praise_id',$comment->id)->where('type',1)->first();
             if ($praise){
                 $comment->prai_status = $praise->status;
             }else{
                 $comment->prai_status = 0;
+            }
+            //判断是否自己的评论
+            if ($login->id == $comment->user_id){
+                $comment->is_my = 1;
+            }else{
+                $comment->is_my = 0;
             }
         }
         $comment->time = Helper::getDifferenceTime($comment->created_at);
@@ -378,6 +400,7 @@ class DiscussionController extends Controller
             }
         }
     }
+
 
     /**
      *递归获取回复

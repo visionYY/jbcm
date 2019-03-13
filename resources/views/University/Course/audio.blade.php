@@ -4,10 +4,30 @@
   <link rel="stylesheet" href="{{asset('University/css/audio.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
   <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <style type="text/css">
+    .cover1{
+      width:70%;
+      background: rgba(0,0,0,.4);
+      height:.4rem;
+      line-height:.4rem;
+      text-align: center;
+      position: fixed;
+      top:50%;
+      left:15%;
+      color: #fff;
+      border-radius:.06rem;
+      font-size:.12rem;
+      display:none;
+    }
+  </style>
   <div class="wrapper">
     <div class="audio-wrapper">
         <audio size="#4.50MB" duration="#01:57" filename="#Launch_Kan R. Gao.mp3">
+          @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
             <source id="autoPlay" class="autoPlay" src="{{$course->oneAudio}}" type="audio/mp3">
+          @else    
+            <source id="autoPlay" class="autoPlay" src="" type="audio/mp3">
+          @endif
         </audio>
         <div class="audio-left">
             <img id="audioPlayer" src="{{asset('University/images/play.png')}}">
@@ -22,25 +42,13 @@
             </div>
             <div class="audio-time">
                 <span class="audio-length-current" id="audioCurTime">00:00</span>
+                @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
                 <span class="audio-length-total">{{substr($course->oneTime,3,5)}}</span>
+                @else
+                <span class="audio-length-total">00:00</span>
+                @endif
             </div>
         </div>
-        <div class="audio-right2">
-            <img class="avideo" src="{{asset('University/images/icon_shipin@2x.png')}}">
-        </div>
-         @if(Auth::guard('university')->check())
-        <div class="audio-right3 collect" status="{{$course->coll_status}}">
-          @if($course->coll_status)
-          <img src="{{asset('University/images/icon_yishoucang@2x.png')}}">
-          @else
-          <img src="{{asset('University/images/icon_shoucang.png')}}">
-          @endif
-        </div>
-        @else
-        <div class="audio-right3 onlogin">
-          <img src="{{asset('University/images/icon_shoucang.png')}}">
-        </div>  
-        @endif
     </div>
     <div id="centera">
       <div class="orangerb">
@@ -200,25 +208,46 @@
         <button class="btn onlogin">开通课程 | ￥99</button>
     @endif
     <div class="hint">购买后才能继续学习</div>
-    @if($course->oneType == 0 || Auth::guard('university')->check() && $course->isBuy == 1)
-    <div class="wengaotab denlu"><img src="{{asset('University/images/icon_wengao@2x.png')}}" alt=""></div>
+    <div class="wengaotab"><img src="{{asset('University/images/icon_wengao@3x.png')}}" alt=""></div>
     <div class="wengaobox con_content">{{$course->oneContent}}</div>
-    @else
-    <div class="wengaotab onlogin"><img src="{{asset('University/images/icon_wengao@2x.png')}}" alt=""></div>
-    @endif
   </div>
   {{-- 登陆地址 --}}
   <input type="hidden" name="loginUrl" value="{{url('university/quickLogin?source=5&yid='.$course->id)}}">
   <input type="hidden" id="videoUrl" value="{{url('university/course/show/id/'.$course->id)}}">
   @if(Auth::guard('university')->check())
+  <div class="cli">
+    <p class="sc collect" status="{{$course->coll_status}}">
+      @if($course->coll_status)
+      <img src="{{asset('University/images/icon_shoucangdian@2x.png')}}">
+      @else
+      <img src="{{asset('University/images/icon_shoucang@3x.png')}}">
+      @endif
+    </p>
+    @if($course->oneType == 0 || $course->isBuy == 1)
+    <p class="wb draft"><img src="{{asset('University/images/icon_wengao@2x.png')}}"></p>
+    @else
+    <p class="wb notBy"><img src="{{asset('University/images/icon_wengao@2x.png')}}"></p>
+    @endif
+    <p class="yp"><img src="{{asset('University/images/icon_shipin@2x.png')}}"></p>
+  </div>
   <input type="hidden" name="ls_id" value="{{$course->oneId}}">
   <input type="hidden" name="status" value="{{$course->coll_status}}" id="status">
   <input type="hidden" value="1" id="is_login">
   @else
+  <div class="cli">
+    <p class="sc onlogin"><img src="{{asset('University/images/icon_shoucang@3x.png')}}"></p>
+    @if($course->oneType == 0)
+    <p class="wb draft"><img src="{{asset('University/images/icon_wengao@2x.png')}}"></p>
+    @else
+    <p class="wb onlogin"><img src="{{asset('University/images/icon_wengao@2x.png')}}"></p>
+    @endif
+    <p class="yp"><img src="{{asset('University/images/icon_shipin@2x.png')}}"></p>
+  </div>
   <input type="hidden" name="ls_id" value="0">
   <input type="hidden" name="status" value="0" id="status">
   <input type="hidden" value="0" id="is_login">
   @endif
+  <div class="cover1">请先购买该课程</div>
     <!-- <script src="University/js/jquery.min.js"></script> -->
     <!-- <script type="text/javascript" src="University/js/audio.js"></script> -->
     <script>
@@ -478,21 +507,24 @@
         });
       });
 
-      //切换文稿
-      $(".denlu img").click(function(){ 
-         
-          if(this.src.search("University/images/icon_wengao@2x.png")!=-1){ 
-              this.src="{{asset('University/images/icon_guanbi@2x.png')}}"; 
-              $("#centera").hide();
-              $('.wengaobox').show();
-          }else{ 
-              this.src="{{asset('University/images/icon_wengao@2x.png')}}";
-              $("#centera").show();
-              $('.wengaobox').hide(); 
-          } 
+      // 文稿
+      $(".draft img").click(function(){
+        if($(".wengaotab img").attr("src","{{asset('University/images/icon_wengao@3x.png')}}")){ 
+          $(".wengaotab img").attr("src","{{asset('University/images/icon_guanbi@2x.png')}}"); 
+          $("#centera").hide();
+          $('.wengaobox').show();
+          $('.cli').hide();
+        }
+      })
+      //文稿未购买
+      $('.notBy').click(function(){
+        $(".cover1").css("display","block");
+          setTimeout(function(){//定时器 
+            $(".cover1").css("display","none");
+          },3000);
       })
       //切换页面
-      $(".avideo").click(function(){
+      $(".yp").click(function(){
         location.href = $('#videoUrl').val();
       })
 
@@ -614,17 +646,18 @@
           var status = $(this).attr('status') == 1 ? 0 : 1;
           $.ajax({
             url:"{{url('university/course/collect')}}",
-            data:{_token:"{{csrf_token()}}",cid:"{{$course->id}}",status:0},
+            data:{_token:"{{csrf_token()}}",cid:"{{$course->id}}",status:status},
             type:'POST',
             dataType:'json',
             success:function(d){
+              console.log(d)
               if (d.code == '002') {
                 if (status==1) {
                   imgObj.attr('status',1);
-                  imgObj.find('img').attr('src',"{{asset('University/images/icon_yishoucang@2x.png')}}")
+                  imgObj.find('img').attr('src',"{{asset('University/images/icon_shoucangdian@2x.png')}}")
                 }else{
                   imgObj.attr('status',0)
-                  imgObj.find('img').attr('src',"{{asset('University/images/icon_shoucang.png')}}")
+                  imgObj.find('img').attr('src',"{{asset('University/images/icon_shoucang@3x.png')}}")
                 }
               }else{
                 console.log(d)
@@ -637,14 +670,17 @@
         }
       })
 
-      // document.body.addEventListener('touchmove', function (event) {
-      //     event.preventDefault();
-      // }, false);
-
-  /*$('.get_video').click(function(){
-    initAudioEvent()
- })*/
-
-
+      //按钮切换 
+      $(".wengaotab img").click(function(){ 
+        console.log(this.src.search("{{asset('University/images/icon_wengao@3x.png')}}")!=-1)
+        if(this.src.search("{{asset('University/images/icon_wengao@3x.png')}}")!=-1){ 
+          $('.cli').toggle();
+        }else{ 
+          this.src="{{asset('University/images/icon_wengao@3x.png')}}";
+          $("#centera").show();
+          $('.wengaobox').hide(); 
+        } 
+      })
+     
     </script>
 @stop

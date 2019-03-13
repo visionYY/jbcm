@@ -16,11 +16,16 @@
           </dt>
         </dl>
         @if(Auth::guard('university')->check())
-        <div class="collect" status="{{$comment->coll_status}}">
+        <div class="funr">
+          <a href="#" class="Imgbox collectClick" status="{{$comment->coll_status}}">
           @if($comment->coll_status)
-          <img src="{{asset('University/images/icon_yishoucang@2x.png')}}" alt="">收藏
+            <img src="{{asset('University/images/icon_yishoucang@2x.png')}}" alt="">收藏
           @else
-          <img src="{{asset('University/images/icon_shoucang@2x.png')}}" alt="">收藏
+            <img src="{{asset('University/images/icon_shoucang@2x.png')}}" alt="">收藏
+          @endif
+          </a>
+          @if($comment->is_my == 1)
+          <a href="#" class="Imgbox delcli"><img src="{{asset('University/images/icon_shanchu@2x.png')}}" />删除</a>
           @endif
         </div>
         @else
@@ -28,11 +33,10 @@
           <img src="{{asset('University/images/icon_shoucang@2x.png')}}" alt="">收藏
         </div>
         @endif
-        <p class="funr">
-          <a href="{{url('university/discussion/discussionPoster/did/'.$discussion->id)}}" class="Imgbox">
-            <img src="{{asset('University/images/icon_shoucang@2x.png')}}" />收藏</a>
+        <!-- <p class="funr">
+          <a href="#" class="Imgbox"><img src="{{asset('University/images/icon_shoucang@2x.png')}}" />收藏</a>
             <a href="#" class="Imgbox delcli"><img src="{{asset('University/images/icon_shanchu@2x.png')}}" />删除</a>
-        </p>
+        </p> -->
       </div>
       <div class="detailCon">
           {{$comment->content}}
@@ -162,14 +166,25 @@
         $('.box2').show();
         $('.box1').hide();
         $('.yesl').click(function(){
-          
+            $.ajax({
+              url:"{{url('university/discussion/delComment')}}",
+              data:{_token:csrf,cid:cid},
+              type:'DELETE',
+              dataType:'json',
+              success:function(d){
+                console.log(d);
+                if (d.code == '002') {
+                  window.location.href="{{url('university/discussion/detail/id/'.$comment->discussion_id)}}";
+                }
+              }
+            })
         });
         $('.nor').click(function(){
           $('.cover').hide();
         })
       })
       //收藏
-      $('.collect').click(function(){
+      $('.collectClick').click(function(){
         var status = $(this).attr('status') == 1 ? 0 : 1;
         var thisOBJ = $(this).find("img");
         $.ajax({
