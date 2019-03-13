@@ -9,8 +9,8 @@
     <div id="centera">
       <div class="orangerb">
         <ul id="oranger"> 
-          <li class="hover">课程</li> 
-          <li>观点</li> 
+          <li class="hover">课程<span>({{$data['courseCount']}})</span></li> 
+          <li>观点<span>({{$data['commentCount']}})</span></li> 
         </ul>
       </div>
       <div id="tablea" class="tablea">
@@ -55,7 +55,7 @@
 
         <div class="box">
           <div class="boxBefore2">
-            <p class="tabBtn11"><img src="{{asset('University/images/icon_bianji@2x.png')}}" alt="">编辑</p>
+            <p class="tabBtn11 bianji"><img src="{{asset('University/images/icon_bianji@2x.png')}}" alt="">编辑</p>
             <div class="tabBtn22">
               <p class="text">已选中1条记录</p>
               <p class="checkboxF">
@@ -151,6 +151,7 @@
         $(".tabBtn22").css("display","none");
         $('.checkboxF22').css('display','none');
         $('.delete2').css('display','none');
+        // window.location.reload();
       })
 
       $('#all').on('click',function(){

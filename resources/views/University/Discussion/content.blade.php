@@ -17,7 +17,7 @@
       <p class="boxtit">已发布</p>
       <div class="btns">
         <p class="yesl" onclick="window.location.href='{{url("university/discussion/detail/id/".$discussion->id)}}'">关闭</p>
-        <p class="nor">生成海报</p>
+        <p class="nor" onclick="schb()">生成海报</p>
       </div>
     </div>
   </div>
@@ -34,6 +34,7 @@
   <footer>
     <p class="issue">发布</p>
   </footer>
+  <input type="hidden" id="cid" value="0">
   <!-- <script src="University/js/jquery.min.js"></script> -->
   <script>
     $(document).ready(function () {
@@ -52,11 +53,12 @@
               $('.tz_con').text(d.content);
               $('.cover1').fadeIn()
             }else if(d.code == '002'){
+              $('#cid').val(d.data.id);
               $('.cover').fadeIn()  
             }else{
               alert(d.msg); 
             }
-            // console.log(d);
+            console.log(d);
 
           }
 
@@ -67,5 +69,15 @@
         $('.cover1').fadeOut() 
       })
     })
+
+    function schb(){
+      var cid = $('#cid').val()
+      if(cid != 0){
+        var hburl = "{{url('university/discussion/commentPoster/cid')}}"+'/'+cid;
+        window.location.href=hburl;
+      }else{
+        alert('尚未评论，无法生成海报')
+      }
+    }
   </script>
 @stop

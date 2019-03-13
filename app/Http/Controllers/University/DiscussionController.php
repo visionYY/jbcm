@@ -110,8 +110,8 @@ class DiscussionController extends Controller
             return response(['code' => '004','msg' => "detect not success. code:" . $response->code]);
 //            print_r("detect not success. code:" + $response->code);
         }
-        if (Comment::create($data)){
-            return response(['code'=>'002','msg'=>'评论成功']);
+        if ($comment = Comment::create($data)){
+            return response(['code'=>'002','msg'=>'评论成功','data'=>$comment]);
         }else{
             return response(['code'=>'003','msg'=>'评论失败，稍后重试！']);
         }
@@ -192,7 +192,7 @@ class DiscussionController extends Controller
         }
         $comment['id'] =$cid;
         $user = Auth::user();
-//        dd($comment);
+    //    dd($comment);
 
         return view('University.Discussion.reply',compact('user','comment','type'));
     }

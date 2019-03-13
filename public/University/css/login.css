@@ -234,3 +234,18 @@ input[type="submit"]{
   color:rgba(255,255,255,1);
 
 } */
+
+.cover1{
+  width:70%;
+  background: rgba(0,0,0,.4);
+  height:.4rem;
+  line-height:.4rem;
+  text-align: center;
+  position: fixed;
+  top:26%;
+  left:15%;
+  color: #fff;
+  border-radius:.06rem;
+  font-size:.12rem;
+  display:none;
+}

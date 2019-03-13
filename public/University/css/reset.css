@@ -133,3 +133,22 @@ body {
 @media screen and (min-width:432px) and (max-width:479px) and (orientation:portrait){
     html { font-size: 843.75%; }
 }
+
+
+
+
+
+.coverMsg{
+  width:70%;
+  background: rgba(0,0,0,.4);
+  height:.4rem;
+  line-height:.4rem;
+  text-align: center;
+  position: fixed;
+  top:26%;
+  left:15%;
+  color: #fff;
+  border-radius:.06rem;
+  font-size:.12rem;
+  display:none;
+}

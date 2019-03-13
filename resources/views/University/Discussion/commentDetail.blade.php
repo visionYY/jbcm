@@ -95,9 +95,6 @@
       <a href="{{url('university/discussion/commentPoster/cid/'.$comment->id)}}" class="Imgbox">
         <img src="{{asset('University/images/icon_haibao@2x.png')}}" />海报
       </a>
-      <a href="javascript:;" class="Imgbox">
-        <img src="{{asset('University/images/icon_fenxiang2@2x.png')}}"/>转发
-      </a>
       <a href="javascript:;" class="Imgbox dianzan" status="{{$comment->prai_status}}">
         @if($comment->prai_status)
         <img src="{{asset('University/images/icon_dianzan@2x.png')}}" />赞同
@@ -114,7 +111,6 @@
       <a href="{{url('university/discussion/commentPoster/cid/'.$comment->id)}}" class="Imgbox">
         <img src="{{asset('University/images/icon_haibao@2x.png')}}" />海报
       </a>
-      <a href="#" class="Imgbox"><img src="{{asset('University/images/icon_fenxiang2@2x.png')}}" />转发</a>
       <a href="javascript:;" class="Imgbox">
         <img src="{{asset('University/images/icon_dianzan1@2x.png')}}" />赞同
       </a>
