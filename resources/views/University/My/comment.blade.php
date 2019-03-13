@@ -23,7 +23,7 @@
           </dt>
         </dl>
       </div>
-      <div class="detailCon">{{$comment->content}}</div>
+      <div class="detailCon" onclick="window.location.href='{{url("university/discussion/commentDetail/id/".$comment->id)}}'">{{$comment->content}}</div>
       <div class="detailTit" onclick="window.location.href='{{url("university/discussion/detail/id/".$comment->discussion_id)}}'">
         <p class="tit"># {{$comment->dis_title}}</p>
         <p class="t_con">

@@ -101,6 +101,8 @@ class MyController extends Controller
         $user = Auth::guard('university')->user();
         $collects = Collect::where('user_id',$user->id)->where('status',1)->get();
         $data = array();
+        $data['courseCount'] = 0;
+        $data['commentCount'] = 0;
         foreach($collects as $collect){
             if ($collect->type ==1){
                 //课程收藏
@@ -108,6 +110,7 @@ class MyController extends Controller
                 if ($course){
                     $course->collect_id = $collect->id;
                     $data['course'][] = $course;
+                    $data['courseCount'] ++;
                 }
             }else{
                 //评论收藏
@@ -115,6 +118,7 @@ class MyController extends Controller
                 if ($comment){
                     $comment->collect_id = $collect->id;
                     $data['comment'][] = $comment;
+                    $data['commentCount'] ++;
                 }
             }
         }

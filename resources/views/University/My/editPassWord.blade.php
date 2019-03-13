@@ -1,5 +1,5 @@
 @extends('layouts.university')
-@section('title','我的')
+@section('title','设置密码')
 @section('content')
   <link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">

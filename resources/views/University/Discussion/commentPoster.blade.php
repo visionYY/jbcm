@@ -27,7 +27,7 @@
   </div>
   <div class="btn">
       <p class="left">保存本地</p>
-      @if($data['web'] ==1)
+      @if($data['web'] ==1 )
         <!-- <p class="right">分享</p> -->
         <script type="text/javascript">
             wx.config({
@@ -46,8 +46,8 @@
             window.share_config = {
                  "share": {
                     "imgUrl": "http://www.ijiabin.com/Home/images/wyjb_logo.png",//分享图，默认当相对路径处理，所以使用绝对路径的的话，“http://”协议前缀必须在。
-                    "desc" : "{{strip_tags($data['discussion']->content)}}",//摘要,如果分享到朋友圈的话，不显示摘要。
-                    "title" : "{{$data['discussion']->title}}",//分享卡片标题
+                    "desc" : "{{strip_tags($discussion->content)}}",//摘要,如果分享到朋友圈的话，不显示摘要。
+                    "title" : "{{$discussion->title}}",//分享卡片标题
                     "link": window.location.href,//分享出去后的链接，这里可以将链接设置为另一个页面。
                     "success":function(){
                         //分享成功后的回调函数

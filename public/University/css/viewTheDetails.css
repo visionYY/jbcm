@@ -70,11 +70,7 @@ body{
   color:rgba(51,51,51,1);
   line-height:.18rem;
   margin-top:.06rem;
-  overflow : hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  
 }
 .detailTit{
   width:100%;
@@ -174,7 +170,7 @@ footer{
   padding: 0 .15rem;
 }
 .input{
-  width: 60%;
+  width: 79%;
   padding-right:.13rem;
 }
 .input>input{
@@ -192,7 +188,7 @@ input::-webkit-input-placeholder {
   opacity:0.6;
 }
 .fun{
-  width:40%;
+  width:21%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -201,7 +197,7 @@ input::-webkit-input-placeholder {
 .fun .Imgbox {
   text-align:center;
   height: 100%;
-  width: 33.333%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;

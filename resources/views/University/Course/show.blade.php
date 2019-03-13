@@ -1,7 +1,6 @@
 @extends('layouts.university')
 @section('title','课程')
 @section('content')
-  <link rel="stylesheet" href="{{asset('University/css/audio.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/video.css')}}">
   <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 

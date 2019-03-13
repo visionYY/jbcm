@@ -10,7 +10,7 @@
 	      <p class="tit"><img src="{{asset('University/images/jbdx.png')}}" alt="">快速登录</p>
 	      <form action="" method="post">
 		      <div class="form">
-		        <input class="username"  type="text" name="mobile" placeholder="手机号" value="{{old('mobile')}}">
+		        <input class="username" id="phone" type="tel" name="mobile" placeholder="手机号" value="{{old('mobile')}}">
 		        <input class="num" type="text" name="yzm" placeholder="短信验证码" value="{{old('yzm')}}">
 		        <input type="button" id="btn" value="免费获取验证码" onclick="settime(this)" class="sendCode" />
 		        <!-- <button id="btn">免费获取验证码</button> -->
@@ -23,14 +23,25 @@
 		      </div>
 	      </form>
 	      <p class="tt">未注册用户验证后自动登录</p>
-	      <p class="ttt">登录即表示同意嘉宾大学<a href="{{url('university/serviceAgreement')}}">服务协议</a>和<a href="{{url('university/serviceAgreement')}}">隐私政策</a></p>
+	      <p class="ttt">登录即表示同意嘉宾大学<a href="{{url('university/serviceAgreement')}}">服务协议</a>和<a href="{{url('university/privacyPolicy')}}">隐私政策</a></p>
 	    </div>
-	 </div>
+	</div>
+	<div class="cover1">请填写正确的手机号</div>
 	 @include('layouts.u_hint')
 	<script type="text/javascript">
 	    var countdown=60;
+		var phone = document.getElementById('phone').value;
 	    function settime(val) {
-	        if (countdown == 0) {
+			if(!(/^1[34578]\d{9}$/.test(phone))){ 
+				$(".cover1").css("display","none");
+			} else{
+				$(".cover1").css("display","block");
+				setTimeout(function(){//定时器 
+					$(".cover1").css("display","none");
+				},3000);
+				return false; 
+			}
+	        if(countdown == 0) {
 	            val.removeAttribute("disabled");
 	            val.value="免费获取验证码";
 	            countdown = 60;
