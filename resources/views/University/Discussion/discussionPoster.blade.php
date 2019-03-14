@@ -57,9 +57,9 @@
       @endif
     </div>
   </div>
-  <div class="know" onclick="this.style.display = 'none'">
+  <!-- <div class="know" onclick="this.style.display = 'none'">
     <img src="{{asset('University/images/hint.png')}}" alt="">
-  </div>
+  </div> -->
   <script>
     
   </script>

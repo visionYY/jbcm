@@ -129,6 +129,12 @@ h6{
   color:#666666;
   line-height:.16rem;
   margin-bottom:.1rem;
+  word-wrap: break-word;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .rep_com>span{
   font-size:.12rem;
