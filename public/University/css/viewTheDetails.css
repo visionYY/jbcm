@@ -170,7 +170,7 @@ footer{
   padding: 0 .15rem;
 }
 .input{
-  width: 79%;
+  width: 70%;
   padding-right:.13rem;
 }
 .input>input{
@@ -181,6 +181,7 @@ footer{
   border-radius:5px;
   padding-left:.06rem;
 }
+input{ -webkit-appearance: none; }
 input::-webkit-input-placeholder {
   font-size:.12rem;
   font-family:PingFang-SC-Regular;
@@ -188,7 +189,7 @@ input::-webkit-input-placeholder {
   opacity:0.6;
 }
 .fun{
-  width:21%;
+  width:30%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
