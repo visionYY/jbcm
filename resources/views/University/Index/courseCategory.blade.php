@@ -12,7 +12,7 @@
 	</style>
 	<div class="wrapper">
 		@foreach($courses as $course)
-	    <dl class="bus_list" onclick="window.location.href='{{url("university/course/show/id/".$course->id)}}'">
+	    <dl class="bus_list" onclick="window.location.href='{{route('video',['id'=>$course->id])}}'">
 	        <a href="#">
 	          <dt class="list-img"><img src="{{asset($course->lengthways_cover)}}" alt=""></dt>
 	          <dd>

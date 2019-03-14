@@ -73,10 +73,10 @@
             <div class="tab-content">
                {{--课程内容--}}
               <div class="box2">
-                @foreach($contents as $content)
+                @foreach($contents as $k=>$content)
                   @if($content->type == 0 || Auth::guard('university')->check() && $course->isBuy == 1)
                   @if(Auth::guard('university')->check())
-                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="{{$content->learning->id}}" audio="{{$content->audio}}" time="{{substr($content->time,3,5)}}">
+                  <div class="class_list get_video" content="{{$content->content}}" ls_id="{{$content->learning->id}}" audio="{{$content->audio}}" kid="{{$k}}" ls_time="{{$content->learning->learning_time}}" time="{{substr($content->time,3,5)}}">
                   @else  
                   <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="0" audio="{{$content->audio}}" time="{{substr($content->time,3,5)}}">
                   @endif  
@@ -213,16 +213,17 @@
   </div>
   {{-- 登陆地址 --}}
   <input type="hidden" name="loginUrl" value="{{url('university/quickLogin?source=5&yid='.$course->id)}}">
-  <input type="hidden" id="videoUrl" value="{{url('university/course/show/id/'.$course->id)}}">
+  {{--当前视频Key--}}
+  <input type="hidden" id="kid" value="{{$course->kid}}">
   @if(Auth::guard('university')->check())
   <div class="cli">
-    <p class="sc collect" status="{{$course->coll_status}}">
+    <!-- <p class="sc collect" status="{{$course->coll_status}}">
       @if($course->coll_status)
       <img src="{{asset('University/images/icon_shoucangdian@2x.png')}}">
       @else
       <img src="{{asset('University/images/icon_shoucang@3x.png')}}">
       @endif
-    </p>
+    </p> -->
     @if($course->oneType == 0 || $course->isBuy == 1)
     <p class="wb draft"><img src="{{asset('University/images/icon_wengao@2x.png')}}"></p>
     @else
@@ -230,12 +231,16 @@
     @endif
     <p class="yp"><img src="{{asset('University/images/icon_shipin@2x.png')}}"></p>
   </div>
-  <input type="hidden" name="ls_id" value="{{$course->oneId}}">
+  {{--当前小节学习记录ID及时间--}}
+  <input type="hidden" name="ls_id" value="{{$course->learindgId}}">
+  <input type="hidden" name="ls_time" value="{{$course->learindgTime}}">
+  {{--当前课程收藏状态--}}
   <input type="hidden" name="status" value="{{$course->coll_status}}" id="status">
+  {{--当前登陆状态--}}
   <input type="hidden" value="1" id="is_login">
   @else
   <div class="cli">
-    <p class="sc onlogin"><img src="{{asset('University/images/icon_shoucang@3x.png')}}"></p>
+    <!-- <p class="sc onlogin"><img src="{{asset('University/images/icon_shoucang@3x.png')}}"></p> -->
     @if($course->oneType == 0)
     <p class="wb draft"><img src="{{asset('University/images/icon_wengao@2x.png')}}"></p>
     @else
@@ -243,13 +248,10 @@
     @endif
     <p class="yp"><img src="{{asset('University/images/icon_shipin@2x.png')}}"></p>
   </div>
-  <input type="hidden" name="ls_id" value="0">
   <input type="hidden" name="status" value="0" id="status">
   <input type="hidden" value="0" id="is_login">
   @endif
   <div class="cover1">请先购买该课程</div>
-    <!-- <script src="University/js/jquery.min.js"></script> -->
-    <!-- <script type="text/javascript" src="University/js/audio.js"></script> -->
     <script>
       var is_login = $('#is_login').val();
       var loginUrl = $('[name=loginUrl]').val();
@@ -257,16 +259,18 @@
        
         $('.get_video').click(function () {
           var indexMius = $(this).attr('audio');
-          audioPlay(indexMius);
+          var learindgTime = $(this).attr('ls_time');
+          audioPlay(indexMius,learindgTime);
         })
       })
 
       //播放
-      function audioPlay(src){
+      function audioPlay(src,time=0){
          initAudioEvent(); 
           $("audio").prop("src",src)
           var audio = document.getElementsByTagName('audio')[0];
           audio.load();
+          audio.currentTime = time;
           audio.oncanplay = function () {
                var audioPlayer = document.getElementById('audioPlayer');
                audioPlayer.click()
@@ -279,7 +283,7 @@
           var maxWidth = window.getComputedStyle(element, null).width;
           // 初始化音频控制事件
           var indexMius = $('#autoPlay').attr('src');
-          audioPlay(indexMius);
+          audioPlay(indexMius,$('[name=ls_time]').val());
       }, false);
 
       function initAudioEvent( audioPlayer = document.getElementById('audioPlayer') ) {
@@ -413,6 +417,7 @@
           document.getElementById('progressDot').style.left = value * 100 + '%';
           document.getElementById('audioCurTime').innerText = transTime(audio.currentTime);
           $('.audio-length-total').text(transTime(audio.duration))
+          window.localStorage.setItem('now_time',Math.floor(audio.currentTime))
       }
 
       /**
@@ -423,6 +428,8 @@
           document.getElementById('progressDot').style.left = 0;
           document.getElementById('audioCurTime').innerText = transTime(0);
           document.getElementById('audioPlayer').src = '{{asset("University/images/play.png")}}';
+          getVideoTime(1);
+          // audioPlay();
       }
 
       /**
@@ -525,7 +532,9 @@
       })
       //切换页面
       $(".yp").click(function(){
-        location.href = $('#videoUrl').val();
+        var kid = $('#kid').val();
+        var videoUrl = "{{url('university/course/video/'.$course->id)}}"+'/'+kid;
+        location.href = videoUrl;
       })
 
       //登陆
@@ -615,16 +624,13 @@
         return '确认关闭';
      }
 
-      //获取播放时间
+      //存储播放时间
       function getVideoTime(state){
-        var _token = "{{csrf_token()}}"
-        var now_time = $('#audioCurTime').text();
-        var ls_id = $('[name=ls_id]').val();
         var is_login = $('#is_login').val();
-        console.log(ls_id)
-        console.log(now_time)
         if (is_login == 1) {
-
+          var _token = "{{csrf_token()}}";
+          var now_time = window.localStorage.getItem('now_time');
+          var ls_id = $('[name=ls_id]').val();
           $.ajax({
               url:"{{url('university/course/learningPut')}}",
               data:{_token:_token,ls_id:ls_id,now_time:now_time,state:state},
@@ -640,7 +646,7 @@
       }
 
       //收藏
-      $('.collect').click(function(){
+      /*$('.collect').click(function(){
         if (is_login ==1) {
           var imgObj = $(this);
           var status = $(this).attr('status') == 1 ? 0 : 1;
@@ -668,7 +674,7 @@
           alert('尚未登陆');
           window.location.href = loginUrl;
         }
-      })
+      })*/
 
       //按钮切换 
       $(".wengaotab img").click(function(){ 

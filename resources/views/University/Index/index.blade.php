@@ -103,7 +103,7 @@
 						<div class="swiper-wrapper">
 						@foreach($course['boutique'] as $bout)
 								<div class="swiper-slide">
-									<img src="{{url($bout->crosswise_cover)}}" onclick="window.location.href='{{url("university/course/show/id/".$bout->id)}}'">
+									<img src="{{url($bout->crosswise_cover)}}" onclick="window.location.href='{{route('video',['id'=>$bout->id])}}'">
 								</div>
 							@endforeach
 						</div>
@@ -121,7 +121,7 @@
 		  <h4 class="bus_tit">商业案例课</h4>
 		  @foreach($course['business'] as $busi)
 		  <dl class="bus_list">
-		      <a href="{{url('university/course/show/id/'.$busi->id)}}">
+		      <a href="{{route('video',['id'=>$busi->id])}}">
 		        <dt class="list-img"><img src="{{asset($busi->lengthways_cover)}}" alt=""></dt>
 		        <dd>
 		          <p class="list-tit">{{$busi->name}}</p>

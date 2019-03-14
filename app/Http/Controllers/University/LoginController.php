@@ -40,10 +40,12 @@ class LoginController extends Controller
                     return redirect('university/discussion/commentDetail/id/'.$request->yid);
                 case 4:
                     //课程内容页1
-                    return redirect('university/course/show/id/'.$request->yid);
+//                    return redirect('university/course/show/id/'.$request->yid);
+                    return redirect()->route('video',['id'=>$request->yid]);
                 case 5:
                     //课程内容页2
-                    return redirect('university/course/audio/id/'.$request->yid);
+                    return redirect()->route('audio',['id'=>$request->yid]);
+//                    return redirect('university/course/audio/id/'.$request->yid);
                 default:
                     return redirect('university/my/index')->with('success',config('jbdx.login_success'));
             }

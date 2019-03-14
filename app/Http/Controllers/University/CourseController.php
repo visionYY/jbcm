@@ -20,18 +20,20 @@ class CourseController extends Controller
         $this->middleware('auth:university',['only'=>['buy']]);
     }
     //
-    public function show($id){
+    public function show($id,$kid=0){
         $course = Course::find($id);
         $contents = Content::where('course_id',$id)->get();
         foreach ($contents as $k=>$content){
-            if ($k==0){
+            //当前章节信息
+            if ($kid==$k){
+                $course->kid = $kid;
                 $course->oneId = $content->id;
                 $course->oneType = $content->type;
                 $course->oneVideo = $content->video;
                 $course->oneAudio = $content->audio ;
                 $course->oneContent = $content->content;
-//                dd();
             }
+            //自测题
             $quizs = Quiz::where('content_id',$content->id)->get();
             $content->quizCount = count($quizs);
             foreach ($quizs as $quiz){
@@ -39,35 +41,43 @@ class CourseController extends Controller
             }
             $content->quizs = $quizs;
         }
+        //判断登陆
         if (Auth::guard('university')->check()){
             $user = Auth::guard('university')->user();
+            //订单信息
             $order = Order::where('user_id',$user->id)->where('course_id',$course->id)->where('status',1)->first();
             if ($order){
                 $course->isBuy = 1;
             }else{
                 $course->isBuy = 0;
             }
-            foreach ($contents as $con){
+
+            foreach ($contents as $k=>$con){
+                //章节学习记录
                 $learning = LearningState::where('user_id',$user->id)->where('content_id',$con->id)->first();
-//                dd($learning);
                 if ($learning){
                     $con->learning = $learning;
                 }else{
                     $learn['user_id'] = $user->id;
                     $learn['content_id'] = $con->id;
-                    $learn['learning_time'] = '00:00';
+                    $learn['learning_time'] = '0';
                     $con->learning = LearningState::create($learn);
                 }
+                //当前小节学习记录ID及时间
+                if ($k==$kid){
+                    $course->learindgId = $con->learning->id;
+                    $course->learindgTime = $con->learning->learning_time;
+                }
             }
-            $collect = Collect::where('user_id',$user->id)->where('by_collect_id',$course->id)->where('type',1)->first();
+            //课程收藏记录
+           /* $collect = Collect::where('user_id',$user->id)->where('by_collect_id',$course->id)->where('type',1)->first();
             if ($collect){
                 $course->coll_status = $collect->status;
             }else{
                 $course->coll_status = 0;
-            }
+            }*/
         }
-//        dd($contents,$course);
-//        dd(Auth::guard('university')->check());
+//        dd($course,$contents);
         return view('University.Course.show',compact('course','contents'));
 //        return view('University.Course.test',compact('course','contents'));
     }
@@ -75,11 +85,13 @@ class CourseController extends Controller
     /*
      * 音频
      * */
-    public function audio($id){
+    public function audio($id,$kid){
         $course = Course::find($id);
         $contents = Content::where('course_id',$id)->get();
         foreach ($contents as $k=>$content){
-            if ($k==0){
+            //当前章节信息
+            if ($k==$kid){
+                $course->kid = $kid;
                 $course->oneId = $content->id;
                 $course->oneType = $content->type;
                 $course->oneVideo = $content->video;
@@ -94,31 +106,40 @@ class CourseController extends Controller
             }
             $content->quizs = $quizs;
         }
+        //判断登陆
         if (Auth::guard('university')->check()){
             $user = Auth::guard('university')->user();
+            //订单信息
             $order = Order::where('user_id',$user->id)->where('course_id',$course->id)->where('status',1)->first();
             if ($order){
                 $course->isBuy = 1;
             }else{
                 $course->isBuy = 0;
             }
-            foreach ($contents as $con){
+            foreach ($contents as $k=>$con){
+                //学习记录
                 $learning = LearningState::where('user_id',$user->id)->where('content_id',$con->id)->first();
                 if ($learning){
                     $con->learning = $learning;
                 }else{
                     $learn['user_id'] = $user->id;
                     $learn['content_id'] = $con->id;
-                    $learn['learning_time'] = '00:00';
+                    $learn['learning_time'] = '0';
                     $con->learning = LearningState::create($learn);
                 }
+                //当前小节学习记录ID及时间
+                if ($k==$kid){
+                    $course->learindgId = $con->learning->id;
+                    $course->learindgTime = $con->learning->learning_time;
+                }
             }
-            $collect = Collect::where('user_id',$user->id)->where('by_collect_id',$course->id)->where('type',1)->first();
+            //课程收藏
+            /*$collect = Collect::where('user_id',$user->id)->where('by_collect_id',$course->id)->where('type',1)->first();
             if ($collect){
                 $course->coll_status = $collect->status;
             }else{
                 $course->coll_status = 0;
-            }
+            }*/
 //            print_r($collect);
         }
 //        dd(Auth::guard('university')->check());
@@ -191,7 +212,11 @@ class CourseController extends Controller
     public function learningPut(Request $request){
         $learning = LearningState::find($request->ls_id);
         if ($learning){
-            if ($learning->update(['state'=>$request->state,'learning_time'=>$request->now_time])){
+            $data['learning_time'] = $request->now_time;
+            if($request->state){
+                $data['state'] = $request->state;
+            }
+            if ($learning->update($data)){
                 return response(['code'=>'002','msg'=>'提交成功']);
             }else{
                 return response(['code'=>'003','msg'=>'提交失败，请稍后再试']);

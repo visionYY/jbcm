@@ -13,7 +13,7 @@
   <div class="wrapper">
     <div class="bad-video">
       @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
-        <video  id="myvideo" src="{{$course->oneVideo}}"  controls="controls" autoplay="autoplay"></video>
+        <video  id="myvideo" src="{{$course->oneVideo}}"  controls="controls" autoplay="autoplay" controlslist="nodownload"></video>
       @else
       <div class="nopay">
           <p class="nopay_com">开通后才能继续学习~</p>
@@ -22,8 +22,6 @@
           @else
           <button class="nopay_btn onlogin">立即开通</button>
           @endif
-          <img src="{{asset('University/images/icon_yinpin@2x.png')}}" class="vaudio"/>
-          <img src="{{asset('University/images/icon_vshoucang.png')}}" class="vcollect onlogin"/>
       </div>
       @endif
     </div>
@@ -50,12 +48,12 @@
             <div class="tab-content">
               {{--课程内容--}}
               <div class="box2">
-                @foreach($contents as $content)
+                @foreach($contents as $k=>$content)
                   @if($content->type == 0 || Auth::guard('university')->check() && $course->isBuy == 1)
                   @if(Auth::guard('university')->check())
-                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="{{$content->learning->id}}">
+                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="{{$content->learning->id}}" kid="{{$k}}" ls_time="{{$content->learning->learning_time}}">
                   @else  
-                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="0">
+                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="0" kid="{{$k}}" ls_time="0">
                   @endif  
                     <p class="list_name">
                       <span class="col">{{$content->chapter}} {{$content->title}}</span>
@@ -201,16 +199,17 @@
   </div>
   {{-- 登陆地址 --}}
   <input type="hidden" name="loginUrl" value="{{url('university/quickLogin?source=4&yid='.$course->id)}}">
-  <input type="hidden" id="audioUrl" value="{{url('university/course/audio/id/'.$course->id)}}">
+  {{--当前视频Key--}}
+  <input type="hidden" id="kid" value="{{$course->kid}}">
   @if(Auth::guard('university')->check())
   <div class="cli">
-    <p class="sc collect" status="{{$course->coll_status}}">
+    <!-- <p class="sc collect" status="{{$course->coll_status}}">
       @if($course->coll_status)
       <img src="{{asset('University/images/icon_shoucangdian@2x.png')}}">
       @else
       <img src="{{asset('University/images/icon_shoucang@3x.png')}}">
       @endif
-    </p>
+    </p> -->
     @if($course->oneType == 0 || $course->isBuy == 1)
     <p class="wb draft"><img src="{{asset('University/images/icon_wengao@2x.png')}}"></p>
     @else
@@ -218,12 +217,16 @@
     @endif
     <p class="yp"><img src="{{asset('University/images/icon_yinpin@2x.png')}}"></p>
   </div>
-  <input type="hidden" name="ls_id" value="{{$course->oneId}}">
+  {{--当前小节学习记录ID及时间--}}
+  <input type="hidden" name="ls_id" value="{{$course->learindgId}}">
+  <input type="hidden" name="ls_time" value="{{$course->learindgTime}}">
+  {{--当前课程收藏状态--}}
   <input type="hidden" name="status" value="{{$course->coll_status}}" id="status">
+  {{--当前登陆状态--}}
   <input type="hidden" value="1" id="is_login">
   @else
   <div class="cli">
-    <p class="sc onlogin"><img src="{{asset('University/images/icon_shoucang@3x.png')}}"></p>
+    <!-- <p class="sc onlogin"><img src="{{asset('University/images/icon_shoucang@3x.png')}}"></p> -->
     @if($course->oneType == 0)
     <p class="wb draft"><img src="{{asset('University/images/icon_wengao@2x.png')}}"></p>
     @else
@@ -231,37 +234,51 @@
     @endif
     <p class="yp"><img src="{{asset('University/images/icon_yinpin@2x.png')}}"></p>
   </div>
-  <input type="hidden" name="ls_id" value="0">
   <input type="hidden" name="status" value="0" id="status">
   <input type="hidden" value="0" id="is_login">
   @endif
+   @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
    <script language="javascript">
-      $(document).ready(function(){
-            play(vList[curr]);
-      });
-      var videoOBJ = $('.get_video');
-      var vList = new Array();
-      for (var i = 0; i <= videoOBJ.length - 1; i++) {
-        vList[i] = videoOBJ[i].getAttribute('video')
+    $(document).ready(function(){
+          var ls_time = $('[name=ls_time]').val();
+          play(vList[curr],ls_time);
+    });
+    var videoOBJ = $('.get_video');
+    var vList = new Array();
+    var learIdList = new Array();
+    var learTimeList = new Array();
+    for (var i = 0; i <= videoOBJ.length - 1; i++) {
+      vList[i] = videoOBJ[i].getAttribute('video')
+      learIdList[i] = videoOBJ[i].getAttribute('ls_id')
+      learTimeList[i] = videoOBJ[i].getAttribute('ls_time')
+    }
+    // console.log(vList);
+    var vLen = vList.length;
+    var curr = 0;
+    var video = document.getElementById("myvideo");
+    video.ontimeupdate=function(){
+      window.localStorage.setItem('now_time',Math.floor(this.currentTime))
+    };    
+    video.addEventListener("ended", function(){
+      //    alert("已播放完成，继续下一个视频");
+      getVideoTime(1)
+      play(vList[curr],learTimeList[curr]);
+      $('[name=ls_id').val(learIdList[curr]);
+      $('[name=ls_time').val(learTimeList[curr]);
+      $('#kid').val(parseInt($('#kid').val())+1);
+    });
+    function play(src,time=0) {
+      video.src = src;
+      video.load();
+      video.currentTime=time
+      video.play();
+      curr++;
+      if(curr >= vLen){
+          curr = 0; //重新循环播放
       }
-      // console.log(vList);
-      var vLen = vList.length;
-      var curr = 0;
-      var video = document.getElementById("myvideo");    
-      video.addEventListener("ended", function(){
-        //    alert("已播放完成，继续下一个视频");
-        play(vList[curr]);
-      });
-      function play(src) {
-        video.src = src;
-        video.load();
-        video.play();
-        curr++;
-        if(curr >= vLen){
-            curr = 0; //重新循环播放
-        }
-      }
-    </script>
+    }
+  </script>
+  @endif
     <script>
       $(document).ready(function () {  
         var is_login = $('#is_login').val();
@@ -277,7 +294,8 @@
         $('.get_video').click(function(){
           play($(this).attr('video'));
           $('.con_content').text($(this).attr('content'))
-          $('[name=ls_id]').val($(this).attr('ls_id'))     
+          $('[name=ls_id]').val($(this).attr('ls_id')) 
+          $('#kid').val($(this).attr('kid'))    
           // console.log($(this).attr('video'));
         })
         //答案详情
@@ -324,7 +342,7 @@
           } 
         })
         //收藏
-        $('.collect').click(function(){
+       /* $('.collect').click(function(){
           if (is_login ==1) {
             var imgObj = $(this);
             var status = $(this).attr('status') == 1 ? 0 : 1;
@@ -352,7 +370,7 @@
             alert('尚未登陆');
             window.location.href = loginUrl;
           }
-        })
+        })*/
         //切换文稿
         $(".draft img").click(function(){
           if($(".wengaotab img").attr("src","{{asset('University/images/icon_wengao@3x.png')}}")){ 
@@ -372,7 +390,9 @@
 
         //切换页面
         $(".yp").click(function(){
-          location.href = $('#audioUrl').val();
+          var kid = $('#kid').val();
+          var audiUrl = "{{url('university/course/audio/'.$course->id)}}"+'/'+kid;
+          location.href = audiUrl;
         })
         //登陆
         $('.onlogin').click(function(){
@@ -460,17 +480,16 @@
 
      window.onbeforeunload= function(){
         getVideoTime(0);
-        // return '确认关闭';
+        return '确认关闭';
      }
 
       function getVideoTime(state){
         var _token = "{{csrf_token()}}"
         var now_time = window.localStorage.getItem('now_time');
-        var ls_id = $('[name=ls_id]').val();
         var is_login = $('#is_login').val();
-        console.log(ls_id)
+        console.log(now_time)
         if (is_login == 1) {
-
+          var ls_id = $('[name=ls_id]').val();
           $.ajax({
               url:"{{url('university/course/learningPut')}}",
               data:{_token:_token,ls_id:ls_id,now_time:now_time,state:state},

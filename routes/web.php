@@ -96,8 +96,8 @@ Route::group(['prefix'=>'university'],function(){
 
     //课程部分
     Route::group(['prefix'=>'course'],function (){
-        Route::get('show/id/{id}','University\CourseController@show');
-        Route::get('audio/id/{id}','University\CourseController@audio');
+        Route::get('video/{id}/{cid?}','University\CourseController@show')->name('video');
+        Route::get('audio/{id}/{cid?}','University\CourseController@audio')->name('audio');
         Route::get('buy/id/{id}','University\CourseController@buy');
         Route::post('quizForm','University\CourseController@quizForm');
         Route::post('learningPut','University\CourseController@learningPut');
