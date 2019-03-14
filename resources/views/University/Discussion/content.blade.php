@@ -8,7 +8,7 @@
   <div class="wrapper">
     <p class="dia_tit">{{$discussion->title}}</p>
     <div class="write">
-      <textarea name="" id="content" placeholder="在这里说说你的观点，观点还可以生成精美海报哦~"></textarea>
+      <textarea name="" id="content" oninput="content()" placeholder="在这里说说你的观点，观点还可以生成精美海报哦~"></textarea>
     </div>
   </div>
   <div class="cover">
@@ -32,7 +32,7 @@
     </div>
   </div>
   <footer>
-    <p class="issue">发布</p>
+    <button class="issue" disabled="disabled">发布</button>
   </footer>
   <input type="hidden" id="cid" value="0">
   <!-- <script src="University/js/jquery.min.js"></script> -->
@@ -77,6 +77,19 @@
         window.location.href=hburl;
       }else{
         alert('尚未评论，无法生成海报')
+      }
+    }
+
+    function content(){
+      var text=document.getElementById("content");
+      //获取输入的文字的长度
+      var textLength=text.value.length;
+      if(textLength>=0){
+          $(".issue").attr("disabled",false);
+          $('.issue').addClass('btn1')
+      }else{
+        $(".issue").attr("disabled",true);
+        $('.issue').removeClass('btn1')
       }
     }
   </script>

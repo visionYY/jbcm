@@ -1,5 +1,5 @@
 @extends('layouts.university')
-@section('title','评论')
+@section('title','观点海报')
 @section('content')
 <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 <link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">

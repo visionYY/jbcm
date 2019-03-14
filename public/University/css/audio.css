@@ -561,7 +561,8 @@ input:checked+label:after{
   line-height:22px;
 }
 .le span{
-  color: rgba(253, 53, 53, .9);
+  color: #f5bf83;
+  font-weight: 500;
 }
 .ri{
   padding:.02rem .04rem;

@@ -31,24 +31,24 @@
   </div>
   <script type="text/javascript">
       function content(){
-          var text=document.getElementById("textarea");
-          //文本框可以接收的长度
-          var i=500;
-          //获取输入的文字的长度
-          var textLength=text.value.length;
-          // console.log(i-textLength)
-          if(i-textLength>=0){
-              var divcontent=document.getElementById("num").innerText;
-              document.getElementById("num").innerText="("+(i-textLength)+"/500)";
-              $(".btn").attr("disabled",false);
-              $('.btn').addClass('btn1')
-          }
-          if(i-textLength==500){
-            // console.log(1)
-            $(".btn").attr("disabled",true);
-            $('.btn').removeClass('btn1')
-          }
+        var text=document.getElementById("textarea");
+        //文本框可以接收的长度
+        var i=500;
+        //获取输入的文字的长度
+        var textLength=text.value.length;
+        // console.log(i-textLength)
+        if(i-textLength>=0){
+            var divcontent=document.getElementById("num").innerText;
+            document.getElementById("num").innerText="("+(i-textLength)+"/500)";
+            $(".btn").attr("disabled",false);
+            $('.btn').addClass('btn1')
         }
+        if(i-textLength==500){
+          // console.log(1)
+          $(".btn").attr("disabled",true);
+          $('.btn').removeClass('btn1')
+        }
+      }
         $('.btn').click(function(){
           var content = $('#textarea').val(),
               r_type = "{{$type}}",
