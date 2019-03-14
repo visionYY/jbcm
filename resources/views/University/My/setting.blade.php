@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="{{asset('University/css/mine.css')}}">
 
 	<div class="wrapper">
-	  <ul>
+	  <ul class="ull">
 	    <li class="lis" onclick="window.location.href='{{url("university/my/accountManagement")}}'">
 	    	<span><img src="{{asset('University/images/icon_zhanghaoguanli@2x2.png')}}" alt="">账号管理</span>
 	    	<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
