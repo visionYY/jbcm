@@ -82,7 +82,9 @@
   text-align: right;
 }
 
-
+.boxBefore2,.boxBefore{
+  margin-bottom: .6rem;
+}
 .boxAfter,.boxAfter2{
   display: none;
 }
