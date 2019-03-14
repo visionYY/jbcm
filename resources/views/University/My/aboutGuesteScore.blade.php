@@ -1,5 +1,5 @@
 @extends('layouts.university')
-@section('title','了解嘉分')
+@section('title','关于嘉分')
 @section('content')
 <style>
   .box{

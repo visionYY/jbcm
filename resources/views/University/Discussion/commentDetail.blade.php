@@ -75,11 +75,11 @@
   </div>
   <div class="cover">
     <div class="box1">
-      <p class="yes">删除评论</p>
+      <p class="yes">删除观点</p>
       <p class="no">取消</p>
     </div>
     <div class="box2">
-      <p class="boxtit">确认删除你的评论？</p>
+      <p class="boxtit">确认删除你的观点？</p>
       <div class="btns">
         <p class="yesl">确认</p>
         <p class="nor">取消</p>
