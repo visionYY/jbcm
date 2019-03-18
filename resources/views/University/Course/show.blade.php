@@ -262,7 +262,7 @@
     video.addEventListener("ended", function(){
       //    alert("已播放完成，继续下一个视频");
       getVideoTime(1)
-      play(vList[curr],learTimeList[curr]);
+      play(vList[curr]);
       $('[name=ls_id').val(learIdList[curr]);
       $('[name=ls_time').val(learTimeList[curr]);
       $('#kid').val(parseInt($('#kid').val())+1);

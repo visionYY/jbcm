@@ -24,9 +24,9 @@
     <div class="audio-wrapper">
         <audio size="#4.50MB" duration="#01:57" filename="#Launch_Kan R. Gao.mp3">
           @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
-            <source id="autoPlay" class="autoPlay" src="{{$course->oneAudio}}" type="audio/mp3">
+            <source class="autoPlay" src="{{$course->oneAudio}}" type="audio/mp3">
           @else    
-            <source id="autoPlay" class="autoPlay" src="" type="audio/mp3">
+            <source class="autoPlay" src="" type="audio/mp3">
           @endif
         </audio>
         <div class="audio-left">
@@ -253,43 +253,55 @@
   @endif
   <div class="cover1">请先购买该课程</div>
     <script>
-      var is_login = $('#is_login').val();
-      var loginUrl = $('[name=loginUrl]').val();
-      $(document).ready(function () {
-       
-        $('.get_video').click(function () {
-          var indexMius = $(this).attr('audio');
-          var learindgTime = $(this).attr('ls_time');
-          audioPlay(indexMius,learindgTime);
-        })
-      })
+      
+        var is_login = $('#is_login').val();
+        var loginUrl = $('[name=loginUrl]').val();
+        var audioList = new Array();
+        var audioOBJ = $('.get_video');
+        for (var i = 0; i <= audioOBJ.length - 1; i++) {
+          audioList[i] = audioOBJ[i].getAttribute('audio')
+        }
+        var curr = $('#kid').val();
+        var vLen = audioList.length;
+        //页面初始化
+        document.addEventListener('DOMContentLoaded', function () {
+            // 设置音频文件名显示宽度
+            var element = document.querySelector('.audio-right');
+            var maxWidth = window.getComputedStyle(element, null).width;
+            // 初始化音频控制事件
+            initAudioEvent();
+            audioPlay(audioList[curr],$('[name=ls_time]').val());
 
-      //播放
-      function audioPlay(src,time=0){
-         initAudioEvent(); 
+        }, false);
+
+        //点击目录切换
+        $('.get_video').click(function () {
+          var th = $(this).index()
+          audioPlay(audioList[th])
+        })
+      
+        //播放
+        function audioPlay(src){
           $("audio").prop("src",src)
           var audio = document.getElementsByTagName('audio')[0];
           audio.load();
-          audio.currentTime = time;
+          // audio.currentTime = time;
           audio.oncanplay = function () {
                var audioPlayer = document.getElementById('audioPlayer');
-               audioPlayer.click()
+                  audioPlayer.click()
                updateProgress(audio)
           }
-      }
-      document.addEventListener('DOMContentLoaded', function () {
-          // 设置音频文件名显示宽度
-          var element = document.querySelector('.audio-right');
-          var maxWidth = window.getComputedStyle(element, null).width;
-          // 初始化音频控制事件
-          var indexMius = $('#autoPlay').attr('src');
-          audioPlay(indexMius,$('[name=ls_time]').val());
-      }, false);
+          curr++;
+          if(curr >= vLen){
+              curr = 0; //重新循环播放
+          }
+          // console.log(curr)
+        }
 
       function initAudioEvent( audioPlayer = document.getElementById('audioPlayer') ) {
           var audio = document.getElementsByTagName('audio')[0];
           // var audioPlayer = document.getElementById('audioPlayer');
-          // console.log(audioPlayer);
+          console.log(audio);
           // 点击播放/暂停图片时，控制音乐的播放与暂停  
           audioPlayer.addEventListener('click', function () {
 
@@ -298,8 +310,10 @@
                   updateProgress(audio);
               }, false);
               // 监听播放完成事件
+              var num = 0;
               audio.addEventListener('ended', function () {
                   audioEnded();
+                  audioPlay(audioList[curr])
               }, false);
 
               // 改变播放/暂停图片
@@ -428,7 +442,9 @@
           document.getElementById('progressDot').style.left = 0;
           document.getElementById('audioCurTime').innerText = transTime(0);
           document.getElementById('audioPlayer').src = '{{asset("University/images/play.png")}}';
-          getVideoTime(1);
+         // document.getElementById('audioPlayer').click();
+         console.log(123);
+          // getVideoTime(1);
           // audioPlay();
       }
 

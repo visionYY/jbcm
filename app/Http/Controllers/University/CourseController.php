@@ -145,6 +145,8 @@ class CourseController extends Controller
 //        dd(Auth::guard('university')->check());
 //        dd($contents,$course);
         return view('University.Course.audio',compact('course','contents'));
+//        return view('University.Course.test',compact('course','contents'));
+
     }
 
     /*
