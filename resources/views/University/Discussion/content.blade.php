@@ -8,7 +8,7 @@
   <div class="wrapper">
     <p class="dia_tit">{{$discussion->title}}</p>
     <div class="write">
-      <textarea name="" id="content" oninput="content()" placeholder="在这里说说你的观点，观点还可以生成精美海报哦~"></textarea>
+      <textarea name="content" id="content" oninput="content()" placeholder="在这里说说你的观点，观点还可以生成精美海报哦~">{{old('content')}}</textarea>
     </div>
   </div>
   <div class="cover">

@@ -16,7 +16,7 @@ class IndexController extends Controller
 {
     //首页
     public function index(){
-        $adver = Advertising::getAdver(8,3);
+        $adver = Advertising::getAdver(8,5);
         $discussion = Discussion::orderBy('created_at','desc')->first();
         $comment = Comment::where('discussion_id',$discussion->id)->first();
         if ($comment){
@@ -24,20 +24,23 @@ class IndexController extends Controller
             $comment->user_name = $user->nickname;
             $comment->user_pic = $user->head_pic;
         }
-        $course['boutique'] = Course::getIfy(2,3);
-        $course['business'] = Course::getIfy(3,3);
+        $course['boutique'] = Course::getIfy(2,5);
+        $course['business'] = Course::getIfy(3,5);
 //        dd($adver);
         return view('University.Index.index',compact('adver','discussion','course','comment'));
     }
 
     //嘉宾派
     public function jbp(){
-
         return view('University.Index.jbp');
     }
 
     //嘉宾派报名提交
     public function jbp_apply(Request $request){
+        $identity = ['创业者','投资人','其他'];
+        $expectation = ['标杆企业深度访学','政府资源对接','品牌宣传','投融资机会','校友交流','高管学习','其他'];
+        $pay_attention = ['和谁在一起（学员）学习交流','向谁学习','课程设计','学习时间','学习地点','学费','其他'];
+
         if($request->all()){
 
             $verif = array('name'=>'required',
@@ -68,6 +71,7 @@ class IndexController extends Controller
                 'referrer'=>'required',
                 'referrer_mobile'=>'required');
             $credentials = $this->validate($request,$verif);
+
             $credentials['identity'] = implode(';',$credentials['identity']);
             if ($request->idqt){
                 $credentials['identity'] .= '：'.$request->idqt;
@@ -87,7 +91,7 @@ class IndexController extends Controller
                 return back()->with('hint','当前系统繁忙，请稍后再试');
             }
         }
-        return view('University.Index.jbp_apply');
+        return view('University.Index.jbp_apply',compact('identity','expectation','pay_attention'));
     }
 
     public function jbp_success(){

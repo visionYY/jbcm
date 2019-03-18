@@ -154,6 +154,14 @@ class MyController extends Controller
                 $comment->dis_title = $discussion->title;
                 $comment->dis_time = str_replace('-','.',substr($discussion->time,0,10));
                 $comment->dis_count = Comment::where('discussion_id',$discussion->id)->count();
+                $comUser = User::find($comment->user_id);
+                if ($comUser){
+                    $comment->user_name = $comUser->nickname;
+                    $comment->user_pic = $comUser->head_pic;
+                }else{
+                    $comment->user_name = '该用户已注销';
+                    $comment->user_pic = asset('University/images/jbdx_code.png');
+                }
             }
         }
 
@@ -177,11 +185,11 @@ class MyController extends Controller
     //问题反馈
     public function feedback(Request $request){
         if ($request->all()){
-            $verif = array('contact'=>'required','question'=>'required');
+            $verif = array('question'=>'required');
             $credentials = $this->validate($request,$verif);
             $credentials['user_id'] = Auth::guard('university')->id();
             if (Feedback::create($credentials)){
-                return back()->with('success','提交成功，我们会尽快处理！');
+                return redirect('university/my/index')->with('hint','感谢您的反馈，我们会尽快为您处理！');
             }else{
                 return back()->with('hint','提交失败，请稍后再试！');
             }

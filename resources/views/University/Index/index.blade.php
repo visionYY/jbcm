@@ -81,12 +81,12 @@
 		</div>
 		{{--议题--}}
 		<div class="diacuss_box">
-		  <h4 class="dia_tit">
+		  <h4 class="dia_tit discussion-click">
 		  	<em></em>今日议题
-		  	<img src="{{asset('University/images/icon_gengduo@2x.png')}}" alt="" onclick="window.location.href='{{url("university/discussion/detail/id/".$discussion->id)}}'">
+		  	<img src="{{asset('University/images/icon_gengduo@2x.png')}}">
 		  </h4>
-		  <h3 class="dia_topic">{{$discussion->title}}</h3>
-		  <p class="dia_label">出题人：{{$discussion->author}}</p>
+		  <h3 class="dia_topic discussion-click">{{$discussion->title}}</h3>
+		  <p class="dia_label discussion-click">出题人：{{$discussion->author}}</p>
 		  <!-- <p class="dia_con">{{strip_tags($discussion->content)}}</p> -->
 		  @if($comment)
 		  <div class="observer" onclick="window.location.href='{{url("university/discussion/commentDetail/id/".$comment->id)}}'">
@@ -139,27 +139,31 @@
 	    <a href="{{url('university/discussion/index')}}" class="Imgbox"><img src="{{asset('University/images/icon_meiriyiyi@2x.png')}}" />每日一议</a>
 	    <a href="{{url('university/my/index')}}" class="Imgbox two"><img src="{{asset('University/images/icon_wode@2x.png')}}" />我的</a>
   	</footer>
-		<script>
-    var swiper = new Swiper('.swiper-container', {
-			loop: true,
-			autoplay: {
-				delay: 5000,
-				stopOnLastSlide: false,
-				disableOnInteraction: false,
-			},
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
-    var swiper2 = new Swiper('.swiper-container2', {
-			loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
-  </script>
+	<script>
+	    var swiper = new Swiper('.swiper-container', {
+				loop: true,
+				autoplay: {
+					delay: 5000,
+					stopOnLastSlide: false,
+					disableOnInteraction: false,
+				},
+	      pagination: {
+	        el: '.swiper-pagination',
+	        clickable: true,
+	      },
+	    });
+	    var swiper2 = new Swiper('.swiper-container2', {
+				loop: true,
+	      pagination: {
+	        el: '.swiper-pagination',
+	        clickable: true,
+	      },
+	    });
+
+	    $('.discussion-click').click(function(){
+	    	window.location.href='{{url("university/discussion/detail/id/".$discussion->id)}}'
+	    });
+  	</script>
 
   
     

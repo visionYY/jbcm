@@ -9,11 +9,58 @@
     <div id="centera">
       <div class="orangerb">
         <ul id="oranger"> 
-          <li class="hover">课程<span>({{$data['courseCount']}})</span></li> 
-          <li>观点<span>({{$data['commentCount']}})</span></li> 
+          <li class="hover">观点<span>({{$data['commentCount']}})</span></li> 
+          <!-- <li>课程<span>({{$data['courseCount']}})</span></li>  -->
         </ul>
       </div>
       <div id="tablea" class="tablea">
+         <div class="box">
+          <div class="boxBefore2">
+            <p class="tabBtn11 bianji"><img src="{{asset('University/images/icon_bianji@2x.png')}}" alt="">编辑</p>
+            <div class="tabBtn22">
+              <p class="text">已选中<span id="comment_total">0</span>条记录</p>
+              <p class="checkboxF">
+                <input type="checkbox" id="awesome2" />
+                <label for="awesome2" id="all2"></label>全选
+              </p>
+            </div>
+            @if(isset($data['comment']))
+            @foreach($data['comment'] as $comment)
+            <div class="boxs boxs2">
+              <p class="checkboxF22">
+                  <label class="my_protocol">
+                    <input class="input_agreement_protocol" type="checkbox" name="items2" value="{{$comment->collect_id}}" />
+                    <span class="sp comment_xz"></span>
+                  </label>
+              </p>
+              <div class="detailsTop detailsTop2">
+                <div class="detaileName">
+                  <dl>
+                    <dd><img src="{{$comment->user_pic}}" alt=""></dd>
+                    <dt>
+                      <p class="dt_name">{{$comment->user_name}}</p>
+                    </dt>
+                  </dl>
+                </div>
+                <div class="detailCon" onclick="window.location.href='{{url("university/discussion/commentDetail/id/".$comment->id)}}'">{{$comment->content}}</div>
+                <div class="detailTit" onclick="window.location.href='{{url("university/discussion/detail/id/".$comment->discussion_id)}}'">
+                  <p class="tit"># {{$comment->dis_title}}</p>
+                  <p class="t_con">
+                    <span class="time">{{$comment->dis_time}}</span>
+                    <span class="con">{{$comment->dis_count}}人发表观点</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            @endforeach
+            @endif
+            <div class="delete2">
+              <button id="del2">删除</button>
+              <button id="cancel2">取消</button>
+            </div>
+          </div>
+          
+        </div>
         <div class="box">
           <div class="boxBefore">
             <p class="tabBtn"><img src="{{asset('University/images/icon_bianji@2x.png')}}" alt="">编辑</p>
@@ -53,53 +100,7 @@
         </div>
 
 
-        <div class="box">
-          <div class="boxBefore2">
-            <p class="tabBtn11 bianji"><img src="{{asset('University/images/icon_bianji@2x.png')}}" alt="">编辑</p>
-            <div class="tabBtn22">
-              <p class="text">已选中1条记录</p>
-              <p class="checkboxF">
-                <input type="checkbox" id="awesome2" />
-                <label for="awesome2" id="all2"></label>全选
-              </p>
-            </div>
-            @if(isset($data['comment']))
-            @foreach($data['comment'] as $comment)
-            <div class="boxs boxs2">
-              <p class="checkboxF22">
-                  <label class="my_protocol">
-                    <input class="input_agreement_protocol" type="checkbox" name="items2" value="{{$comment->collect_id}}" />
-                    <span class="sp"></span>
-                  </label>
-              </p>
-              <div class="detailsTop detailsTop2">
-                <div class="detaileName">
-                  <dl>
-                    <dd><img src="{{asset($user->head_pic)}}" alt=""></dd>
-                    <dt>
-                      <p class="dt_name">{{$user->nickname}}</p>
-                    </dt>
-                  </dl>
-                </div>
-                <div class="detailCon">{{$comment->content}}</div>
-                <div class="detailTit">
-                  <p class="tit"># {{$comment->dis_title}}</p>
-                  <p class="t_con">
-                    <span class="time">{{$comment->dis_time}}</span>
-                    <span class="con">{{$comment->dis_count}}人发表观点</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            @endforeach
-            @endif
-            <div class="delete2">
-              <button id="del2">删除</button>
-              <button id="cancel2">取消</button>
-            </div>
-          </div>
-          
-        </div>
+       
       </div>
     </div>
     <div class="cover1">未选中任何项</div>
@@ -163,6 +164,7 @@
       })
 
       $('#all2').on('click',function(){
+        comment_total();
         if($('#awesome2').is(":checked")){
           $(':checkbox[name=items2]').prop('checked',false);
         }else{
@@ -229,6 +231,18 @@
             console.log(d)
           }
       })
+    }
+
+    $('.comment_xz').click(function(){
+      comment_total();
+    })
+
+    //计算选中个数
+    function comment_total() {
+      setTimeout(function(){//定时器 
+        var checks = $("input[name='items2']:checked");
+        $('#comment_total').text(checks.length);
+      },500)
     }
   </script>
 @else

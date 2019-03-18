@@ -206,3 +206,6 @@ input:checked+label:after{
   border-radius: 3px;
   position: relative;
 }
+#birthday{
+  border:none;
+}

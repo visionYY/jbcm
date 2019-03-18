@@ -1,9 +1,7 @@
 
 <!-- 提示信息(验证) -->
 @if (count($errors) > 0)
-	@foreach($errors->all() as $error)
-	<div class="coverMsg error">{{$error}}</div>
-	@endforeach
+	<div class="coverMsg error">{{$errors->all()[0]}}</div>
 	<script type="text/javascript">
 		$(".error").css("display","block");
 				setTimeout(function(){//定时器 

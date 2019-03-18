@@ -4,30 +4,7 @@
   <link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/apply.css')}}">
-<style type="text/css">
-  .alert-danger {
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-  }
-  .alert-dismissable, .alert-dismissible {
-      padding-right: 35px;
-  }
-  .alert {
-      padding: 15px;
-      margin-bottom: 20px;
-      border: 1px solid transparent;
-      border-radius: 4px;
-  }
-  * {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-  }
-  div {
-      display: block;
-  }
-</style>
+
 
   <div class="wrapper">
 
@@ -37,7 +14,7 @@
       <p class="hint_con">2、嘉宾派将严格保密您所填写的信息，请您如实填写。</p>
     </div>
     <h5 class="one_tit">个人信息</h5>
-    @include('layouts.admin_error')
+    @include('layouts.u_hint')
     <form method="post" action="">
       @csrf
     <div class='formlist'>
@@ -47,9 +24,9 @@
     <div class='formlist'>
       <div class='fname'>性别<text>*</text></div>
       <div class="box">
-          <input type="radio"  id="radio1"  name="sex" value="1" /><label for="radio1">男</label>
+          <input type="radio"  id="radio1"  name="sex" value="1" {{old('sex')==1 ? 'checked' : ''}}/><label for="radio1">男</label>
           <div class="line"></div>
-          <input type="radio"  id="radio2"  name="sex" value="0" /><label for="radio2">女</label>
+          <input type="radio"  id="radio2"  name="sex" value="0" {{old('sex')==0 ? 'checked' : ''}}/><label for="radio2">女</label>
       </div>
       <!-- <p class="top"><input name="sex" type="radio" />男</p>
       <p class="bot"><input name="sex" type="radio" />女</p> -->
@@ -57,8 +34,8 @@
     <div class='formlist'>
       <div class='fname'>出生日期<text>*</text></div>
       <p class="top">
-          <input type='text' name="birthday" value="{{old('birthday')}}" placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
-          <img src="{{asset('University/images/icon_rili@2x.png')}}" class="img_rili" alt="">
+          <input type='text' id="birthday" name="birthday" value="{{old('birthday')}}" readonly class="">
+          <img src="{{asset('University/images/icon_rili@2x.png')}}" class="img_rili" onclick="laydate({elem: '#birthday'});">
       </p>
     </div>
     <div class='formlist'>
@@ -72,11 +49,20 @@
     <div class='formlist'>
       <div class='fname'>目前您的身份属性（可多选）<text>*</text></div>
       <div class="box">
-          <input type="checkbox" name="identity[]" value="创业者" id="checkbox1"/><label for="checkbox1">创业者</label>
+      @foreach($identity as $dk=>$iden)
+        @if(old('identity'))
+        <input type="checkbox" name="identity[]" value="{{$iden}}" id="checkbox_d_{{$dk}}" {{in_array($iden,old('identity')) ? 'checked' : ''}}/>
+        @else
+        <input type="checkbox" name="identity[]" value="{{$iden}}" id="checkbox_d_{{$dk}}"/>
+        @endif
+        <label for="checkbox_d_{{$dk}}">{{$iden}}</label>
+         @if($iden != '其他')
+         <div class="line"></div>
+         @endif
+      @endforeach
+          <!-- <input type="checkbox" name="identity[]" value="投资人" id="checkbox2"/><label for="checkbox2">投资人</label>
           <div class="line"></div>
-          <input type="checkbox" name="identity[]" value="投资人" id="checkbox2"/><label for="checkbox2">投资人</label>
-          <div class="line"></div>
-          <input type="checkbox" name="identity[]" value="其他" id="checkbox3"/><label for="checkbox3">其他</label>
+          <input type="checkbox" name="identity[]" value="其他" id="checkbox3"/><label for="checkbox3">其他</label> -->
           <input type="text" name="idqt" value="{{old('idqt')}}">
       </div>
     </div>
@@ -146,7 +132,19 @@
     <div class='formlist'>
       <div class='fname'>您期望从嘉宾派得到哪些具体的服务（可多选）？</div>
       <div class="box">
-          <input type="checkbox" name="expectation[]" value="标杆企业深度访学" id="checkbox3"/><label for="checkbox3">标杆企业深度访学</label>
+      @foreach($expectation as $ek=>$expec)
+        @if(old('expectation'))
+        <input type="checkbox" name="expectation[]" value="{{$expec}}" id="checkbox_e_{{$ek}}" {{in_array($expec,old('expectation')) ? 'checked' : ''}}/>
+        @else
+        <input type="checkbox" name="expectation[]" value="{{$expec}}" id="checkbox_e_{{$ek}}" />
+        @endif
+        <label for="checkbox_e_{{$ek}}">{{$expec}}</label>
+        @if($expec != '其他')
+        <div class="line"></div>
+        @endif
+      @endforeach 
+         
+          <!-- <input type="checkbox" name="expectation[]" value="标杆企业深度访学" id="checkbox30"/><label for="checkbox30">标杆企业深度访学</label>
           <div class="line"></div>
           <input type="checkbox" name="expectation[]" value="政府资源对接" id="checkbox4"/><label for="checkbox4">政府资源对接</label>
           <div class="line"></div>
@@ -158,7 +156,7 @@
           <div class="line"></div>
           <input type="checkbox" name="expectation[]" value="高管学习" id="checkbox8"/><label for="checkbox8">高管学习</label>
           <div class="line"></div>
-          <input type="checkbox"name="expectation[]" value="其他" id="checkbox9"/><label for="checkbox9">其他</label>
+          <input type="checkbox"name="expectation[]" value="其他" id="checkbox9"/><label for="checkbox9">其他</label> -->
           <input type="text" name="exqt" value="{{old('exqt')}}">
       </div>
     </div>
@@ -173,7 +171,18 @@
     <div class='formlist'>
       <div class='fname'>在学习交流中你最重视的是（可多选）？<text>*</text></div>
       <div class="box">
-          <input type="checkbox" name="pay_attention[]" value="和谁在一起（学员）学习交流" id="checkbox10"/>
+          @foreach($pay_attention as $pk=>$attent)
+            @if(old('pay_attention'))
+            <input type="checkbox" name="pay_attention[]" value="{{$attent}}" id="checkbox_p_{{$pk}}" {{in_array($attent,old('pay_attention')) ? 'checked' : ''}}/>
+            @else
+            <input type="checkbox" name="pay_attention[]" value="{{$attent}}" id="checkbox_p_{{$pk}}"/>
+            @endif
+            <label for="checkbox_p_{{$pk}}">{{$attent}}</label>
+            @if($attent != '其他')
+            <div class="line"></div>
+            @endif
+          @endforeach
+          <!-- <input type="checkbox" name="pay_attention[]" value="和谁在一起（学员）学习交流" id="checkbox10"/>
           <label for="checkbox10">和谁在一起（学员）学习交流</label>
           <div class="line"></div>
           <input type="checkbox" name="pay_attention[]" value="向谁学习" id="checkbox11"/>
@@ -192,7 +201,7 @@
           <label for="checkbox15">学费</label>
           <div class="line"></div>
           <input type="checkbox" name="pay_attention[]" value="其他" id="checkbox16"/>
-          <label for="checkbox16">其他</label>
+          <label for="checkbox16">其他</label> -->
           <input type="text" name="paqt" value="{{old('paqt')}}">
       </div>
     </div>
@@ -211,9 +220,4 @@
     </form>
   </div>
    <script src="{{asset('Admin/js/plugins/layer/laydate/laydate.js')}}"></script>
-    <script type="text/javascript">
-      $('.close').click(function(){
-        $(this).parent().hide();
-      })
-    </script>
 @stop

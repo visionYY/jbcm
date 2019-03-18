@@ -4,30 +4,6 @@
   <link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/mine_feedback.css')}}">
-  <style type="text/css">
-    .alert-danger {
-      color: #a94442;
-      background-color: #f2dede;
-      border-color: #ebccd1;
-    }
-    .alert-dismissable, .alert-dismissible {
-        padding-right: 35px;
-    }
-    .alert {
-        padding: 15px;
-        margin-bottom: 20px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
-    * {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-    div {
-        display: block;
-    }
-  </style>
   <div class="wrapper">
     <form method="post" action="">
       @csrf
@@ -39,8 +15,8 @@
     </div>
     <button class="btn" type="submit" disabled="disabled">提交</button>
     </form>
-    @include('layouts.admin_error')
   </div>
+  @include('layouts.u_hint')
   <script type="text/javascript">
       function content(){
           var text=document.getElementById("textarea");
