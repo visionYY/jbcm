@@ -233,7 +233,7 @@ class MyController extends Controller
             $user = Auth::user();
             if ($user->update(['password'=>bcrypt($request->password)])){
 //                return back()->with('success',config('jbdx.update_success'));
-                return redirect('university/my/index')->with('success',config('jbdx.update_success'));
+                return redirect('university/my/index')->with('hint',config('jbdx.update_success'));
             }else{
                 return back()->with('hint',config('jbdx.update_error'));
             }

@@ -24,7 +24,10 @@
           @endif
       </div>
       @endif
+
+    <div class="wengaotab"><img src="{{asset('University/images/icon_wengao@3x.png')}}" alt=""></div>
     </div>
+
     <div id="centera">
       <div class="orangerb">
         <ul id="oranger"> 
@@ -178,7 +181,7 @@
           </div>
         </div>
       </div>
-      <div class="wengaotab"><img src="{{asset('University/images/icon_wengao@3x.png')}}" alt=""></div>
+      <!-- <div class="wengaotab"><img src="{{asset('University/images/icon_wengao@3x.png')}}" alt=""></div> -->
     </div>
     {{--判断是否登陆--}}
     @if(Auth::guard('university')->check())
@@ -193,7 +196,6 @@
     @endif
     <div class="hint">购买后才能继续学习</div>
    
-    <!-- <div class="wengaotab"><img src="{{asset('University/images/icon_wengao@3x.png')}}" alt=""></div> -->
     <div class="wengaobox con_content">{{$course->oneContent}}</div>
    
   </div>

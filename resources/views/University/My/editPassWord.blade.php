@@ -8,8 +8,8 @@
   <div class="wrapper">
     <div class="line"></div>
     <div class="form">
-    @include('layouts.admin_error')
- 	<form action="" method="post">
+    @include('layouts.u_hint')
+ 	<form action="" method="post" id="form1">
       <div class="pas">密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="password" name="password" id="pwd" placeholder="密码"required>
         <img src="{{asset('University/images/icon_changkai@2x.png')}}" alt="" id="eyesShow">
@@ -25,7 +25,6 @@
     </form> 
     </div>
     <p class="no">请填写这正确密码！</p>
-    <p class="yes">修改成功！</p>
   </div>
 
   <script type="text/javascript">
@@ -69,21 +68,20 @@
 	  }
 
   
-	  $('.btn').click(function(){
+	  $('#form1').submit(function(){
 	    var pwdV = $("#pwd").val();
 	    var pwd1V = $("#pwd1").val();
 	    var pasw = /^[a-zA-Z0-9]{6,18}$/;
 	    if(pasw.test(pwdV) && pwdV===pwd1V){
-	      $(".yes").css("display","block");
-	      setTimeout(function(){//定时器 
-	        $(".yes").css("display","none");
-	      },2000);
+				return true;
 	    }else{
-	      $(".no").css("display","block");
+				$(".no").css("display","block");
 	      setTimeout(function(){//定时器 
 	        $(".no").css("display","none");
 	      },2000);
-	    }
+				return false;
+			}
+			
 	  })
 
 	</script>
