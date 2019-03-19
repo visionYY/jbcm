@@ -212,6 +212,7 @@ button{
   margin:0 5%;
   height:.44rem;
   background:rgba(48,92,186,1);
+  border: rgba(48,92,186,1);
   border-radius:.04rem;
   font-size:.14rem;
   font-family:PingFang-SC-Regular;
