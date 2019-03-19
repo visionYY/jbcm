@@ -201,6 +201,7 @@
   </div>
   {{-- 登陆地址 --}}
   <input type="hidden" name="loginUrl" value="{{url('university/quickLogin?source=4&yid='.$course->id)}}">
+  <input type="hidden" name="getInfoUrl" value="{{url('api/weixin/wxLogin?state='.$course->id.'&uri=https://www.ijiabin.com/university/my/getOpenId')}}">
   {{--当前视频Key--}}
   <input type="hidden" id="kid" value="{{$course->kid}}">
   @if(Auth::guard('university')->check())
@@ -239,8 +240,9 @@
   <input type="hidden" name="status" value="0" id="status">
   <input type="hidden" value="0" id="is_login">
   @endif
-   @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
-   <script language="javascript">
+  @include('layouts.u_hint')
+  @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
+  <script language="javascript">
     $(document).ready(function(){
           var ls_time = $('[name=ls_time]').val();
           play(vList[curr],ls_time);
@@ -410,6 +412,7 @@
             type:'GET',
             dataType:'json',
             success:function(d){
+                console.log(d);
               if (d.code == '002') {
                 function onBridgeReady(){
                    WeixinJSBridge.invoke(
@@ -441,6 +444,8 @@
                 }else{
                    onBridgeReady();
                 }
+              }else if (d.code == '003') {
+                window.location.href = $('[name=getInfoUrl]').val();
               }else{
                 console.log(d)
               }

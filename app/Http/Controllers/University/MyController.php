@@ -266,7 +266,7 @@ class MyController extends Controller
                         'open_id'=> $newtok['openid'],);
         $user = Auth::guard('university')->user();
         if ($user->update($userInfo)){
-            return redirect('university/my/index')->with('success','欢迎');
+            return redirect('university/my/index')->with('hint','欢迎');
         }else{
             return redirect('university/my/index')->with('hint','获取信息失败，请自行填写');
         }
@@ -299,7 +299,7 @@ class MyController extends Controller
             $user = Auth::guard('university')->user();
             if ($user->update($credentials)){
 //                return redirect('university/my/index')->with('success','欢迎');
-                return redirect('university/my/editPassWord');
+                return redirect('university/my/editPassWord')->with('hint','欢迎');
             }else{
                 return redirect('university/my/index')->with('hint','填写失败，请稍后重试！');
             }
@@ -307,6 +307,25 @@ class MyController extends Controller
         return view('University.My.fillInfo');
     }
 
-
+    //静默授权获取openid
+    public function getOpenId(){
+        $appid = config('hint.appId');
+        $appsecret = config('hint.appSecret');
+        $code = $_GET['code'];
+        $id = $_GET['state'];
+        $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$appsecret.'&code='.$code.'&grant_type=authorization_code';
+        $acctok = request_curl($url);
+        $res = json_decode($acctok,true);
+        $accUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'].'&lang=zh_CN';
+        $newtok = json_decode(request_curl($accUrl),true);
+        $user = Auth::guard('university')->user();
+        if ($user->update(['open_id'=>$newtok['openid']])){
+//            return redirect('university/course/video/id/'.$id)->with('hint','授权成功请点击完成支付');
+            return redirect()->route('video',['id'=>$id])->with('hint','授权成功请点击完成支付');
+        }else{
+//            return redirect('university/course/video/id'.$id)->with('hint','授权失败请稍后重试');
+            return redirect()->route('video',['id'=>$id])->with('hint','授权失败请稍后重试');
+        }
+    }
 
 }

@@ -177,10 +177,12 @@ class CourseController extends Controller
         //判断是否微信页面
         if ( strpos($_SERVER['HTTP_USER_AGENT'],'MicroMessenger') !== false ) {
             if (!$user->open_id){
-                return response(['code'=>'003','msg'=>'未获取到openid稍后处理']);
+               return response(['code'=>'003','msg'=>'缺少参数openid']);
             }
             $wx_order['openid'] = $user->open_id;
             $wechat_pay = app('wechat_pay')->mp($wx_order);
+//            dd($wechat_pay);
+
             return response(['code'=>'002','msg'=>'请求成功','data'=>$wechat_pay]);
 //            return view('Payment.wxmp',compact('wechat_pay','order'));
         }else{

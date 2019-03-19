@@ -141,6 +141,7 @@ Route::group(['prefix'=>'university'],function(){
         Route::get('replenish','University\MyController@replenish');
         Route::get('doReplenish','University\MyController@doReplenish');
         Route::any('fillInfo','University\MyController@fillInfo');
+        Route::get('getOpenId','University\MyController@getOpenId');
     });
 
     //登陆
