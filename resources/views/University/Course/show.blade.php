@@ -223,6 +223,7 @@
   {{--当前小节学习记录ID及时间--}}
   <input type="hidden" name="ls_id" value="{{$course->learindgId}}">
   <input type="hidden" name="ls_time" value="{{$course->learindgTime}}">
+  <input type="hidden" name="ls_key" value="{{$course->learingKey}}">
   {{--当前课程收藏状态--}}
   <input type="hidden" name="status" value="{{$course->coll_status}}" id="status">
   {{--当前登陆状态--}}
@@ -239,13 +240,23 @@
   </div>
   <input type="hidden" name="status" value="0" id="status">
   <input type="hidden" value="0" id="is_login">
+  <input type="hidden" name="ls_key" value="0">
   @endif
   @include('layouts.u_hint')
   @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
   <script language="javascript">
     $(document).ready(function(){
           var ls_time = $('[name=ls_time]').val();
-          play(vList[curr],ls_time);
+          var ls_key = $('[name=ls_key]').val();
+          console.log(ls_time)
+          if (ls_key != 0) {
+            $('.get_video').eq(ls_key).find('.col').addClass('coled');
+            play(vList[ls_key],ls_time);
+          }else{
+            $('.get_video').eq(curr).find('.col').addClass('coled');
+            play(vList[curr],ls_time);
+          }
+          
     });
     var videoOBJ = $('.get_video');
     var vList = new Array();
@@ -258,7 +269,7 @@
     }
     // console.log(vList);
     var vLen = vList.length;
-    var curr = 0;
+    var curr = $('#kid').val();
     var video = document.getElementById("myvideo");
     video.ontimeupdate=function(){
       window.localStorage.setItem('now_time',Math.floor(this.currentTime))
@@ -266,10 +277,12 @@
     video.addEventListener("ended", function(){
       //    alert("已播放完成，继续下一个视频");
       getVideoTime(1)
-      play(vList[curr]);
+      $('.get_video').find('.col').removeClass('coled');
+      $('.get_video').eq(curr).find('.col').addClass('coled');
       $('[name=ls_id').val(learIdList[curr]);
       $('[name=ls_time').val(learTimeList[curr]);
-      $('#kid').val(parseInt($('#kid').val())+1);
+      $('#kid').val(curr);
+      play(vList[curr]);
     });
     function play(src,time=0) {
       video.src = src;
@@ -301,6 +314,7 @@
           $('[name=ls_id]').val($(this).attr('ls_id')) 
           $('#kid').val($(this).attr('kid'))   
           $(this).find('.col').addClass('coled');
+          $(this).siblings().find('.col').removeClass('coled');
           // console.log($(this).attr('video'));
         })
         //答案详情
@@ -488,7 +502,7 @@
 
      window.onbeforeunload= function(){
         getVideoTime(0);
-        return '确认关闭';
+        // return '确认关闭';
      }
 
       function getVideoTime(state){

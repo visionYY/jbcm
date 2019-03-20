@@ -23,17 +23,18 @@ class CourseController extends Controller
     public function show($id,$kid=0){
         $course = Course::find($id);
         $contents = Content::where('course_id',$id)->get();
+
         foreach ($contents as $k=>$content){
             //当前章节信息
-            if ($kid==$k){
+            if ($k==$kid){
                 $course->kid = $kid;
                 $course->oneId = $content->id;
                 $course->oneType = $content->type;
                 $course->oneVideo = $content->video;
                 $course->oneAudio = $content->audio ;
                 $course->oneContent = $content->content;
+                $course->oneTime = $content->time;
             }
-            //自测题
             $quizs = Quiz::where('content_id',$content->id)->get();
             $content->quizCount = count($quizs);
             foreach ($quizs as $quiz){
@@ -51,7 +52,6 @@ class CourseController extends Controller
             }else{
                 $course->isBuy = 0;
             }
-
             foreach ($contents as $k=>$con){
                 //章节学习记录
                 $learning = LearningState::where('user_id',$user->id)->where('content_id',$con->id)->first();
@@ -69,6 +69,19 @@ class CourseController extends Controller
                     $course->learindgTime = $con->learning->learning_time;
                 }
             }
+//            echo '<pre>';
+            if ($kid == 0){
+                foreach ($contents as $k=>$content){
+//                    print_r($content);
+                    if ($content->learning->state ==0){
+                        $course->learingKey = $k;
+                        break;
+                    }
+                }
+            }else{
+                $course->learingKey = 0;
+            }
+
             //课程收藏记录
            /* $collect = Collect::where('user_id',$user->id)->where('by_collect_id',$course->id)->where('type',1)->first();
             if ($collect){

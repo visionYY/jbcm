@@ -281,11 +281,11 @@
         })
       
         //播放
-        function audioPlay(src){
+        function audioPlay(src,time=0){
           $("audio").prop("src",src)
           var audio = document.getElementsByTagName('audio')[0];
           audio.load();
-          // audio.currentTime = time;
+          audio.currentTime = time;
           audio.oncanplay = function () {
                var audioPlayer = document.getElementById('audioPlayer');
                   audioPlayer.click()
