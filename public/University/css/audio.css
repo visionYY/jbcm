@@ -594,6 +594,9 @@ input:checked+label:after{
   right: .08rem;
   padding: .05rem 0;
 }
+.coled{
+  color: #305cba!important;
+}
 .cli p{
   width:.3rem;
   height:.27rem;
