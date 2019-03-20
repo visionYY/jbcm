@@ -1,6 +1,11 @@
 
 .wrapper{
   width:100%;
+  flex: 1;
+  overflow-y: scroll;
+}
+.wrapper::-webkit-scrollbar {
+  display: none;
 }
 .mine_top{
   height:1.17rem;
@@ -66,7 +71,7 @@
   height:.44rem;
   display: flex;
   justify-content:space-between;
-  padding: .16rem .13rem;
+  padding: .16rem 0rem;
   border-bottom: 1px solid #f2f2f2;
 }
 .lis>span:first-child{
