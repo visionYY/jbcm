@@ -299,7 +299,8 @@
           play($(this).attr('video'));
           $('.con_content').text($(this).attr('content'))
           $('[name=ls_id]').val($(this).attr('ls_id')) 
-          $('#kid').val($(this).attr('kid'))    
+          $('#kid').val($(this).attr('kid'))   
+          $(this).find('.col').addClass('coled');
           // console.log($(this).attr('video'));
         })
         //答案详情
