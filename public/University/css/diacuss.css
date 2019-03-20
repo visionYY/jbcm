@@ -1,12 +1,20 @@
 .wrapper{
   background:rgba(245,245,245,1);
-  margin-bottom:1rem;
+  margin-bottom:.2rem;
+  flex: 1;
+  overflow-y: scroll;
+}
+.wrapper::-webkit-scrollbar {
+  display: none;
 }
 .diacuss_box{
-  margin-top:.05rem;
+  margin-bottom:.05rem;
   background:#fff;
   padding: 0 .15rem;
   padding-bottom: .15rem;
+}
+.diacuss_box:last-child{
+  margin-bottom: 0;
 }
 .dia_tit{
   position: relative;

@@ -1,6 +1,11 @@
 .wrapper{
   background:rgba(245,245,245,1);
-  margin-bottom:1rem;
+  margin-bottom:.2rem;
+  flex: 1;
+  overflow-y: scroll;
+}
+.wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .banner{
