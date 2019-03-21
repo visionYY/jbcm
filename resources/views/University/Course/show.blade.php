@@ -53,18 +53,18 @@
               <div class="box2">
                 @foreach($contents as $k=>$content)
                   @if($content->type == 0 || Auth::guard('university')->check() && $course->isBuy == 1)
+                  <div class="class_list">
                   @if(Auth::guard('university')->check())
-                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="{{$content->learning->id}}" kid="{{$k}}" ls_time="{{$content->learning->learning_time}}">
+                    <p class="list_name get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="{{$content->learning->id}}" kid="{{$k}}" ls_time="{{$content->learning->learning_time}}">
                   @else  
-                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="0" kid="{{$k}}" ls_time="0">
+                    <p class="list_name get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="0" kid="{{$k}}" ls_time="0">
                   @endif  
-                    <p class="list_name">
                       <span class="col">{{$content->chapter}} {{$content->title}}</span>
                       <!-- <span><img class="bianj" src="{{asset('University/images/icon_bianji@2x2.png')}}" alt=""></span> -->
                     </p>
                     {{--学习状态--}}
                     <p class="list_time">
-                      {{substr($content->time,3,5)}}
+                      {{$content->time}}
                       @if(Auth::guard('university')->check())
                       <span class="acc">{{$content->learning->state ==1 ? '已完成' : '学习中'}}</span>
                       @else
@@ -81,7 +81,7 @@
                         <span>{{$content->chapter}} {{$content->title}}</span>
                         <span><img src="{{asset('University/images/icon_suo@2x.png')}}" alt=""></span>
                       </p>
-                      <p class="list_time">{{substr($content->time,3,5)}}</p>
+                      <p class="list_time">{{$content->time}}</p>
                       <p class="list_img"><img src="{{asset('University/images/icon_zhankai@2x.png')}}" alt=""></p>
                     </div> 
                     
@@ -196,7 +196,7 @@
     @endif
     <div class="hint">购买后才能继续学习</div>
    
-    <div class="wengaobox con_content">{{$course->oneContent}}</div>
+    <div class="wengaobox con_content"></div>
    
   </div>
   {{-- 登陆地址 --}}
@@ -245,31 +245,31 @@
   @include('layouts.u_hint')
   @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
   <script language="javascript">
-    $(document).ready(function(){
-          var ls_time = $('[name=ls_time]').val();
-          var ls_key = $('[name=ls_key]').val();
-          console.log(ls_time)
-          if (ls_key != 0) {
-            $('.get_video').eq(ls_key).find('.col').addClass('coled');
-            play(vList[ls_key],ls_time);
-          }else{
-            $('.get_video').eq(curr).find('.col').addClass('coled');
-            play(vList[curr],ls_time);
-          }
-          
-    });
     var videoOBJ = $('.get_video');
     var vList = new Array();
+    var contentList = new Array();
     var learIdList = new Array();
     var learTimeList = new Array();
     for (var i = 0; i <= videoOBJ.length - 1; i++) {
       vList[i] = videoOBJ[i].getAttribute('video')
       learIdList[i] = videoOBJ[i].getAttribute('ls_id')
       learTimeList[i] = videoOBJ[i].getAttribute('ls_time')
+      contentList[i] = videoOBJ[i].getAttribute('content')
     }
-    // console.log(vList);
     var vLen = vList.length;
     var curr = $('#kid').val();
+
+    $(document).ready(function(){
+          var ls_time = $('[name=ls_time]').val();
+          var ls_key = $('[name=ls_key]').val();
+          if (ls_key != 0) {
+            play(ls_key,ls_time);
+          }else{
+            play(curr,ls_time);
+          }
+          
+    });
+   
     var video = document.getElementById("myvideo");
     video.ontimeupdate=function(){
       window.localStorage.setItem('now_time',Math.floor(this.currentTime))
@@ -277,15 +277,18 @@
     video.addEventListener("ended", function(){
       //    alert("已播放完成，继续下一个视频");
       getVideoTime(1)
-      $('.get_video').find('.col').removeClass('coled');
-      $('.get_video').eq(curr).find('.col').addClass('coled');
       $('[name=ls_id').val(learIdList[curr]);
       $('[name=ls_time').val(learTimeList[curr]);
       $('#kid').val(curr);
-      play(vList[curr]);
+      play(curr);
     });
-    function play(src,time=0) {
-      video.src = src;
+    function play(k,time=0) {
+      //切换列表菜单
+      $('.get_video').eq(k).parent().siblings().find('.col').removeClass('coled');
+      $('.get_video').eq(k).find('.col').addClass('coled');
+      //切换文本
+      $('.con_content').text($(this).attr('content'))
+      video.src = vList[k];
       video.load();
       video.currentTime=time
       video.play();
@@ -309,12 +312,12 @@
         })
         //目录切换
         $('.get_video').click(function(){
-          play($(this).attr('video'));
-          $('.con_content').text($(this).attr('content'))
+          var th = $(this).attr('kid')
+          console.log(th);
+          play(th);
+          //切换记录ID与下标值
           $('[name=ls_id]').val($(this).attr('ls_id')) 
           $('#kid').val($(this).attr('kid'))   
-          $(this).find('.col').addClass('coled');
-          $(this).siblings().find('.col').removeClass('coled');
           // console.log($(this).attr('video'));
         })
         //答案详情
@@ -351,7 +354,7 @@
 
          //按钮切换 
         $(".wengaotab img").click(function(){ 
-          console.log(this.src.search("{{asset('University/images/icon_wengao@3x.png')}}")!=-1)
+          // console.log(this.src.search("{{asset('University/images/icon_wengao@3x.png')}}")!=-1)
           if(this.src.search("{{asset('University/images/icon_wengao@3x.png')}}")!=-1){ 
             $('.cli').toggle();
           }else{ 
