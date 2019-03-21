@@ -18,10 +18,11 @@
         </label>
 
     </div>
-    <p class="inp"><input type="text" name="truename" placeholder="你真实姓名"></p>
+    <p class="inp"><input class="inpp" type="text" name="truename" placeholder="你真实姓名"></p>
     {{ csrf_field() }}
     <button class="subb">提交</button>
     </form>
+    <div class="cover1">请正确填写您的真实姓名</div>
   </div>
 
   <script>
@@ -45,5 +46,19 @@
              return url ;
         }
     })
+    $('form').submit(function(){
+      var pattern = /^[\u4e00-\u9fa5]{2,10}$/gi;  //正规表达式对象
+      if(pattern.test($('.inpp').val())){
+        return true;
+      }else{
+        $(".cover1").css("display","block");
+				setTimeout(function(){//定时器 
+					$(".cover1").css("display","none");
+				},3000);
+        return false;
+      }
+      alert( pattern.test($('.inpp').val()) ); //输出是否符合要求，true符合，false不符合
+    })
+      
   </script>
 @stop

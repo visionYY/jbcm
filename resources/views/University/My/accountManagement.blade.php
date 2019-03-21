@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="{{asset('University/css/mine.css')}}">
 
 	<div class="wrapper">
-      <ul>
+      <ul class="ull">
         <li class="lis" onclick="window.location.href='{{url("university/my/editMobile")}}'">
         	<span><img src="{{asset('University/images/icon_shoujihao@2x2.png')}}" alt="">手机号：</span>
         	<span><em>{{$user->mobile}}</em><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
