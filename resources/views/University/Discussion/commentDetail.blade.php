@@ -75,7 +75,7 @@
   </div>
   <div class="cover">
     <div class="box1">
-      <p class="yes">删除观点</p>
+      <p class="yes">删除回复</p>
       <p class="no">取消</p>
     </div>
     <div class="box2">
