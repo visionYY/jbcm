@@ -40,6 +40,13 @@
   color:rgba(49,58,94,1);
   padding-top:.1rem;
 }
+.mineName>span{
+  float: right;
+  font-size:.12rem;
+  font-family:PingFang-SC-Medium;
+  color:rgba(48,92,186,1);
+  line-height: .18rem;
+}
 .mineScore{
   font-size:.12rem;
   font-family:PingFang-SC-Medium;

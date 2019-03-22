@@ -16,7 +16,7 @@
 				<dl>
 					<dt><img src="{{asset($user->head_pic)}}" alt=""></dt>
 					<dd>
-						<p class="mineName">{{$user->nickname}}</p>
+						<p class="mineName">{{$user->nickname}}<span>编辑</span></p>
 						<p class="mineScore" onclick="window.location.href='{{url("university/my/guesteScore")}}'">{{$score->score}}嘉分<b></b></p>
 					</dd>
 				</dl>

@@ -16,7 +16,7 @@
 	  <form action="" method="post">
 		  <div class="form">
 		        <input type="tel" name="mobile" placeholder="手机号" value="{{old('mobile')}}">
-		        <input type="text" name="password" placeholder="输入密码" value="{{old('password')}}">
+		        <input type="password" name="password" placeholder="输入密码" value="{{old('password')}}">
 		        <input type="hidden" name="source" value="{{$parameter['source']}}">
 		        <input type="hidden" name="yid" value="{{$parameter['yid']}}">
 		        <div class="sub">
