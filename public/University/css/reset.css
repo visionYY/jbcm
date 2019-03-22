@@ -152,3 +152,4 @@ body {
   font-size:.12rem;
   display:none;
 }
+input[type=button], input[type=submit], input[type=file], button {cursor:pointer;outline:0px; -webkit-appearance:none; } 
