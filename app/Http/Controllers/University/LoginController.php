@@ -58,6 +58,7 @@ class LoginController extends Controller
     public function quickLogin(Request $request){
         $parameter['source'] = $request->source;
         $parameter['yid'] = $request->yid;
+        // dd(date('Y-m-d H:i:s',time()));
         return view('University.Login.quickLogin',compact('parameter'));
     }
 
@@ -143,7 +144,7 @@ class LoginController extends Controller
         Session::put('mobile',$request->mobile,'180');
         Session::put('yzm',$yzm,'180');
         $res = Sms::send($request->mobile,'SMS_152880235',$yzm);
-//        dd($res->Code);
+    //    dd(date('Y-m-d H:i:s',time()),$res->Code);
         if($res->Code != 'OK'){
             return response(array('code'=>'002','msg'=>'发送失败，请重试'));
         }
