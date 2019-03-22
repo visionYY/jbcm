@@ -287,7 +287,7 @@
       $('.get_video').eq(k).parent().siblings().find('.col').removeClass('coled');
       $('.get_video').eq(k).find('.col').addClass('coled');
       //切换文本
-      $('.con_content').text($(this).attr('content'))
+      $('.con_content').text(contentList[k])
       video.src = vList[k];
       video.load();
       video.currentTime=time

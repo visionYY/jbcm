@@ -79,7 +79,7 @@
                     @if(Auth::guard('university')->check())
                     <p class="list_name get_video" content="{{$content->content}}" audio="{{$content->audio}}" kid="{{$k}}" ls_id="{{$content->learning->id}}" ls_time="{{$content->learning->learning_time}}">
                     @else  
-                    <p class="list_name get_video" content="{{$content->content}}" ls_id="0" audio="{{$content->audio}}">
+                    <p class="list_name get_video" content="{{$content->content}}" ls_id="0" audio="{{$content->audio}}" kid="{{$k}}">
                     @endif  
                       <span class="col">{{$content->chapter}} {{$content->title}}</span>
                       <!-- <span><img class="bianj" src="{{asset('University/images/icon_bianji@2x2.png')}}" alt=""></span> -->
@@ -264,6 +264,7 @@
         }
         var curr = $('#kid').val();
         var vLen = audioList.length;
+        console.log(contentList)
         //页面初始化
         document.addEventListener('DOMContentLoaded', function () {
             // 设置音频文件名显示宽度
@@ -284,14 +285,15 @@
 
         //点击目录切换
         $('.get_video').click(function () {
-          var th = $(this).index()
+
+          var th = $(this).attr('kid')
           audioPlay(th)
         })
       
         //播放
         function audioPlay(k,time=0){
           //切换当前列表颜色
-          $('.get_video').eq(k).cparent().siblings().find('.col').removeClass('coled');  
+          $('.get_video').eq(k).parent().siblings().find('.col').removeClass('coled');  
           $('.get_video').eq(k).find('.col').addClass('coled');
           $('.con_content').text(contentList[k]); //切换当前文本内容
 

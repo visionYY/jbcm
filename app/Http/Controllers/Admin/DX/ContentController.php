@@ -34,7 +34,7 @@ class ContentController extends Controller
         $verif = array('chapter'=>'required',
             'type'=>'required|numeric',
             'title'=>'required',
-            'intro'=>'required',
+            'intro'=>'required|between:1,255',
             'video'=>'required',
             'audio'=>'required',
             'time'=>'required',
@@ -59,7 +59,7 @@ class ContentController extends Controller
     public function update(Request $request,$id){
         $verif = array('chapter'=>'required',
             'type'=>'required|numeric',
-            'title'=>'required',
+            'title'=>'required|between:1,255',
             'intro'=>'required',
             'video'=>'required',
             'audio'=>'required',

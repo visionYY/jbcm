@@ -8,7 +8,7 @@
   <div class="wrapper">
     @foreach($orders as $order)
     <dl class="bus_list">
-      <a href="#">
+      <a href="{{route('video',['id'=>$order->course_id])}}">
         <dt class="list-img"><img src="{{asset($order->course->lengthways_cover)}}" alt=""></dt>
         <dd>
           <p class="list-tit">{{$order->title}}</p>

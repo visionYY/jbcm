@@ -69,18 +69,19 @@ class MyController extends Controller
     //我的已购
     public function order(){
         $user = Auth::guard('university')->user();
-        $orders = Order::where('user_id',$user->id)->get();
+        $orders = Order::where('user_id',$user->id)->where('status',1)->get();
         foreach ($orders as $order){
             $course = Course::find($order->course_id);
             $contents = Content::where('course_id',$course->id)->get();
             $learningCount = 0;
-            $contentsCount = 0;
+            $contentsCount = count($contents);
             foreach ($contents as $content){
-                $learning = LearningState::where('user_id',$user->id)->where('content_id',$content->id)->first();
+                $learning = LearningState::where('user_id',$user->id)->where('content_id',$content->id)->where('state',1)->first();
                 if ($learning){
                     $learningCount++;
+                }else{
+                    break;
                 }
-                $contentsCount++;
             }
             if ($learningCount == $contentsCount){
                 $order->learningState = 2;
