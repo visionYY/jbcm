@@ -1,5 +1,5 @@
 @extends('layouts.university')
-@section('title','嘉宾派')
+@section('title','嘉宾派报名')
 @section('content')
   <link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
@@ -68,7 +68,7 @@
     </div>
     <div class='formlist'>
       <div class='fname'>手机<text>*</text></div>
-      <input type='text' name="mobile" value="{{old('mobile')}}"></input>
+      <input type='tel' name="mobile" value="{{old('mobile')}}"></input>
     </div>
     <div class='formlist'>
       <div class='fname'>微信<text>*</text></div>
