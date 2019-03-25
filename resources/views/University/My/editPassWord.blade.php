@@ -64,8 +64,20 @@
 	    content();
 	  }
 	  pwd1.onkeyup = function(){
-	    content()
-	  }
+    content()
+			var pwd1 = $("#pwd1").val().trim();
+			var pwd1len = pwd1.length;
+			console.log(pwd1len)
+			if(pwd1len!=0){
+				$("#close").css("display","block");
+			}else if(pwd1len==0){
+				$("#close").css("display","none");
+			}
+		}
+		$("#close").click(function(){
+			$("#close").css("display","none");
+			$("#pwd1").val('');
+		})
 
   
 	  $('#form1').submit(function(){
