@@ -275,37 +275,42 @@ class MyController extends Controller
 
     //手动填写信息
     public function fillInfo(Request $request){
+        $user = Auth::guard('university')->user();
         if($request->all()){
-            $verif = array('truename'=>'required',
-                'head_pic'=>'required');
-            $credentials = $this->validate($request,$verif);
+            $credentials = $this->validate($request,['truename'=>'required']);
             $credentials['nickname'] = $credentials['truename'];
+            if ($request->head_pic){
+                $size = $request->head_pic->getSize() / 1024;
+                $size < 100 ? $per = 1 : $per = 0.4;
+                $path = Upload::uploadOne('User',$request->head_pic);
+                if ($path){
+                    //创建缩略图
+                    $Compress = new Compress(public_path($path),$per);
+                    $Compress->compressImg(public_path(thumbnail($path)));
 
-            $size = $credentials['head_pic']->getSize() / 1024;
-            if ($size < 100){
-                $per = 1;
-            }else{
-                $per = 0.4;
+                    //删除旧图片(如果有，并且不是默认头像)
+                    if ($user->head_pic != asset('University/images/default_head_pic.png')){
+                        $head_pic = strstr($user->head_pic,'upload');
+                        if (is_file(public_path($head_pic))){
+                            unlink(public_path($head_pic));
+                        }
+                        if (is_file(public_path(thumbnail($head_pic)))){
+                            unlink(public_path(thumbnail($head_pic)));
+                        }
+                    }
+                }else{
+                    return back() -> with('hint',config('hint.upload_failure'));
+                }
+                $credentials['head_pic'] = asset($path);
             }
-            $path = Upload::uploadOne('User',$credentials['head_pic']);
-            $credentials['head_pic'] = asset($path);
-            if ($path){
-//                dd($credentials['head_pic']);
-                //创建缩略图
-                $Compress = new Compress(public_path($path),$per);
-                $Compress->compressImg(public_path(thumbnail($path)));
-            }else{
-                return back() -> with('hint',config('hint.upload_failure'));
-            }
-            $user = Auth::guard('university')->user();
             if ($user->update($credentials)){
-//                return redirect('university/my/index')->with('success','欢迎');
-                return redirect('university/my/editPassWord')->with('hint','欢迎');
+                return redirect('university/my/index')->with('hint','欢迎');
+//                return redirect('university/my/editPassWord')->with('hint','欢迎');
             }else{
                 return redirect('university/my/index')->with('hint','填写失败，请稍后重试！');
             }
         }
-        return view('University.My.fillInfo');
+        return view('University.My.fillInfo',compact('user'));
     }
 
     //静默授权获取openid

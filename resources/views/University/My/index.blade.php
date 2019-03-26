@@ -16,30 +16,30 @@
 				<dl>
 					<dt><img src="{{asset($user->head_pic)}}" alt=""></dt>
 					<dd>
-						<p class="mineName">{{$user->nickname}}<span>编辑</span></p>
-						<p class="mineScore" onclick="window.location.href='{{url("university/my/guesteScore")}}'">{{$score->score}}嘉分<b></b></p>
+						<p class="mineName">{{$user->nickname}}<span onclick="window.location.href='{{url('university/my/fillInfo')}}'">编辑</span></p>
+						<p class="mineScore" onclick="window.location.href='{{url('university/my/guesteScore')}}'">{{$score->score}}嘉分<b></b></p>
 					</dd>
 				</dl>
 			</div>
 			<div class="mine_bot">
 				<ul>
-					<li class="lis" onclick="window.location.href='{{url("university/my/comment")}}'">
+					<li class="lis" onclick="window.location.href='{{url('university/my/comment')}}'">
 						<span><img src="{{asset('University/images/icon_guandian@2x.png')}}" alt="">我发表的观点</span>
 						<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 					</li>
-					<li class="lis" onclick="window.location.href='{{url("university/my/order")}}'">
+					<li class="lis" onclick="window.location.href='{{url('university/my/order')}}'">
 						<span><img src="{{asset('University/images/icon_yigou@2x.png')}}" alt="">我的已购</span>
 						<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 					</li>
-					<li class="lis" onclick="window.location.href='{{url("university/my/collect")}}'">
+					<li class="lis" onclick="window.location.href='{{url('university/my/collect')}}'">
 						<span><img src="{{asset('University/images/icon_shoucang@2x2.png')}}" alt="">我的收藏</span>
 						<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 					</li>
-					<li class="lis" onclick="window.location.href='{{url("university/my/feedback")}}'">
+					<li class="lis" onclick="window.location.href='{{url('university/my/feedback')}}'">
 						<span><img src="{{asset('University/images/icon_wentifankui@2x.png')}}" alt="">问题反馈</span>
 						<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 					</li>
-					<li class="lis" onclick="window.location.href='{{url("university/my/setting")}}'">
+					<li class="lis" onclick="window.location.href='{{url('university/my/setting')}}'">
 						<span><img src="{{asset('University/images/icon_shezhi@2x.png')}}" alt="">设置</span>
 						<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 					</li>

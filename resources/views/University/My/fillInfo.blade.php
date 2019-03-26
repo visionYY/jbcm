@@ -14,11 +14,10 @@
     <div class="imgbox">
         <input type="file" accept='image/*' id="img1" name="head_pic">
         <label class="head_photo" for="img1">
-          <img src="{{asset('University/images/icon_zhaoxiangji@2x.png')}}" alt="" id="head_pic_img">
+          <img src="{{asset($user->head_pic)}}" alt="" id="head_pic_img">
         </label>
-
     </div>
-    <p class="inp"><input class="inpp" type="text" name="truename" placeholder="你真实姓名"></p>
+    <p class="inp"><input class="inpp" type="text" name="truename" value="{{$user->truename}}"></p>
     {{ csrf_field() }}
     <button class="subb">提交</button>
     </form>
@@ -47,7 +46,7 @@
         }
     })
     $('form').submit(function(){
-      var pattern = /^[\u4e00-\u9fa5]{2,10}$/gi;  //正规表达式对象
+      var pattern = /[A-Za-z0-9_\-\u4e00-\u9fa5]{2,10}$/;  //正规表达式对象
       if(pattern.test($('.inpp').val())){
         return true;
       }else{

@@ -86,7 +86,7 @@
                     </p>
                     {{--学习状态--}}
                     <p class="list_time">
-                      <!-- <span class="notice">{{$content->type==1? '正课' : '预告'}}</span> -->
+                      <span class="notice">{{$content->type==1? '正课' : '预告'}}</span>
                       {{$content->time}}
                       @if(Auth::guard('university')->check())
                       <span class="acc">{{$content->learning->state ==1 ? '已完成' : '学习中'}}</span>
