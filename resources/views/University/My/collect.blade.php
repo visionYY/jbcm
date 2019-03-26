@@ -9,7 +9,7 @@
     <div id="centera">
       <div class="orangerb">
         <ul id="oranger"> 
-          <li class="hover">观点<span>({{$data['commentCount']}})</span></li> 
+          <li class="hover">观点<span>(<em id="commentCount">{{$data['commentCount']}}</em>)</span></li> 
           <!-- <li>课程<span>({{$data['courseCount']}})</span></li>  -->
         </ul>
       </div>
@@ -229,6 +229,8 @@
           dataType:'json',
           success:function(d){
             console.log(d)
+            var commentCount = $('#commentCount').text();
+            $('#commentCount').text(parseInt(commentCount)-parseInt(d.data));
           }
       })
     }
@@ -240,7 +242,10 @@
     //计算选中个数
     function comment_total() {
       setTimeout(function(){//定时器 
+        
         var checks = $("input[name='items2']:checked");
+        console.log(commentCount)
+        
         $('#comment_total').text(checks.length);
       },500)
     }

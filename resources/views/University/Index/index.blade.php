@@ -68,18 +68,18 @@
 					<source src="somevideo.mp4" type="video/mp4">
 				</video>  -->
 			</div>
-			<div class="classify">
-				<div class="classify1" onclick="window.location.href='{{url("university/jbp")}}'">
+			<!-- <div class="classify">
+				<div class="classify1" onclick="window.location.href='{{url('university/jbp')}}'">
 					<img src="{{asset('University/images/jiabinpai@2x.png')}}" alt="">
 				</div>
-				<div class="classify1" onclick="window.location.href='{{url("university/gjkc")}}'">
+				<div class="classify1" onclick="window.location.href='{{url('university/gjkc')}}'">
 					<img src="{{asset('University/images/guojikecheng@2x.png')}}" alt="">
 				</div>
-				<div class="classify1" onclick="window.location.href='{{url("university/courseCategory/cgid/1")}}'">
+				<div class="classify1" onclick="window.location.href='{{url('university/courseCategory/cgid/1')}}'">
 					<img src="{{asset('University/images/gongkaike@2x.png')}}" alt="">
 				</div>
 
-			</div>
+			</div> -->
 			{{--议题--}}
 			<div class="diacuss_box">
 				<h4 class="dia_tit discussion-click">

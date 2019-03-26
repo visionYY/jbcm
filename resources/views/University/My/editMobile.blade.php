@@ -19,7 +19,7 @@
 	    <p class="no">请填写正确的手机号！</p>
 	    <p class="yes">修改成功！</p>
 	</div>
-
+ 	@include('layouts.u_hint')
  	<script type="text/javascript">
  		$('#btn').click(function(){
  			var thisOBJ = $(this);
@@ -81,19 +81,17 @@
 		    content()
 		}
   
-		$('.btn').click(function(){
+		$('form').submit(function(){
 		    var userV = $("#user").val();
 		    var phone = /^1[34578]\d{9}$/;
 		    if(phone.test(userV)){
-		      $(".yes").css("display","block");
-		      setTimeout(function(){//定时器 
-		        $(".yes").css("display","none");
-		      },2000);
+		      return true;
 		    }else{
 		      $(".no").css("display","block");
 		      setTimeout(function(){//定时器 
 		        $(".no").css("display","none");
 		      },2000);
+		      return false;
 		    }
 		})
 	</script>

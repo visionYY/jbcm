@@ -16,7 +16,7 @@
 				<dl>
 					<dt><img src="{{asset($user->head_pic)}}" alt=""></dt>
 					<dd>
-						<p class="mineName">{{$user->nickname}}<span onclick="window.location.href='{{url('university/my/fillInfo')}}'">编辑</span></p>
+						<p class="mineName">{{$user->nickname}}<span onclick="window.location.href='{{url('university/my/replenish')}}'">编辑</span></p>
 						<p class="mineScore" onclick="window.location.href='{{url('university/my/guesteScore')}}'">{{$score->score}}嘉分<b></b></p>
 					</dd>
 				</dl>
@@ -43,7 +43,6 @@
 						<span><img src="{{asset('University/images/icon_shezhi@2x.png')}}" alt="">设置</span>
 						<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 					</li>
-					<a href="{{url('university/loginOut')}}">退出</a>
 				</ul>
 			</div>
 		</div>

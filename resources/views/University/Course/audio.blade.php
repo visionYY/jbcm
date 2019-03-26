@@ -296,7 +296,7 @@
           $('.get_video').eq(k).parent().siblings().find('.col').removeClass('coled');  
           $('.get_video').eq(k).find('.col').addClass('coled');
           $('.con_content').text(contentList[k]); //切换当前文本内容
-
+          $('#kid').val(k);
           $("audio").prop("src",audioList[k]);  //切换当前音频地址 
           var audio = document.getElementsByTagName('audio')[0];
           audio.load();

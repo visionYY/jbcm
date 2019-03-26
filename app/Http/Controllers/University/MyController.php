@@ -180,7 +180,7 @@ class MyController extends Controller
                 $num++;
             }
         }
-        return response(['code'=>'002','msg'=>'取消'.$num.'条收藏成功！']);
+        return response(['code'=>'002','msg'=>'取消'.$num.'条收藏成功！','data'=>$num]);
     }
 
     //问题反馈
@@ -197,6 +197,7 @@ class MyController extends Controller
         }
         return view('University.My.feedback');
     }
+
     //设置
     public function setting(){
         return view('University.My.setting');

@@ -22,9 +22,9 @@ class LoginController extends Controller
     public function doPasswordLogin(Request $request){
         $credentials = $this->validate($request,['mobile'=>'required','password'=>'required']);
 //        dd($credentials);
-        if (Auth::guard('university')->attempt($credentials)){
+        if (Auth::guard('university')->attempt($credentials,true)){
             $user = Auth::guard('university')->user();
-            if (!$user->nickname){
+            if (substr($user->nickname,0,5) == 'JIA_U'){
                 return redirect('university/my/replenish');
             }
             //从哪里来，回哪里去
@@ -72,7 +72,12 @@ class LoginController extends Controller
         }
         $users = User::where('mobile',$mobile)->get();
         if (!$users->toArray()){
+            $name = 'JIA_U'.dechex(date('YmdHis',time()));
             $info['mobile'] = $mobile;
+            $info['username'] = $mobile;
+            $info['nickname'] = $name;
+            $info['truename'] = $name;
+            $info['head_pic'] = asset('University/images/default_head_pic.png');
             $user= User::create($info);
             if (!$user){
                 return back()->with('hint',config('jbdx.register_error'));
@@ -80,10 +85,9 @@ class LoginController extends Controller
         }else{
             $user = $users[0];
         }
-        Auth::guard('university')->login($user);
-//        dd($user);
+        Auth::guard('university')->login($user,true);
         //完善信息
-        if (!$user->nickname){
+        if (substr($user->nickname,0,5) == 'JIA_U'){
             return redirect('university/my/replenish');
         }
         //返回，从哪里了，返回到哪里去
@@ -105,7 +109,7 @@ class LoginController extends Controller
                 //课程内容页2
                 return redirect('university/course/audio/id/'.$request->yid);
             default:
-                return redirect('university/my/index')->with('success',config('jbdx.login_success'));
+                return redirect('university/my/index')->with('hint',config('jbdx.login_success'));
         }
     }
 
