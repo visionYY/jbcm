@@ -16,10 +16,29 @@
 	    	<span><img src="{{asset('University/images/icon_dakai@2x.png')}}" alt=""></span>
 	    </li>
 	  </ul>
+
+		<button id="btn">退出登录</button>
+		<div class="cover">
+			<div class="box2">
+					<p class="boxtit">确定退出登录？</p>
+					<div class="btns">
+						<p class="nor">取消</p>
+						<p class="yesl">确定</p>
+					</div>
+				</div>
+			</div>
 	</div>
   <script>
     $(document).ready(function () {
-      
+			$('#btn').click(function(){
+				$('.cover').show();
+			})
+      $('.nor').click(function(){
+				$('.cover').hide();
+			})
+			$('.yesl').click(function(){
+				window.location.href='{{url('university/loginOut')}}';
+			})
     })
   </script>
 @stop
