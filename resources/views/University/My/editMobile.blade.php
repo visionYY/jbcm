@@ -9,8 +9,8 @@
 	    <div class="line"></div>
 	    <form action="" method="post">
 	    <div class="form">
-	      <p class="pas">新手机号：&nbsp;<input type="text" name="mobile" id="user" placeholder="请输入手机号" value="{{old('mobile')}}"><span></span></p>
-	      <p class="pas">验证码：&nbsp;<input type="text" name="yzm" placeholder="请输入验证码" id="yz" value="{{old('yzm')}}"><input type="button" id="btn" value="获取验证码"   /></p>
+	      <p class="pas">新手机号：&nbsp;<input type="tel" name="mobile" id="user" placeholder="请输入手机号" value="{{old('mobile')}}"><span></span></p>
+	      <p class="pas">验证码：&nbsp;<input type="number" name="yzm" placeholder="请输入验证码" id="yz" value="{{old('yzm')}}"><input type="button" id="btn" value="获取验证码"   /></p>
 	      <!-- <button id="btn">免费获取验证码</button> -->
 	      {{ csrf_field() }}
 	      <button class="btn" type="submit" disabled="disabled">提交</button>
