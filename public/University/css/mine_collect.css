@@ -91,22 +91,50 @@
 .tabBtn,.tabBtn11{
   width:100%;
   text-align: right;
-  height:.38rem;
+  height:.45rem;
   padding: 0 .15rem;
   border-bottom:1px solid rgba(222,222,222,1);
   font-size:.12rem;
   font-family:PingFang-SC-Regular;
   font-weight:400;
   color:rgba(51,51,51,1);
-  line-height:.38rem;
+  line-height:.45rem;
   position: relative;
 }
-.tabBtn>img,.tabBtn11>img{
+/* .tabBtn>img,.tabBtn11>img{
   width:.14rem;
   height:.13rem;
   position: absolute;
   right: .44rem;
   top: .12rem;
+} */
+.view{
+  font-size:.13rem;
+  font-family:PingFang-SC-Medium;
+  font-weight:bold;
+  color:rgba(51,51,51,1);
+  line-height:.45rem;
+  float: left;
+}
+.view>span{
+  font-size:.13rem;
+  font-family:PingFang-SC-Medium;
+  color: #305CBA;
+}
+.bianji{
+  float: right;
+  line-height:.45rem;
+  color: #305CBA;
+  font-size:.12rem;
+  font-family:PingFang-SC-Regular;
+  font-weight:400;
+}
+.bianji>img{
+  width: .11rem;
+  height: .11rem;
+  position: absolute;
+  right: .44rem;
+  top: 0.16rem;
 }
 .comB{
   width:100%;
@@ -163,10 +191,10 @@
 }
 .tabBtn22{
   width:100%;
-  height:.38rem;
+  height:.45rem;
   padding: 0 .15rem;
   border-bottom:1px solid rgba(222,222,222,1);
-  line-height:.38rem;
+  line-height:.45rem;
   display: none;
 }
 .text{
@@ -174,7 +202,11 @@
   font-family:PingFang-SC-Regular;
   font-weight:400;
   float: left;
-  color:rgba(51,51,51,1);
+  color:#666666;
+}
+.text>span{
+  font-size:.12rem;
+  color: #305CBA;
 }
 .checkboxF{
   float: right;
@@ -185,7 +217,7 @@
 }
 .checkboxF input[type="checkbox"] + label{
   position: absolute;
-  top: .12rem;
+  top: .145rem;
   left: -.17rem;
   display: inline-block;
   width: .14rem;
@@ -471,3 +503,5 @@ input{
   font-family:PingFang-SC-Medium;
   color:rgba(0,0,0,1);
 }
+
+

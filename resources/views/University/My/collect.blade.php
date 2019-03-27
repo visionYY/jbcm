@@ -7,16 +7,19 @@
   <link rel="stylesheet" href="{{asset('University/css/mine_collect.css')}}">
   <div class="wrapper">
     <div id="centera">
-      <div class="orangerb">
+      <!-- <div class="orangerb">
         <ul id="oranger"> 
           <li class="hover">观点<span>(<em id="commentCount">{{$data['commentCount']}}</em>)</span></li> 
-          <!-- <li>课程<span>({{$data['courseCount']}})</span></li>  -->
+          <li>课程<span>({{$data['courseCount']}})</span></li> 
         </ul>
-      </div>
+      </div> -->
       <div id="tablea" class="tablea">
          <div class="box">
           <div class="boxBefore2">
-            <p class="tabBtn11 bianji"><img src="{{asset('University/images/icon_bianji@2x.png')}}" alt="">编辑</p>
+            <div class="tabBtn11">
+              <p class="view">观点<span>(<em id="commentCount">{{$data['commentCount']}}</em>)</span></p>
+              <p class="bianji"><img src="{{asset('University/images/bianji@2x.png')}}" alt="">编辑</p>
+            </div>
             <div class="tabBtn22">
               <p class="text">已选中<span id="comment_total">0</span>条记录</p>
               <p class="checkboxF">
@@ -108,7 +111,7 @@
       <div class="box2">
         <p class="boxtit">确认删除？</p>
         <div class="btns">
-          <p class="yesl">确认</p>
+          <p class="yesl" id="destory">确认</p>
           <p class="nor">取消</p>
         </div>
       </div>
@@ -172,30 +175,30 @@
         }
       })
 
-      $("#del").click(function(){
-        var checks = $("input[name='items']:checked");
-        if(checks.length == 0){
-          $(".cover1").css("display","block");
-          setTimeout(function(){//定时器 
-            $(".cover1").css("display","none");
-          },3000);
-        }else{
-          $('.cover').css('display','block');
-          $('.yesl').click(function(){
-            var course_ids = new Array();
-            for (var i = checks.length - 1; i >= 0; i--) {
-              course_ids[i] = checks[i].value
-            }
-            cancelCollect(course_ids)
-            $("input[name='items']:checked").parents(".boxs").remove();
-            $('.cover').css('display','none');
-          })
-          $('.nor').click(function(){
-            $('.cover').css('display','none');
-          })
-        }
-      })
-
+      // $("#del").click(function(){
+      //   var checks = $("input[name='items']:checked");
+      //   if(checks.length == 0){
+      //     $(".cover1").css("display","block");
+      //     setTimeout(function(){//定时器 
+      //       $(".cover1").css("display","none");
+      //     },3000);
+      //   }else{
+      //     $('.cover').css('display','block');
+      //     $('.yesl').click(function(){
+      //       var course_ids = new Array();
+      //       for (var i = checks.length - 1; i >= 0; i--) {
+      //         course_ids[i] = checks[i].value
+      //       }
+      //       cancelCollect(course_ids)
+      //       $("input[name='items']:checked").parents(".boxs").remove();
+      //       $('.cover').css('display','none');
+      //     })
+      //     $('.nor').click(function(){
+      //       $('.cover').css('display','none');
+      //     })
+      //   }
+      // })
+      
       $("#del2").click(function(){
         var checks = $("input[name='items2']:checked");
         if(checks.length == 0){
@@ -205,7 +208,7 @@
           },2000);
         }else{
           $('.cover').css('display','block');
-          $('.yesl').click(function(){
+          $('#destory').unbind('click').click(function(){
             var comment_ids = new Array();
             for (var i = checks.length - 1; i >= 0; i--) {
               comment_ids[i] = checks[i].value
@@ -221,7 +224,8 @@
       })
     })
 
-    function cancelCollect(ids){
+    var cancelCollect = function(ids){
+      console.log(ids)
       $.ajax({
           url:"{{url('university/my/cancelCollect')}}",
           data:{_token:"{{csrf_token()}}",ids:ids},
@@ -230,6 +234,8 @@
           success:function(d){
             console.log(d)
             var commentCount = $('#commentCount').text();
+            console.log(parseInt(commentCount));
+            console.log(parseInt(d.data))
             $('#commentCount').text(parseInt(commentCount)-parseInt(d.data));
           }
       })
