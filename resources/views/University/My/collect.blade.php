@@ -200,7 +200,6 @@
       // })
       
       $("#del2").click(function(){
-        console.log(123);
         var checks = $("input[name='items2']:checked");
         if(checks.length == 0){
           $(".cover1").css("display","block");
@@ -209,15 +208,12 @@
           },2000);
         }else{
           $('.cover').css('display','block');
-          console.log($('#destory'));
-          $('#destory').click(function(e){
-            e.stopPropagation();
+          $('#destory').unbind('click').click(function(){
             var comment_ids = new Array();
             for (var i = checks.length - 1; i >= 0; i--) {
               comment_ids[i] = checks[i].value
             }
-            console.log(321);
-            // cancelCollect(comment_ids)
+            cancelCollect(comment_ids)
             $("input[name='items2']:checked").parents(".boxs").remove();
             $('.cover').css('display','none');
           })
