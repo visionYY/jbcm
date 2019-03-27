@@ -142,7 +142,7 @@ class LoginController extends Controller
     //获取验证码
     public function getCode(Request $request){
         if (!$request->mobile){
-            return response(array('code'=>'001','msg'=>'缺少参数：手机号'));
+            return response(array('code'=>'001','msg'=>'手机号有误，请重新填写！'));
         }
         $yzm = rand(1000,9999);
         Session::put('mobile',$request->mobile,'180');
@@ -150,12 +150,12 @@ class LoginController extends Controller
         $res = Sms::send($request->mobile,'SMS_152880235',$yzm);
     //    dd(date('Y-m-d H:i:s',time()),$res->Code);
         if($res->Code != 'OK'){
-            return response(array('code'=>'002','msg'=>'发送失败，请重试'));
+            return response(array('code'=>'002','msg'=>'发送失败，请重试！'));
         }
         $data['mobile'] = $request->mobile;
         $data['yzm'] = $yzm;
         $data['res'] = $res;
-        return response(array('code'=>'003','msg'=>'请求成功！','data'=>$data));
+        return response(array('code'=>'003','msg'=>'验证码已发送！','data'=>$data));
     }
 
 

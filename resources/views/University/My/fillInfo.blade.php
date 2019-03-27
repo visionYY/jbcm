@@ -9,6 +9,7 @@
     margin-top:2.35rem;
   }
 </style>
+   @include('layouts.u_hint')
   <div class="wrapper wrapper1">
     <form action="" method="post" enctype="multipart/form-data">
     <div class="imgbox">

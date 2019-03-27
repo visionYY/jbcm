@@ -120,12 +120,12 @@
                     <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
                     <div class="lis">
                       @if(Auth::guard('university')->check())
-                      <p class="cons blue">({{$content->learning->quiz_state}}/{{$content->quizCount}}）</p>
+                      <p class="cons bla">({{$content->learning->quiz_state}}/{{$content->quizCount}}）</p>
                       @else
-                      <p class="cons blue">(0/{{$content->quizCount}}）</p>
+                      <p class="cons bla">(0/{{$content->quizCount}}）</p>
                       @endif
-                      <p class="con blue">{{$content->chapter}}</p>
-                      <p class="lis_tit blue">{{$content->title}}</p>
+                      <p class="con bla">{{$content->chapter}}</p>
+                      <p class="lis_tit bla">{{$content->title}}</p>
                     </div>
                     <div class="testBox">
                       <form id="form_{{$content->id}}">
@@ -178,7 +178,6 @@
                     </div>
                   </div>
                   @else
-                   
                     <div class="class_list">
                       <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
                       <div class="lis">
@@ -295,6 +294,9 @@
           //切换当前列表颜色
           $('.get_video').eq(k).parent().siblings().find('.col').removeClass('coled');  
           $('.get_video').eq(k).find('.col').addClass('coled');
+          
+          $('.lis').eq(k).siblings().removeClass('coled');
+          $('.lis').eq(k).addClass('coled');
           $('.con_content').text(contentList[k]); //切换当前文本内容
           $('#kid').val(k);
           $("audio").prop("src",audioList[k]);  //切换当前音频地址 
@@ -639,6 +641,12 @@
                         analysis.each(function(index){         
                           analysis.eq(index).css('display','block');
                         })
+                    }else if (d.code == '004') {
+                        $('.cover1').text(d.msg);
+                        $(".cover1").css("display","block");
+                        setTimeout(function(){//定时器 
+                          $(".cover1").css("display","none");
+                        },3000);
                     }
                     console.log(d);
                 },

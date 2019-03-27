@@ -17,26 +17,31 @@
 	    </div>
 	</form>
 	    <p class="no">请填写正确的手机号！</p>
-	    <p class="yes">修改成功！</p>
+	    <p class="yes">验证码已发送！</p>
 	</div>
  	@include('layouts.u_hint')
  	<script type="text/javascript">
+		var phone = /^1[34578]\d{9}$/;
+		//获取验证码
  		$('#btn').click(function(){
- 			var thisOBJ = $(this);
- 			var mobile = $('[name=mobile]').val();
- 			$.ajax({
- 				url:"{{url('university/getCode')}}",
- 				data:{mobile:mobile},
- 				type:'GET',
- 				dataType:'json',
- 				success:function(d){
- 					alert(d.msg);
- 					if (d.code == '003') {
- 						settime(thisOBJ);
- 					}
- 				}
-
- 			})
+ 			var userV = $("#user").val();
+		    if(phone.test(userV)){
+		      	var mobile = $('[name=mobile]').val();
+	 			$.ajax({
+	 				url:"{{url('university/getCode')}}",
+	 				data:{mobile:mobile},
+	 				type:'GET',
+	 				dataType:'json',
+	 				success:function(d){
+	 					console.log(d);
+	 				}
+	 			})
+		    }else{
+		      	$(".no").css("display","block");
+			    setTimeout(function(){//定时器 
+			        $(".no").css("display","none");
+			    },2000);
+		    }
  		});
  		
  		//获取验证码倒计时
@@ -46,6 +51,10 @@
 	            val.attr("");
 	            val.val('免费获取验证码');
 	            countdown = 60;
+	            $(".yes").css("display","block");
+			      setTimeout(function(){//定时器 
+			        $(".yes").css("display","none");
+			    },2000);
 	        } else {
 	            val.attr("disabled");
 	            val.val("重新发送(" + countdown + ")");
@@ -55,10 +64,7 @@
 	            },1000)
 	        }
 	    }
- 	</script>
- 	<script type="text/javascript">
-	  
-
+		
 		//button禁用可用
 		function content(){
 		    var user = $("#user").val().trim();
@@ -82,16 +88,15 @@
 		}
   
 		$('form').submit(function(){
-		    var userV = $("#user").val();
-		    var phone = /^1[34578]\d{9}$/;
+			var userV = $("#user").val();
 		    if(phone.test(userV)){
-		      return true;
+		    	return true;
 		    }else{
-		      $(".no").css("display","block");
-		      setTimeout(function(){//定时器 
-		        $(".no").css("display","none");
-		      },2000);
-		      return false;
+		    	$(".no").css("display","block");
+			    setTimeout(function(){//定时器 
+			        $(".no").css("display","none");
+			    },2000);
+			    return false;
 		    }
 		})
 	</script>

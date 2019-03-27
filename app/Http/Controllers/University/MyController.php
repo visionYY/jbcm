@@ -213,6 +213,7 @@ class MyController extends Controller
     //修改手机号
     public function editMobile(Request $request){
         if ($request->all()){
+            $this->validate($request,['mobile'=>'required|unique:users']);
             $yzm = Session::get('yzm');
             $mobile = Session::get('mobile');
             if ($request->mobile != $mobile || $request->yzm != $yzm){
@@ -220,7 +221,7 @@ class MyController extends Controller
             }
             $user = Auth::user();
             if ($user->update(['mobile'=>$request->mobile])){
-                return back()->with('success',config('jbdx.update_success'));
+                return redirect('university/my/index')->with('hint',config('jbdx.update_success'));
             }else{
                 return back()->with('hint',config('jbdx.update_error'));
             }
@@ -278,7 +279,7 @@ class MyController extends Controller
     public function fillInfo(Request $request){
         $user = Auth::guard('university')->user();
         if($request->all()){
-            $credentials = $this->validate($request,['truename'=>'required']);
+            $credentials = $this->validate($request,['truename'=>'required|max:10'],['truename.required' => '名称不能为空','truename.max' => '名称超过10个字符']);
             $credentials['nickname'] = $credentials['truename'];
             if ($request->head_pic){
                 $size = $request->head_pic->getSize() / 1024;
@@ -292,11 +293,13 @@ class MyController extends Controller
                     //删除旧图片(如果有，并且不是默认头像)
                     if ($user->head_pic != asset('University/images/default_head_pic.png')){
                         $head_pic = strstr($user->head_pic,'upload');
-                        if (is_file(public_path($head_pic))){
-                            unlink(public_path($head_pic));
-                        }
-                        if (is_file(public_path(thumbnail($head_pic)))){
-                            unlink(public_path(thumbnail($head_pic)));
+                        if ($head_pic){
+                            if (is_file(public_path($head_pic))){
+                                unlink(public_path($head_pic));
+                            }
+                            if (is_file(public_path(thumbnail($head_pic)))){
+                                unlink(public_path(thumbnail($head_pic)));
+                            }
                         }
                     }
                 }else{

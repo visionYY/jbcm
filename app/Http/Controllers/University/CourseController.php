@@ -211,15 +211,20 @@ class CourseController extends Controller
      * */
     public function quizForm(Request $request){
         $count = count($request->all()) - 2;
-        if (!$request->learning_id){
-            return response(['code'=>'001','msg'=>'缺少参数，登陆后再试']);
-        }
-        $learning = LearningState::find($request->learning_id);
-        if ($learning->update(['quiz_state'=>$count])){
-            return response(['code'=>'002','msg'=>'提交成功','data'=>$count]);
+        if ($count != 0){
+            if (!$request->learning_id){
+                return response(['code'=>'001','msg'=>'缺少参数，登陆后再试']);
+            }
+            $learning = LearningState::find($request->learning_id);
+            if ($learning->update(['quiz_state'=>$count])){
+                return response(['code'=>'002','msg'=>'提交成功','data'=>$count]);
+            }else{
+                return response(['code'=>'003','msg'=>'提交失败，请稍后再试']);
+            }
         }else{
-            return response(['code'=>'003','msg'=>'提交失败，请稍后再试']);
+            return response(['code'=>'004','msg'=>'没有任何选择']);
         }
+
 
     }
 

@@ -1,5 +1,5 @@
 @extends('layouts.university')
-@section('title','课程')
+@section('title',$course->name)
 @section('content')
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/video.css')}}">
@@ -107,12 +107,12 @@
                     <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
                     <div class="lis">
                       @if(Auth::guard('university')->check())
-                      <p class="cons blue">({{$content->learning->quiz_state}}/{{$content->quizCount}}）</p>
+                      <p class="cons bla">({{$content->learning->quiz_state}}/{{$content->quizCount}}）</p>
                       @else
-                      <p class="cons blue">(0/{{$content->quizCount}}）</p>
+                      <p class="cons bla">(0/{{$content->quizCount}}）</p>
                       @endif
-                      <p class="con blue">{{$content->chapter}}</p>
-                      <p class="lis_tit blue">{{$content->title}}</p>
+                      <p class="con bla">{{$content->chapter}}</p>
+                      <p class="lis_tit bla">{{$content->title}}</p>
                     </div>
                     <div class="testBox">
                       <form id="form_{{$content->id}}">
@@ -123,7 +123,7 @@
                       {{--题目循环--}}
                       @foreach($content->quizs as $k=>$quiz)
                       <div class="topicbox">
-                        <p class="t_tit"><span>({{$quiz->type==1 ? '多选' : '单选'}}）</span>{{$k}}. {{$quiz->title}}</p>
+                        <p class="t_tit"><span>({{$quiz->type==1 ? '多选' : '单选'}}）</span>{{$k+1}}. {{$quiz->title}}</p>
                         {{--答案循环--}}
                         @foreach($quiz->answers as $ak=>$answer)
                         <div>
@@ -287,6 +287,9 @@
       //切换列表菜单
       $('.get_video').eq(k).parent().siblings().find('.col').removeClass('coled');
       $('.get_video').eq(k).find('.col').addClass('coled');
+
+      $('.lis').eq(k).siblings().removeClass('coled');
+      $('.lis').eq(k).addClass('coled');
       //切换文本
       $('.con_content').text(contentList[k])
       video.src = vList[k];
@@ -300,6 +303,7 @@
     }
   </script>
   @endif
+  <div class="webhint"></div>
     <script>
       $(document).ready(function () {  
         var is_login = $('#is_login').val();
@@ -497,6 +501,12 @@
                         analysis.each(function(index){         
                           analysis.eq(index).css('display','block');
                         })
+                    }else if (d.code == '004') {
+                        $('.webhint').text(d.msg);
+                        $(".webhint").css("display","block");
+                        setTimeout(function(){//定时器 
+                          $(".webhint").css("display","none");
+                        },3000);
                     }
                     console.log(d);
                 },

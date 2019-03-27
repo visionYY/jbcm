@@ -24,7 +24,7 @@
       {{ csrf_field() }}
     </form> 
     </div>
-    <p class="no">请填写这正确密码！</p>
+    <p class="no"></p>
   </div>
 
   <script type="text/javascript">
@@ -84,15 +84,22 @@
 	    var pwdV = $("#pwd").val();
 	    var pwd1V = $("#pwd1").val();
 	    var pasw = /^[a-zA-Z0-9]{6,18}$/;
-	    if(pasw.test(pwdV) && pwdV===pwd1V){
-				return true;
-	    }else{
-				$(".no").css("display","block");
-	      setTimeout(function(){//定时器 
-	        $(".no").css("display","none");
-	      },2000);
-				return false;
-			}
+	    if (!pasw.test(pwdV)) {
+	    	$(".no").text('密码格式错误');
+	    	$(".no").css("display","block");
+		    setTimeout(function(){//定时器 
+		        $(".no").css("display","none");
+		    },2000);
+			return false;
+	    }
+	    if(pwdV != pwd1V){
+	    	$(".no").text('两次输入不一致');
+			$(".no").css("display","block");
+		    setTimeout(function(){//定时器 
+		        $(".no").css("display","none");
+		    },2000);
+	      	return false;
+	    }
 			
 	  })
 

@@ -660,3 +660,20 @@ input:checked+label:after{
   width:.11rem;
   height:.14rem;
 }
+.webhint{
+  width:70%;
+  background: rgba(0,0,0,.4);
+  height:.4rem;
+  line-height:.4rem;
+  text-align: center;
+  position: fixed;
+  top:50%;
+  left:15%;
+  color: #fff;
+  border-radius:.06rem;
+  font-size:.12rem;
+  display:none;
+}
+.bla{
+  color: #333333;
+}
