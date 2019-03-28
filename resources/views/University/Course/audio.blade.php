@@ -125,7 +125,7 @@
                       <p class="cons bla">(0/{{$content->quizCount}}）</p>
                       @endif
                       <p class="con bla">{{$content->chapter}}</p>
-                      <p class="lis_tit bla">{{$content->title}}</p>
+                      <p class="lis_tit2">{{$content->title}}</p>
                     </div>
                     <div class="testBox">
                       <form id="form_{{$content->id}}">
