@@ -189,15 +189,15 @@ h4{
   background:rgba(0,0,0,.5);
 }
 #btn{
-  width:94%;
-  margin-left: 3%;
+  width:64%;
+  margin-left: 18%;
   height:.4rem;
   background:rgba(48,92,186,1);
   border-radius:4px;
   position: fixed;
   bottom: .6rem;
   border:1px solid rgba(48,92,186,1);
-  font-size:.14rem;
+  font-size:.13rem;
   font-family:PingFang-SC-Medium;
   font-weight:400;
   color:rgba(255,255,255,1);

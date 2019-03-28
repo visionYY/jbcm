@@ -407,7 +407,7 @@
   height: .15rem;
 }
 .blue{
-  color:rgba(48,92,186,1);
+  color:rgba(48,92,186,1)!important;
 }
 
 
@@ -615,4 +615,12 @@ input:checked+label:after{
 }
 .bla{
   color: #333333;
+}
+.lis_tit2{
+  color: #333333;
+  float: left;
+  width: 70%;
+  font-size: .12rem;
+  font-family: PingFang-SC-Medium;
+  line-height: .18rem;
 }

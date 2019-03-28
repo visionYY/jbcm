@@ -112,7 +112,7 @@
                       <p class="cons bla">(0/{{$content->quizCount}}）</p>
                       @endif
                       <p class="con bla">{{$content->chapter}}</p>
-                      <p class="lis_tit bla">{{$content->title}}</p>
+                      <p class="lis_tit2">{{$content->title}}</p>
                     </div>
                     <div class="testBox">
                       <form id="form_{{$content->id}}">
@@ -288,11 +288,10 @@
       $('.get_video').eq(k).parent().siblings().find('.col').removeClass('coled');
       $('.get_video').eq(k).find('.col').addClass('coled');
 
-      $('.lis').eq(k).siblings().removeClass('coled');
-      $('.lis').eq(k).addClass('coled');
       //切换文本
       $('.con_content').text(contentList[k])
       video.src = vList[k];
+      console.log(vList[k]);
       video.load();
       video.currentTime=time
       video.play();
@@ -327,7 +326,15 @@
         })
         //答案详情
         $('.topicbox').each(function(index) {
+          var v = false;
           $('.topicbox').eq(index).find(".ri").click(function() {
+            if( v ) {    //如果为真的时候，我这里就显示关注
+              $( this ).html( "显示解析" );
+              v = false; //由于文字已更改，所以我们要改变变量的值
+            } else {
+              $( this ).html( "收起解析" );
+              v = true;
+            }
             $(this).parent().next().toggle()
           })
         })
@@ -477,10 +484,29 @@
         })
       })
 
+
+      var flag = true;
       //测试题点击
         $('.class_list').each(function(index) {
           $('.class_list').eq(index).find(".lis").click(function() {
-            $(this).next().toggle()
+            // $(this).next().toggle()
+            // $(this).find('.lis_tit2').addClass('blue').siblings().removeClass('blue');
+            if(flag){
+              console.log(2)
+              $(this).find('.lis_tit2').addClass('blue');
+              $(this).find('.cons').addClass('blue');
+              $(this).find('.con').addClass('blue');
+              $(this).next().css("display","block");
+              flag = false;
+              console.log(flag)
+            }else{
+              console.log(1);
+              $(this).find('.lis_tit2').removeClass('blue');
+              $(this).find('.cons').removeClass('blue');
+              $(this).find('.con').removeClass('blue');
+              $(this).next().css("display","none");
+              flag = true;
+            }
           })
         })
 

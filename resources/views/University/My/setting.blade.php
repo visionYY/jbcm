@@ -4,7 +4,14 @@
 	<link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
 	<link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
 	<link rel="stylesheet" href="{{asset('University/css/mine.css')}}">
-
+	<style>
+	body{
+	  background: rgba(244,244,244,1)!important;
+	}
+	.wrapper{
+		background:#fff;
+	}
+	</style>
 	<div class="wrapper">
 	  <ul class="ull">
 	    <li class="lis" onclick="window.location.href='{{url("university/my/accountManagement")}}'">
