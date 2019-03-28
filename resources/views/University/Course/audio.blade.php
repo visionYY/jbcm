@@ -617,10 +617,26 @@
           })
       })
 
+      var flag = true;
       //测试题点击
       $('.class_list').each(function(index) {
         $('.class_list').eq(index).find(".lis").click(function() {
-          $(this).next().toggle()
+          $(this).next().toggle();
+
+          if(flag){
+              $(this).find('.lis_tit2').addClass('blue');
+              $(this).find('.cons').addClass('blue');
+              $(this).find('.con').addClass('blue');
+              $(this).next().css("display","block");
+              flag = false;
+              console.log(flag)
+            }else{
+              $(this).find('.lis_tit2').removeClass('blue');
+              $(this).find('.cons').removeClass('blue');
+              $(this).find('.con').removeClass('blue');
+              $(this).next().css("display","none");
+              flag = true;
+            }
         })
       })
 
