@@ -492,7 +492,6 @@
             // $(this).next().toggle()
             // $(this).find('.lis_tit2').addClass('blue').siblings().removeClass('blue');
             if(flag){
-              console.log(2)
               $(this).find('.lis_tit2').addClass('blue');
               $(this).find('.cons').addClass('blue');
               $(this).find('.con').addClass('blue');
@@ -500,7 +499,6 @@
               flag = false;
               console.log(flag)
             }else{
-              console.log(1);
               $(this).find('.lis_tit2').removeClass('blue');
               $(this).find('.cons').removeClass('blue');
               $(this).find('.con').removeClass('blue');
