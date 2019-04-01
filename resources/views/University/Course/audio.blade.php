@@ -313,7 +313,7 @@
               curr = 0; //重新循环播放
           }
         }
-
+        
         function initAudioEvent( audioPlayer = document.getElementById('audioPlayer') ) {
           var audio = document.getElementsByTagName('audio')[0];
           // var audioPlayer = document.getElementById('audioPlayer');
@@ -326,7 +326,6 @@
               }, false);
               // 监听播放完成事件
               // audio.addEventListener('ended',audioEnded, false);
-
               // 改变播放/暂停图片
               if (audio.paused) {
                   // 开始播放当前点击的音频
@@ -336,9 +335,7 @@
                   audio.pause();
                   audioPlayer.src = '{{asset("University/images/play.png")}}';
               }
-
             }, false);
-
            // 监听播放完成事件
           audio.addEventListener('ended',function(){
             audioEnded();
@@ -355,18 +352,15 @@
                   updateProgress(audio);
               }
           }, false);
-
           // 拖动进度点调节进度
           dragProgressDotEvent(audio);
         }
-
       /**
        * 鼠标拖动进度点时可以调节进度
        * @param {*} audio
        */
       function dragProgressDotEvent(audio) {
           var dot = document.getElementById('progressDot');
-
           var position = {
               oriOffestLeft: 0, // 移动开始时进度条的点距离进度条的偏移值
               oriX: 0, // 移动开始时的x坐标
@@ -374,35 +368,28 @@
               maxRight: 0 // 向右最大可拖动距离
           };
           var flag = false; // 标记是否拖动开始
-
           // 鼠标按下时
           dot.addEventListener('mousedown', down, false);
           dot.addEventListener('touchstart', down, false);
-
           // 开始拖动
           document.addEventListener('mousemove', move, false);
           document.addEventListener('touchmove', move, false);
-
           // 拖动结束
           document.addEventListener('mouseup', end, false);
           document.addEventListener('touchend', end, false);
-
           function down(event) {
               if (!audio.paused || audio.currentTime != 0) { // 只有音乐开始播放后才可以调节，已经播放过但暂停了的也可以
                   flag = true;
-
                   position.oriOffestLeft = dot.offsetLeft;
                   position.oriX = event.touches ? event.touches[0].clientX : event.clientX; // 要同时适配mousedown和touchstart事件
                   position.maxLeft = position.oriOffestLeft; // 向左最大可拖动距离
                   position.maxRight = document.getElementById('progressBarBg').offsetWidth - position.oriOffestLeft; // 向右最大可拖动距离
-
                   // 禁止默认事件（避免鼠标拖拽进度点的时候选中文字）
                   if (event && event.preventDefault) {
                       event.preventDefault();
                   } else {
                       event.returnValue = false;
                   }
-
                   // 禁止事件冒泡
                   if (event && event.stopPropagation) {
                       event.stopPropagation();
@@ -411,7 +398,6 @@
                   }
               }
           }
-
           function move(event) {
               if (flag) {
                   var clientX = event.touches ? event.touches[0].clientX : event.clientX; // 要同时适配mousemove和touchmove事件
@@ -428,12 +414,10 @@
                   updateProgress(audio);
               }
           }
-
           function end() {
               flag = false;
           }
       }
-
       /**
        * 更新进度条与当前播放时间
        * @param {object} audio - audio对象
@@ -441,14 +425,12 @@
       function updateProgress(audio) {
           // console.log(audio.currentTime,'进度',audio.duration)
           var value = audio.currentTime / audio.duration;
-
           document.getElementById('progressBar').style.width = value * 100 + '%';
           document.getElementById('progressDot').style.left = value * 100 + '%';
           document.getElementById('audioCurTime').innerText = transTime(audio.currentTime);
           $('.audio-length-total').text(transTime(audio.duration))
           window.localStorage.setItem('now_time',Math.floor(audio.currentTime))
       }
-
       /**
        * 播放完成时把进度调回开始的位置
        */
@@ -460,7 +442,6 @@
           getVideoTime(1);
           audioPlay(curr);
       }
-
       /**
        * 音频播放时间换算
        * @param {number} value - 音频当前播放时间，单位秒
@@ -476,10 +457,8 @@
           } else {
               time = formatTime(m + ":" + s);
           }
-
           return time;
       }
-
       /**
        * 格式化时间显示，补零对齐
        * eg：2:4  -->  02:04
@@ -494,10 +473,8 @@
               time += ":";
           }
           time += s[i].length == 1 ? ("0" + s[i]) : s[i];
-
           return time;
       }
-
       //课程详情
       $('.class_list').each(function(index) {
         $('.class_list').eq(index).find(".list_img").click(function() {
@@ -505,7 +482,6 @@
           $(this).next().toggle()
         })
       })
-
       //答案详情
       $('.topicbox').each(function(index) {
         $('.topicbox').eq(index).find(".ri").click(function() {
@@ -517,7 +493,6 @@
           }
         })
       })
-
       //tab1
       $(".tablea").find(".box:first").show();    //为每个BOX的第一个元素显示   
       $("#oranger li").on("mouseover",function(){ //给a标签添加事件  
@@ -525,7 +500,6 @@
         $(this).parent().parent().next().find(".box").hide().eq(index).show(); //返回上一层，在下面查找css名为box隐藏，然后选中的显示  
         $(this).addClass("hover").siblings().removeClass("hover"); //a标签显示，同辈元素隐藏  
       })
-
       //tab2
       var currentIndex=0;
       $(document).ready(function(){
@@ -542,7 +516,6 @@
          
         });
       });
-
       // 文稿
       $(".draft img").click(function(){
         if($(".wengaotab img").attr("src","{{asset('University/images/icon_wengao@3x.png')}}")){ 
@@ -565,13 +538,11 @@
         var videoUrl = "{{url('university/course/video/'.$course->id)}}"+'/'+kid;
         location.href = videoUrl;
       })
-
       //登陆
       $('.onlogin').click(function(){
         alert('尚未登陆！')
         window.location.href=loginUrl
       })
-
       //购买页面
       $('.onBuy').click(function(){
          $.ajax({
@@ -616,13 +587,11 @@
             }
           })
       })
-
       var flag = true;
       //测试题点击
       $('.class_list').each(function(index) {
         $('.class_list').eq(index).find(".lis").click(function() {
           $(this).next().toggle();
-
           if(flag){
               $(this).find('.lis_tit2').addClass('blue');
               $(this).find('.cons').addClass('blue');
@@ -639,7 +608,6 @@
             }
         })
       })
-
       //提交测试题
       $('.submit').click(function(){
         var analysis = $(this).parent().find('.analysis');
@@ -667,14 +635,11 @@
                     console.log(d);
                 },
             });
-
       })
-
      window.onbeforeunload= function(){
         getVideoTime(0);
         return '确认关闭';
      }
-
       //存储播放时间
       function getVideoTime(state){
         var is_login = $('#is_login').val();
@@ -695,7 +660,6 @@
           console.log('未登录')
         }
       }
-
       //收藏
       /*$('.collect').click(function(){
         if (is_login ==1) {
@@ -726,7 +690,6 @@
           window.location.href = loginUrl;
         }
       })*/
-
       //按钮切换 
       $(".wengaotab img").click(function(){ 
         if(this.src.search("{{asset('University/images/icon_wengao@3x.png')}}")!=-1){ 

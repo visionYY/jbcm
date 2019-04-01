@@ -20,7 +20,7 @@ class CourseController extends Controller
         $this->middleware('auth:university',['only'=>['buy']]);
     }
     //
-    public function show($id,$kid=0){
+    public function show($id,$kid=0,$audio=0){
         $course = Course::find($id);
         $contents = Content::where('course_id',$id)->get();
 
@@ -69,7 +69,10 @@ class CourseController extends Controller
                     $course->learindgTime = $con->learning->learning_time;
                 }
             }
-//            echo '<pre>';
+          //判断是否音频跳转过来的
+          if($audio == 1){
+                $course->
+          }
             if ($kid == 0){
                 foreach ($contents as $k=>$content){
 //                    print_r($content);

@@ -263,6 +263,7 @@
     $(document).ready(function(){
           var ls_time = $('[name=ls_time]').val();
           var ls_key = $('[name=ls_key]').val();
+          console.log(ls_key);
           if (ls_key != 0) {
             play(ls_key,ls_time);
           }else{
