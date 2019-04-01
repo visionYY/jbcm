@@ -18,8 +18,16 @@
 textarea{
   width:100%;
   height:100%;
+  border: none;
 }
-
+input[type=button], input[type=submit], input[type=file], button {
+  cursor: pointer;
+  outline: 0px;
+  -webkit-appearance: none;
+}
+button:disabled {
+  background-color: #DEDEDE!important;
+}
 .cover,.cover1{
   display:none;
   position:fixed;
