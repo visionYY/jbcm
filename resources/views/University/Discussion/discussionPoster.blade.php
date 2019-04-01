@@ -9,13 +9,21 @@
   .wrapper{
     height:100%;
     width:100%;
-    background: url("{{asset($data['discussion']->cover)}}") no-repeat;
-    background-size:100% 100%;
-    position: relative;
+    /* background: url("{{asset($data['discussion']->cover)}}") no-repeat; */
+    /* background-size:100% 100%; */
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
-
+  .wrapper::-webkit-scrollbar {
+    display: none;
+  }
 </style>
   <div class="wrapper">
+    <div class="backImg">
+      <img src="{{asset($data['discussion']->cover)}}" alt="">
+    </div>
     <div class="btn">
       <a class="left" href="{{asset($data['discussion']->cover)}}" download="{{$data['download']}}">保存本地</a>
       @if($data['web'] ==1)
