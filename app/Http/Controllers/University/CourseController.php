@@ -279,4 +279,10 @@ class CourseController extends Controller
             }
         }
     }
+
+    //测试
+    public function test(){
+
+        return view('University.Course.test');
+    }
 }

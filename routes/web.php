@@ -98,7 +98,7 @@ Route::group(['prefix'=>'university'],function(){
     Route::group(['prefix'=>'course'],function (){
         Route::get('video/{id}/{cid?}/{audio?}','University\CourseController@show')->name('video');
         Route::get('audio/{id}/{cid?}','University\CourseController@audio')->name('audio');
-        Route::get('test','University\CourseController@audio')->name('test');
+        Route::get('test','University\CourseController@test')->name('test');
         Route::get('buy/id/{id}','University\CourseController@buy');
         Route::post('quizForm','University\CourseController@quizForm');
         Route::post('learningPut','University\CourseController@learningPut');
