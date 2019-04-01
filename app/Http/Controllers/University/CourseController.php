@@ -71,19 +71,20 @@ class CourseController extends Controller
             }
           //判断是否音频跳转过来的
           if($audio == 1){
-                $course->
+                $course->learingKey = $kid;
+          }else{
+              if ($kid == 0){
+                  foreach ($contents as $k=>$content){
+                      if ($content->learning->state ==0){
+                          $course->learingKey = $k;
+                          break;
+                      }
+                  }
+              }else{
+                  $course->learingKey = 0;
+              }
           }
-            if ($kid == 0){
-                foreach ($contents as $k=>$content){
-//                    print_r($content);
-                    if ($content->learning->state ==0){
-                        $course->learingKey = $k;
-                        break;
-                    }
-                }
-            }else{
-                $course->learingKey = 0;
-            }
+
 
             //课程收藏记录
            /* $collect = Collect::where('user_id',$user->id)->where('by_collect_id',$course->id)->where('type',1)->first();
@@ -277,5 +278,11 @@ class CourseController extends Controller
                 return response(['code'=>'003','msg'=>'操作失败，稍后重试！']);
             }
         }
+    }
+
+    //测试
+    public function test(){
+
+        return view('University.Course.test');
     }
 }
