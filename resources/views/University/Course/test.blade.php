@@ -24,9 +24,9 @@
     <div class="audio-wrapper">
         <audio size="#4.50MB" duration="#01:57" filename="#Launch_Kan R. Gao.mp3">
           @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
-            <source id="autoPlay" class="autoPlay" src="{{$course->oneAudio}}" type="audio/mp3">
+            <source class="autoPlay" src="{{$course->oneAudio}}" type="audio/mp3">
           @else    
-            <source id="autoPlay" class="autoPlay" src="" type="audio/mp3">
+            <source class="autoPlay" src="" type="audio/mp3">
           @endif
         </audio>
         <div class="audio-left">
@@ -75,18 +75,19 @@
               <div class="box2">
                 @foreach($contents as $k=>$content)
                   @if($content->type == 0 || Auth::guard('university')->check() && $course->isBuy == 1)
-                  @if(Auth::guard('university')->check())
-                  <div class="class_list get_video" content="{{$content->content}}" ls_id="{{$content->learning->id}}" audio="{{$content->audio}}" kid="{{$k}}" ls_time="{{$content->learning->learning_time}}" time="{{substr($content->time,3,5)}}">
-                  @else  
-                  <div class="class_list get_video" video="{{$content->video}}" content="{{$content->content}}" ls_id="0" audio="{{$content->audio}}" time="{{substr($content->time,3,5)}}">
-                  @endif  
-                    <p class="list_name">
+                  <div class="class_list " >
+                    @if(Auth::guard('university')->check())
+                    <p class="list_name get_video" content="{{$content->content}}" audio="{{$content->audio}}" kid="{{$k}}" ls_id="{{$content->learning->id}}" ls_time="{{$content->learning->learning_time}}">
+                    @else  
+                    <p class="list_name get_video" content="{{$content->content}}" ls_id="0" audio="{{$content->audio}}" kid="{{$k}}">
+                    @endif  
                       <span class="col">{{$content->chapter}} {{$content->title}}</span>
                       <!-- <span><img class="bianj" src="{{asset('University/images/icon_bianji@2x2.png')}}" alt=""></span> -->
                     </p>
                     {{--学习状态--}}
                     <p class="list_time">
-                      <span class="notice">{{$content->type==1? '正课' : '预告'}}</span>{{substr($content->time,3,5)}}
+                      <span class="notice">{{$content->type==1? '正课' : '预告'}}</span>
+                      {{$content->time}}
                       @if(Auth::guard('university')->check())
                       <span class="acc">{{$content->learning->state ==1 ? '已完成' : '学习中'}}</span>
                       @else
@@ -97,13 +98,12 @@
                     <div class="lisImgBox">{{$content->intro}}</div>
                   </div>
                   @else
-                   
                     <div class="class_list">
                       <p class="list_name">
                         <span>{{$content->chapter}} {{$content->title}}</span>
                         <span><img src="{{asset('University/images/icon_suo@2x.png')}}" alt=""></span>
                       </p>
-                      <p class="list_time">{{substr($content->time,3,5)}}</p>
+                      <p class="list_time">{{$content->time}}</p>
                       <p class="list_img"><img src="{{asset('University/images/icon_zhankai@2x.png')}}" alt=""></p>
                     </div> 
                     
@@ -120,12 +120,12 @@
                     <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
                     <div class="lis">
                       @if(Auth::guard('university')->check())
-                      <p class="cons blue">({{$content->learning->quiz_state}}/{{$content->quizCount}}）</p>
+                      <p class="cons bla">({{$content->learning->quiz_state}}/{{$content->quizCount}}）</p>
                       @else
-                      <p class="cons blue">(0/{{$content->quizCount}}）</p>
+                      <p class="cons bla">(0/{{$content->quizCount}}）</p>
                       @endif
-                      <p class="con blue">{{$content->chapter}}</p>
-                      <p class="lis_tit blue">{{$content->title}}</p>
+                      <p class="con bla">{{$content->chapter}}</p>
+                      <p class="lis_tit2">{{$content->title}}</p>
                     </div>
                     <div class="testBox">
                       <form id="form_{{$content->id}}">
@@ -178,7 +178,6 @@
                     </div>
                   </div>
                   @else
-                   
                     <div class="class_list">
                       <p class="biaoqian"><img src="{{asset('University/images/icon_biaoqianlan@2x.png')}}" alt=""></p>
                       <div class="lis">
@@ -201,15 +200,15 @@
       {{--判断是否收费课 并且 判断是否购买--}}
       @if($course->is_pay == 1)
         @if($course->isBuy != 1)
-        <button class="btn onBuy">开通课程 | ￥99</button>
+        <button class="btn onBuy">开通课程 | ￥{{$course->price}}</button>
         @endif
       @endif
     @else
-        <button class="btn onlogin">开通课程 | ￥99</button>
+        <button class="btn onlogin">开通课程 | ￥{{$course->price}}</button>
     @endif
     <div class="hint">购买后才能继续学习</div>
     <div class="wengaotab"><img src="{{asset('University/images/icon_wengao@3x.png')}}" alt=""></div>
-    <div class="wengaobox con_content">{{$course->oneContent}}</div>
+    <div class="wengaobox con_content"></div>
   </div>
   {{-- 登陆地址 --}}
   <input type="hidden" name="loginUrl" value="{{url('university/quickLogin?source=5&yid='.$course->id)}}">
@@ -252,73 +251,82 @@
   <input type="hidden" value="0" id="is_login">
   @endif
   <div class="cover1">请先购买该课程</div>
-    <script>
-      var is_login = $('#is_login').val();
-      var loginUrl = $('[name=loginUrl]').val();
-      var audioList = new Array();
-      var audioOBJ = $('.get_video');
-      for (var i = 0; i <= audioOBJ.length - 1; i++) {
-        audioList[i] = audioOBJ[i].getAttribute('audio')
-      }
-      var curr = $('#kid').val();
-      var vLen = audioList.length;
-      console.log(audioList[curr])
-      $(document).ready(function () {
-        // 切换小节
-        $('.get_video').click(function () {
-          var indexMius = $(this).attr('audio');
-          // var learindgTime = $(this).attr('ls_time');
-          audioPlay(indexMius);
-        })
-      })
+  <script>
+        var is_login = $('#is_login').val();
+        var loginUrl = $('[name=loginUrl]').val();
+        var audioList = new Array();     //音频地址列表     
+        var contentList = new Array();     //文稿地址列表     
+        var audioOBJ = $('.get_video');
+        for (var i = 0; i <= audioOBJ.length - 1; i++) {
+          audioList[i] = audioOBJ[i].getAttribute('audio')
+          contentList[i] = audioOBJ[i].getAttribute('content')
+        }
+        var curr = $('#kid').val();
+        var vLen = audioList.length;
+        console.log(contentList)
+        //页面初始化
+        document.addEventListener('DOMContentLoaded', function () {
+            // 设置音频文件名显示宽度
+            var element = document.querySelector('.audio-right');
+            var maxWidth = window.getComputedStyle(element, null).width;
+            // 初始化音频控制事件
+            initAudioEvent();
+            // console.log(audioList[curr])
+            if (audioList[curr] == undefined) {
+              $(".cover1").css("display","block");
+              setTimeout(function(){//定时器 
+                  $(".cover1").css("display","none");
+              },5000);
+            }else{
+              audioPlay(curr,$('[name=ls_time]').val());
+            }
+        }, false);
 
-      //播放
-      function audioPlay(src){
-         initAudioEvent(); 
-          $("audio").prop("src",src)
+        //点击目录切换
+        $('.get_video').click(function () {
+
+          var th = $(this).attr('kid')
+          audioPlay(th)
+        })
+      
+        //播放
+        function audioPlay(k,time=0){
+          //切换当前列表颜色
+          $('.get_video').eq(k).parent().siblings().find('.col').removeClass('coled');  
+          $('.get_video').eq(k).find('.col').addClass('coled');
+          
+          $('.lis').eq(k).siblings().removeClass('coled');
+          $('.lis').eq(k).addClass('coled');
+          $('.con_content').text(contentList[k]); //切换当前文本内容
+          $('#kid').val(k);
+          $("audio").prop("src",audioList[k]);  //切换当前音频地址 
           var audio = document.getElementsByTagName('audio')[0];
-          console.log(audio)
           audio.load();
-          // audio.currentTime = time;
+          audio.currentTime = time;
           audio.oncanplay = function () {
-               var audioPlayer = document.getElementById('audioPlayer');
-               // console.log(audioPlayer.src)
-               // if (audioPlayer.src=="{{asset('University/images/play.png')}}") {
-                  audioPlayer.click()
-               // } 
-               updateProgress(audio)
+            var audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.click()
+            updateProgress(audio)
           }
           curr++;
           if(curr >= vLen){
               curr = 0; //重新循环播放
           }
-      }
-      document.addEventListener('DOMContentLoaded', function () {
-          // 设置音频文件名显示宽度
-          var element = document.querySelector('.audio-right');
-          var maxWidth = window.getComputedStyle(element, null).width;
-          // 初始化音频控制事件
-          var indexMius = $('#autoPlay').attr('src');
-          audioPlay(indexMius,$('[name=ls_time]').val());
-      }, false);
+        }
 
-      function initAudioEvent( audioPlayer = document.getElementById('audioPlayer') ) {
+        function initAudioEvent( audioPlayer = document.getElementById('audioPlayer') ) {
           var audio = document.getElementsByTagName('audio')[0];
           // var audioPlayer = document.getElementById('audioPlayer');
           // console.log(audio);
           // 点击播放/暂停图片时，控制音乐的播放与暂停  
           audioPlayer.addEventListener('click', function () {
-
               // 监听音频播放时间并更新进度条
               audio.addEventListener('timeupdate', function () {
                   updateProgress(audio);
               }, false);
               // 监听播放完成事件
-              audio.addEventListener('ended', function () {
-                  audioEnded();
-                  // audioPlay(audioList[curr])
-              }, false);
-              console.log(audio.paused)
+              // audio.addEventListener('ended',audioEnded, false);
+
               // 改变播放/暂停图片
               if (audio.paused) {
                   // 开始播放当前点击的音频
@@ -329,8 +337,12 @@
                   audioPlayer.src = '{{asset("University/images/play.png")}}';
               }
 
-          }, false);
+            }, false);
 
+           // 监听播放完成事件
+          audio.addEventListener('ended',function(){
+            audioEnded();
+          }, false);
           // 点击进度条跳到指定点播放
           // PS：此处不要用click，否则下面的拖动进度点事件有可能在此处触发，此时e.offsetX的值非常小，会导致进度条弹回开始处（简直不能忍！！）
           var progressBarBg = document.getElementById('progressBarBg');
@@ -346,7 +358,7 @@
 
           // 拖动进度点调节进度
           dragProgressDotEvent(audio);
-      }
+        }
 
       /**
        * 鼠标拖动进度点时可以调节进度
@@ -429,6 +441,7 @@
       function updateProgress(audio) {
           // console.log(audio.currentTime,'进度',audio.duration)
           var value = audio.currentTime / audio.duration;
+
           document.getElementById('progressBar').style.width = value * 100 + '%';
           document.getElementById('progressDot').style.left = value * 100 + '%';
           document.getElementById('audioCurTime').innerText = transTime(audio.currentTime);
@@ -445,6 +458,7 @@
           document.getElementById('audioCurTime').innerText = transTime(0);
           document.getElementById('audioPlayer').src = '{{asset("University/images/play.png")}}';
           getVideoTime(1);
+          audioPlay(curr);
       }
 
       /**
@@ -538,7 +552,6 @@
           $('.cli').hide();
         }
       })
-
       //文稿未购买
       $('.notBy').click(function(){
         $(".cover1").css("display","block");
@@ -546,7 +559,6 @@
             $(".cover1").css("display","none");
           },3000);
       })
-
       //切换页面
       $(".yp").click(function(){
         var kid = $('#kid').val();
@@ -605,10 +617,26 @@
           })
       })
 
+      var flag = true;
       //测试题点击
       $('.class_list').each(function(index) {
         $('.class_list').eq(index).find(".lis").click(function() {
-          $(this).next().toggle()
+          $(this).next().toggle();
+
+          if(flag){
+              $(this).find('.lis_tit2').addClass('blue');
+              $(this).find('.cons').addClass('blue');
+              $(this).find('.con').addClass('blue');
+              $(this).next().css("display","block");
+              flag = false;
+              console.log(flag)
+            }else{
+              $(this).find('.lis_tit2').removeClass('blue');
+              $(this).find('.cons').removeClass('blue');
+              $(this).find('.con').removeClass('blue');
+              $(this).next().css("display","none");
+              flag = true;
+            }
         })
       })
 
@@ -629,6 +657,12 @@
                         analysis.each(function(index){         
                           analysis.eq(index).css('display','block');
                         })
+                    }else if (d.code == '004') {
+                        $('.cover1').text(d.msg);
+                        $(".cover1").css("display","block");
+                        setTimeout(function(){//定时器 
+                          $(".cover1").css("display","none");
+                        },3000);
                     }
                     console.log(d);
                 },
@@ -695,7 +729,6 @@
 
       //按钮切换 
       $(".wengaotab img").click(function(){ 
-        console.log(this.src.search("{{asset('University/images/icon_wengao@3x.png')}}")!=-1)
         if(this.src.search("{{asset('University/images/icon_wengao@3x.png')}}")!=-1){ 
           $('.cli').toggle();
         }else{ 
