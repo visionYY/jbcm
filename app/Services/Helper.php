@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\Request;
 use App\Models\Article;
 
+
 class Helper
 {
     //横向树形
@@ -138,8 +139,6 @@ class Helper
         //返回
         return $data;
     }
-
-
 
 }
 

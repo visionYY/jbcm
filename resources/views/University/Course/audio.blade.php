@@ -1,5 +1,5 @@
 @extends('layouts.university')
-@section('title','课程')
+@section('title',$course->name)
 @section('content')
   <link rel="stylesheet" href="{{asset('University/css/audio.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
@@ -313,7 +313,7 @@
               curr = 0; //重新循环播放
           }
         }
-        
+
         function initAudioEvent( audioPlayer = document.getElementById('audioPlayer') ) {
           var audio = document.getElementsByTagName('audio')[0];
           // var audioPlayer = document.getElementById('audioPlayer');
@@ -535,7 +535,7 @@
       //切换页面
       $(".yp").click(function(){
         var kid = $('#kid').val();
-        var videoUrl = "{{url('university/course/video/'.$course->id)}}"+'/'+kid;
+        var videoUrl = "{{url('university/course/video/'.$course->id)}}"+'/'+kid+'/1';
         location.href = videoUrl;
       })
       //登陆

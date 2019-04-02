@@ -202,6 +202,12 @@ input::-webkit-input-placeholder {
   color:rgba(102,102,102,1);
   line-height:22px;
 }
+.dianzan em{
+  font-size:.11rem;
+  font-family:PingFang-SC-Medium;
+  color:rgba(102,102,102,1);
+  line-height:22px;
+}
 .Imgbox>img{
   width:.15rem;
   height:.15rem;
@@ -290,6 +296,11 @@ input::-webkit-input-placeholder {
   position: relative;
   padding-left:.18rem;
   margin-left: .07rem;
+}
+.collectClick em{
+  font-size:.11rem;
+  font-family:PingFang-SC-Medium;
+  color:rgba(102, 102, 102, 1);
 }
 .funr img{
   position: absolute;

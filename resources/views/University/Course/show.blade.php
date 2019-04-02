@@ -263,9 +263,13 @@
     $(document).ready(function(){
           var ls_time = $('[name=ls_time]').val();
           var ls_key = $('[name=ls_key]').val();
-          console.log(ls_key);
           if (ls_key != 0) {
-            play(ls_key,ls_time);
+            if (vList[ls_key] == undefined) {
+              alert('购买后才能继续学习')
+            }else{
+              $('#kid').val(ls_key);
+              play(ls_key,ls_time);
+            }
           }else{
             play(curr,ls_time);
           }
@@ -291,8 +295,9 @@
 
       //切换文本
       $('.con_content').text(contentList[k])
-      video.src = vList[k];
       console.log(vList[k]);
+      video.src = vList[k];
+      // console.log(vList[k]);
       video.load();
       video.currentTime=time
       video.play();

@@ -19,9 +19,11 @@
         <div class="funr">
           <a href="#" class="Imgbox collectClick" status="{{$comment->coll_status}}">
           @if($comment->coll_status)
-            <img src="{{asset('University/images/icon_yishoucang@2x.png')}}" alt="">收藏
+            <img src="{{asset('University/images/icon_yishoucang@2x.png')}}" alt="">
+            <em>已收藏</em>
           @else
-            <img src="{{asset('University/images/icon_shoucang@2x.png')}}" alt="">收藏
+            <img src="{{asset('University/images/icon_shoucang@2x.png')}}" alt="">
+            <em>收藏</em>
           @endif
           </a>
           @if($comment->is_my == 1)
@@ -79,7 +81,7 @@
       <p class="no">取消</p>
     </div>
     <div class="box2">
-      <p class="boxtit">确认删除你的观点？</p>
+      <p class="boxtit"></p>
       <div class="btns">
         <p class="yesl">确认</p>
         <p class="nor">取消</p>
@@ -97,9 +99,11 @@
       </a>
       <a href="javascript:;" class="Imgbox dianzan" status="{{$comment->prai_status}}">
         @if($comment->prai_status)
-        <img src="{{asset('University/images/icon_dianzan@2x.png')}}" />赞同
+        <img src="{{asset('University/images/icon_dianzan@2x.png')}}" />
+        <em>{{$comment->praise}}</em>
         @else
-        <img src="{{asset('University/images/icon_dianzan1@2x.png')}}" />赞同
+        <img src="{{asset('University/images/icon_dianzan1@2x.png')}}" />
+        <em>赞同</em>
         @endif
       </a>
     </p>
@@ -131,6 +135,7 @@
           $('.box1').show();
           $('.yes').click(function(){
               $('.box1').hide();
+              $('.boxtit').text('确认删除你的回复？');
               $('.box2').show();
               $('.yesl').click(function(){
                 $.ajax({
@@ -149,15 +154,18 @@
               });
             })
             $('.no').click(function(){
+              rid = null;
               $('.cover').hide();
             })
             $('.nor').click(function(){
+              rid = null;
               $('.cover').hide();
             })
         })
       })
       //删除自己评论
       $('.delcli').click(function(){
+        $('.boxtit').text('确认删除你的评论？');
         $('.cover').show();
         $('.box2').show();
         $('.box1').hide();
@@ -182,7 +190,7 @@
       //收藏
       $('.collectClick').click(function(){
         var status = $(this).attr('status') == 1 ? 0 : 1;
-        var thisOBJ = $(this).find("img");
+        var thisOBJ = $(this);
         $.ajax({
           url:"{{url('university/discussion/collect')}}",
           data:{_token:csrf,cid:cid,status:status},
@@ -191,7 +199,8 @@
           success:function(d){
             console.log(d)
             if (d.code == '002') {
-              thisOBJ.attr("src") == "{{asset('University/images/icon_shoucang@2x.png')}}"  ?  thisOBJ.attr("src","{{asset('University/images/icon_yishoucang@2x.png')}}") : thisOBJ.attr("src","{{asset('University/images/icon_shoucang@2x.png')}}")
+              thisOBJ.find('em').text() == '收藏' ? thisOBJ.find('em').text('已收藏') : thisOBJ.find('em').text('收藏');
+              thisOBJ.find("img").attr("src") == "{{asset('University/images/icon_shoucang@2x.png')}}"  ?  thisOBJ.find("img").attr("src","{{asset('University/images/icon_yishoucang@2x.png')}}") : thisOBJ.find("img").attr("src","{{asset('University/images/icon_shoucang@2x.png')}}")
             }
           }
         })  
@@ -209,6 +218,7 @@
               if (d.code == '002') {
                 console.log(d)
                 thisOBJ.attr('status',d.status)
+                thisOBJ.find('em').text() == '赞同' ? thisOBJ.find('em').text(d.praise) : thisOBJ.find('em').text('赞同');
                 thisOBJ.find("img").attr("src") == "{{asset('University/images/icon_dianzan1@2x.png')}}"  ?  thisOBJ.find("img").attr("src","{{asset('University/images/icon_dianzan@2x.png')}}") : thisOBJ.find("img").attr("src","{{asset('University/images/icon_dianzan1@2x.png')}}")
              }
             }

@@ -259,7 +259,6 @@ class DiscussionController extends Controller
     }
     //删除回复
     public function delReply(Request $request){
-//        dd($request->all());
         $reply = Reply::find($request->rid);
         if (!$reply){
             return response(['code'=>'001','msg'=>'该回复已被删除']);
@@ -393,8 +392,8 @@ class DiscussionController extends Controller
             $data['by_praise_id'] = $request->cid;
             $data['type'] = 1;
             $data['status'] = 1;
-            if (Praise::create($data)){
-                return response(['code'=>'002','msg'=>'操作成功']);
+            if (Praise::create($data) && $comment->update(['praise'=>$praise_num])){
+                return response(['code'=>'002','msg'=>'操作成功','praise'=>$praise_num,'status'=>$request->status]);
             }else{
                 return response(['code'=>'003','msg'=>'操作失败，稍后重试！']);
             }
@@ -406,7 +405,11 @@ class DiscussionController extends Controller
      *递归获取回复
      */
     protected function recursionReply($array,$parent=0){
-        static $reply = array();
+        if ($parent ==0){
+            $reply = array();
+        }else{
+            static $reply = array();
+        }
         foreach ($array as &$v){
             if ($v['type'] ==1){
                 $v['replyId'] = $parent;

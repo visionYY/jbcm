@@ -63,3 +63,4 @@ function detection($content){
         print_r($e);
     }
 }
+

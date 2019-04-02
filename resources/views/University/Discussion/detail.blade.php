@@ -140,7 +140,7 @@
               console.log(d)
               if (d.code == '002') {
                thisOBJ.attr('status',d.status)
-               thisOBJ.find('em').text() == '点赞' ? thisOBJ.find('em').text(d.praise) : thisOBJ.find('em').text('点赞');
+               thisOBJ.find('em').text() == '赞同' ? thisOBJ.find('em').text(d.praise) : thisOBJ.find('em').text('赞同');
                thisOBJ.find("img").attr("src") == "{{asset('University/images/icon_dianzan1@2x.png')}}"  ?  thisOBJ.find("img").attr("src","{{asset('University/images/icon_dianzan@2x.png')}}") : thisOBJ.find("img").attr("src","{{asset('University/images/icon_dianzan1@2x.png')}}")
              }
             }
