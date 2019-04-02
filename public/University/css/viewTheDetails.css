@@ -98,10 +98,8 @@ body{
 }
 .detailsBot{
   width:100%;
-}
-.detailsBot{
-  width:100%;
   padding:.15rem;
+  padding-bottom: .4rem;
 }
 .detailsBot>dl{
   width:100%;
