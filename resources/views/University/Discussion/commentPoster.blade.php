@@ -10,20 +10,20 @@
 <script src="{{asset('University/js/base64.js')}}" type="text/javascript"></script>
     <div class="bigbox">
         <div class="wrapper2">
-            <div class="top">
-            <div class="share_logo"><img src="{{asset('University/images/logo@2x.png')}}" alt=""></div>
-            <div class="share_tit">{{$discussion->title}}</div>
-            <p class="share_name">出题人：{{$discussion->author}}</p>
-            </div>
-            <div class="bot">
-            <p class="share_con"><span>{{$comment->user}}：</span>{{$comment->content}}</p>
-            <p class="share_time">——{{$comment->time}}</p>
-            <div class="share_code">
-                <p class="code_t">扫码查看更多</p>
-                <p class="code_img1"><img src="{{asset('University/images/img28@2x.png')}}" alt=""></p>
-                <p class="code_img2"><img src="{{asset('University/images/erweima@2x.png')}}" alt=""></p>
-            </div>
-            </div>
+                <div class="share_logo"><img src="{{asset('University/images/logo@2x.png')}}" alt=""></div>
+                <div class="share_tit">{{$discussion->title}}</div>
+                <p class="symbolTop"><img src="{{asset('University/images/symbolTop.png')}}" alt=""></p>
+                <p class="share_con"><span>{{$comment->user}}：</span>{{$comment->content}}</p>
+                <p class="symbolBot"><img src="{{asset('University/images/symbolBot.png')}}" alt=""></p>
+                <div class="bot">
+                    <div class="botLeft"><img src="{{asset('University/images/zy.png')}}" alt=""></div>
+                    <div class="share_code">
+                        <p class="code_t">扫码查看更多</p>
+                        <p class="code_img1"><img src="{{asset('University/images/img28@2x.png')}}" alt=""></p>
+                        <p class="code_img2"><img src="{{asset('University/images/erweima@2x.png')}}" alt=""></p>
+                    </div>
+                </div>
+                
         
         </div>
         <div class="btn">
