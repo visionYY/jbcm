@@ -54,6 +54,7 @@
 }
 .num>input{
   width:100%;
+  border: none;
 }
 input::-webkit-input-placeholder {
   font-size:.11rem;
