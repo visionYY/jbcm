@@ -165,7 +165,7 @@
       })
       //删除自己评论
       $('.delcli').click(function(){
-        $('.boxtit').text('确认删除你的评论？');
+        $('.boxtit').text('确认删除你的观点？');
         $('.cover').show();
         $('.box2').show();
         $('.box1').hide();
@@ -195,6 +195,7 @@
           url:"{{url('university/discussion/collect')}}",
           data:{_token:csrf,cid:cid,status:status},
           type:'POST',
+          async:false,
           dataType:'json',
           success:function(d){
             console.log(d)
@@ -213,6 +214,7 @@
             url:"{{url('university/discussion/praise')}}",
             data:{_token:csrf,cid:cid,status:status},
             type:'POST',
+            async:false,
             dataType:'json',
             success:function(d){
               if (d.code == '002') {

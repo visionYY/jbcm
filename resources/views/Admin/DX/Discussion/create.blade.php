@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">出题时间：</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="time" value="{{old('time')}}">
+                                    <input class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="time" value="{{old('time')}}" autocomplete="off">
                                     <label class="laydate-icon"></label>
                                 </div>
                             </div>

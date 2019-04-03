@@ -285,8 +285,10 @@
         //点击目录切换
         $('.get_video').click(function () {
 
-          var th = $(this).attr('kid')
-          audioPlay(th)
+          curr = $(this).attr('kid')
+          $('#kid').val(curr)
+          audioPlay(curr)
+
         })
       
         //播放

@@ -26,7 +26,7 @@ class DiscussionController extends Controller
         foreach ($discussion as $disc){
             $disc->count = Comment::where('discussion_id',$disc->id)->count();
         }
-//        dd($disc);
+//        dd($discussion);
         return view('University.Discussion.index',compact('discussion'));
     }
 

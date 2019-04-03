@@ -258,22 +258,19 @@
       contentList[i] = videoOBJ[i].getAttribute('content')
     }
     var vLen = vList.length;
+    var ls_key = $('[name=ls_key]').val();
+    if (ls_key != 0) {
+       $('#kid').val(ls_key);
+    }
     var curr = $('#kid').val();
 
     $(document).ready(function(){
-          var ls_time = $('[name=ls_time]').val();
-          var ls_key = $('[name=ls_key]').val();
-          if (ls_key != 0) {
-            if (vList[ls_key] == undefined) {
-              alert('购买后才能继续学习')
-            }else{
-              $('#kid').val(ls_key);
-              play(ls_key,ls_time);
-            }
-          }else{
-            play(curr,ls_time);
-          }
-          
+      var ls_time = $('[name=ls_time]').val();
+      if (vList[curr] == undefined) {
+          alert('购买后才能继续学习')
+      }else{
+          play(curr,ls_time);
+      }
     });
    
     var video = document.getElementById("myvideo");
@@ -322,12 +319,11 @@
         })
         //目录切换
         $('.get_video').click(function(){
-          var th = $(this).attr('kid')
-          console.log(th);
-          play(th);
+          curr = $(this).attr('kid')
           //切换记录ID与下标值
-          $('[name=ls_id]').val($(this).attr('ls_id')) 
-          $('#kid').val($(this).attr('kid'))   
+          $('[name=ls_id]').val(curr) 
+          $('#kid').val(curr)
+          play(curr);
           // console.log($(this).attr('video'));
         })
         //答案详情

@@ -85,6 +85,9 @@ class Helper
         }elseif($difference > 60*60 && $difference < 60*60*24){
             $diff = floor($difference/3600);
             $diffTime = $diff.'小时前';
+        }elseif($difference > 60*60*24 && $difference < 60*60*24*4){
+            $diff = floor($difference/86400);
+            $diffTime = $diff.'天前';
         }else{
             $diffTime = substr($date,0,10);
         }

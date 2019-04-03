@@ -61,7 +61,7 @@
                 @endif
               </a>
               <a href="{{url('university/discussion/reply/cid/'.$com->id.'/type/0')}}" class="Imgbox">
-                <img src="{{asset('University/images/icon_pinglun@2x.png')}}" />评论
+                <img src="{{asset('University/images/icon_pinglun@2x.png')}}" />{{$com->count > 0 ? $com->count : '评论'}}
               </a>
               <a href="javascript:;" class="Imgbox zantong" cid="{{$com->id}}" status="{{$com->prai_status}}">
                 @if($com->prai_status)
@@ -81,7 +81,7 @@
               </a>
               <!-- <a href="{{url('university/discussion/reply/cid/'.$com->id.'/id/'.$discussion->id.'/source/2/type/0')}}" class="Imgbox"> -->
               <a href="javascript:;" class="Imgbox" onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=2&yid=".$discussion->id)}}'">
-                <img src="{{asset('University/images/icon_pinglun@2x.png')}}" />评论
+                <img src="{{asset('University/images/icon_pinglun@2x.png')}}" />{{$com->count > 0 ? $com->count : '评论'}}
               </a>
               <a href="javascript:;" class="Imgbox" onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=2&yid=".$discussion->id)}}'">
                 <img src="{{asset('University/images/icon_dianzan1@2x.png')}}" />赞同
@@ -113,6 +113,7 @@
             url:"{{url('university/discussion/collect')}}",
             data:{_token:csrf,cid:cid,status:status},
             type:'POST',
+            async:false,
             dataType:'json',
             success:function(d){
               console.log(d)
@@ -135,6 +136,7 @@
             url:"{{url('university/discussion/praise')}}",
             data:{_token:csrf,cid:cid,status:status},
             type:'POST',
+            async:false,
             dataType:'json',
             success:function(d){
               console.log(d)
