@@ -503,5 +503,9 @@ input{
   font-family:PingFang-SC-Medium;
   color:rgba(0,0,0,1);
 }
+.nor{
+  border:1px solid #305CBA;
+  color:#305CBA;
+}
 
 
