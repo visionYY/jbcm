@@ -136,7 +136,7 @@
                       {{--题目循环--}}
                       @foreach($content->quizs as $k=>$quiz)
                       <div class="topicbox">
-                        <p class="t_tit"><span>({{$quiz->type==1 ? '多选' : '单选'}}）</span>{{$k}}. {{$quiz->title}}</p>
+                        <p class="t_tit"><span>({{$quiz->type==1 ? '多选' : '单选'}}）</span>{{$k+1}}. {{$quiz->title}}</p>
                         {{--答案循环--}}
                         @foreach($quiz->answers as $ak=>$answer)
                         <div>

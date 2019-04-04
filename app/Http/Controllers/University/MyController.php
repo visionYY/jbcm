@@ -264,9 +264,12 @@ class MyController extends Controller
         $res = json_decode($acctok,true);
         $accUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'].'&lang=zh_CN';
         $newtok = json_decode(request_curl($accUrl),true);
-        $userInfo = array('nickname' => $newtok['nickname'],
-                        'head_pic'=> $newtok['headimgurl'],
-                        'open_id'=> $newtok['openid'],);
+        $userInfo = [
+            'nickname' => $newtok['nickname'],
+            'truename' => $newtok['truename'],
+            'head_pic' => $newtok['headimgurl'],
+            'open_id' => $newtok['openid'],
+            ];
         $user = Auth::guard('university')->user();
         if ($user->update($userInfo)){
             return redirect('university/my/index')->with('hint','欢迎');
@@ -280,6 +283,33 @@ class MyController extends Controller
         $user = Auth::guard('university')->user();
         if($request->all()){
             $credentials = $this->validate($request,['truename'=>'required|max:10'],['truename.required' => '名称不能为空','truename.max' => '名称超过10个字符']);
+            $response = detection($credentials['truename']);
+            if(200 == $response->code){
+                $taskResults = $response->data;
+                foreach ($taskResults as $taskResult) {
+                    if(200 == $taskResult->code){
+                        $sceneResults = $taskResult->results;
+                        foreach ($sceneResults as $sceneResult) {
+                            $scene = $sceneResult->scene;
+                            $suggestion = $sceneResult->suggestion;
+                            //根据scene和suggetion做相关处理
+                            if ($suggestion == 'block'){
+                                //获取非法字段
+                                /*foreach($sceneResult->details as $detail){
+                                    foreach ($detail->contexts as $context){
+                                        $content = $context->context;
+                                    }
+                                }*/
+                                return back()->with('hint','姓名违法');
+                            }
+                        }
+                    }else{
+                        return back()->with('hint',"task process fail:" . $response->code);
+                    }
+                }
+            }else{
+                return back()->with('hint',"detect not success. code:" . $response->code);
+            }
             $credentials['nickname'] = $credentials['truename'];
             if ($request->head_pic){
                 $size = $request->head_pic->getSize() / 1024;

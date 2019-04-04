@@ -53,18 +53,14 @@ class LoginController extends Controller
     }
 
     public function store(Request $request){
-        if ($request->all()){
             $credentials = $this->validate($request,['username'=>'required','password'=>'required']);
             if (Auth::guard('admin')->attempt($credentials)){
                 return Redirect::to('admin/index')->with('success',config('hint.welcome'));
             }else{
                 return back() -> with('hint',config('hint.error'));
             }
-        }
-        return view('Admin.Index.login');
-
-
     }
+
     /**
      * 重写退出方法
      * @param Request $request

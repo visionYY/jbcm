@@ -18,7 +18,7 @@ class IndexController extends Controller
     public function index(){
         $adver = Advertising::getAdver(8,5);
         $discussion = Discussion::orderBy('created_at','desc')->first();
-        $comment = Comment::where('discussion_id',$discussion->id)->first();
+        $comment = Comment::where('discussion_id',$discussion->id)->orderBy('created_at','desc')->first();
         if ($comment){
             $user = User::find($comment->user_id);
             $comment->user_name = $user->nickname;

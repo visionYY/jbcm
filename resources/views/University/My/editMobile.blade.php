@@ -26,6 +26,7 @@
  		$('#btn').click(function(){
  			var userV = $("#user").val();
 		    if(phone.test(userV)){
+ 				settime($(this));
 		      	var mobile = $('[name=mobile]').val();
 	 			$.ajax({
 	 				url:"{{url('university/getCode')}}",
@@ -33,7 +34,10 @@
 	 				type:'GET',
 	 				dataType:'json',
 	 				success:function(d){
-	 					console.log(d);
+	 					$(".yes").css("display","block");
+					    setTimeout(function(){//定时器 
+					        $(".yes").css("display","none");
+					    },2000);
 	 				}
 	 			})
 		    }else{
@@ -48,15 +52,15 @@
 	    var countdown=60;
 	    function settime(val) {
 	        if (countdown == 0) {
-	            val.attr("");
-	            val.val('免费获取验证码');
+	            val.attr("disabled",false);
+	            val.val('获取验证码');
 	            countdown = 60;
 	            $(".yes").css("display","block");
 			      setTimeout(function(){//定时器 
 			        $(".yes").css("display","none");
 			    },2000);
 	        } else {
-	            val.attr("disabled");
+	            val.attr("disabled",true);
 	            val.val("重新发送(" + countdown + ")");
 	            countdown--;
 	            setTimeout(function() {
