@@ -166,7 +166,7 @@ class MyController extends Controller
             }
         }
 
-//        dd($data);
+    //    dd($data);
         return view('University.My.collect',compact('data','user'));
     }
     /*

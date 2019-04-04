@@ -3,7 +3,7 @@
 @section('content')
   <link rel="stylesheet" href="{{asset('University/css/swiper.min.css')}}">
   <link rel="stylesheet" href="{{asset('University/css/reset.css')}}">
-@if($data)
+@if($data['commentCount'] != 0)
   <link rel="stylesheet" href="{{asset('University/css/mine_collect.css')}}">
   <div class="wrapper">
     <div id="centera">
