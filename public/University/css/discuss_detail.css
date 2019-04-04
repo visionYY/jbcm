@@ -25,7 +25,7 @@
   color:rgba(51,51,51,0.8);
 }
 .funr a{
-  font-size:.11rem;
+  font-size:.12rem;
   font-family:PingFang-SC-Medium;
   color:rgba(49,93,186,1);
   position: relative;
@@ -124,7 +124,7 @@ h6{
   padding:.1rem .05rem .01rem;
 }
 .rep_com{
-  font-size:.11rem;
+  font-size:.12rem;
   font-family:PingFang-SC-Medium;
   color:#666666;
   line-height:.16rem;
