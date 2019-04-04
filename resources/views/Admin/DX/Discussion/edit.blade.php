@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">标题：</label>
                                 <div class="col-sm-8">
-                                    <input  name="title" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" value="{{$discussion->title}}">
+                                    <input  name="title" class="form-control" type="text" maxlength="30" value="{{$discussion->title}}">
                                 </div>
                             </div>
                            
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">出题人：</label>
                                 <div class="col-sm-8">
-                                    <input name="author" class="form-control" type="text" value="{{$discussion->author}}">
+                                    <input name="author" class="form-control" type="text" maxlength="10" value="{{$discussion->author}}">
                                 </div>
                             </div>
                             

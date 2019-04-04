@@ -182,8 +182,8 @@ Route::group(['prefix'=>'admin'],function(){
     //网站
     Route::get('index','Admin\IndexController@index');			//首页
     Route::get('home','Admin\IndexController@home');			//首页内容
-    Route::get('login','Admin\LoginController@showLoginForm');	//登陆界面
-    Route::post('login','Admin\LoginController@store');			//执行登陆
+    Route::get('login','Admin\LoginController@showLoginForm')->name('admin.login');	//登陆界面
+    Route::post('dologin','Admin\LoginController@store')->name('admin.dologin');			//执行登陆
    	Route::get('loginout','Admin\LoginController@logout');	//退出
 
 //    Route::resource('index','Admin\IndexController');           //管理员
