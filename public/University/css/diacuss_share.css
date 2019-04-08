@@ -16,6 +16,9 @@
 .wrapper2::-webkit-scrollbar {
   display: none;
 }
+.wrapper{
+  position: relative;
+}
 .bot{
   background: url(../images/ziyoushengzhang@2x.png) no-repeat; 
   background-size:100% 100%;
@@ -221,4 +224,42 @@
   .code_t{
     width: .32rem;
   }
+}
+
+.box2{
+  /* display:none; */
+  position: absolute;
+  width: 66%;
+  margin: 58% 17%;
+  height:1.05rem;
+  background:rgba(255,255,255,1);
+  border-radius:.05rem;
+}
+.boxtit{
+  width:1005;
+  text-align: center;
+  line-height:.22rem;
+  font-size:.14rem;
+  font-family:PingFang-SC-Medium;
+  font-weight:500;
+  padding-top:.25rem;
+  color:rgba(51,51,51,1);
+}
+.btns{
+  width:100%;
+  display: flex;
+  margin-top:.22rem;
+  justify-content:space-between;
+}
+.nor{
+  width:100%;
+  height:.34rem;
+  background:rgba(255,255,255,1);
+  border-top:1px solid rgba(220,220,220,1);
+  border-radius:.04rem;
+  text-align: center;
+  line-height:.34rem;
+  font-size:.12rem;
+  font-family:PingFang-SC-Medium;
+  color:rgba(0,0,0,1);
 }

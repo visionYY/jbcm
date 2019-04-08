@@ -64,12 +64,21 @@
         </script>
       @endif
     </div>
+
+    <div class="box2">
+      <p class="boxtit">长按图片可保存本地！</p>
+      <div class="btns">
+        <p class="nor">关闭</p>
+      </div>
+    </div>
   </div>
   <!-- <div class="know" onclick="this.style.display = 'none'">
     <img src="{{asset('University/images/hint.png')}}" alt="">
   </div> -->
   <script>
-    
+    $('.nor').click(function(){
+      $('.box2').hide();
+    })
   </script>
   
 @stop
