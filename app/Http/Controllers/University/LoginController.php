@@ -20,7 +20,12 @@ class LoginController extends Controller
 
     //执行密码登录
     public function doPasswordLogin(Request $request){
-        $credentials = $this->validate($request,['mobile'=>'required','password'=>'required']);
+        $message = [
+            'mobile.required'=>'请输入手机号',
+            'mobile.exists'=>'账号未注册，试试快速登录',
+            'password.required' => '请输入登录密码'
+        ];
+        $credentials = $this->validate($request,['mobile'=>'required|exists:users','password'=>'required'],$message);
 //        dd($credentials);
         if (Auth::guard('university')->attempt($credentials,true)){
             $user = Auth::guard('university')->user();
@@ -64,7 +69,7 @@ class LoginController extends Controller
 
     //执行快速登陆
     public function doQuickLogin(Request $request){
-        $credentials = $this->validate($request,['mobile'=>'required','yzm'=>'required']);
+        $credentials = $this->validate($request,['mobile'=>'required','yzm'=>'required'],['mobile.required'=>'请正确填写手机号','yzm.required' => '请正确输入4位数字短信验证码']);
         $yzm = Session::get('yzm');
         $mobile = Session::get('mobile');
         if ($credentials['mobile'] != $mobile || $credentials['yzm'] != $yzm){

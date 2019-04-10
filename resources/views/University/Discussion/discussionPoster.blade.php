@@ -27,6 +27,12 @@
     <div class="btn">
       <a class="left" href="{{asset($data['discussion']->cover)}}" download="{{$data['download']}}">保存本地</a>
       @if($data['web'] ==1)
+      <div class="box2">
+        <p class="boxtit">长按图片可保存本地！</p>
+        <div class="btns">
+          <p class="nor">关闭</p>
+        </div>
+      </div>
         <p class="right">分享</p>
         <script type="text/javascript">
             wx.config({
@@ -62,23 +68,19 @@
                 wx.onMenuShareQQ(share_config.share);//分享给手机QQ
             });
         </script>
+        <script>
+          $('.nor').click(function(){
+            $('.box2').hide();
+          })
+        </script>
       @endif
     </div>
 
-    <div class="box2">
-      <p class="boxtit">长按图片可保存本地！</p>
-      <div class="btns">
-        <p class="nor">关闭</p>
-      </div>
-    </div>
+    
   </div>
   <!-- <div class="know" onclick="this.style.display = 'none'">
     <img src="{{asset('University/images/hint.png')}}" alt="">
   </div> -->
-  <script>
-    $('.nor').click(function(){
-      $('.box2').hide();
-    })
-  </script>
+  
   
 @stop

@@ -34,6 +34,7 @@
           <dt>
             <p class="dt_namet">{{$com->user_name}}<span>{{$com->time}}</span></p>
             <p class="dt_con" onclick="window.location.href='{{url("university/discussion/commentDetail/id/".$com->id)}}'">{{$com->content}}</p>
+            @if($com->count !=0)
             <div class="reply">
               @foreach($com->reply as $reply)
                 @if(Auth::guard('university')->check())
@@ -51,6 +52,7 @@
               
               <p class="look"><a href="{{url('university/discussion/commentDetail/id/'.$com->id)}}">查看{{$com->count}}条评论</a></p>
             </div>
+            @endif
             @if(Auth::guard('university')->check())
             <p class="com_fun">
               <a href="javascript:;" class="Imgbox shoucang" cid="{{$com->id}}" status="{{$com->coll_status}}">

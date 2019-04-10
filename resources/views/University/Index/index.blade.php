@@ -83,7 +83,7 @@
 			{{--议题--}}
 			<div class="diacuss_box">
 				<h4 class="dia_tit discussion-click">
-					<em></em>今日议题
+					<em></em>{{substr($discussion->time,0,10)== date('Y-m-d',time()) ? '今日议题' : str_replace('-','.',substr($discussion->time,0,10))}}
 					<img src="{{asset('University/images/icon_gengduo@2x.png')}}">
 				</h4>
 				<h3 class="dia_topic discussion-click">{{$discussion->title}}</h3>

@@ -64,10 +64,8 @@ class CourseController extends Controller
                     $con->learning = LearningState::create($learn);
                 }
                 //当前小节学习记录ID及时间
-                if ($k==$kid){
-                    $course->learindgId = $con->learning->id;
-                    $course->learindgTime = $con->learning->learning_time;
-                }
+
+
             }
           //判断是否音频跳转过来的
           if($audio == 1){

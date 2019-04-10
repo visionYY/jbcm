@@ -234,9 +234,10 @@
           success:function(d){
             console.log(d)
             var commentCount = $('#commentCount').text();
-            console.log(parseInt(commentCount));
-            console.log(parseInt(d.data))
+            // console.log(parseInt(commentCount));
+            // console.log(parseInt(d.data))
             $('#commentCount').text(parseInt(commentCount)-parseInt(d.data));
+            comment_total();
           }
       })
     }
@@ -250,7 +251,7 @@
       setTimeout(function(){//定时器 
         
         var checks = $("input[name='items2']:checked");
-        console.log(commentCount)
+        // console.log(commentCount)
         
         $('#comment_total').text(checks.length);
       },500)

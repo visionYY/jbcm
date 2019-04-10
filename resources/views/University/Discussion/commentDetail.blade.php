@@ -109,13 +109,13 @@
     </p>
   </footer>
   @else
-  <footer onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=3&yid=".$comment->id)}}'">
+  <footer >
     <p class="input"><input type="text" placeholder="我来说两句..." disabled></p>
     <p class="fun">
       <a href="{{url('university/discussion/commentPoster/cid/'.$comment->id)}}" class="Imgbox">
         <img src="{{asset('University/images/icon_haibao@2x.png')}}" />海报
       </a>
-      <a href="javascript:;" class="Imgbox">
+      <a href="javascript:;" class="Imgbox" onclick="alert('尚未登陆！');window.location.href='{{url("university/quickLogin?source=3&yid=".$comment->id)}}'">
         <img src="{{asset('University/images/icon_dianzan1@2x.png')}}" />赞同
       </a>
     </p> 

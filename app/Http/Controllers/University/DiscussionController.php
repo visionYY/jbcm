@@ -173,15 +173,24 @@ class DiscussionController extends Controller
             }
             $v->reply = $info;
         }
+//        dd($comment);
         return view('University.Discussion.detail',compact('discussion','comment'));
     }
 
     //回复评论
     public function reply($cid,$type){
         if ($type == 1){
+            //回复回复
             $reply = Reply::find($cid);
             $rep_user = User::find($reply->user_id);
+            if ($reply->type == 1){
+                $toReply = Reply::find($reply->relevance_id);
+                $comment['id'] = $toReply->relevance_id;
+            }else{
+                $comment['id'] = $reply->relevance_id;
+            }
         }else{
+            //回复评论
             $comment = Comment::find($cid);
             $rep_user = User::find($comment->user_id);
         }
@@ -190,11 +199,10 @@ class DiscussionController extends Controller
         }else{
             $comment['user'] = '该账户已注销';
         }
-        $comment['id'] =$cid;
         $user = Auth::user();
-    //    dd($comment);
+//        dd($reply);
 
-        return view('University.Discussion.reply',compact('user','comment','type'));
+        return view('University.Discussion.reply',compact('user','comment','cid','type'));
     }
 
     //添加回复
@@ -308,7 +316,10 @@ class DiscussionController extends Controller
             $comment->user_pic = 'https://www.ijiabin.com/Home/images/wyjb_logo.png';
         }
         $reply = Reply::where('type',0)->where('relevance_id',$comment->id)->orderBy('created_at','desc')->get()->toArray();
+//        echo '<pre>';
         $replys = $this->recursionReply($reply);
+//        dd($replys);
+
         foreach ($replys as &$v){
             $r_user =User::find($v['user_id']);
             if ($r_user){
@@ -405,11 +416,7 @@ class DiscussionController extends Controller
      *递归获取回复
      */
     protected function recursionReply($array,$parent=0){
-        if ($parent ==0){
-            $reply = array();
-        }else{
-            static $reply = array();
-        }
+        static $reply = array();
         foreach ($array as &$v){
             if ($v['type'] ==1){
                 $v['replyId'] = $parent;
@@ -421,6 +428,10 @@ class DiscussionController extends Controller
                 $this->recursionReply($result,$v['user_id']);
             }
         }
-        return $reply;
+        $data = $reply;
+        if ($parent ==0){
+            $reply = [];
+        }
+        return $data;
     }
 }

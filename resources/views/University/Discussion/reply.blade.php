@@ -53,7 +53,7 @@
           var content = $('#textarea').val(),
               r_type = "{{$type}}",
               uid = "{{$user->id}}",
-              cid = "{{$comment['id']}}",
+              cid = "{{$cid}}",
               csrf = "{{csrf_token()}}";
           $.ajax({
             url:"{{url('university/discussion/putReply')}}",

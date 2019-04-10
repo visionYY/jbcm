@@ -266,7 +266,7 @@ class MyController extends Controller
         $newtok = json_decode(request_curl($accUrl),true);
         $userInfo = [
             'nickname' => $newtok['nickname'],
-            'truename' => $newtok['truename'],
+            'truename' => $newtok['nickname'],
             'head_pic' => $newtok['headimgurl'],
             'open_id' => $newtok['openid'],
             ];

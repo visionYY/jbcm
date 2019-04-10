@@ -13,7 +13,7 @@
   <div class="wrapper">
     <div class="bad-video">
       @if($course->oneType ==0 || Auth::guard('university')->check() && $course->isBuy==1)
-        <video  id="myvideo" src="{{$course->oneVideo}}"  controls="controls" autoplay="autoplay" controlslist="nodownload"></video>
+        <video  id="myvideo" src=""  controls="controls" autoplay="autoplay" controlslist="nodownload"></video>
       @else
       <div class="nopay">
           <p class="nopay_com">开通后才能继续学习~</p>
@@ -222,8 +222,8 @@
     <p class="yp"><img src="{{asset('University/images/icon_yinpin@2x.png')}}"></p>
   </div>
   {{--当前小节学习记录ID及时间--}}
-  <input type="hidden" name="ls_id" value="{{$course->learindgId}}">
-  <input type="hidden" name="ls_time" value="{{$course->learindgTime}}">
+  <input type="hidden" name="ls_id">
+  <input type="hidden" name="ls_time">
   <input type="hidden" name="ls_key" value="{{$course->learingKey}}">
   {{--当前课程收藏状态--}}
   <input type="hidden" name="status" value="{{$course->coll_status}}" id="status">
@@ -265,11 +265,10 @@
     var curr = $('#kid').val();
 
     $(document).ready(function(){
-      var ls_time = $('[name=ls_time]').val();
       if (vList[curr] == undefined) {
           alert('购买后才能继续学习')
       }else{
-          play(curr,ls_time);
+          play(curr,learTimeList[curr]);
       }
     });
    
@@ -280,10 +279,10 @@
     video.addEventListener("ended", function(){
       //    alert("已播放完成，继续下一个视频");
       getVideoTime(1)
-      $('[name=ls_id').val(learIdList[curr]);
-      $('[name=ls_time').val(learTimeList[curr]);
-      $('#kid').val(curr);
-      play(curr);
+      console.log(curr);
+      if (vList[curr] != undefined) {
+        play(curr);
+      }
     });
     function play(k,time=0) {
       //切换列表菜单
@@ -292,9 +291,13 @@
 
       //切换文本
       $('.con_content').text(contentList[k])
-      console.log(vList[k]);
+      
+      //切换当前播放记录
+      $('[name=ls_id').val(learIdList[curr]);
+      $('[name=ls_time').val(learTimeList[curr]);
+      $('#kid').val(curr);
+      
       video.src = vList[k];
-      // console.log(vList[k]);
       video.load();
       video.currentTime=time
       video.play();
@@ -321,7 +324,7 @@
         $('.get_video').click(function(){
           curr = $(this).attr('kid')
           //切换记录ID与下标值
-          $('[name=ls_id]').val(curr) 
+          $('[name=ls_id]').val(learIdList[curr]) 
           $('#kid').val(curr)
           play(curr);
           // console.log($(this).attr('video'));

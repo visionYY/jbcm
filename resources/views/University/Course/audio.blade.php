@@ -250,20 +250,24 @@
   <input type="hidden" name="status" value="0" id="status">
   <input type="hidden" value="0" id="is_login">
   @endif
-  <div class="cover1">请先购买该课程</div>
+  <div class="cover1"></div>
   <script>
         var is_login = $('#is_login').val();
         var loginUrl = $('[name=loginUrl]').val();
         var audioList = new Array();     //音频地址列表     
-        var contentList = new Array();     //文稿地址列表     
+        var contentList = new Array();     //文稿地址列表   
+        var learIdList = new Array();       //学习记录ID
+        var learTimeList = new Array();     //学习时间
         var audioOBJ = $('.get_video');
         for (var i = 0; i <= audioOBJ.length - 1; i++) {
           audioList[i] = audioOBJ[i].getAttribute('audio')
           contentList[i] = audioOBJ[i].getAttribute('content')
+          learIdList[i] = audioOBJ[i].getAttribute('ls_id')
+          learTimeList[i] = audioOBJ[i].getAttribute('ls_time')
         }
         var curr = $('#kid').val();
         var vLen = audioList.length;
-        console.log(contentList)
+        console.log(learIdList)
         //页面初始化
         document.addEventListener('DOMContentLoaded', function () {
             // 设置音频文件名显示宽度
@@ -273,6 +277,7 @@
             initAudioEvent();
             // console.log(audioList[curr])
             if (audioList[curr] == undefined) {
+              $('.cover1').text('请先购买该课程');
               $(".cover1").css("display","block");
               setTimeout(function(){//定时器 
                   $(".cover1").css("display","none");
@@ -287,6 +292,7 @@
 
           curr = $(this).attr('kid')
           $('#kid').val(curr)
+          $('[name=ls_id]').val(learIdList[curr])
           audioPlay(curr)
 
         })
@@ -301,6 +307,7 @@
           $('.lis').eq(k).addClass('coled');
           $('.con_content').text(contentList[k]); //切换当前文本内容
           $('#kid').val(k);
+          $('[name=ls_id]').val(learIdList[k]);
           $("audio").prop("src",audioList[k]);  //切换当前音频地址 
           var audio = document.getElementsByTagName('audio')[0];
           audio.load();
@@ -529,6 +536,7 @@
       })
       //文稿未购买
       $('.notBy').click(function(){
+        $('.cover1').text('请先购买该课程');
         $(".cover1").css("display","block");
           setTimeout(function(){//定时器 
             $(".cover1").css("display","none");
