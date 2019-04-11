@@ -8,15 +8,17 @@
   .ttt{
     margin-top:2.35rem;
   }
+
 </style>
    @include('layouts.u_hint')
   <div class="wrapper wrapper1">
     <form action="" method="post" enctype="multipart/form-data">
     <div class="imgbox">
-        <input type="file" accept='image/*' id="img1" name="head_pic">
+        <!-- <input type="file" accept='image/*' id="img1" name="head_pic"> -->
         <label class="head_photo" for="img1">
-          <img src="{{asset($user->head_pic)}}" alt="" id="head_pic_img">
+          <img src="{{asset($user->head_pic)}}" alt="" id="head_pic_img" >
         </label>
+        <input type="hidden" name="head_pic">
     </div>
     <p class="inp"><input class="inpp" type="text" name="truename" value="{{$user->truename}}"></p>
     {{ csrf_field() }}
@@ -29,8 +31,6 @@
     <div class="modal-dialog">
         <div class="modal-content animated bounceInRight">
             <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal"><span class="sr-only">X</span>
-                </button> -->
                 <img src="{{asset('University/images/cover_close.png')}}" alt="" id="cover_close">
             </div>
             <div class="modal-body">
@@ -38,10 +38,10 @@
             </div>
             <div class="modal-footer">
                 <input type="file" id="file" class="valid">
-                <button id="openFile" class="btn1 btn-primary">选择图片</button>
-                <button id="clipBtn" class="btn1 btn-primary">截取</button>
-                <button type="button" class="btn1 btn-primary" data-dismiss="modal">保存</button>
-                <button type="button" class="btn1 btn-white quxiao" data-dismiss="modal">取消</button>
+                <button id="openFile" class="btn1">选择图片</button>
+                <button id="clipBtn" class="btn1">截取</button>
+                <button type="button" class="btn1 quxiao">保存</button>
+                <button type="button" class="btn1 quxiao">取消</button>
             </div>
         </div>
     </div>
@@ -71,7 +71,15 @@
              return url ;
         }
     })*/
-
+    $('#head_pic_img').click(function(){
+      $('#myModal').show();
+    })
+    $('.quxiao').click(function(){
+      $('#myModal').hide();
+    })
+    $('#openFile').click(function(){
+      $('#file').click();
+    })
      var clipArea = new bjj.PhotoClip("#clipArea", {
         size: [260, 260],
         outputSize: [640, 640],

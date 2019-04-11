@@ -312,12 +312,10 @@ class MyController extends Controller
             }
             $credentials['nickname'] = $credentials['truename'];
             if ($request->head_pic){
-                $size = $request->head_pic->getSize() / 1024;
-                $size < 100 ? $per = 1 : $per = 0.4;
-                $path = Upload::uploadOne('User',$request->head_pic);
+                $path = Upload::baseUpload($request->head_pic,'upload/User');
                 if ($path){
                     //创建缩略图
-                    $Compress = new Compress(public_path($path),$per);
+                    $Compress = new Compress(public_path($path),'0.4');
                     $Compress->compressImg(public_path(thumbnail($path)));
 
                     //删除旧图片(如果有，并且不是默认头像)
