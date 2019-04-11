@@ -261,7 +261,7 @@
 <link rel="stylesheet" href="{{asset('University/css/mine.css')}}">
 <div class="wrapper">
   <div class="imgbox1"><img src="{{asset('University/images/quesheng_shoucang@2x.png')}}" alt=""></div>
-  <p class="tNone tNone1">您还没有收藏课程哦~</p>
+  <p class="tNone tNone1">您还没有收藏任何内容哦~</p>
 </div>
 @endif
 @stop
