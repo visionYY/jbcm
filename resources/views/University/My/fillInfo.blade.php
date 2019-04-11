@@ -8,6 +8,9 @@
   .ttt{
     margin-top:2.35rem;
   }
+  #myModal{
+    float: left;
+  }
 </style>
    @include('layouts.u_hint')
   <div class="wrapper wrapper1">
@@ -24,9 +27,32 @@
     </form>
     <div class="cover1">请正确填写您的真实姓名</div>
   </div>
-
+<!-- 图片裁剪 -->
+<div id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="clipArea" style="margin-top: 20px;height: 500px;"></div>
+            </div>
+            <div class="modal-footer">
+                <input type="file" id="file" class="valid">
+                <button type="button" class="btn btn-white quxiao" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">保存</button>
+                <button id="clipBtn" class="btn btn-primary">截取</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{asset('Admin/js/iscroll-zoom.js')}}"></script>
+<script src="{{asset('Admin/js/hammer.js')}}"></script>
+<script src="{{asset('Admin/js/lrz.all.bundle.js')}}"></script>
+<script src="{{asset('Admin/js/jquery.photoClip.js')}}"></script>
   <script>
-    $(document).ready(function () {
+    /*$(document).ready(function () {
       $('#img1').change(function(){
         var imgurl = getObjectURL(this.files[0]);
         $('#head_pic_img').attr('src',imgurl);
@@ -45,7 +71,28 @@
              }  
              return url ;
         }
-    })
+    })*/
+
+     var clipArea = new bjj.PhotoClip("#clipArea", {
+        size: [260, 260],
+        outputSize: [640, 640],
+        file: "#file",
+        view: "#view",
+        ok: "#clipBtn",
+        loadStart: function() {
+            console.log("照片读取中");
+        },
+        loadComplete: function() {
+            console.log("照片读取完成");
+        },
+        clipFinish: function(dataURL) {
+            // console.log(dataURL);
+            $('#head_pic_img').attr('src',dataURL);
+            $('[name=head_pic]').attr('value',dataURL);
+        }
+    });
+
+    //表单提交
     $('form').submit(function(){
       var pattern = /[A-Za-z0-9_\-\u4e00-\u9fa5]{2,10}$/;  //正规表达式对象
       if(pattern.test($('.inpp').val())){

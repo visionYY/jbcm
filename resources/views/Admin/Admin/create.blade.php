@@ -110,22 +110,22 @@
     @include('layouts.admin_picpro')
     <script type="text/javascript">
         var clipArea = new bjj.PhotoClip("#clipArea", {
-        size: [260, 260],
-        outputSize: [640, 640],
-        file: "#file",
-        view: "#view",
-        ok: "#clipBtn",
-        loadStart: function() {
-            console.log("照片读取中");
-        },
-        loadComplete: function() {
-            console.log("照片读取完成");
-        },
-        clipFinish: function(dataURL) {
-            // console.log(dataURL);
-            $('#admin_pic').attr('src',dataURL);
-            $('[name=admin_pic]').attr('value',dataURL);
-        }
-    });
+            size: [260, 260],
+            outputSize: [640, 640],
+            file: "#file",
+            view: "#view",
+            ok: "#clipBtn",
+            loadStart: function() {
+                console.log("照片读取中");
+            },
+            loadComplete: function() {
+                console.log("照片读取完成");
+            },
+            clipFinish: function(dataURL) {
+                // console.log(dataURL);
+                $('#admin_pic').attr('src',dataURL);
+                $('[name=admin_pic]').attr('value',dataURL);
+            }
+        });
     </script>
 @stop
