@@ -14,6 +14,7 @@ class NavigationController extends Controller
         $all = Navigation::orderBy('sort','desc')->orderBy('created_at')->get()->toArray();
         $list['arr'] = Helper::_tree($all);
         $list['json'] = json_encode(Helper::_tree_json($all));
+        dd($list);
         return view('Admin.Navigation.index',compact('list',$list));
     }
 
