@@ -186,7 +186,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('dologin','Admin\LoginController@store')->name('admin.dologin');			//执行登陆
    	Route::get('loginout','Admin\LoginController@logout');	//退出
 
-//    Route::resource('index','Admin\IndexController');           //管理员
+   // Route::resource('index','Admin\IndexController');           //管理员
 
     Route::resource('admin','Admin\AdminController');           //管理员
     Route::resource('category','Admin\CategoryController');     //分类
