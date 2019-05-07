@@ -31,14 +31,13 @@
     height:3450px;
   }
   .relation_box{
-    background:url({{asset('Home/images/imgPc/bgm.png')}}) no-repeat !important;
-    background-size:cover !important;
+    background:background:rgba(255,255,255,1);
     width:100%;
     height:1100px;
   }
   .foot{
-    background:url({{asset('Home/images/imgPc/foot.png')}}) no-repeat !important;
-    background-size:cover !important;
+    position:relative;
+    background:#050a2a;
     width:100%;
     height:508px;
     padding-top:160px;
@@ -93,86 +92,113 @@
           </div>
         </div>
         <div class="issue_box">
-          <ul class="box1">
-            <li><img src="{{asset('Home/images/imgPc/cm.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/cwr.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/ly.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/tlh.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/wj.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/wt.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/wyf.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/zwx.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/zhq.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/MichaelSchumann.png')}}" alt=""></li>
-          </ul>
-          <ul class="box2">
-            <li><img src="{{asset('Home/images/imgPc/hyz.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/nzw.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/ljw.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/sxt.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/xxl.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/ygd.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/ytc.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/ysb.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/yy.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/yxy.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/ywl.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/zw.png')}}" alt=""></li>                        
-          </ul>
-          <ul class="box3">
-            <li><img src="{{asset('Home/images/imgPc/wc.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/wx.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/ym.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/yrw.png')}}" alt=""></li>                       
-          </ul>
-          <ul class="box4">
-            <li><img src="{{asset('Home/images/imgPc/lwh.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/zxy.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/zwr.png')}}" alt=""></li>                     
-          </ul>
-          <ul class="box5">
-            <li><img src="{{asset('Home/images/imgPc/tzj.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/zr.png')}}" alt=""></li>
-            <li><img src="{{asset('Home/images/imgPc/zx.png')}}" alt=""></li>                      
-          </ul>
+          <p class="tit"><img src="{{asset('Home/images/imgPc/tit.png')}}" alt=""></p>
+          <div class="box1">
+            <p class="tit1"><img src="{{asset('Home/images/imgPc/xs.png')}}" alt=""></p>
+            <ul>
+              <li><img src="{{asset('Home/images/imgPc/cm.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/cwr.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/ly.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/tlh.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/wj.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/wt.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/wyf.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/zwx.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/zhq.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/MichaelSchumann.png')}}" alt=""></li>
+            </ul>
+          </div>
+          <div class="box2">
+            <p class="tit1"><img src="{{asset('Home/images/imgPc/vp.png')}}" alt=""></p>
+            <ul>
+              <li><img src="{{asset('Home/images/imgPc/hyz.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/nzw.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/ljw.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/sxt.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/xxl.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/ygd.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/ytc.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/ysb.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/yy.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/yxy.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/ywl.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/zw.png')}}" alt=""></li>                        
+            </ul>
+          </div>
+          <div class="box3">
+            <p class="tit1"><img src="{{asset('Home/images/imgPc/qw.png')}}" alt=""></p>
+            <ul>
+              <li><img src="{{asset('Home/images/imgPc/wc.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/wx.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/ym.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/yrw.png')}}" alt=""></li>                       
+            </ul>
+          </div>
+          <div class="box4">
+            <p class="tit1"><img src="{{asset('Home/images/imgPc/kj.png')}}" alt=""></p>
+            <ul>
+              <li><img src="{{asset('Home/images/imgPc/lwh.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/zxy.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/zwr.png')}}" alt=""></li>                     
+            </ul>
+          </div>
+          <div class="box5">
+            <p class="tit1"><img src="{{asset('Home/images/imgPc/ls.png')}}" alt=""></p>
+            <ul>
+              <li><img src="{{asset('Home/images/imgPc/tzj.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/zr.png')}}" alt=""></li>
+              <li><img src="{{asset('Home/images/imgPc/zx.png')}}" alt=""></li>                      
+            </ul>
+          </div>
         </div>
         <div class="relation_box">
-          <ul class="list1">
-            <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/slzn.png')}}" alt=""></a></li>
-          </ul>
-          <ul class="list2">
-            <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/ts.png')}}" alt=""></a></li>
-            <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/germany.png')}}" alt=""></a></li>
-          </ul>
-          <ul class="list3">
-            <li><a href="http://www.newone.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/zs.png')}}" alt=""></a></li>
-            <li><a href="http://www.gyzq.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/gyzq.png')}}" alt=""></a></li>
-            <li><a href="http://www.gf.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/gfzq.png')}}" alt=""></a></li>
-            <li><a href="https://www.foundersc.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/fzzq.png')}}" alt=""></a></li>
-            <li><a href="http://www.szvc.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/cx.png')}}" alt=""></a></li>
-            <li><a href="http://www.saifpartners.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/saif.png')}}" alt=""></a></li>
-            <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/yo.png')}}" alt=""></a></li>
-            <li><a href="http://www.addorcapital.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/addor.png')}}" alt=""></a></li>
-            <li><a href="http://www.newmargin.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/lc.png')}}" alt=""></a></li>
-            <li><a href="http://www.apluscap.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/htjj.png')}}" alt=""></a></li>
-            <li><a href="http://www.huagaicapital.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/hgzb.png')}}" alt=""></a></li>
-            <li><a href="http://stonevc.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/hszb.png')}}" alt=""></a></li>
-            <li><a href="http://www.vstonecapital.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/kszb.png')}}" alt=""></a></li>
-            <li><a href="http://www.axpfund.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/fdzb.png')}}" alt=""></a></li>
-            <li><a href="http://www.zhenchengcap.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/zc.png')}}" alt=""></a></li>
-            <li><a href="https://www2.deloitte.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/dq.png')}}" alt=""></a></li>
-            <li><a href="https://www.pwccn.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/ph.png')}}" alt=""></a></li>
-            <li><a href="http://www.zhonglun.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/zl.png')}}" alt=""></a></li>
-            <li><a href="https://www.kwm.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/jd.png')}}" alt=""></a></li>
-            <li><a href="http://www.jingtian.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/jt.png')}}" alt=""></a></li>
-            <li><a href="https://www.rolandberger.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/berger.png')}}" alt=""></a></li>
-            <li><a href="http://www.ceibs.edu" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/zo.png')}}" alt=""></a></li>
-            <li><a href="http://www.sem.tsinghua.edu.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/qhjg.png')}}" alt=""></a></li>
-            <li><a href="www.gsm.pku.edu.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/gh.png')}}" alt=""></a></li>
-            <li><a href="https://www.tongji.edu.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/tj.png')}}" alt=""></a></li>
-          </ul>
+          <div class="list1">
+            <p class="tit"><img src="{{asset('Home/images/imgPc/tit.png')}}" alt=""></p>
+            <ul>
+              <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/slzn.png')}}" alt=""></a></li>
+            </ul>
+          </div>
+          <div class="list2">
+            <p class="tit"><img src="{{asset('Home/images/imgPc/tit.png')}}" alt=""></p>
+            <ul>
+              <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/ts.png')}}" alt=""></a></li>
+              <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/germany.png')}}" alt=""></a></li>
+            </ul>
+          </div>
+          <div class="list3">
+            <p class="tit"><img src="{{asset('Home/images/imgPc/tit.png')}}" alt=""></p>
+            <ul>
+              <li><a href="http://www.newone.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/zs.png')}}" alt=""></a></li>
+              <li><a href="http://www.gyzq.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/gyzq.png')}}" alt=""></a></li>
+              <li><a href="http://www.gf.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/gfzq.png')}}" alt=""></a></li>
+              <li><a href="https://www.foundersc.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/fzzq.png')}}" alt=""></a></li>
+              <li><a href="http://www.szvc.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/cx.png')}}" alt=""></a></li>
+              <li><a href="http://www.saifpartners.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/saif.png')}}" alt=""></a></li>
+              <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/yo.png')}}" alt=""></a></li>
+              <li><a href="http://www.addorcapital.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/addor.png')}}" alt=""></a></li>
+              <li><a href="http://www.newmargin.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/lc.png')}}" alt=""></a></li>
+              <li><a href="http://www.apluscap.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/htjj.png')}}" alt=""></a></li>
+              <li><a href="http://www.huagaicapital.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/hgzb.png')}}" alt=""></a></li>
+              <li><a href="http://stonevc.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/hszb.png')}}" alt=""></a></li>
+              <li><a href="http://www.vstonecapital.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/kszb.png')}}" alt=""></a></li>
+              <li><a href="http://www.axpfund.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/fdzb.png')}}" alt=""></a></li>
+              <li><a href="http://www.zhenchengcap.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/zc.png')}}" alt=""></a></li>
+              <li><a href="https://www2.deloitte.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/dq.png')}}" alt=""></a></li>
+              <li><a href="https://www.pwccn.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/ph.png')}}" alt=""></a></li>
+              <li><a href="http://www.zhonglun.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/zl.png')}}" alt=""></a></li>
+              <li><a href="https://www.kwm.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/jd.png')}}" alt=""></a></li>
+              <li><a href="http://www.jingtian.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/jt.png')}}" alt=""></a></li>
+              <li><a href="https://www.rolandberger.com" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/berger.png')}}" alt=""></a></li>
+              <li><a href="http://www.ceibs.edu" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/zo.png')}}" alt=""></a></li>
+              <li><a href="http://www.sem.tsinghua.edu.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/qhjg.png')}}" alt=""></a></li>
+              <li><a href="www.gsm.pku.edu.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/gh.png')}}" alt=""></a></li>
+              <li><a href="https://www.tongji.edu.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/tj.png')}}" alt=""></a></li>
+            </ul>
+          </div>
+          
         </div>
         <div class="foot">
+          <p class="tit2"><img src="{{asset('Home/images/imgPc/tit.png')}}" alt=""></p>
           <div class="logo_box">
             <img src="{{asset('Home/images/imgPc/code1.png')}}" alt="">
             <p>企业报名通道</p>
