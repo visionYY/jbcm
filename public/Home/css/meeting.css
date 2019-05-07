@@ -291,11 +291,38 @@
   width:80px;
   height:80px;
 }
-
-.box1{
+.tit{
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1180px;
+  padding-top: 90px;
+  text-align: center;
+}
+.tit1{
   width: 100%;
-  padding:0 8%;
-  padding-top: 280px;
+  margin: 0 auto;
+  max-width: 1180px;
+  padding-top: 50px;
+  text-align: center;
+}
+.tit2{
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  text-align: center;
+  margin-left: -22%;
+}
+.tit1 img{
+  width: 100%;
+}
+.box1{
+  width: 84%;
+  margin: 0 auto;
+  max-width: 1180px;
+}
+.box1 ul{
+  padding-top: 50px;
+  height: 550px;
 }
 .box1 li{
   float: left;
@@ -314,9 +341,16 @@
   transform: scale(1.05);  /*以y轴为中心旋转*/
 }
 .box2{
+  width: 84%;
+  margin: 0 auto;
+  max-width: 1180px;
+  margin-top: 50px;
+}
+.box2 ul{
   width: 100%;
-  padding:0 13%;
-  margin-top: 770px;
+  padding: 0 5%;
+  padding-top: 50px;
+  height:980px;
 }
 .box2 li{
   float: left;
@@ -331,9 +365,15 @@
   padding: 0 5%;
 }
 .box3{
+  width: 84%;
+  margin: 0 auto;
+  max-width: 1180px;
+}
+.box3 ul{
   width: 100%;
-  padding:0 13%;
-  margin-top: 1900px;
+  padding: 0 5%;
+  padding-top: 50px;
+  height:350px;
 }
 .box3 li{
   float: left;
@@ -348,11 +388,16 @@
   padding: 0 5%;
 }
 
-
 .box4{
+  width: 84%;
+  margin: 0 auto;
+  max-width: 1180px;
+}
+.box4 ul{
   width: 100%;
-  padding:0 22%;
-  margin-top:2370px;
+  padding: 0 14%;
+  padding-top: 50px;
+  height:350px;
 }
 .box4 li{
   float: left;
@@ -367,9 +412,15 @@
   padding: 0 5%;
 }
 .box5{
+  width: 84%;
+  margin: 0 auto;
+  max-width: 1180px;
+}
+.box5 ul{
   width: 100%;
-  padding:0 22%;
-  margin-top: 2850px;
+  padding: 0 14%;
+  padding-top: 50px;
+  height:350px;
 }
 .box5 li{
   float: left;
@@ -384,15 +435,30 @@
   padding: 0 5%;
 }
 .list1{
-  padding-top: 190px;
+  width: 84%;
+  margin: 0 auto;
+  max-width: 1180px;
+}
+.list1 ul{
+  width: 100%;
+  padding:0 20%;
+  padding-top: 50px;
+  height:90px;
 }
 .list1 li{
   width: 100%;
   text-align: center;
 }
 .list2{
-  padding:0 33%;
-  margin-top: 180px;
+  width: 84%;
+  margin: 0 auto;
+  max-width: 1180px;
+}
+.list2 ul{
+  width: 100%;
+  padding:0 30%;
+  padding-top: 50px;
+  height:90px;
 }
 .list2 li{
   width: 50%;
@@ -400,9 +466,15 @@
   text-align: center;
 }
 .list3{
-  clear: both;
+  width: 84%;
+  margin: 0 auto;
+  max-width: 1180px;
+}
+.list3 ul{
+  width: 100%;
   padding:0 10%;
-  margin-top: 400px;
+  padding-top: 50px;
+  height:90px;
 }
 .list3 li{
   width: 20%;
@@ -414,10 +486,17 @@
   width: 90%;
   padding: 0 5%;
 }
+.logo_box:last-child{
+  width: 36%;
+}
 .logo_box{
+  width: 27%;
   float: left;
   height:182px;
-  margin-right: 25px;
+  margin-right: 3.3%;
+}
+.logo_box img{
+  width: 100%;
 }
 .logo_box p{
   font-size:15px;
