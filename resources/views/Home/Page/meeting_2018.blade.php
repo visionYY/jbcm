@@ -153,20 +153,20 @@
         </div>
         <div class="relation_box">
           <div class="list1">
-            <p class="tit"><img src="{{asset('Home/images/imgPc/tit.png')}}" alt=""></p>
+            <p class="tit"><img src="{{asset('Home/images/imgPc/zbf.png')}}" alt=""></p>
             <ul>
               <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/slzn.png')}}" alt=""></a></li>
             </ul>
           </div>
           <div class="list2">
-            <p class="tit"><img src="{{asset('Home/images/imgPc/tit.png')}}" alt=""></p>
+            <p class="tit"><img src="{{asset('Home/images/imgPc/hzzz.png')}}" alt=""></p>
             <ul>
               <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/ts.png')}}" alt=""></a></li>
               <li><a href="#"><img src="{{asset('Home/images/imgPc/logo/germany.png')}}" alt=""></a></li>
             </ul>
           </div>
           <div class="list3">
-            <p class="tit"><img src="{{asset('Home/images/imgPc/tit.png')}}" alt=""></p>
+            <p class="tit"><img src="{{asset('Home/images/imgPc/hzjg.png')}}" alt=""></p>
             <ul>
               <li><a href="http://www.newone.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/zs.png')}}" alt=""></a></li>
               <li><a href="http://www.gyzq.com.cn" target="_Blank"><img src="{{asset('Home/images/imgPc/logo/gyzq.png')}}" alt=""></a></li>
@@ -198,7 +198,7 @@
           
         </div>
         <div class="foot">
-          <p class="tit2"><img src="{{asset('Home/images/imgPc/tit.png')}}" alt=""></p>
+          <p class="tit2"><img src="{{asset('Home/images/imgPc/lxfs.png')}}" alt=""></p>
           <div class="logo_box">
             <img src="{{asset('Home/images/imgPc/code1.png')}}" alt="">
             <p>企业报名通道</p>
