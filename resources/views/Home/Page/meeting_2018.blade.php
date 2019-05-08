@@ -5,23 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>POWER2018新时代新经济嘉宾峰会</title>
+    <title>2019年度「科创榜·POWER100」评选</title>
     <link rel="icon" type="image/x-icon" href="{{asset('Home/images/meeting.ico')}}" />
     <link rel="stylesheet" href="{{asset('Home/css/all.css')}}">
     <link rel="stylesheet" href="{{asset('Home/css/meeting.css')}}">
 </head>
 <script src={{asset("Home/js/jquery.min.js")}}></script>
 	<script>
-		// var wid = $(window).width();
-		// if(wid<750){
-		// 	window.location.href="{{url('mobile/page/meeting_2018')}}"
-		// }
-		// $(window).resize(function () {          //当浏览器大小变化时
-		// 	var wida = $(window).width();
-		// 	if(wida<750){
-		// 		window.location.href="{{url('mobile/page/meeting_2018')}}"
-		// 	}
-		// });
+		var wid = $(window).width();
+		if(wid<750){
+			window.location.href="{{url('mobile/page/meeting_2018')}}"
+		}
+		$(window).resize(function () {          //当浏览器大小变化时
+			var wida = $(window).width();
+			if(wida<750){
+				window.location.href="{{url('mobile/page/meeting_2018')}}"
+			}
+		});
 	</script>
 <style>
   .issue_box{
